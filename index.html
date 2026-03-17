@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>リハビリ算定日数チェッカー｜PT・OT・ST向け13単位制限 計算ツール</title>
-<meta name="description" content="脳血管・運動器・廃用・呼吸器疾患の算定日数を自動計算。13単位制限の開始日・残り日数をすぐ確認。理学療法士・作業療法士・言語聴覚士向け無料ツール。">
-<meta name="keywords" content="リハビリ,算定日数,13単位,計算,PT,OT,ST,理学療法士,作業療法士,言語聴覚士,脳血管疾患,運動器疾患,廃用症候群,呼吸器疾患">
+<title>リハビリ算定日数管理ツール</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
+     crossorigin="anonymous"></script>
 <style>
   :root {
     --bg: #f5f4f0;
@@ -227,71 +227,29 @@
     padding: 2rem 0;
   }
 
-  .tabs {
-    display: flex;
-    gap: 0;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--border);
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 40px;
   }
-  .tab-btn {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    cursor: pointer;
-    color: var(--text2);
-    font-family: inherit;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .sort-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .sort-table th { text-align: left; padding: 8px 10px; font-size: 12px; color: var(--text2); font-weight: 500; border-bottom: 1px solid var(--border); }
-  .sort-table td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  .sort-table tr:last-child td { border-bottom: none; }
-  .sort-table tbody tr:hover { background: var(--surface2); }
-
-  .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
-  .dot-ok { background: var(--accent); }
-  .dot-caution { background: var(--warn); }
-  .dot-danger { background: var(--danger); }
-
-  .days-ok { color: var(--accent); font-weight: 500; font-family: var(--mono); }
-  .days-caution { color: var(--warn); font-weight: 500; font-family: var(--mono); }
-  .days-danger { color: var(--danger); font-weight: 500; font-family: var(--mono); }
-
-  .legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; color: var(--text2); flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .footer a { color: var(--text3); }
 
   @media (max-width: 400px) {
     .limit-ref { grid-template-columns: repeat(2, 1fr); }
     .fields { grid-template-columns: 1fr; }
-    .sort-table th:nth-child(3), .sort-table td:nth-child(3) { display: none; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>リハビリ算定日数チェッカー</h1>
-  <p>PT・OT・ST向け — 13単位制限 開始日 計算ツール</p>
+  <h1>リハビリ算定日数管理ツール</h1>
+  <p>疾患別 上限日数 &amp; 13単位制限 開始日 計算</p>
 </header>
 
 <div class="container">
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('input')">入力・計算</button>
-    <button class="tab-btn" onclick="switchTab('list')">一覧表示</button>
-  </div>
-
-  <div id="tab-input" class="tab-panel active">
   <div class="limit-ref">
     <div class="limit-chip"><div class="disease">脳血管</div><div class="days">180</div><div class="unit">日</div></div>
     <div class="limit-chip"><div class="disease">運動器</div><div class="days">150</div><div class="unit">日</div></div>
@@ -307,94 +265,61 @@
   </div>
 
   <div id="results" class="result-section"></div>
-  </div>
 
-  <div id="tab-list" class="tab-panel">
-    <div class="legend">
-      <span class="legend-item"><span class="status-dot dot-ok"></span>余裕あり（31日以上）</span>
-      <span class="legend-item"><span class="status-dot dot-caution"></span>注意（1〜30日）</span>
-      <span class="legend-item"><span class="status-dot dot-danger"></span>超過・当日</span>
-    </div>
-    <div class="table-wrap">
-      <table class="sort-table">
-        <thead><tr><th>患者名</th><th>疾患</th><th>制限開始日</th><th>残り日数</th></tr></thead>
-        <tbody id="list-body">
-          <tr><td colspan="4" class="empty-state">「入力・計算」タブで計算してから確認してください</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="footer">
+    <a href="privacy.html">プライバシーポリシー</a>
   </div>
 
 </div>
 
 <script>
 const LIMITS = { '脳血管疾患': 180, '運動器疾患': 150, '廃用症候群': 120, '呼吸器疾患': 90 };
-function parseLocalDate(str) { const [y, m, d] = str.split('-').map(Number); return new Date(y, m - 1, d); }
 let patients = [];
-let patientData = {};
 let pid = 0;
 
-function saveInputs() {
-  patients.forEach(id => {
-    const n = document.getElementById('name_' + id);
-    const di = document.getElementById('disease_' + id);
-    const o = document.getElementById('onset_' + id);
-    const s = document.getElementById('start_' + id);
-    if (n) patientData[id] = {
-      name: n.value,
-      disease: di.value,
-      onset: o.value,
-      start: s.value
-    };
-  });
-}
-
 function addPatient() {
-  saveInputs();
   const id = pid++;
   patients.push(id);
-  patientData[id] = { name: '', disease: '脳血管疾患', onset: '', start: '' };
   renderPatients();
 }
 
 function removePatient(id) {
-  saveInputs();
   patients = patients.filter(p => p !== id);
-  delete patientData[id];
   renderPatients();
   document.getElementById('results').innerHTML = '';
 }
 
 function renderPatients() {
   const c = document.getElementById('patients-container');
-  c.innerHTML = patients.map(id => {
-    const d = patientData[id] || {};
-    const diseaseOptions = ['脳血管疾患','運動器疾患','廃用症候群','呼吸器疾患']
-      .map(opt => `<option${d.disease === opt ? ' selected' : ''}>${opt}</option>`).join('');
-    return `
+  c.innerHTML = patients.map(id => `
     <div class="patient-card">
       <div class="card-header">
-        <input class="name-input" type="text" id="name_${id}" placeholder="患者名（任意）" value="${d.name || ''}">
+        <input class="name-input" type="text" id="name_${id}" placeholder="患者名（任意）">
         <button class="remove-btn" onclick="removePatient(${id})">削除</button>
       </div>
       <div class="fields">
         <div class="field">
           <label>疾患区分</label>
-          <select id="disease_${id}">${diseaseOptions}</select>
+          <select id="disease_${id}">
+            <option>脳血管疾患</option>
+            <option>運動器疾患</option>
+            <option>廃用症候群</option>
+            <option>呼吸器疾患</option>
+          </select>
         </div>
         <div class="field">
           <label>発症日 / 手術日</label>
-          <input type="date" id="onset_${id}" value="${d.onset || ''}">
+          <input type="date" id="onset_${id}">
         </div>
         <div class="field">
           <label>リハ開始日</label>
-          <input type="date" id="start_${id}" value="${d.start || ''}">
+          <input type="date" id="start_${id}">
         </div>
         <div class="field"></div>
         <p class="field-note">※ どちらか一方の入力でOKです。両方入力した場合は発症日を優先します。</p>
       </div>
-    </div>`;
-  }).join('');
+    </div>
+  `).join('');
 }
 
 function calcAll() {
@@ -422,15 +347,15 @@ function calcAll() {
     let baseDate, baseLabel, showStartDiff = false, startDiff = null;
 
     if (onsetVal) {
-      baseDate = parseLocalDate(onsetVal);
+      baseDate = new Date(onsetVal);
       baseLabel = '発症日基準';
       if (startVal) {
-        const start = parseLocalDate(startVal);
+        const start = new Date(startVal);
         startDiff = Math.floor((start - baseDate) / (1000 * 60 * 60 * 24));
         showStartDiff = true;
       }
     } else {
-      baseDate = parseLocalDate(startVal);
+      baseDate = new Date(startVal);
       baseLabel = 'リハ開始日基準（目安）';
     }
 
@@ -438,7 +363,7 @@ function calcAll() {
     limitDate.setDate(limitDate.getDate() + limit);
 
     const diffMs = limitDate - today;
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)) - 1;
+    const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
     const passed = diffDays <= 0;
 
     const fmt = d => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
@@ -463,6 +388,11 @@ function calcAll() {
             <span class="rl">今日時点の残り日数</span>
             <span class="rv mono ${passed ? 'warn' : 'ok'}">${passed ? '超過 ' + Math.abs(diffDays) + '日' : diffDays + '日'}</span>
           </div>
+          ${showStartDiff ? `
+          <div class="result-row">
+            <span class="rl">発症からリハ開始まで</span>
+            <span class="rv mono">${startDiff}日後</span>
+          </div>` : ''}
         </div>
       </div>`;
   });
@@ -470,56 +400,7 @@ function calcAll() {
   document.getElementById('results').innerHTML = html;
 }
 
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', (i === 0 && tab === 'input') || (i === 1 && tab === 'list'));
-  });
-  document.getElementById('tab-input').classList.toggle('active', tab === 'input');
-  document.getElementById('tab-list').classList.toggle('active', tab === 'list');
-  if (tab === 'list') renderList();
-}
-
-function renderList() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const rows = [];
-  patients.forEach(id => {
-    const name = document.getElementById('name_' + id).value.trim() || ('患者' + (id + 1));
-    const disease = document.getElementById('disease_' + id).value;
-    const onsetVal = document.getElementById('onset_' + id).value;
-    const startVal = document.getElementById('start_' + id).value;
-    const limit = LIMITS[disease];
-    if (!onsetVal && !startVal) return;
-    const baseDate = onsetVal ? parseLocalDate(onsetVal) : parseLocalDate(startVal);
-    const limitDate = new Date(baseDate);
-    limitDate.setDate(limitDate.getDate() + limit);
-    const diffDays = Math.floor((limitDate - today) / (1000 * 60 * 60 * 24)) - 1;
-    rows.push({ name, disease, limitDate, diffDays });
-  });
-  rows.sort((a, b) => a.diffDays - b.diffDays);
-  const fmt = d => `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
-  const tbody = document.getElementById('list-body');
-  if (rows.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">「入力・計算」タブで患者を入力してください</td></tr>';
-    return;
-  }
-  tbody.innerHTML = rows.map(r => {
-    const cls = r.diffDays <= 0 ? 'danger' : r.diffDays <= 30 ? 'caution' : 'ok';
-    const label = r.diffDays <= 0 ? '超過 ' + Math.abs(r.diffDays) + '日' : r.diffDays + '日';
-    return `<tr>
-      <td><span class="status-dot dot-${cls}"></span>${r.name}</td>
-      <td>${r.disease}</td>
-      <td style="font-family:var(--mono);font-size:13px;">${fmt(r.limitDate)}</td>
-      <td class="days-${cls}">${label}</td>
-    </tr>`;
-  }).join('');
-}
-
-addPatient();</script>
-<footer style="text-align:center;padding:24px 16px 40px;font-size:11px;color:#a09d96;line-height:1.8;border-top:1px solid #e0ddd4;margin-top:32px;">
-本ツールの算定日数は2024年・2026年度診療報酬改定に基づいています。<br>
-正確な算定は必ず所属機関のレセコン等でご確認ください。<br>
-入力された情報はお使いの端末上でのみ処理され、外部サーバーへの送信・保存は一切行いません。個人情報が外部に漏れる心配はありません。
-</footer>
+addPatient();
+</script>
 </body>
 </html>
