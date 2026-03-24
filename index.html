@@ -239,6 +239,46 @@
     .limit-ref { grid-template-columns: repeat(2, 1fr); }
     .fields { grid-template-columns: 1fr; }
   }
+.info-section {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .info-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+  .info-text {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .info-list {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+    padding-left: 1.5em;
+  }
+  .info-list li {
+    margin-bottom: 6px;
+  }
+  .faq-item {
+    margin-bottom: 16px;
+  }
+  .faq-q {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .faq-a {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
 </style>
 </head>
 <body>
@@ -265,7 +305,42 @@
   </div>
 
   <div id="results" class="result-section"></div>
+<div class="info-section">
+    <h2 class="info-title">このツールについて</h2>
+    <p class="info-text">リハビリ算定日数管理ツールは、疾患別リハビリテーションの算定上限日数と、13単位制限が開始される日付を自動で計算するツールです。発症日または手術日を入力するだけで、今日時点の残り日数をすぐに確認できます。複数患者の一括管理にも対応しています。</p>
 
+    <h2 class="info-title">使い方</h2>
+    <ol class="info-list">
+      <li>「患者を追加」ボタンで入力欄を追加します</li>
+      <li>疾患区分を選択します（脳血管・運動器・廃用・呼吸器）</li>
+      <li>発症日または手術日、もしくはリハビリ開始日を入力します</li>
+      <li>「計算する」ボタンを押すと結果が表示されます</li>
+    </ol>
+
+    <h2 class="info-title">疾患別リハビリテーション算定日数上限</h2>
+    <p class="info-text">医療保険における疾患別リハビリテーションには、それぞれ算定できる日数の上限が定められています。上限日数を超えると、1日あたりの算定単位数が13単位までに制限されます。</p>
+    <ul class="info-list">
+      <li><strong>脳血管疾患等リハビリテーション：</strong>発症・手術・急性増悪から180日以内</li>
+      <li><strong>運動器リハビリテーション：</strong>発症・手術・急性増悪から150日以内</li>
+      <li><strong>廃用症候群リハビリテーション：</strong>発症・手術・急性増悪から120日以内</li>
+      <li><strong>呼吸器リハビリテーション：</strong>発症・手術・急性増悪から90日以内</li>
+    </ul>
+
+    <h2 class="info-title">よくある質問</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 発症日とリハビリ開始日のどちらを入力すればよいですか？</p>
+      <p class="faq-a">A. 原則として発症日・手術日を入力してください。発症日が不明な場合はリハビリ開始日での目安計算も可能です。両方入力した場合は発症日が優先されます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 算定日数を超えたらリハビリはできなくなりますか？</p>
+      <p class="faq-a">A. リハビリ自体は継続できますが、1日あたりの算定単位数が13単位までに制限されます。また、状態の改善が見込まれる場合は、医師の判断により継続算定が認められることがあります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 入力したデータはどこかに送信されますか？</p>
+      <p class="faq-a">A. すべての計算はブラウザ内で完結しており、入力されたデータが外部に送信されることはありません。個人情報を安心して入力いただけます。</p>
+    </div>
+  </div>
+     
   <div class="footer">
   <a href="fim-tool.html">FIM評価ツール</a>
   　｜　
