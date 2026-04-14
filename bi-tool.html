@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barthel Index（BI）評価ツール | リハビリ計算ツール</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
+     crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e0ddd4;
+    --border2: #ccc9be;
+    --text: #1a1916;
+    --text2: #6b6860;
+    --text3: #a09d96;
+    --accent: #2a5c45;
+    --accent-light: #e8f2ed;
+    --danger: #b83030;
+    --danger-light: #fdf0f0;
+    --warn: #8a5c00;
+    --warn-light: #fdf6e3;
+    --info: #1a4a7a;
+    --info-light: #e8f0fa;
+    --radius: 10px;
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  .patient-name-wrap {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 12px 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .patient-name-wrap label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+  .patient-name-input {
+    flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none;
+    color: var(--text); font-family: inherit; background: transparent;
+  }
+  .patient-name-input::placeholder { color: var(--text3); font-weight: 400; }
+
+  .score-summary {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
+  }
+  .score-total { font-size: 48px; font-weight: 700; font-family: var(--mono); color: var(--accent); line-height: 1; }
+  .score-max { font-size: 16px; color: var(--text3); font-family: var(--mono); }
+  .score-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .score-right { text-align: right; }
+  .score-judge { font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 20px; margin-bottom: 6px; display: inline-block; }
+  .judge-0 { background: var(--danger-light); color: var(--danger); }
+  .judge-1 { background: var(--warn-light); color: var(--warn); }
+  .judge-2 { background: var(--info-light); color: var(--info); }
+  .judge-3 { background: var(--accent-light); color: var(--accent); }
+  .score-progress { width: 160px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .score-progress-bar { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; }
+
+  .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  .item-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; cursor: pointer; user-select: none; gap: 8px; }
+  .item-header:hover { background: var(--surface2); }
+  .item-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .item-num { font-size: 11px; font-family: var(--mono); color: var(--text3); min-width: 18px; }
+  .item-name { font-size: 15px; font-weight: 700; }
+  .item-right { display: flex; align-items: center; gap: 8px; }
+  .item-score-badge { font-size: 15px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 36px; text-align: right; }
+  .item-chevron { font-size: 11px; color: var(--text3); transition: transform 0.2s; display: inline-block; }
+  .item-chevron.open { transform: rotate(180deg); }
+
+  .item-body { border-top: 1px solid var(--border); padding: 12px 16px; display: none; }
+  .item-body.open { display: block; }
+
+  .options { display: flex; flex-direction: column; gap: 7px; }
+  .option-btn {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg); cursor: pointer; text-align: left; font-family: inherit;
+    transition: border-color 0.15s, background 0.15s; width: 100%;
+  }
+  .option-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+  .option-btn.selected { border-color: var(--accent); background: var(--accent-light); }
+  .option-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 30px; padding-top: 1px; }
+  .option-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+  .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; transition: opacity 0.1s, background 0.1s; }
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
+  .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
+  .footer a { color: var(--text3); }
+
+  .print-header { display: none; }
+
+  /* ========== 印刷スタイル ========== */
+  @media print {
+    @page { size: A4 portrait; margin: 12mm 12mm 12mm 12mm; }
+
+    body { background: #fff !important; padding: 0; color: #000; }
+    header { display: none !important; }
+    .container { max-width: 100%; padding: 0; }
+
+    .print-header {
+      display: flex !important;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #2a5c45;
+      padding-bottom: 5px;
+    }
+    .print-title { font-size: 13pt; font-weight: 700; color: #2a5c45; }
+    .print-subtitle { font-size: 8.5pt; color: #666; }
+
+    .patient-name-wrap {
+      border: none; padding: 0 0 5px 0; margin-bottom: 6px;
+      border-bottom: 1px solid #ccc;
+    }
+    .patient-name-wrap label { font-size: 8.5pt; color: #666; }
+    .patient-name-input { font-size: 12pt; }
+
+    .score-summary {
+      border: 1.5px solid #333; padding: 6px 12px; margin-bottom: 8px;
+    }
+    .score-total { font-size: 24pt; color: #000; }
+    .score-max { font-size: 12pt; color: #555; }
+    .score-label { font-size: 8pt; }
+    .score-judge { font-size: 9.5pt; padding: 2px 10px; margin-bottom: 3px; }
+    .judge-0 { background: #fdf0f0 !important; color: #b83030 !important; border: 1px solid #b83030; }
+    .judge-1 { background: #fdf6e3 !important; color: #8a5c00 !important; border: 1px solid #8a5c00; }
+    .judge-2 { background: #e8f0fa !important; color: #1a4a7a !important; border: 1px solid #1a4a7a; }
+    .judge-3 { background: #e8f2ed !important; color: #2a5c45 !important; border: 1px solid #2a5c45; }
+    .score-progress { display: none; }
+
+    .btn-row { display: none !important; }
+    .footer { display: none !important; }
+    .item-chevron { display: none !important; }
+
+    /* 2列グリッド：左1〜5、右6〜10 */
+    #items-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(5, auto);
+      grid-auto-flow: column;
+      gap: 4px;
+      align-items: start;
+    }
+
+    .item-card {
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      margin-bottom: 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .item-header { padding: 4px 7px; background: #efefef !important; cursor: default; }
+    .item-num { font-size: 8pt; }
+    .item-name { font-size: 9pt; font-weight: 700; }
+    .item-score-badge { font-size: 9.5pt; color: #000; }
+
+    .item-body { display: block !important; padding: 3px 7px; }
+    .options { gap: 2px; }
+    .option-btn {
+      padding: 3px 5px; border: 1px solid #ddd;
+      background: #fff !important; border-radius: 2px; gap: 6px;
+    }
+    .option-btn.selected {
+      background: #e8f2ed !important;
+      border-color: #2a5c45 !important;
+    }
+    .option-score { font-size: 8.5pt; color: #2a5c45; min-width: 20px; }
+    .option-text { font-size: 8.5pt; color: #333; line-height: 1.35; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Barthel Index（BI）評価ツール</h1>
+  <p>10項目 / 100点満点 ADL評価</p>
+</header>
+
+<div class="container">
+
+  <div class="print-header">
+    <div>
+      <div class="print-title">Barthel Index（BI）評価表</div>
+      <div class="print-subtitle">10項目 / 100点満点</div>
+    </div>
+    <div class="print-subtitle" id="print-date"></div>
+  </div>
+
+  <div class="patient-name-wrap">
+    <label>患者名&nbsp;&nbsp;</label>
+    <input class="patient-name-input" type="text" id="patient-name" placeholder="（任意）">
+  </div>
+
+  <div class="score-summary">
+    <div>
+      <div>
+        <span class="score-total" id="total-score">0</span>
+        <span class="score-max"> / 100</span>
+      </div>
+      <div class="score-label">合計点</div>
+    </div>
+    <div class="score-right">
+      <div class="score-judge judge-0" id="judge-label">全介助</div>
+      <div class="score-progress">
+        <div class="score-progress-bar" id="progress-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="items-container"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
+    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
+  </div>
+
+  <div class="footer" style="margin-top:32px;">
+    <a href="index.html">算定日数ツール</a>
+    　｜　
+    <a href="fim-tool.html">FIM評価ツール</a>
+    　｜　
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+
+<script>
+const ITEMS = [
+  {
+    name: '食事',
+    options: [
+      { score: 10, text: '自立。手の届く位置に食事があれば介助なしに食べられる。自助具の使用可。適切な時間内に完了。' },
+      { score: 5,  text: '一部介助が必要（例：食物を切るなど）。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '移乗（車椅子⇔ベッド）',
+    options: [
+      { score: 15, text: '自立。車椅子をベッドへ安全に寄せ、ブレーキ・フットレスト操作を行い、移って臥位になり、再び起きて車椅子を適切な位置に置くまで自立。' },
+      { score: 10, text: 'どこかの段階で部分介助または監視が必要。' },
+      { score: 5,  text: '座ることはできるが、移乗そのものは全介助に近い。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '整容',
+    options: [
+      { score: 5, text: '自立。洗面、歯磨き、整髪、ひげそりができる。' },
+      { score: 0, text: '全介助。' },
+    ]
+  },
+  {
+    name: 'トイレ動作',
+    options: [
+      { score: 10, text: '自立。衣服の操作と後始末を含めてできる。ポータブル便器使用時はその洗浄まで含む。' },
+      { score: 5,  text: '部分介助（体を支える、ペーパー操作を助けるなど）。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '入浴',
+    options: [
+      { score: 5, text: '自立。浴槽につかる、またはシャワーを使うことができる。' },
+      { score: 0, text: '全介助。' },
+    ]
+  },
+  {
+    name: '歩行',
+    options: [
+      { score: 15, text: '自立。45m以上の平地歩行が可能。補装具の使用は可だが、車椅子・歩行器は不可。' },
+      { score: 10, text: '介助または監視があれば45m以上歩ける。歩行器の使用を含む。' },
+      { score: 5,  text: '歩行不能でも、車椅子を自力で操作して45m以上移動できる。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '階段昇降',
+    options: [
+      { score: 10, text: '自立。手すりや杖の使用は問わない。' },
+      { score: 5,  text: '介助または監視が必要。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '着替え',
+    options: [
+      { score: 10, text: '自立。靴、ファスナー、装具の着脱を含む。' },
+      { score: 5,  text: '部分介助を要するが、少なくとも半分以上は自分でできる。適切な時間内に完了。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '排便コントロール',
+    options: [
+      { score: 10, text: '失禁なし。浣腸・坐薬の取り扱いも可能。' },
+      { score: 5,  text: '時に失禁あり、または浣腸・坐薬の取り扱いに介助を要する。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+  {
+    name: '排尿コントロール',
+    options: [
+      { score: 10, text: '失禁なし。' },
+      { score: 5,  text: '時に失禁あり、または収尿器の取り扱いに介助を要する場合を含む。' },
+      { score: 0,  text: '全介助。' },
+    ]
+  },
+];
+
+let scores = new Array(ITEMS.length).fill(null);
+let openStates = new Array(ITEMS.length).fill(true);
+
+function getJudge(total) {
+  if (total <= 20)  return { label: '全介助',   cls: 'judge-0' };
+  if (total <= 60)  return { label: '重度介助', cls: 'judge-1' };
+  if (total <= 85)  return { label: '軽度介助', cls: 'judge-2' };
+  return              { label: '自立',     cls: 'judge-3' };
+}
+
+function updateTotal() {
+  const total = scores.reduce((s, v) => s + (v !== null ? v : 0), 0);
+  document.getElementById('total-score').textContent = total;
+  document.getElementById('progress-bar').style.width = total + '%';
+  const judge = getJudge(total);
+  const el = document.getElementById('judge-label');
+  el.textContent = judge.label;
+  el.className = 'score-judge ' + judge.cls;
+  ITEMS.forEach((_, i) => {
+    const badge = document.getElementById('badge-' + i);
+    if (badge) badge.textContent = scores[i] !== null ? scores[i] + '点' : '—';
+  });
+}
+
+function selectOption(itemIdx, score) {
+  scores[itemIdx] = score;
+  document.querySelectorAll('.option-btn[data-item="' + itemIdx + '"]').forEach(btn => {
+    btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
+  });
+  updateTotal();
+}
+
+function toggleBody(i) {
+  openStates[i] = !openStates[i];
+  document.getElementById('body-' + i).classList.toggle('open', openStates[i]);
+  document.getElementById('chevron-' + i).classList.toggle('open', openStates[i]);
+}
+
+function resetAll() {
+  scores = new Array(ITEMS.length).fill(null);
+  document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+  updateTotal();
+}
+
+function printPage() {
+  document.getElementById('print-date').textContent =
+    '評価日：' + new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+  window.print();
+}
+
+function render() {
+  const c = document.getElementById('items-container');
+  c.innerHTML = ITEMS.map((item, i) => `
+    <div class="item-card">
+      <div class="item-header" onclick="toggleBody(${i})">
+        <div class="item-title-wrap">
+          <span class="item-num">${i + 1}</span>
+          <span class="item-name">${item.name}</span>
+        </div>
+        <div class="item-right">
+          <span class="item-score-badge" id="badge-${i}">—</span>
+          <span class="item-chevron open" id="chevron-${i}">▲</span>
+        </div>
+      </div>
+      <div class="item-body open" id="body-${i}">
+        <div class="options">
+          ${item.options.map(opt => `
+            <button class="option-btn" data-item="${i}" data-score="${opt.score}" onclick="selectOption(${i}, ${opt.score})">
+              <span class="option-score">${opt.score}点</span>
+              <span class="option-text">${opt.text}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+render();
+</script>
+</body>
+</html>
