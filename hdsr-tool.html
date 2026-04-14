@@ -225,13 +225,13 @@
   <div class="score-summary">
     <div>
       <div>
-        <span class="score-total" id="total-score">0</span>
+        <span class="score-total" id="total-score">—</span>
         <span class="score-max"> / 30</span>
       </div>
       <div class="score-label">合計点</div>
     </div>
     <div class="score-right">
-      <div class="score-judge judge-dementia" id="judge-label">認知症疑い</div>
+      <div class="score-judge" id="judge-label" style="background:#f0efe9; color:#a09d96;">未入力</div>
       <div class="score-progress">
         <div class="score-progress-bar" id="progress-bar" style="width:0%"></div>
       </div>
@@ -431,13 +431,29 @@ function getJudge(total) {
 }
 
 function updateTotal() {
+  const answered = scores.filter(v => v !== null).length;
   const total = scores.reduce((s, v) => s + (v !== null ? v : 0), 0);
-  document.getElementById('total-score').textContent = total;
-  document.getElementById('progress-bar').style.width = (total / 30 * 100) + '%';
-  const judge = getJudge(total);
-  const el = document.getElementById('judge-label');
-  el.textContent = judge.label;
-  el.className = 'score-judge ' + judge.cls;
+  const totalEl = document.getElementById('total-score');
+  const judgeEl = document.getElementById('judge-label');
+  const progressEl = document.getElementById('progress-bar');
+
+  if (answered === 0) {
+    totalEl.textContent = '—';
+    judgeEl.textContent = '未入力';
+    judgeEl.className = 'score-judge';
+    judgeEl.style.background = '#f0efe9';
+    judgeEl.style.color = '#a09d96';
+    progressEl.style.width = '0%';
+  } else {
+    totalEl.textContent = total;
+    progressEl.style.width = (total / 30 * 100) + '%';
+    const judge = getJudge(total);
+    judgeEl.textContent = judge.label;
+    judgeEl.className = 'score-judge ' + judge.cls;
+    judgeEl.style.background = '';
+    judgeEl.style.color = '';
+  }
+
   ITEMS.forEach((_, i) => {
     const badge = document.getElementById('badge-' + i);
     if (badge) badge.textContent = scores[i] !== null ? scores[i] + '点' : '—';
