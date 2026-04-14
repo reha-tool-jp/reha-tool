@@ -199,6 +199,15 @@
   }
   .reset-btn:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
 
+
+  .info-section { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px; }
+  .info-title { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 24px; margin-bottom: 10px; }
+  .info-text { font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .info-list { font-size: 14px; color: var(--text2); line-height: 1.8; padding-left: 1.5em; }
+  .info-list li { margin-bottom: 6px; }
+  .faq-item { margin-bottom: 16px; }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .faq-a { font-size: 14px; color: var(--text2); line-height: 1.8; }
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
   .footer a { color: var(--text3); }
 
@@ -364,8 +373,31 @@
 
   </div>
 
+  <div class="info-section">
+    <h2 class="info-title">このツールについて</h2>
+    <p class="info-text">歩行評価ツールは、TUG（Timed Up and Go Test）と10m歩行テストをストップウォッチ機能付きで計測できるツールです。片手にストップウォッチ、片手に記録用紙という現場の煩雑さを解消し、スマートフォンやタブレット1台で計測から記録まで完結できます。</p>
+
+    <h2 class="info-title">TUG（Timed Up and Go Test）とは</h2>
+    <p class="info-text">肘掛き付き椅子から立ち上がり、3m先の目印を折り返して再び着座するまでの時間を計測します。下肢筋力・バランス・歩行能力・易転倒性を複合的に評価でき、転倒リスクのスクリーニングとして広く使用されています。運動器不安定症の診断基準（日本整形外科学会）にも採用されています。</p>
+
+    <h2 class="info-title">10m歩行テストとは</h2>
+    <p class="info-text">前後各3mの助走路を含む計16mのコースで、中央10mの歩行速度を計測します。歩行速度（m/s）・歩幅・歩行率（歩/分）を算出でき、日常生活での歩行能力や転倒リスクの評価に活用されます。信号横断に必要な歩行速度（1.0m/s）との比較も可能です。</p>
+
+    <h2 class="info-title">よくある質問</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 複数回計測した場合、どの値を使えばよいですか？</p>
+      <p class="faq-a">A. このツールでは複数回の計測から平均タイムを自動算出します。一般的には2〜3回計測して平均値を使用することが推奨されています。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. カットオフ値はどれを参考にすればよいですか？</p>
+      <p class="faq-a">A. カットオフ値は対象者の疾患・年齢・目的によって異なります。ツール内に主要な基準値を表示していますが、あくまで参考値としてご使用ください。</p>
+    </div>
+  </div>
+
   <div class="footer" style="margin-top:32px;">
-    <a href="index.html">算定日数ツール</a>
+    <a href="index.html">← ツール一覧</a>
+    　｜　
+    <a href="santei-tool.html">算定日数ツール</a>
     　｜　
     <a href="fim-tool.html">FIM評価ツール</a>
     　｜　
