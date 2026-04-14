@@ -5,496 +5,471 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIM評価ツール | リハビリ支援</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
-  :root {
-    --bg: #f4f2ee; --surface: #ffffff; --primary: #1a4a6b; --accent: #e8753a;
-    --text: #1c1c1e; --muted: #6e6e73; --border: #d8d5ce; --shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+:root {
+--bg: #f4f2ee; --surface: #ffffff; --primary: #1a4a6b; --accent: #e8753a;
+--text: #1c1c1e; --muted: #6e6e73; --border: #d8d5ce; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+header {
+background: var(--primary); color: white; padding: 20px 24px;
+display: flex; align-items: center; justify-content: space-between;
+position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(26,74,107,0.3);
+}
+header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.05em; }
+header .subtitle { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; font-weight: 300; }
+.total-badge {
+background: var(--accent); color: white; border-radius: 12px; padding: 6px 16px;
+font-family: 'DM Mono', monospace; font-size: 1.4rem; font-weight: 500; min-width: 80px; text-align: center;
+}
+.total-badge .label { font-size: 0.6rem; display: block; opacity: 0.85; font-family: 'Noto Sans JP', sans-serif; }
+.container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+.patient-card {
+background: var(--surface); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;
+box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.patient-card label { font-size: 0.7rem; color: var(--muted); display: block; margin-bottom: 4px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+.patient-card input {
+width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 12px;
+font-size: 0.95rem; font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.2s;
+}
+.patient-card input:focus { border-color: var(--primary); }
+.category { background: var(--surface); border-radius: 12px; margin-bottom: 16px; overflow: visible; box-shadow: var(--shadow); }
+.category-header {
+background: var(--primary); color: white; padding: 10px 16px;
+display: flex; align-items: center; justify-content: space-between; border-radius: 12px 12px 0 0;
+}
+.category-header .cat-name { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; }
+.category-header .cat-score { font-family: 'DM Mono', monospace; font-size: 1rem; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 20px; }
+.fim-item {
+padding: 10px 16px; border-bottom: 1px solid var(--border);
+display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.fim-item:last-child { border-bottom: none; }
+.item-name { font-size: 0.88rem; font-weight: 500; flex: 0 0 130px; color: var(--text); }
+.btn-group { display: flex; gap: 4px; flex: 1; }
+.btn-wrap { flex: 1; position: relative; }
+.score-btn {
+width: 100%; height: 36px; border: 1.5px solid var(--border); border-radius: 8px;
+background: var(--surface); font-family: 'DM Mono', monospace; font-size: 0.9rem;
+font-weight: 500; cursor: pointer; transition: all 0.15s ease; color: var(--muted);
+}
+.score-btn:hover { border-color: var(--primary); color: var(--primary); background: #f0f4f8; }
+.score-btn.selected { color: white; transform: scale(1.08); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.score-btn[data-score="1"].selected { background: #c0392b; border-color: #c0392b; }
+.score-btn[data-score="2"].selected { background: #e74c3c; border-color: #e74c3c; }
+.score-btn[data-score="3"].selected { background: #e67e22; border-color: #e67e22; }
+.score-btn[data-score="4"].selected { background: #f39c12; border-color: #f39c12; }
+.score-btn[data-score="5"].selected { background: #27ae60; border-color: #27ae60; }
+.score-btn[data-score="6"].selected { background: #2980b9; border-color: #2980b9; }
+.score-btn[data-score="7"].selected { background: #1a4a6b; border-color: #1a4a6b; }
+.tooltip {
+display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+background: #1c1c1e; color: #fff; font-size: 0.72rem; line-height: 1.6;
+padding: 8px 10px; border-radius: 8px; z-index: 9999; pointer-events: none;
+box-shadow: 0 4px 16px rgba(0,0,0,0.3); min-width: 170px; max-width: 220px; white-space: normal; text-align: left;
+}
+.tooltip::after {
+content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+border: 5px solid transparent; border-top-color: #1c1c1e;
+}
+.tooltip .t-score { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; margin-bottom: 2px; }
+.tooltip .t-label { font-weight: 700; margin-bottom: 2px; color: #ffd166; }
+.tooltip .t-desc { opacity: 0.85; font-size: 0.69rem; }
+.btn-wrap:hover .tooltip { display: block; }
+.mobile-criteria {
+display: none;
+margin-top: 8px;
+padding: 8px 12px;
+background: #1c1c1e;
+color: #fff;
+border-radius: 8px;
+font-size: 0.72rem;
+line-height: 1.6;
+animation: fadeIn 0.15s ease;
+}
+.mobile-criteria.show { display: block; }
+.mobile-criteria .mc-score { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; }
+.mobile-criteria .mc-label { font-weight: 700; color: #ffd166; margin-bottom: 2px; }
+.mobile-criteria .mc-desc { opacity: 0.85; font-size: 0.69rem; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@media (hover: none) {
+.btn-wrap:hover .tooltip { display: none; }
+}
+.summary { background: var(--surface); border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
+.summary h2 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.summary-item { text-align: center; padding: 12px; background: var(--bg); border-radius: 10px; }
+.summary-item .s-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 4px; }
+.summary-item .s-value { font-family: 'DM Mono', monospace; font-size: 1.6rem; font-weight: 500; color: var(--primary); }
+.progress-bar { height: 10px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #c0392b, #f39c12, #27ae60); transition: width 0.4s ease; }
+.progress-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--muted); }
+.actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.btn { flex: 1; min-width: 120px; padding: 12px 20px; border: none; border-radius: 10px; font-size: 0.9rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.btn-print { background: var(--primary); color: white; }
+.btn-print:hover { background: #163d5a; }
+.btn-reset { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border); }
+.btn-reset:hover { background: #ebe8e1; }
 
-  header {
-    background: var(--primary); color: white; padding: 20px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(26,74,107,0.3);
-  }
-  header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.05em; }
-  header .subtitle { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; font-weight: 300; }
-  .total-badge {
-    background: var(--accent); color: white; border-radius: 12px; padding: 6px 16px;
-    font-family: 'DM Mono', monospace; font-size: 1.4rem; font-weight: 500; min-width: 80px; text-align: center;
-  }
-  .total-badge .label { font-size: 0.6rem; display: block; opacity: 0.85; font-family: 'Noto Sans JP', sans-serif; }
+@media print {
+  @page { size: A4 portrait; margin: 8mm 12mm; }
+  html, body { height: auto !important; overflow: visible !important; }
+  header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8px 14px; }
+  header h1 { font-size: 0.95rem; }
+  header .subtitle { font-size: 0.62rem; }
+  .total-badge { font-size: 1.1rem; padding: 4px 12px; }
+  body { background: white; font-size: 10px; }
+  .actions { display: none; }
+  .tooltip { display: none !important; }
+  .mobile-criteria { display: none !important; }
+  .container { padding: 5px 2px; max-width: 100%; }
+  .patient-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 5px; padding: 5px 10px; gap: 8px; }
+  .patient-card label { font-size: 0.6rem; }
+  .patient-card input { font-size: 0.78rem; padding: 3px 6px; }
+  #fim-categories { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 5px; }
+  .category { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; margin-bottom: 0; overflow: hidden; }
+  .category-header { padding: 4px 8px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .category-header .cat-name { font-size: 0.7rem; }
+  .category-header .cat-score { font-size: 0.72rem; padding: 1px 6px; }
+  .fim-item { padding: 2px 4px; gap: 3px; flex-wrap: nowrap; }
+  .item-name { flex: 0 0 62px; font-size: 0.66rem; }
+  .btn-group { gap: 2px; }
+  .score-btn { height: 20px; font-size: 0.62rem; border-radius: 3px; border-width: 1px; min-width: 0; }
+  .score-btn.selected { -webkit-print-color-adjust: exact; print-color-adjust: exact; transform: none; box-shadow: none; }
+  .summary { box-shadow: none; border: 1px solid #ccc; margin-top: 5px; padding: 8px 10px; break-inside: avoid; }
+  .summary h2 { font-size: 0.65rem; margin-bottom: 6px; }
+  .summary-grid { gap: 5px; margin-bottom: 6px; }
+  .summary-item { padding: 5px; }
+  .summary-item .s-label { font-size: 0.6rem; }
+  .summary-item .s-value { font-size: 1rem; }
+  .progress-bar { height: 7px; }
+  .progress-labels { font-size: 0.6rem; }
+}
 
-  .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
-
-  .patient-card {
-    background: var(--surface); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;
-    box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  .patient-card label { font-size: 0.7rem; color: var(--muted); display: block; margin-bottom: 4px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
-  .patient-card input {
-    width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 12px;
-    font-size: 0.95rem; font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.2s;
-  }
-  .patient-card input:focus { border-color: var(--primary); }
-
-  .category { background: var(--surface); border-radius: 12px; margin-bottom: 16px; overflow: visible; box-shadow: var(--shadow); }
-  .category-header {
-    background: var(--primary); color: white; padding: 10px 16px;
-    display: flex; align-items: center; justify-content: space-between; border-radius: 12px 12px 0 0;
-  }
-  .category-header .cat-name { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; }
-  .category-header .cat-score { font-family: 'DM Mono', monospace; font-size: 1rem; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 20px; }
-
-  .fim-item {
-    padding: 10px 16px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  }
-  .fim-item:last-child { border-bottom: none; }
-  .item-name { font-size: 0.88rem; font-weight: 500; flex: 0 0 130px; color: var(--text); }
-  .btn-group { display: flex; gap: 4px; flex: 1; }
-
-  .btn-wrap { flex: 1; position: relative; }
-
-  .score-btn {
-    width: 100%; height: 36px; border: 1.5px solid var(--border); border-radius: 8px;
-    background: var(--surface); font-family: 'DM Mono', monospace; font-size: 0.9rem;
-    font-weight: 500; cursor: pointer; transition: all 0.15s ease; color: var(--muted);
-  }
-  .score-btn:hover { border-color: var(--primary); color: var(--primary); background: #f0f4f8; }
-  .score-btn.selected { color: white; transform: scale(1.08); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-  .score-btn[data-score="1"].selected { background: #c0392b; border-color: #c0392b; }
-  .score-btn[data-score="2"].selected { background: #e74c3c; border-color: #e74c3c; }
-  .score-btn[data-score="3"].selected { background: #e67e22; border-color: #e67e22; }
-  .score-btn[data-score="4"].selected { background: #f39c12; border-color: #f39c12; }
-  .score-btn[data-score="5"].selected { background: #27ae60; border-color: #27ae60; }
-  .score-btn[data-score="6"].selected { background: #2980b9; border-color: #2980b9; }
-  .score-btn[data-score="7"].selected { background: #1a4a6b; border-color: #1a4a6b; }
-
-  .tooltip {
-    display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
-    background: #1c1c1e; color: #fff; font-size: 0.72rem; line-height: 1.6;
-    padding: 8px 10px; border-radius: 8px; z-index: 9999; pointer-events: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3); min-width: 170px; max-width: 220px; white-space: normal; text-align: left;
-  }
-  .tooltip::after {
-    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-    border: 5px solid transparent; border-top-color: #1c1c1e;
-  }
-  .tooltip .t-score { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; margin-bottom: 2px; }
-  .tooltip .t-label { font-weight: 700; margin-bottom: 2px; color: #ffd166; }
-  .tooltip .t-desc { opacity: 0.85; font-size: 0.69rem; }
-  .btn-wrap:hover .tooltip { display: block; }
-
-  /* Mobile criteria panel */
-  .mobile-criteria {
-    display: none;
-    margin-top: 8px;
-    padding: 8px 12px;
-    background: #1c1c1e;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 0.72rem;
-    line-height: 1.6;
-    animation: fadeIn 0.15s ease;
-  }
-  .mobile-criteria.show { display: block; }
-  .mobile-criteria .mc-score { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; }
-  .mobile-criteria .mc-label { font-weight: 700; color: #ffd166; margin-bottom: 2px; }
-  .mobile-criteria .mc-desc { opacity: 0.85; font-size: 0.69rem; }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-
-  @media (hover: none) {
-    .btn-wrap:hover .tooltip { display: none; }
-  }
-
-  .summary { background: var(--surface); border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-  .summary h2 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-  .summary-item { text-align: center; padding: 12px; background: var(--bg); border-radius: 10px; }
-  .summary-item .s-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 4px; }
-  .summary-item .s-value { font-family: 'DM Mono', monospace; font-size: 1.6rem; font-weight: 500; color: var(--primary); }
-  .progress-bar { height: 10px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
-  .progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #c0392b, #f39c12, #27ae60); transition: width 0.4s ease; }
-  .progress-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--muted); }
-
-  .actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-  .btn { flex: 1; min-width: 120px; padding: 12px 20px; border: none; border-radius: 10px; font-size: 0.9rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-  .btn-print { background: var(--primary); color: white; }
-  .btn-print:hover { background: #163d5a; }
-  .btn-reset { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border); }
-  .btn-reset:hover { background: #ebe8e1; }
-
-  @media print {
-    @page { size: A4 portrait; margin: 8mm 12mm; }
-    header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8px 14px; }
-    header h1 { font-size: 0.95rem; }
-    header .subtitle { font-size: 0.62rem; }
-    .total-badge { font-size: 1.1rem; padding: 4px 12px; }
-    body { background: white; font-size: 10px; }
-    .actions { display: none; }
-    .tooltip { display: none !important; }
-    .mobile-criteria { display: none !important; }
-    .container { padding: 5px 2px; max-width: 100%; }
-    .patient-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 5px; padding: 5px 10px; gap: 8px; }
-    .patient-card label { font-size: 0.6rem; }
-    .patient-card input { font-size: 0.78rem; padding: 3px 6px; }
-    #fim-categories { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 5px; }
-    .category { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; margin-bottom: 0; overflow: hidden; }
-    .category-header { padding: 4px 8px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .category-header .cat-name { font-size: 0.7rem; }
-    .category-header .cat-score { font-size: 0.72rem; padding: 1px 6px; }
-    .fim-item { padding: 2px 4px; gap: 3px; flex-wrap: nowrap; }
-    .item-name { flex: 0 0 62px; font-size: 0.66rem; }
-    .btn-group { gap: 2px; }
-    .score-btn { height: 20px; font-size: 0.62rem; border-radius: 3px; border-width: 1px; min-width: 0; }
-    .score-btn.selected { -webkit-print-color-adjust: exact; print-color-adjust: exact; transform: none; box-shadow: none; }
-    .summary { box-shadow: none; border: 1px solid #ccc; margin-top: 5px; padding: 8px 10px; break-inside: avoid; }
-    .summary h2 { font-size: 0.65rem; margin-bottom: 6px; }
-    .summary-grid { gap: 5px; margin-bottom: 6px; }
-    .summary-item { padding: 5px; }
-    .summary-item .s-label { font-size: 0.6rem; }
-    .summary-item .s-value { font-size: 1rem; }
-    .progress-bar { height: 7px; }
-    .progress-labels { font-size: 0.6rem; }
-  }
-  @media (max-width: 600px) {
-    .item-name { flex: 0 0 80px; font-size: 0.78rem; }
-    .score-btn { height: 32px; font-size: 0.8rem; }
-    .patient-card { grid-template-columns: 1fr; }
-    .summary-grid { grid-template-columns: 1fr 1fr; }
-  }
+@media (max-width: 600px) {
+.item-name { flex: 0 0 80px; font-size: 0.78rem; }
+.score-btn { height: 32px; font-size: 0.8rem; }
+.patient-card { grid-template-columns: 1fr; }
+.summary-grid { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <div class="subtitle">機能的自立度評価法</div>
-    <h1>FIM 評価ツール</h1>
-  </div>
-  <div class="total-badge">
-    <span class="label">合計</span>
-    <span id="total-display">18</span>
-  </div>
-</header>
-
-<div class="container">
-  <div class="patient-card">
-    <div>
-      <label>患者名</label>
-      <input type="text" id="patient-name" placeholder="例）山田 太郎">
-    </div>
-    <div>
-      <label>評価日</label>
-      <input type="date" id="eval-date">
-    </div>
-  </div>
-
-  <div id="fim-categories"></div>
-
-  <div class="summary">
-    <h2>スコアサマリー</h2>
-    <div class="summary-grid">
-      <div class="summary-item">
-        <div class="s-label">運動項目（13項目）</div>
-        <div class="s-value" id="motor-score">13</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-label">認知項目（5項目）</div>
-        <div class="s-value" id="cognitive-score">5</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-label">合計</div>
-        <div class="s-value" id="total-score">18</div>
-      </div>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-    </div>
-    <div class="progress-labels">
-      <span>18（全介助）</span>
-      <span>62</span>
-      <span>126（完全自立）</span>
-    </div>
-  </div>
-
-  <div class="actions">
-    <button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
-    <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
-  </div>
+<div>
+<div class="subtitle">機能的自立度評価法</div>
+<h1>FIM 評価ツール</h1>
 </div>
-
+<div class="total-badge">
+<span class="label">合計</span>
+<span id="total-display">18</span>
+</div>
+</header>
+<div class="container">
+<div class="patient-card">
+<div>
+<label>患者名</label>
+<input type="text" id="patient-name" placeholder="例）山田 太郎">
+</div>
+<div>
+<label>評価日</label>
+<input type="date" id="eval-date">
+</div>
+</div>
+<div id="fim-categories"></div>
+<div class="summary">
+<h2>スコアサマリー</h2>
+<div class="summary-grid">
+<div class="summary-item">
+<div class="s-label">運動項目（13項目）</div>
+<div class="s-value" id="motor-score">13</div>
+</div>
+<div class="summary-item">
+<div class="s-label">認知項目（5項目）</div>
+<div class="s-value" id="cognitive-score">5</div>
+</div>
+<div class="summary-item">
+<div class="s-label">合計</div>
+<div class="s-value" id="total-score">18</div>
+</div>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progress-fill" style="width:0%"></div>
+</div>
+<div class="progress-labels">
+<span>18（全介助）</span>
+<span>62</span>
+<span>126（完全自立）</span>
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
+<button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
+</div>
+</div>
 <script>
 const criteria = {
-  "食事": {
-    7:{label:"完全自立",desc:"適切な食具を使い、普通の時間内に食べられる"},
-    6:{label:"修正自立",desc:"自助具使用、または通常より時間がかかる"},
-    5:{label:"監視・準備",desc:"監視や食べ物の準備（切る・盛る等）が必要"},
-    4:{label:"最小介助",desc:"75%以上自力。介助者は手を添える程度"},
-    3:{label:"中等度介助",desc:"50〜74%自力。スプーンを口に運ぶ介助など"},
-    2:{label:"最大介助",desc:"25〜49%自力。口に入れてもらう介助が必要"},
-    1:{label:"全介助",desc:"25%未満自力。ほぼ全介助または経管栄養"}
-  },
-  "整容": {
-    7:{label:"完全自立",desc:"口腔ケア・整髪・洗顔・髭剃り等すべて自立"},
-    6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"物品の準備や見守りが必要"},
-    4:{label:"最小介助",desc:"75%以上自力。仕上げ介助程度"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "清拭": {
-    7:{label:"完全自立",desc:"シャワー・入浴含め身体全体を洗える"},
-    6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"浴槽への出入り見守りや物品準備が必要"},
-    4:{label:"最小介助",desc:"75%以上自力。背中など一部介助"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "更衣（上半身）": {
-    7:{label:"完全自立",desc:"上衣・義肢装具含め自立"},
-    6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りや衣服の準備が必要"},
-    4:{label:"最小介助",desc:"75%以上自力。ボタンなど一部介助"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "更衣（下半身）": {
-    7:{label:"完全自立",desc:"下衣・義肢装具含め自立"},
-    6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りや衣服の準備が必要"},
-    4:{label:"最小介助",desc:"75%以上自力。ファスナーなど一部介助"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "トイレ動作": {
-    7:{label:"完全自立",desc:"衣服の上げ下げ・後始末すべて自立"},
-    6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りや衣服準備が必要"},
-    4:{label:"最小介助",desc:"75%以上自力"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "排尿管理": {
-    7:{label:"完全自立",desc:"失禁なし。必要なら自己導尿も自立"},
-    6:{label:"修正自立",desc:"器具・薬剤使用で失禁なし"},
-    5:{label:"監視・準備",desc:"月1回未満の失禁。器具準備が必要"},
-    4:{label:"最小介助",desc:"月1回以上・週1回未満の失禁"},
-    3:{label:"中等度介助",desc:"週1回以上・毎日未満の失禁"},
-    2:{label:"最大介助",desc:"毎日失禁あり（一部自力でコントロール）"},
-    1:{label:"全介助",desc:"常に失禁またはカテーテル管理が全介助"}
-  },
-  "排便管理": {
-    7:{label:"完全自立",desc:"失禁なし。必要なら自己浣腸も自立"},
-    6:{label:"修正自立",desc:"座薬・下剤等使用で失禁なし"},
-    5:{label:"監視・準備",desc:"月1回未満の失禁。座薬等の準備が必要"},
-    4:{label:"最小介助",desc:"月1回以上・週1回未満の失禁"},
-    3:{label:"中等度介助",desc:"週1回以上・毎日未満の失禁"},
-    2:{label:"最大介助",desc:"毎日失禁あり"},
-    1:{label:"全介助",desc:"常に失禁または全介助での排便処置"}
-  },
-  "ベッド・椅子": {
-    7:{label:"完全自立",desc:"ベッド⇔椅子・車椅子の移乗が自立"},
-    6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りや声かけが必要"},
-    4:{label:"最小介助",desc:"75%以上自力。軽く支える程度"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力。リフト使用含む"}
-  },
-  "トイレ": {
-    7:{label:"完全自立",desc:"トイレへの移乗が自立"},
-    6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りが必要"},
-    4:{label:"最小介助",desc:"75%以上自力"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "浴槽・シャワー": {
-    7:{label:"完全自立",desc:"浴槽またはシャワーへの移乗が自立"},
-    6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
-    5:{label:"監視・準備",desc:"見守りが必要"},
-    4:{label:"最小介助",desc:"75%以上自力"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力"}
-  },
-  "歩行・車椅子": {
-    7:{label:"完全自立",desc:"50m以上を補助具なしで歩行できる"},
-    6:{label:"修正自立",desc:"杖・装具等使用で50m以上歩行"},
-    5:{label:"監視・準備",desc:"50m以上歩けるが見守りが必要"},
-    4:{label:"最小介助",desc:"75%以上自力で歩行（または車椅子操作）"},
-    3:{label:"中等度介助",desc:"50〜74%自力"},
-    2:{label:"最大介助",desc:"25〜49%自力"},
-    1:{label:"全介助",desc:"25%未満自力。歩行・車椅子ともほぼ全介助"}
-  },
-  "階段": {
-    7:{label:"完全自立",desc:"12〜14段を手すりなしで昇降"},
-    6:{label:"修正自立",desc:"手すり・杖使用で12〜14段昇降"},
-    5:{label:"監視・準備",desc:"12〜14段を見守りのもと昇降"},
-    4:{label:"最小介助",desc:"75%以上自力で4〜6段昇降"},
-    3:{label:"中等度介助",desc:"50〜74%自力で4〜6段昇降"},
-    2:{label:"最大介助",desc:"25〜49%自力で2〜3段昇降"},
-    1:{label:"全介助",desc:"25%未満自力。階段昇降ほぼ不可"}
-  },
-  "理解": {
-    7:{label:"完全自立",desc:"複雑・抽象的な内容も理解できる"},
-    6:{label:"修正自立",desc:"補聴器等使用で理解できる"},
-    5:{label:"監視・準備",desc:"単純な会話は理解。複雑な内容は5回に1回誤解"},
-    4:{label:"最小介助",desc:"日常的内容は理解。10〜24％程度誤解あり"},
-    3:{label:"中等度介助",desc:"基本的要求は理解。25〜49%誤解あり"},
-    2:{label:"最大介助",desc:"一貫した理解困難。50〜74%誤解あり"},
-    1:{label:"全介助",desc:"ほぼ理解できない（75%以上誤解）"}
-  },
-  "表出": {
-    7:{label:"完全自立",desc:"複雑・抽象的な内容も表出できる"},
-    6:{label:"修正自立",desc:"補助器具使用で表出できる"},
-    5:{label:"監視・準備",desc:"日常的な表出は可能。複雑な内容は5回に1回困難"},
-    4:{label:"最小介助",desc:"日常的な要求は表出可能。10〜24％程度困難"},
-    3:{label:"中等度介助",desc:"基本的要求のみ表出可。25〜49%困難"},
-    2:{label:"最大介助",desc:"一貫した表出困難。50〜74%困難"},
-    1:{label:"全介助",desc:"ほぼ表出できない（75%以上困難）"}
-  },
-  "社会的交流": {
-    7:{label:"完全自立",desc:"他患者・スタッフと適切に交流できる"},
-    6:{label:"修正自立",desc:"薬物療法等で交流できる"},
-    5:{label:"監視・準備",desc:"5回に1回以下で不適切な行動"},
-    4:{label:"最小介助",desc:"10〜24％以下の状況で不適切な交流"},
-    3:{label:"中等度介助",desc:"25〜49%の状況で不適切な交流"},
-    2:{label:"最大介助",desc:"50〜74%の状況で不適切な交流"},
-    1:{label:"全介助",desc:"75%以上の状況で不適切な交流"}
-  },
-  "問題解決": {
-    7:{label:"完全自立",desc:"日常的問題を認識・判断・解決できる"},
-    6:{label:"修正自立",desc:"複雑な問題以外は解決できる"},
-    5:{label:"監視・準備",desc:"5回に1回以下で促しが必要"},
-    4:{label:"最小介助",desc:"10〜24%以下の状況で促しが必要"},
-    3:{label:"中等度介助",desc:"25〜49%の状況で促しが必要"},
-    2:{label:"最大介助",desc:"50〜74%の状況で促しが必要"},
-    1:{label:"全介助",desc:"75%以上の状況で促しが必要または解決不可"}
-  },
-  "記憶": {
-    7:{label:"完全自立",desc:"日常生活に必要な記憶が自立している"},
-    6:{label:"修正自立",desc:"メモ等の補助手段で記憶できる"},
-    5:{label:"監視・準備",desc:"5回に1回以下で思い出せないことがある"},
-    4:{label:"最小介助",desc:"10〜24%以下の状況で思い出せない"},
-    3:{label:"中等度介助",desc:"25〜49%の状況で思い出せない"},
-    2:{label:"最大介助",desc:"50〜74%の状況で思い出せない"},
-    1:{label:"全介助",desc:"75%以上の状況で思い出せない"}
-  }
+"食事": {
+7:{label:"完全自立",desc:"適切な食具を使い、普通の時間内に食べられる"},
+6:{label:"修正自立",desc:"自助具使用、または通常より時間がかかる"},
+5:{label:"監視・準備",desc:"監視や食べ物の準備（切る・盛る等）が必要"},
+4:{label:"最小介助",desc:"75%以上自力。介助者は手を添える程度"},
+3:{label:"中等度介助",desc:"50〜74%自力。スプーンを口に運ぶ介助など"},
+2:{label:"最大介助",desc:"25〜49%自力。口に入れてもらう介助が必要"},
+1:{label:"全介助",desc:"25%未満自力。ほぼ全介助または経管栄養"}
+},
+"整容": {
+7:{label:"完全自立",desc:"口腔ケア・整髪・洗顔・髭剃り等すべて自立"},
+6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
+5:{label:"監視・準備",desc:"物品の準備や見守りが必要"},
+4:{label:"最小介助",desc:"75%以上自力。仕上げ介助程度"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"清拭": {
+7:{label:"完全自立",desc:"シャワー・入浴含め身体全体を洗える"},
+6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
+5:{label:"監視・準備",desc:"浴槽への出入り見守りや物品準備が必要"},
+4:{label:"最小介助",desc:"75%以上自力。背中など一部介助"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"更衣（上半身）": {
+7:{label:"完全自立",desc:"上衣・義肢装具含め自立"},
+6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りや衣服の準備が必要"},
+4:{label:"最小介助",desc:"75%以上自力。ボタンなど一部介助"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"更衣（下半身）": {
+7:{label:"完全自立",desc:"下衣・義肢装具含め自立"},
+6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りや衣服の準備が必要"},
+4:{label:"最小介助",desc:"75%以上自力。ファスナーなど一部介助"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"トイレ動作": {
+7:{label:"完全自立",desc:"衣服の上げ下げ・後始末すべて自立"},
+6:{label:"修正自立",desc:"自助具使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りや衣服準備が必要"},
+4:{label:"最小介助",desc:"75%以上自力"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"排尿管理": {
+7:{label:"完全自立",desc:"失禁なし。必要なら自己導尿も自立"},
+6:{label:"修正自立",desc:"器具・薬剤使用で失禁なし"},
+5:{label:"監視・準備",desc:"月1回未満の失禁。器具準備が必要"},
+4:{label:"最小介助",desc:"月1回以上・週1回未満の失禁"},
+3:{label:"中等度介助",desc:"週1回以上・毎日未満の失禁"},
+2:{label:"最大介助",desc:"毎日失禁あり（一部自力でコントロール）"},
+1:{label:"全介助",desc:"常に失禁またはカテーテル管理が全介助"}
+},
+"排便管理": {
+7:{label:"完全自立",desc:"失禁なし。必要なら自己浣腸も自立"},
+6:{label:"修正自立",desc:"座薬・下剤等使用で失禁なし"},
+5:{label:"監視・準備",desc:"月1回未満の失禁。座薬等の準備が必要"},
+4:{label:"最小介助",desc:"月1回以上・週1回未満の失禁"},
+3:{label:"中等度介助",desc:"週1回以上・毎日未満の失禁"},
+2:{label:"最大介助",desc:"毎日失禁あり"},
+1:{label:"全介助",desc:"常に失禁または全介助での排便処置"}
+},
+"ベッド・椅子": {
+7:{label:"完全自立",desc:"ベッド⇔椅子・車椅子の移乗が自立"},
+6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りや声かけが必要"},
+4:{label:"最小介助",desc:"75%以上自力。軽く支える程度"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力。リフト使用含む"}
+},
+"トイレ": {
+7:{label:"完全自立",desc:"トイレへの移乗が自立"},
+6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りが必要"},
+4:{label:"最小介助",desc:"75%以上自力"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"浴槽・シャワー": {
+7:{label:"完全自立",desc:"浴槽またはシャワーへの移乗が自立"},
+6:{label:"修正自立",desc:"手すり等使用または時間がかかる"},
+5:{label:"監視・準備",desc:"見守りが必要"},
+4:{label:"最小介助",desc:"75%以上自力"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力"}
+},
+"歩行・車椅子": {
+7:{label:"完全自立",desc:"50m以上を補助具なしで歩行できる"},
+6:{label:"修正自立",desc:"杖・装具等使用で50m以上歩行"},
+5:{label:"監視・準備",desc:"50m以上歩けるが見守りが必要"},
+4:{label:"最小介助",desc:"75%以上自力で歩行（または車椅子操作）"},
+3:{label:"中等度介助",desc:"50〜74%自力"},
+2:{label:"最大介助",desc:"25〜49%自力"},
+1:{label:"全介助",desc:"25%未満自力。歩行・車椅子ともほぼ全介助"}
+},
+"階段": {
+7:{label:"完全自立",desc:"12〜14段を手すりなしで昇降"},
+6:{label:"修正自立",desc:"手すり・杖使用で12〜14段昇降"},
+5:{label:"監視・準備",desc:"12〜14段を見守りのもと昇降"},
+4:{label:"最小介助",desc:"75%以上自力で4〜6段昇降"},
+3:{label:"中等度介助",desc:"50〜74%自力で4〜6段昇降"},
+2:{label:"最大介助",desc:"25〜49%自力で2〜3段昇降"},
+1:{label:"全介助",desc:"25%未満自力。階段昇降ほぼ不可"}
+},
+"理解": {
+7:{label:"完全自立",desc:"複雑・抽象的な内容も理解できる"},
+6:{label:"修正自立",desc:"補聴器等使用で理解できる"},
+5:{label:"監視・準備",desc:"単純な会話は理解。複雑な内容は5回に1回誤解"},
+4:{label:"最小介助",desc:"日常的内容は理解。10〜24％程度誤解あり"},
+3:{label:"中等度介助",desc:"基本的要求は理解。25〜49%誤解あり"},
+2:{label:"最大介助",desc:"一貫した理解困難。50〜74%誤解あり"},
+1:{label:"全介助",desc:"ほぼ理解できない（75%以上誤解）"}
+},
+"表出": {
+7:{label:"完全自立",desc:"複雑・抽象的な内容も表出できる"},
+6:{label:"修正自立",desc:"補助器具使用で表出できる"},
+5:{label:"監視・準備",desc:"日常的な表出は可能。複雑な内容は5回に1回困難"},
+4:{label:"最小介助",desc:"日常的な要求は表出可能。10〜24％程度困難"},
+3:{label:"中等度介助",desc:"基本的要求のみ表出可。25〜49%困難"},
+2:{label:"最大介助",desc:"一貫した表出困難。50〜74%困難"},
+1:{label:"全介助",desc:"ほぼ表出できない（75%以上困難）"}
+},
+"社会的交流": {
+7:{label:"完全自立",desc:"他患者・スタッフと適切に交流できる"},
+6:{label:"修正自立",desc:"薬物療法等で交流できる"},
+5:{label:"監視・準備",desc:"5回に1回以下で不適切な行動"},
+4:{label:"最小介助",desc:"10〜24％以下の状況で不適切な交流"},
+3:{label:"中等度介助",desc:"25〜49%の状況で不適切な交流"},
+2:{label:"最大介助",desc:"50〜74%の状況で不適切な交流"},
+1:{label:"全介助",desc:"75%以上の状況で不適切な交流"}
+},
+"問題解決": {
+7:{label:"完全自立",desc:"日常的問題を認識・判断・解決できる"},
+6:{label:"修正自立",desc:"複雑な問題以外は解決できる"},
+5:{label:"監視・準備",desc:"5回に1回以下で促しが必要"},
+4:{label:"最小介助",desc:"10〜24%以下の状況で促しが必要"},
+3:{label:"中等度介助",desc:"25〜49%の状況で促しが必要"},
+2:{label:"最大介助",desc:"50〜74%の状況で促しが必要"},
+1:{label:"全介助",desc:"75%以上の状況で促しが必要または解決不可"}
+},
+"記憶": {
+7:{label:"完全自立",desc:"日常生活に必要な記憶が自立している"},
+6:{label:"修正自立",desc:"メモ等の補助手段で記憶できる"},
+5:{label:"監視・準備",desc:"5回に1回以下で思い出せないことがある"},
+4:{label:"最小介助",desc:"10〜24%以下の状況で思い出せない"},
+3:{label:"中等度介助",desc:"25〜49%の状況で思い出せない"},
+2:{label:"最大介助",desc:"50〜74%の状況で思い出せない"},
+1:{label:"全介助",desc:"75%以上の状況で思い出せない"}
+}
 };
 
 const fimData = [
-  { category:"セルフケア", items:[{id:"A",name:"食事"},{id:"B",name:"整容"},{id:"C",name:"清拭"},{id:"D",name:"更衣（上半身）"},{id:"E",name:"更衣（下半身）"},{id:"F",name:"トイレ動作"}] },
-  { category:"排泄コントロール", items:[{id:"G",name:"排尿管理"},{id:"H",name:"排便管理"}] },
-  { category:"移乗", items:[{id:"I",name:"ベッド・椅子"},{id:"J",name:"トイレ"},{id:"K",name:"浴槽・シャワー"}] },
-  { category:"移動", items:[{id:"L",name:"歩行・車椅子"},{id:"M",name:"階段"}] },
-  { category:"コミュニケーション", items:[{id:"N",name:"理解"},{id:"O",name:"表出"}] },
-  { category:"社会的認知", items:[{id:"P",name:"社会的交流"},{id:"Q",name:"問題解決"},{id:"R",name:"記憶"}] }
+{ category:"セルフケア", items:[{id:"A",name:"食事"},{id:"B",name:"整容"},{id:"C",name:"清拭"},{id:"D",name:"更衣（上半身）"},{id:"E",name:"更衣（下半身）"},{id:"F",name:"トイレ動作"}] },
+{ category:"排泄コントロール", items:[{id:"G",name:"排尿管理"},{id:"H",name:"排便管理"}] },
+{ category:"移乗", items:[{id:"I",name:"ベッド・椅子"},{id:"J",name:"トイレ"},{id:"K",name:"浴槽・シャワー"}] },
+{ category:"移動", items:[{id:"L",name:"歩行・車椅子"},{id:"M",name:"階段"}] },
+{ category:"コミュニケーション", items:[{id:"N",name:"理解"},{id:"O",name:"表出"}] },
+{ category:"社会的認知", items:[{id:"P",name:"社会的交流"},{id:"Q",name:"問題解決"},{id:"R",name:"記憶"}] }
 ];
+
 const motorItems = ["A","B","C","D","E","F","G","H","I","J","K","L","M"];
 const scores = {};
 fimData.forEach(cat => cat.items.forEach(item => scores[item.id] = 1));
 
 function renderFIM() {
-  const container = document.getElementById('fim-categories');
-  container.innerHTML = '';
-  fimData.forEach(cat => {
-    const catDiv = document.createElement('div');
-    catDiv.className = 'category';
-    const catScore = cat.items.reduce((s, item) => s + scores[item.id], 0);
-    const header = document.createElement('div');
-    header.className = 'category-header';
-    header.innerHTML = `<span class="cat-name">${cat.category}</span><span class="cat-score">${catScore} / ${cat.items.length * 7}</span>`;
-    catDiv.appendChild(header);
-
-    cat.items.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'fim-item';
-      const nameDiv = document.createElement('div');
-      nameDiv.className = 'item-name';
-      nameDiv.textContent = `${item.id}. ${item.name}`;
-      itemDiv.appendChild(nameDiv);
-
-      const btnGroup = document.createElement('div');
-      btnGroup.className = 'btn-group';
-
-      for (let i = 1; i <= 7; i++) {
-        const wrap = document.createElement('div');
-        wrap.className = 'btn-wrap';
-        const btn = document.createElement('button');
-        btn.className = 'score-btn' + (scores[item.id] === i ? ' selected' : '');
-        btn.dataset.score = i;
-        btn.textContent = i;
-        btn.onclick = () => setScore(item.id, i, item.name);
-
-        const tip = document.createElement('div');
-        tip.className = 'tooltip';
-        const c = criteria[item.name] && criteria[item.name][i];
-        if (c) tip.innerHTML = `<div class="t-score">${i}点</div><div class="t-label">${c.label}</div><div class="t-desc">${c.desc}</div>`;
-
-        wrap.appendChild(btn);
-        wrap.appendChild(tip);
-        btnGroup.appendChild(wrap);
-      }
-      itemDiv.appendChild(btnGroup);
-
-      // Mobile criteria panel
-      const mobilePanel = document.createElement('div');
-      mobilePanel.className = 'mobile-criteria';
-      mobilePanel.id = `mc-${item.id}`;
-      itemDiv.appendChild(mobilePanel);
-      catDiv.appendChild(itemDiv);
-    });
-    container.appendChild(catDiv);
-  });
+const container = document.getElementById('fim-categories');
+container.innerHTML = '';
+fimData.forEach(cat => {
+const catDiv = document.createElement('div');
+catDiv.className = 'category';
+const catScore = cat.items.reduce((s, item) => s + scores[item.id], 0);
+const header = document.createElement('div');
+header.className = 'category-header';
+header.innerHTML = `<span class="cat-name">${cat.category}</span><span class="cat-score">${catScore} / ${cat.items.length * 7}</span>`;
+catDiv.appendChild(header);
+cat.items.forEach(item => {
+const itemDiv = document.createElement('div');
+itemDiv.className = 'fim-item';
+const nameDiv = document.createElement('div');
+nameDiv.className = 'item-name';
+nameDiv.textContent = `${item.id}. ${item.name}`;
+itemDiv.appendChild(nameDiv);
+const btnGroup = document.createElement('div');
+btnGroup.className = 'btn-group';
+for (let i = 1; i <= 7; i++) {
+const wrap = document.createElement('div');
+wrap.className = 'btn-wrap';
+const btn = document.createElement('button');
+btn.className = 'score-btn' + (scores[item.id] === i ? ' selected' : '');
+btn.dataset.score = i;
+btn.textContent = i;
+btn.onclick = () => setScore(item.id, i, item.name);
+const tip = document.createElement('div');
+tip.className = 'tooltip';
+const c = criteria[item.name] && criteria[item.name][i];
+if (c) tip.innerHTML = `<div class="t-score">${i}点</div><div class="t-label">${c.label}</div><div class="t-desc">${c.desc}</div>`;
+wrap.appendChild(btn);
+wrap.appendChild(tip);
+btnGroup.appendChild(wrap);
+}
+itemDiv.appendChild(btnGroup);
+const mobilePanel = document.createElement('div');
+mobilePanel.className = 'mobile-criteria';
+mobilePanel.id = `mc-${item.id}`;
+itemDiv.appendChild(mobilePanel);
+catDiv.appendChild(itemDiv);
+});
+container.appendChild(catDiv);
+});
 }
 
 function setScore(id, value, itemName) {
-  scores[id] = value;
-  updateScores();
-  renderFIM();
-
-  // Show mobile criteria panel if touch device
-  if (window.matchMedia('(hover: none)').matches) {
-    const panel = document.getElementById(`mc-${id}`);
-    if (panel) {
-      const c = criteria[itemName] && criteria[itemName][value];
-      if (c) {
-        panel.innerHTML = `<span class="mc-score">${value}点</span> <span class="mc-label">${c.label}</span><br><span class="mc-desc">${c.desc}</span>`;
-        panel.classList.add('show');
-      }
-    }
-  }
+scores[id] = value;
+updateScores();
+renderFIM();
+if (window.matchMedia('(hover: none)').matches) {
+const panel = document.getElementById(`mc-${id}`);
+if (panel) {
+const c = criteria[itemName] && criteria[itemName][value];
+if (c) {
+panel.innerHTML = `<span class="mc-score">${value}点</span> <span class="mc-label">${c.label}</span><br><span class="mc-desc">${c.desc}</span>`;
+panel.classList.add('show');
+}
+}
+}
 }
 
 function updateScores() {
-  const allItems = fimData.flatMap(c => c.items);
-  const motorTotal = motorItems.reduce((s, id) => s + scores[id], 0);
-  const cogTotal = allItems.filter(i => !motorItems.includes(i.id)).reduce((s, item) => s + scores[item.id], 0);
-  const total = motorTotal + cogTotal;
-  document.getElementById('motor-score').textContent = motorTotal;
-  document.getElementById('cognitive-score').textContent = cogTotal;
-  document.getElementById('total-score').textContent = total;
-  document.getElementById('total-display').textContent = total;
-  document.getElementById('progress-fill').style.width = ((total - 18) / 108 * 100) + '%';
+const allItems = fimData.flatMap(c => c.items);
+const motorTotal = motorItems.reduce((s, id) => s + scores[id], 0);
+const cogTotal = allItems.filter(i => !motorItems.includes(i.id)).reduce((s, item) => s + scores[item.id], 0);
+const total = motorTotal + cogTotal;
+document.getElementById('motor-score').textContent = motorTotal;
+document.getElementById('cognitive-score').textContent = cogTotal;
+document.getElementById('total-score').textContent = total;
+document.getElementById('total-display').textContent = total;
+document.getElementById('progress-fill').style.width = ((total - 18) / 108 * 100) + '%';
 }
 
 function resetAll() {
-  if (!confirm('全項目を1点にリセットしますか？')) return;
-  fimData.forEach(cat => cat.items.forEach(item => scores[item.id] = 1));
-  document.getElementById('patient-name').value = '';
-  document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
-  updateScores();
-  renderFIM();
+if (!confirm('全項目を1点にリセットしますか？')) return;
+fimData.forEach(cat => cat.items.forEach(item => scores[item.id] = 1));
+document.getElementById('patient-name').value = '';
+document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
+updateScores();
+renderFIM();
 }
 
 document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
