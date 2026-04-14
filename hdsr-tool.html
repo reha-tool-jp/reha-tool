@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDS-R（長谷川式認知症スケール）評価ツール | リハビリ計算ツール</title>
+<meta name="description" content="HDS-R（改訂長谷川式簡易知能評価スケール）の9項目を採点。30点満点で認知機能を評価。印刷・PDF保存対応。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
+     crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e0ddd4;
+    --border2: #ccc9be;
+    --text: #1a1916;
+    --text2: #6b6860;
+    --text3: #a09d96;
+    --accent: #2a5c45;
+    --accent-light: #e8f2ed;
+    --danger: #b83030;
+    --danger-light: #fdf0f0;
+    --warn: #8a5c00;
+    --warn-light: #fdf6e3;
+    --info: #1a4a7a;
+    --info-light: #e8f0fa;
+    --radius: 10px;
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  /* 患者名・日付 */
+  .patient-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .patient-field label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 4px; }
+  .patient-field input {
+    width: 100%; font-size: 14px; padding: 7px 10px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--text); font-family: inherit; outline: none;
+    transition: border-color 0.15s;
+  }
+  .patient-field input:focus { border-color: var(--accent); }
+
+  /* スコアサマリー */
+  .score-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .score-total { font-size: 48px; font-weight: 700; font-family: var(--mono); color: var(--accent); line-height: 1; }
+  .score-max { font-size: 16px; color: var(--text3); font-family: var(--mono); }
+  .score-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .score-right { text-align: right; }
+  .score-judge { font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 20px; margin-bottom: 6px; display: inline-block; }
+  .judge-normal { background: var(--accent-light); color: var(--accent); }
+  .judge-border { background: var(--warn-light); color: var(--warn); }
+  .judge-dementia { background: var(--danger-light); color: var(--danger); }
+  .score-progress { width: 160px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .score-progress-bar { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; }
+
+  /* 項目カード */
+  .item-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 10px; overflow: hidden;
+  }
+  .item-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 13px 16px; cursor: pointer; user-select: none; gap: 8px;
+  }
+  .item-header:hover { background: var(--surface2); }
+  .item-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .item-num { font-size: 11px; font-family: var(--mono); color: var(--text3); min-width: 18px; }
+  .item-name { font-size: 15px; font-weight: 700; }
+  .item-max { font-size: 11px; color: var(--text3); margin-left: 4px; }
+  .item-right { display: flex; align-items: center; gap: 8px; }
+  .item-score-badge { font-size: 15px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 36px; text-align: right; }
+  .item-chevron { font-size: 11px; color: var(--text3); transition: transform 0.2s; display: inline-block; }
+  .item-chevron.open { transform: rotate(180deg); }
+
+  .item-body { border-top: 1px solid var(--border); padding: 14px 16px; display: none; }
+  .item-body.open { display: block; }
+
+  /* 質問文 */
+  .question-text {
+    font-size: 13px; color: var(--text2); line-height: 1.7;
+    background: var(--surface2); border-radius: 8px; padding: 10px 12px;
+    margin-bottom: 12px; border-left: 3px solid var(--accent);
+  }
+  .question-note {
+    font-size: 12px; color: var(--text3); margin-bottom: 12px; line-height: 1.6;
+  }
+
+  /* 採点ボタン */
+  .options { display: flex; flex-direction: column; gap: 7px; }
+  .option-btn {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg); cursor: pointer; text-align: left; font-family: inherit;
+    transition: border-color 0.15s, background 0.15s; width: 100%;
+  }
+  .option-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+  .option-btn.selected { border-color: var(--accent); background: var(--accent-light); }
+  .option-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 30px; padding-top: 1px; }
+  .option-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* ボタン */
+  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+  .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; transition: opacity 0.1s; }
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
+  .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+  /* 説明セクション */
+  .info-section { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px; }
+  .info-title { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 24px; margin-bottom: 10px; }
+  .info-text { font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .faq-item { margin-bottom: 16px; }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .faq-a { font-size: 14px; color: var(--text2); line-height: 1.8; }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
+  .footer a { color: var(--text3); }
+
+  /* 印刷ヘッダー */
+  .print-header { display: none; }
+
+  /* ========== 印刷スタイル ========== */
+  @media print {
+    @page { size: A4 portrait; margin: 12mm 12mm 12mm 12mm; }
+    html, body { height: auto !important; overflow: visible !important; background: #fff !important; padding: 0; }
+    header { display: none !important; }
+    .container { max-width: 100%; padding: 0; }
+
+    .print-header {
+      display: flex !important; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 8px; border-bottom: 2px solid #2a5c45; padding-bottom: 5px;
+    }
+    .print-title { font-size: 13pt; font-weight: 700; color: #2a5c45; }
+    .print-sub { font-size: 8.5pt; color: #666; }
+
+    .patient-wrap { border: 1px solid #ccc; padding: 6px 10px; margin-bottom: 8px; }
+    .patient-field label { font-size: 8.5pt; }
+    .patient-field input { font-size: 11pt; padding: 3px 6px; }
+
+    .score-summary { border: 1.5px solid #333; padding: 6px 12px; margin-bottom: 8px; }
+    .score-total { font-size: 24pt; color: #000; }
+    .score-max { font-size: 12pt; color: #555; }
+    .score-label { font-size: 8pt; }
+    .score-judge { font-size: 9.5pt; padding: 2px 10px; margin-bottom: 3px; }
+    .judge-normal { background: #e8f2ed !important; color: #2a5c45 !important; border: 1px solid #2a5c45; }
+    .judge-border { background: #fdf6e3 !important; color: #8a5c00 !important; border: 1px solid #8a5c00; }
+    .judge-dementia { background: #fdf0f0 !important; color: #b83030 !important; border: 1px solid #b83030; }
+    .score-progress { display: none; }
+
+    .btn-row { display: none !important; }
+    .footer { display: none !important; }
+    .info-section { display: none !important; }
+    .item-chevron { display: none !important; }
+    .question-note { font-size: 8pt; }
+
+    /* 2列グリッド */
+    #items-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(5, auto);
+      grid-auto-flow: column;
+      gap: 4px;
+      align-items: start;
+    }
+
+    .item-card { border: 1px solid #bbb; border-radius: 3px; margin-bottom: 0; page-break-inside: avoid; break-inside: avoid; }
+    .item-header { padding: 4px 7px; background: #efefef !important; cursor: default; }
+    .item-num { font-size: 8pt; }
+    .item-name { font-size: 9pt; font-weight: 700; }
+    .item-max { font-size: 8pt; }
+    .item-score-badge { font-size: 9.5pt; color: #000; }
+    .item-body { display: block !important; padding: 4px 7px; }
+    .question-text { font-size: 8pt; padding: 4px 6px; margin-bottom: 6px; }
+    .options { gap: 2px; }
+    .option-btn { padding: 3px 5px; border: 1px solid #ddd; background: #fff !important; border-radius: 2px; gap: 6px; }
+    .option-btn.selected { background: #e8f2ed !important; border-color: #2a5c45 !important; }
+    .option-score { font-size: 8.5pt; color: #2a5c45; min-width: 20px; }
+    .option-text { font-size: 8.5pt; color: #333; line-height: 1.35; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>HDS-R 評価ツール</h1>
+  <p>改訂長谷川式簡易知能評価スケール / 9項目・30点満点</p>
+</header>
+
+<div class="container">
+
+  <div class="print-header">
+    <div>
+      <div class="print-title">HDS-R（改訂長谷川式簡易知能評価スケール）</div>
+      <div class="print-sub">9項目・30点満点</div>
+    </div>
+    <div class="print-sub" id="print-date"></div>
+  </div>
+
+  <div class="patient-wrap">
+    <div class="patient-field">
+      <label>患者名</label>
+      <input type="text" id="patient-name" placeholder="（任意）">
+    </div>
+    <div class="patient-field">
+      <label>評価日</label>
+      <input type="date" id="eval-date">
+    </div>
+  </div>
+
+  <div class="score-summary">
+    <div>
+      <div>
+        <span class="score-total" id="total-score">0</span>
+        <span class="score-max"> / 30</span>
+      </div>
+      <div class="score-label">合計点</div>
+    </div>
+    <div class="score-right">
+      <div class="score-judge judge-dementia" id="judge-label">認知症疑い</div>
+      <div class="score-progress">
+        <div class="score-progress-bar" id="progress-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="items-container"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
+    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
+  </div>
+
+  <div class="info-section">
+    <h2 class="info-title">このツールについて</h2>
+    <p class="info-text">HDS-R（改訂長谷川式簡易知能評価スケール）は、1974年に長谷川和夫らによって開発され、1991年に改訂された認知機能スクリーニングツールです。9項目30点満点で評価し、20点以下で認知症の疑いがあるとされています。日本で最も広く使用されている認知症スクリーニング検査のひとつです。</p>
+
+    <h2 class="info-title">使い方</h2>
+    <p class="info-text">各項目をタップして採点します。印刷して記録用紙として使用することも、検査後に結果を入力して保存することも可能です。採点後は「印刷 / PDF保存」ボタンで記録として残せます。</p>
+
+    <h2 class="info-title">判定の目安</h2>
+    <p class="info-text">20点以下で認知症の疑いがあるとされています。ただしHDS-Rはスクリーニングツールであり、確定診断には医師による総合的な診察が必要です。教育歴・文化的背景・身体状態なども考慮して解釈することが重要です。</p>
+
+    <h2 class="info-title">よくある質問</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. MMSEとの違いは何ですか？</p>
+      <p class="faq-a">A. HDS-Rは言語のみで実施でき、書字や図形模写が不要なため身体的制約がある方にも使用しやすいです。MMSEは国際的な標準として広く使用されており、書字・図形模写などの視空間認知も評価できます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 入力したデータはどこかに送信されますか？</p>
+      <p class="faq-a">A. すべての評価はブラウザ内で完結しており、入力されたデータが外部に送信されることはありません。</p>
+    </div>
+  </div>
+
+  <div class="footer" style="margin-top:32px;">
+    <a href="index.html">← ツール一覧</a>
+    　｜　
+    <a href="santei-tool.html">算定日数ツール</a>
+    　｜　
+    <a href="fim-tool.html">FIM評価ツール</a>
+    　｜　
+    <a href="bi-tool.html">BIツール</a>
+    　｜　
+    <a href="walk-tool.html">歩行評価ツール</a>
+    　｜　
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+
+<script>
+const ITEMS = [
+  {
+    name: '年齢',
+    max: 1,
+    question: 'お年はいくつですか？（2歳までの誤差は正解）',
+    note: '',
+    options: [
+      { score: 1, text: '正答（2歳以内の誤差含む）' },
+      { score: 0, text: '不正答・わからない' },
+    ]
+  },
+  {
+    name: '日時の見当識',
+    max: 4,
+    question: '今日は何年の何月何日ですか？何曜日ですか？',
+    note: '年・月・日・曜日それぞれ1点（計4点）',
+    options: [
+      { score: 4, text: '4つすべて正答' },
+      { score: 3, text: '3つ正答' },
+      { score: 2, text: '2つ正答' },
+      { score: 1, text: '1つ正答' },
+      { score: 0, text: '全不正答' },
+    ]
+  },
+  {
+    name: '場所の見当識',
+    max: 2,
+    question: 'ここはどこですか？',
+    note: '自発的に答えられれば2点、ヒント後（病院・施設・自宅）に正答すれば1点',
+    options: [
+      { score: 2, text: '自発的に正答' },
+      { score: 1, text: 'ヒント後に正答' },
+      { score: 0, text: '不正答' },
+    ]
+  },
+  {
+    name: '3単語の記銘',
+    max: 3,
+    question: '今から言う3つの言葉を繰り返してください。後でまた聞きます。\n①桜・猫・電車　②梅・犬・自動車',
+    note: '各1点（計3点）。系列①または②のどちらかを使用。',
+    options: [
+      { score: 3, text: '3つすべて正答' },
+      { score: 2, text: '2つ正答' },
+      { score: 1, text: '1つ正答' },
+      { score: 0, text: '全不正答' },
+    ]
+  },
+  {
+    name: '計算',
+    max: 2,
+    question: '100から7を引いてください。そこからまた7を引くと？',
+    note: '100-7=93（1点）、93-7=86（1点）、計2点',
+    options: [
+      { score: 2, text: '93・86ともに正答' },
+      { score: 1, text: '93のみ正答' },
+      { score: 0, text: '93が不正答（以降は採点しない）' },
+    ]
+  },
+  {
+    name: '数字の逆唱',
+    max: 2,
+    question: '今から言う数字を逆から言ってください。\n6-8-2 → 2-8-6\n3-5-2-9 → 9-2-5-3',
+    note: '3桁逆唱（1点）、4桁逆唱（1点）、計2点',
+    options: [
+      { score: 2, text: '3桁・4桁ともに正答' },
+      { score: 1, text: '3桁のみ正答' },
+      { score: 0, text: '3桁が不正答' },
+    ]
+  },
+  {
+    name: '3単語の遅延再生',
+    max: 6,
+    question: '少し前に覚えてもらった3つの言葉をもう一度言ってみてください。',
+    note: '自発的再生：各2点、ヒント後再生：各1点（最高6点）',
+    options: [
+      { score: 6, text: '3つすべて自発的に正答（各2点×3）' },
+      { score: 5, text: '2つ自発・1つヒント後正答' },
+      { score: 4, text: '2つ自発・1つ不正答、または1つ自発・2つヒント後正答' },
+      { score: 3, text: '1つ自発・1つヒント後・1つ不正答、または3つすべてヒント後正答' },
+      { score: 2, text: '2つヒント後・1つ不正答' },
+      { score: 1, text: '1つヒント後・2つ不正答' },
+      { score: 0, text: '全不正答' },
+    ]
+  },
+  {
+    name: '5物品記銘',
+    max: 5,
+    question: '今から5つの物を見せます。隠した後で何があったか言ってください。\n（時計・鍵・タバコ・ペン・硬貨 など）',
+    note: '正答数が得点（最高5点）',
+    options: [
+      { score: 5, text: '5つすべて正答' },
+      { score: 4, text: '4つ正答' },
+      { score: 3, text: '3つ正答' },
+      { score: 2, text: '2つ正答' },
+      { score: 1, text: '1つ正答' },
+      { score: 0, text: '全不正答' },
+    ]
+  },
+  {
+    name: '言語流暢性（野菜）',
+    max: 5,
+    question: '知っている野菜の名前をできるだけ多く言ってください。（60秒間）',
+    note: '5個：0点、6個：1点、7個：2点、8個：3点、9個：4点、10個以上：5点',
+    options: [
+      { score: 5, text: '10個以上' },
+      { score: 4, text: '9個' },
+      { score: 3, text: '8個' },
+      { score: 2, text: '7個' },
+      { score: 1, text: '6個' },
+      { score: 0, text: '5個以下' },
+    ]
+  },
+];
+
+let scores = new Array(ITEMS.length).fill(null);
+let openStates = new Array(ITEMS.length).fill(true);
+
+function getJudge(total) {
+  if (total <= 20) return { label: '認知症疑い', cls: 'judge-dementia' };
+  if (total <= 23) return { label: '境界域', cls: 'judge-border' };
+  return { label: '正常範囲', cls: 'judge-normal' };
+}
+
+function updateTotal() {
+  const total = scores.reduce((s, v) => s + (v !== null ? v : 0), 0);
+  document.getElementById('total-score').textContent = total;
+  document.getElementById('progress-bar').style.width = (total / 30 * 100) + '%';
+  const judge = getJudge(total);
+  const el = document.getElementById('judge-label');
+  el.textContent = judge.label;
+  el.className = 'score-judge ' + judge.cls;
+  ITEMS.forEach((_, i) => {
+    const badge = document.getElementById('badge-' + i);
+    if (badge) badge.textContent = scores[i] !== null ? scores[i] + '点' : '—';
+  });
+}
+
+function selectOption(itemIdx, score) {
+  scores[itemIdx] = score;
+  document.querySelectorAll('.option-btn[data-item="' + itemIdx + '"]').forEach(btn => {
+    btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
+  });
+  updateTotal();
+}
+
+function toggleBody(i) {
+  openStates[i] = !openStates[i];
+  document.getElementById('body-' + i).classList.toggle('open', openStates[i]);
+  document.getElementById('chevron-' + i).classList.toggle('open', openStates[i]);
+}
+
+function resetAll() {
+  scores = new Array(ITEMS.length).fill(null);
+  document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+  document.getElementById('patient-name').value = '';
+  document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
+  updateTotal();
+}
+
+function printPage() {
+  document.getElementById('print-date').textContent =
+    '評価日：' + (document.getElementById('eval-date').value
+      ? new Date(document.getElementById('eval-date').value).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+      : new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }));
+  window.print();
+}
+
+function render() {
+  const c = document.getElementById('items-container');
+  c.innerHTML = ITEMS.map((item, i) => `
+    <div class="item-card">
+      <div class="item-header" onclick="toggleBody(${i})">
+        <div class="item-title-wrap">
+          <span class="item-num">${i + 1}</span>
+          <span class="item-name">${item.name}</span>
+          <span class="item-max">（${item.max}点）</span>
+        </div>
+        <div class="item-right">
+          <span class="item-score-badge" id="badge-${i}">—</span>
+          <span class="item-chevron open" id="chevron-${i}">▲</span>
+        </div>
+      </div>
+      <div class="item-body open" id="body-${i}">
+        <div class="question-text">${item.question.replace(/\n/g, '<br>')}</div>
+        ${item.note ? `<div class="question-note">📝 ${item.note}</div>` : ''}
+        <div class="options">
+          ${item.options.map(opt => `
+            <button class="option-btn" data-item="${i}" data-score="${opt.score}" onclick="selectOption(${i}, ${opt.score})">
+              <span class="option-score">${opt.score}点</span>
+              <span class="option-text">${opt.text}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
+render();
+updateTotal();
+</script>
+</body>
+</html>
