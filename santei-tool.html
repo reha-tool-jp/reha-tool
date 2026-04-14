@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疾患別リハビリ算定日数ツール | リハビリ計算ツール</title>
+<meta name="description" content="疾患別リハビリテーションの算定上限日数と13単位制限の開始日を自動計算。脳血管・運動器・廃用・呼吸器に対応。複数患者の一括管理も可能。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
+     crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e0ddd4;
+    --border2: #ccc9be;
+    --text: #1a1916;
+    --text2: #6b6860;
+    --text3: #a09d96;
+    --accent: #2a5c45;
+    --accent-light: #e8f2ed;
+    --danger: #b83030;
+    --danger-light: #fdf0f0;
+    --warn: #8a5c00;
+    --warn-light: #fdf6e3;
+    --info: #1a4a7a;
+    --info-light: #e8f0fa;
+    --radius: 10px;
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 20px 20px 18px;
+  }
+  header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-top: 4px;
+    font-family: var(--mono);
+  }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  .limit-ref {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .limit-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .limit-chip .disease { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
+  .limit-chip .days { font-size: 18px; font-weight: 700; font-family: var(--mono); color: var(--accent); }
+  .limit-chip .unit { font-size: 11px; color: var(--text3); }
+
+  .patient-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.15s;
+  }
+  .patient-card:focus-within { box-shadow: 0 0 0 2px var(--accent); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .name-input {
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--text);
+    width: 200px;
+    font-family: inherit;
+  }
+  .name-input::placeholder { color: var(--text3); font-weight: 400; }
+
+  .remove-btn {
+    font-size: 12px;
+    color: var(--text3);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .remove-btn:hover { color: var(--danger); border-color: var(--danger); }
+
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; color: var(--text2); }
+  .field select, .field input[type="date"] {
+    font-size: 14px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .field select:focus, .field input[type="date"]:focus { border-color: var(--accent); }
+
+  .field-note {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .add-btn {
+    flex: 1;
+    padding: 11px;
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px dashed var(--border2);
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: var(--text2);
+    font-family: inherit;
+    transition: background 0.1s, color 0.1s;
+  }
+  .add-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+  .calc-btn {
+    flex: 2;
+    padding: 11px;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    transition: opacity 0.1s;
+  }
+  .calc-btn:hover { opacity: 0.88; }
+
+  .result-section { margin-top: 4px; }
+  .result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--border2);
+  }
+  .result-card.status-ok { border-left-color: var(--accent); }
+  .result-card.status-warn { border-left-color: var(--danger); }
+
+  .result-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .result-name { font-size: 15px; font-weight: 700; }
+  .badge {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .badge-ok { background: var(--accent-light); color: var(--accent); }
+  .badge-warn { background: var(--danger-light); color: var(--danger); }
+  .badge-info { background: var(--info-light); color: var(--info); }
+
+  .result-rows { display: flex; flex-direction: column; gap: 0; }
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .rl { color: var(--text2); }
+  .rv { font-weight: 500; }
+  .rv.ok { color: var(--accent); }
+  .rv.warn { color: var(--danger); }
+  .rv.mono { font-family: var(--mono); font-size: 15px; }
+
+  .empty-state {
+    text-align: center;
+    color: var(--text3);
+    font-size: 14px;
+    padding: 2rem 0;
+  }
+
+  /* 説明セクション */
+  .info-section {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .info-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+  .info-text {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .info-list {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+    padding-left: 1.5em;
+  }
+  .info-list li { margin-bottom: 6px; }
+  .faq-item { margin-bottom: 16px; }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .faq-a { font-size: 14px; color: var(--text2); line-height: 1.8; }
+
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 40px;
+  }
+  .footer a { color: var(--text3); }
+
+  @media (max-width: 400px) {
+    .limit-ref { grid-template-columns: repeat(2, 1fr); }
+    .fields { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>疾患別リハビリ算定日数ツール</h1>
+  <p>疾患別 上限日数 &amp; 13単位制限 開始日 計算</p>
+</header>
+
+<div class="container">
+
+  <div class="limit-ref">
+    <div class="limit-chip"><div class="disease">脳血管</div><div class="days">180</div><div class="unit">日</div></div>
+    <div class="limit-chip"><div class="disease">運動器</div><div class="days">150</div><div class="unit">日</div></div>
+    <div class="limit-chip"><div class="disease">廃用</div><div class="days">120</div><div class="unit">日</div></div>
+    <div class="limit-chip"><div class="disease">呼吸器</div><div class="days">90</div><div class="unit">日</div></div>
+  </div>
+
+  <div id="patients-container"></div>
+
+  <div class="actions">
+    <button class="add-btn" onclick="addPatient()">＋ 患者を追加</button>
+    <button class="calc-btn" onclick="calcAll()">計算する</button>
+  </div>
+
+  <div id="results" class="result-section"></div>
+
+  <div class="info-section">
+    <h2 class="info-title">このツールについて</h2>
+    <p class="info-text">疾患別リハビリ算定日数ツールは、医療保険における疾患別リハビリテーションの算定上限日数と、13単位制限が開始される日付を自動で計算するツールです。発症日または手術日を入力するだけで、今日時点の残り日数をすぐに確認できます。複数患者の一括管理にも対応しています。</p>
+
+    <h2 class="info-title">使い方</h2>
+    <ol class="info-list">
+      <li>「患者を追加」ボタンで入力欄を追加します</li>
+      <li>疾患区分を選択します（脳血管・運動器・廃用・呼吸器）</li>
+      <li>発症日または手術日、もしくはリハビリ開始日を入力します</li>
+      <li>「計算する」ボタンを押すと結果が表示されます</li>
+    </ol>
+
+    <h2 class="info-title">疾患別リハビリテーション算定日数上限</h2>
+    <p class="info-text">医療保険における疾患別リハビリテーションには、それぞれ算定できる日数の上限が定められています。上限日数を超えると、1日あたりの算定単位数が13単位までに制限されます。</p>
+    <ul class="info-list">
+      <li><strong>脳血管疾患等リハビリテーション：</strong>発症・手術・急性増悪から180日以内</li>
+      <li><strong>運動器リハビリテーション：</strong>発症・手術・急性増悪から150日以内</li>
+      <li><strong>廃用症候群リハビリテーション：</strong>発症・手術・急性増悪から120日以内</li>
+      <li><strong>呼吸器リハビリテーション：</strong>発症・手術・急性増悪から90日以内</li>
+    </ul>
+
+    <h2 class="info-title">よくある質問</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 発症日とリハビリ開始日のどちらを入力すればよいですか？</p>
+      <p class="faq-a">A. 原則として発症日・手術日を入力してください。発症日が不明な場合はリハビリ開始日での目安計算も可能です。両方入力した場合は発症日が優先されます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 算定日数を超えたらリハビリはできなくなりますか？</p>
+      <p class="faq-a">A. リハビリ自体は継続できますが、1日あたりの算定単位数が13単位までに制限されます。また、状態の改善が見込まれる場合は、医師の判断により継続算定が認められることがあります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 入力したデータはどこかに送信されますか？</p>
+      <p class="faq-a">A. すべての計算はブラウザ内で完結しており、入力されたデータが外部に送信されることはありません。</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="index.html">← ツール一覧に戻る</a>
+    　｜　
+    <a href="fim-tool.html">FIM評価ツール</a>
+    　｜　
+    <a href="bi-tool.html">BIツール</a>
+    　｜　
+    <a href="walk-tool.html">歩行評価ツール</a>
+    　｜　
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+
+<script>
+const LIMITS = { '脳血管疾患': 180, '運動器疾患': 150, '廃用症候群': 120, '呼吸器疾患': 90 };
+let patients = [];
+let pid = 0;
+
+function addPatient() {
+  const id = pid++;
+  patients.push(id);
+  renderPatients();
+}
+
+function removePatient(id) {
+  patients = patients.filter(p => p !== id);
+  renderPatients();
+  document.getElementById('results').innerHTML = '';
+}
+
+function renderPatients() {
+  const c = document.getElementById('patients-container');
+  c.innerHTML = patients.map(id => `
+    <div class="patient-card">
+      <div class="card-header">
+        <input class="name-input" type="text" id="name_${id}" placeholder="患者名（任意）">
+        <button class="remove-btn" onclick="removePatient(${id})">削除</button>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>疾患区分</label>
+          <select id="disease_${id}">
+            <option>脳血管疾患</option>
+            <option>運動器疾患</option>
+            <option>廃用症候群</option>
+            <option>呼吸器疾患</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>発症日 / 手術日</label>
+          <input type="date" id="onset_${id}">
+        </div>
+        <div class="field">
+          <label>リハ開始日</label>
+          <input type="date" id="start_${id}">
+        </div>
+        <div class="field"></div>
+        <p class="field-note">※ どちらか一方の入力でOKです。両方入力した場合は発症日を優先します。</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function calcAll() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let html = '';
+
+  if (patients.length === 0) {
+    document.getElementById('results').innerHTML = '<div class="empty-state">患者を追加してください</div>';
+    return;
+  }
+
+  patients.forEach(id => {
+    const name = document.getElementById('name_' + id).value.trim() || ('患者' + (id + 1));
+    const disease = document.getElementById('disease_' + id).value;
+    const onsetVal = document.getElementById('onset_' + id).value;
+    const startVal = document.getElementById('start_' + id).value;
+    const limit = LIMITS[disease];
+
+    if (!onsetVal && !startVal) {
+      html += `<div class="result-card"><div class="empty-state">${name}：発症日またはリハ開始日を入力してください</div></div>`;
+      return;
+    }
+
+    let baseDate, baseLabel, showStartDiff = false, startDiff = null;
+
+    if (onsetVal) {
+      baseDate = new Date(onsetVal);
+      baseLabel = '発症日基準';
+      if (startVal) {
+        const start = new Date(startVal);
+        startDiff = Math.floor((start - baseDate) / (1000 * 60 * 60 * 24));
+        showStartDiff = true;
+      }
+    } else {
+      baseDate = new Date(startVal);
+      baseLabel = 'リハ開始日基準（目安）';
+    }
+
+    const limitDate = new Date(baseDate);
+    limitDate.setDate(limitDate.getDate() + limit);
+
+    const diffMs = limitDate - today;
+    const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    const passed = diffDays <= 0;
+
+    const fmt = d => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+
+    html += `
+      <div class="result-card ${passed ? 'status-warn' : 'status-ok'}">
+        <div class="result-head">
+          <span class="result-name">${name}</span>
+          <span class="badge ${passed ? 'badge-warn' : 'badge-ok'}">${passed ? '上限超過' : '算定中'}</span>
+          <span class="badge badge-info">${baseLabel}</span>
+        </div>
+        <div class="result-rows">
+          <div class="result-row">
+            <span class="rl">疾患区分</span>
+            <span class="rv">${disease}（上限 ${limit}日）</span>
+          </div>
+          <div class="result-row">
+            <span class="rl">13単位制限 開始日</span>
+            <span class="rv mono ${passed ? 'warn' : 'ok'}">${fmt(limitDate)}</span>
+          </div>
+          <div class="result-row">
+            <span class="rl">今日時点の残り日数</span>
+            <span class="rv mono ${passed ? 'warn' : 'ok'}">${passed ? '超過 ' + Math.abs(diffDays) + '日' : diffDays + '日'}</span>
+          </div>
+          ${showStartDiff ? `
+          <div class="result-row">
+            <span class="rl">発症からリハ開始まで</span>
+            <span class="rv mono">${startDiff}日後</span>
+          </div>` : ''}
+        </div>
+      </div>`;
+  });
+
+  document.getElementById('results').innerHTML = html;
+}
+
+addPatient();
+</script>
+</body>
+</html>
