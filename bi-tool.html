@@ -105,15 +105,6 @@
   .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
   .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
 
-
-  .info-section { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px; }
-  .info-title { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 24px; margin-bottom: 10px; }
-  .info-text { font-size: 14px; color: var(--text2); line-height: 1.8; }
-  .info-list { font-size: 14px; color: var(--text2); line-height: 1.8; padding-left: 1.5em; }
-  .info-list li { margin-bottom: 6px; }
-  .faq-item { margin-bottom: 16px; }
-  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .faq-a { font-size: 14px; color: var(--text2); line-height: 1.8; }
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
   .footer a { color: var(--text3); }
 
@@ -159,7 +150,6 @@
     .score-progress { display: none; }
 
     .btn-row { display: none !important; }
-    .footer { display: none !important; }
     .item-chevron { display: none !important; }
 
     /* 2列グリッド：左1〜5、右6〜10 */
@@ -196,6 +186,9 @@
     }
     .option-score { font-size: 8.5pt; color: #2a5c45; min-width: 20px; }
     .option-text { font-size: 8.5pt; color: #333; line-height: 1.35; }
+
+    .info-section { display: none !important; }
+    .footer { display: none !important; }
   }
 </style>
 </head>
@@ -244,43 +237,10 @@
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
   </div>
 
-  <div class="info-section">
-    <h2 class="info-title">このツールについて</h2>
-    <p class="info-text">Barthel Index（バーセルインデックス・BI）は、食事・移乗・整容・トイレ動作・入浴・歩行・階段昇降・更衣・排便・排尿の10項目を100点満点で評価するADL評価ツールです。FIMと並んで国際的に広く使用されており、介護保険のADL維持等加算の評価にも活用されています。</p>
-
-    <h2 class="info-title">使い方</h2>
-    <ol class="info-list">
-      <li>各項目をタップして選択肢を表示します</li>
-      <li>判定基準を参照しながら該当する点数を選択します</li>
-      <li>合計点と判定が自動で更新されます</li>
-      <li>「印刷 / PDF保存」ボタンで記録として保存できます</li>
-    </ol>
-
-    <h2 class="info-title">判定の目安</h2>
-    <p class="info-text">一般的な判定基準として、85点以上が自立、61〜84点が軽度介助、41〜60点が重度介助、40点以下が全介助とされています。ただし同じ合計点でも、どの項目で減点されているかによって生活上の課題が異なるため、項目ごとの評価も重要です。</p>
-
-    <h2 class="info-title">FIMとの違い</h2>
-    <p class="info-text">FIMは18項目7段階（最高126点）の詳細な評価で、認知機能も含めた評価が可能です。一方Barthel Indexは10項目でシンプルに評価でき、評価時間が短く、介護施設や在宅での使用に適しています。目的や対象者に合わせて使い分けることが推奨されます。</p>
-
-    <h2 class="info-title">よくある質問</h2>
-    <div class="faq-item">
-      <p class="faq-q">Q. 入力したデータはどこかに送信されますか？</p>
-      <p class="faq-a">A. すべての計算はブラウザ内で完結しており、入力されたデータが外部に送信されることはありません。</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Q. 印刷するとA4用紙1枚に収まりますか？</p>
-      <p class="faq-a">A. 印刷時は2列レイアウトに自動切り替えされるため、A4用紙1枚に収まるよう設計されています。</p>
-    </div>
-  </div>
-
   <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a>
-    　｜　
-    <a href="santei-tool.html">算定日数ツール</a>
+    <a href="index.html">算定日数ツール</a>
     　｜　
     <a href="fim-tool.html">FIM評価ツール</a>
-    　｜　
-    <a href="walk-tool.html">歩行評価ツール</a>
     　｜　
     <a href="privacy.html">プライバシーポリシー</a>
   </div>
