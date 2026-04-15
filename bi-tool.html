@@ -214,6 +214,11 @@
     <input class="patient-name-input" type="text" id="patient-name" placeholder="（任意）">
   </div>
 
+  <div class="patient-name-wrap">
+    <label>評価日&nbsp;&nbsp;</label>
+    <input class="patient-name-input" type="date" id="eval-date">
+  </div>
+
   <div class="score-summary">
     <div>
       <div>
@@ -238,17 +243,9 @@
   </div>
 
   <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a>
-    　｜　
-    <a href="santei-tool.html">算定日数ツール</a>
+    <a href="index.html">算定日数ツール</a>
     　｜　
     <a href="fim-tool.html">FIM評価ツール</a>
-    　｜　
-    <a href="bi-tool.html">BIツール</a>
-    　｜　
-    <a href="hdsr-tool.html">HDS-Rツール</a>
-    　｜　
-    <a href="walk-tool.html">歩行評価ツール</a>
     　｜　
     <a href="privacy.html">プライバシーポリシー</a>
   </div>
@@ -384,8 +381,11 @@ function resetAll() {
 }
 
 function printPage() {
-  document.getElementById('print-date').textContent =
-    '評価日：' + new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateInput = document.getElementById('eval-date').value;
+  const dateStr = dateInput
+    ? new Date(dateInput).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+    : '（日付未入力）';
+  document.getElementById('print-date').textContent = '評価日：' + dateStr;
   window.print();
 }
 
