@@ -262,6 +262,11 @@
     <input class="patient-name-input" type="text" id="patient-name" placeholder="（任意）">
   </div>
 
+  <div class="patient-name-wrap">
+    <label>評価日&nbsp;&nbsp;</label>
+    <input class="patient-name-input" type="date" id="eval-date">
+  </div>
+
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('tug')">TUG</button>
     <button class="tab-btn" onclick="switchTab('10m')">10m歩行</button>
@@ -366,10 +371,12 @@
     <div class="judge-card" style="background:var(--surface2); border:1px solid var(--border);">
       <div class="judge-card-title">📋 10m歩行 判定基準（参考値・快適歩行）</div>
       <div class="judge-rows">
-        <div class="judge-row"><span class="jl">1.0m/s以上（10秒以内）</span><span class="jv">信号横断可・屋外自立</span></div>
-        <div class="judge-row"><span class="jl">0.8m/s以上（12.5秒以内）</span><span class="jv">屋外歩行可能</span></div>
-        <div class="judge-row"><span class="jl">0.8m/s未満（12.5秒超）</span><span class="jv">転倒リスク・屋外困難</span></div>
-        <div class="judge-row"><span class="jl">屋外歩行自立</span><span class="jv">11.6秒以内が目安</span></div>
+        <div class="judge-row"><span class="jl">10秒以内（1.0m/s以上）</span><span class="jv">信号横断可・屋外自立</span></div>
+        <div class="judge-row"><span class="jl">11.6秒以内（0.86m/s以上）</span><span class="jv">回復期・屋外歩行自立</span></div>
+        <div class="judge-row"><span class="jl">12.5秒以内（0.8m/s以上）</span><span class="jv">屋外歩行可能</span></div>
+        <div class="judge-row"><span class="jl">12.5秒超（0.8m/s未満）</span><span class="jv">転倒リスク・屋外困難</span></div>
+        <div class="judge-row"><span class="jl">20秒以内（0.5m/s以上）</span><span class="jv">屋内歩行自立（地域高齢者）</span></div>
+        <div class="judge-row"><span class="jl">24.6秒超（0.4m/s未満）</span><span class="jv">屋内歩行も困難</span></div>
       </div>
     </div>
 
@@ -553,8 +560,11 @@ function calc10m() {
 
 function printPage(label) {
   document.getElementById('print-title-text').textContent = '歩行評価記録（' + label + '）';
-  document.getElementById('print-date').textContent =
-    '評価日：' + new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateInput = document.getElementById('eval-date').value;
+  const dateStr = dateInput
+    ? new Date(dateInput).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+    : '（日付未入力）';
+  document.getElementById('print-date').textContent = '評価日：' + dateStr;
   window.print();
 }
 </script>
