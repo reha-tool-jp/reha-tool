@@ -460,38 +460,70 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
 /* ── Print ── */
 @media print {
-  @page { size: A4 portrait; margin: 10mm 12mm; }
+  @page { size: A4 portrait; margin: 8mm 10mm; }
   html, body { height: auto !important; overflow: visible !important; }
-  header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8px 14px; }
-  header h1 { font-size: 0.95rem; }
-  header .subtitle { font-size: 0.62rem; }
-  .total-badge { font-size: 1.1rem; padding: 4px 12px; }
+  header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 12px; }
+  header h1 { font-size: 0.9rem; }
+  header .subtitle { font-size: 0.6rem; }
+  .total-badge { font-size: 1rem; padding: 3px 10px; }
   body { background: white; font-size: 10px; }
   .actions { display: none !important; }
   .main-tabs { display: none !important; }
   .sub-tabs { display: none !important; }
   .footer { display: none !important; }
-  .container { padding: 4px 2px; max-width: 100%; }
-  .patient-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 6px; padding: 6px 10px; }
+  .container { padding: 3px 0; max-width: 100%; }
+  .patient-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 5px; padding: 5px 10px; }
   .patient-card label { font-size: 0.6rem; }
-  .patient-card input { font-size: 0.78rem; padding: 3px 6px; }
+  .patient-card input { font-size: 0.78rem; padding: 2px 6px; }
 
-  /* BBS print */
-  #panel-bbs { display: block !important; }
-  #panel-static { display: block !important; }
-  .bbs-item { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; break-inside: avoid; }
-  .bbs-item-header { padding: 6px 10px; cursor: default; }
-  .bbs-item-body { display: block !important; padding: 6px 10px; }
-  .bbs-instruction { font-size: 0.7rem; padding: 4px 8px; }
-  .bbs-options { flex-direction: row; flex-wrap: wrap; gap: 3px; }
-  .bbs-opt-btn { padding: 4px 6px; min-width: 0; }
-  .bbs-opt-btn:not(.selected) { border-color: #ddd; background: white; }
-  .bbs-opt-btn.selected { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .bbs-opt-text { font-size: 0.68rem; }
-  .bbs-summary { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-top: 6px; padding: 10px 14px; }
-  .sw-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; break-inside: avoid; }
+  /* アクティブタブのみ表示 */
+  #panel-bbs { display: none !important; }
+  #panel-static { display: none !important; }
+  #panel-bbs.active { display: block !important; }
+  #panel-static.active { display: block !important; }
+
+  /* BBS print：2カラム・選択済み項目のみ */
+  #bbs-items-container { display: none !important; }
+  #bbs-print-cols { display: grid !important; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .bbs-print-col { display: block; }
+  .bbs-item { box-shadow: none; border: none; border-bottom: 1px solid #e0e0e0; margin-bottom: 0; break-inside: avoid; }
+  .bbs-item-header { padding: 3px 6px; cursor: default; }
+  .bbs-item-num { font-size: 0.65rem; min-width: 18px; }
+  .bbs-item-name { font-size: 0.75rem; }
+  .bbs-score-badge { font-size: 0.7rem; padding: 1px 5px; }
+  .bbs-chevron { display: none !important; }
+  .bbs-item-body { display: block !important; padding: 2px 6px 4px 28px; background: white; border-top: none; }
+  .bbs-instruction { display: none !important; }
+  .bbs-opt-btn { display: none !important; }
+  .bbs-opt-btn.selected { display: flex !important; padding: 2px 6px; border: 1px solid #ccc; background: #f0f6f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .bbs-opt-score { font-size: 0.75rem; min-width: 14px; }
+  .bbs-opt-text { font-size: 0.73rem; }
+  .bbs-summary { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-top: 5px; padding: 6px 10px; }
+  .bbs-summary-label { font-size: 0.62rem; }
+  .bbs-total-display { font-size: 1.6rem; }
+  .bbs-judgment { font-size: 0.72rem; padding: 2px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .progress-bar { height: 5px; margin: 6px 0 3px; }
+  .progress-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .progress-labels { font-size: 0.58rem; }
+
+  /* 静的バランス print：1枚に収める・記録なし非表示 */
+  .sw-empty { display: none !important; }
   .sub-panel { display: block !important; }
-  .ref-card { break-inside: avoid; }
+  .sw-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; padding: 6px 10px; break-inside: avoid; }
+  .sw-card-title { font-size: 0.68rem; margin-bottom: 4px; }
+  .sw-display { font-size: 1.4rem; padding: 2px 0; }
+  .sw-btns { display: none !important; }
+  .sw-record-row { padding: 2px 6px; font-size: 0.72rem; }
+  .sw-record-del { display: none !important; }
+  .sw-avg { padding: 4px 8px; margin-top: 4px; }
+  .sw-avg-label { font-size: 0.7rem; }
+  .sw-avg-val { font-size: 0.88rem; }
+  .ref-card { break-inside: avoid; padding: 6px 10px; margin-top: 6px; }
+  .ref-card-title { font-size: 0.62rem; margin-bottom: 4px; padding-bottom: 3px; }
+  .ref-table { font-size: 0.68rem; }
+  .ref-table th { padding: 3px 6px; font-size: 0.62rem; }
+  .ref-table td { padding: 3px 6px; }
+  .ref-note { font-size: 0.62rem; margin-top: 4px; }
 }
 
 @media (max-width: 480px) {
@@ -537,6 +569,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
   <!-- ===== BBS パネル ===== -->
   <div class="tab-panel active" id="panel-bbs">
     <div id="bbs-items-container"></div>
+    <div id="bbs-print-cols" style="display:none"></div>
 
     <div class="bbs-summary">
       <div class="bbs-summary-top">
@@ -555,7 +588,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
     </div>
 
     <div class="actions">
-      <button class="btn btn-print" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+      <button class="btn btn-print" onclick="printBBS()">🖨️ 印刷 / PDF保存</button>
       <button class="btn btn-reset" onclick="resetBBS()">リセット</button>
     </div>
   </div>
@@ -915,6 +948,25 @@ function updateBBSTotal() {
   el.textContent = label;
 }
 
+function printBBS() {
+  // 2カラム用DOM構築
+  const src = document.getElementById('bbs-items-container');
+  const cols = document.getElementById('bbs-print-cols');
+  cols.innerHTML = '';
+  const col1 = document.createElement('div');
+  const col2 = document.createElement('div');
+  col1.className = 'bbs-print-col';
+  col2.className = 'bbs-print-col';
+  const items = Array.from(src.querySelectorAll('.bbs-item'));
+  items.forEach((item, i) => {
+    const clone = item.cloneNode(true);
+    (i < 8 ? col1 : col2).appendChild(clone);
+  });
+  cols.appendChild(col1);
+  cols.appendChild(col2);
+  window.print();
+}
+
 function resetBBS() {
   if (!confirm('BBS の全項目をリセットしますか？')) return;
   bbsData.forEach(item => bbsScores[item.id] = null);
@@ -935,12 +987,12 @@ function renderSW(containerId, side, label, displayLabel) {
   const container = document.getElementById(containerId);
   const avgVal = calcAvg(containerId);
   container.innerHTML = `
-    <div class="sw-card">
+    <div class="sw-card ${st.records.length === 0 ? 'sw-empty' : ''}">
       <div class="sw-card-title">
         <span class="side-badge side-${side}">${displayLabel}</span>
         ${label}
       </div>
-      <div class="sw-display" id="disp-${containerId}">0.00</div>
+      <div class="sw-display ${st.records.length === 0 && !st.running && st.elapsed === 0 ? 'no-data' : ''}" id="disp-${containerId}">${st.elapsed > 0 ? st.elapsed.toFixed(2) : (st.records.length === 0 ? '0.00' : st.elapsed.toFixed(2))}</div>
       <div class="sw-btns">
         <button class="sw-btn sw-btn-start ${st.running ? 'running' : ''}" id="startbtn-${containerId}"
           onclick="toggleSW('${containerId}')" ${!st.running && st.elapsed > 0 ? 'disabled' : ''}>
