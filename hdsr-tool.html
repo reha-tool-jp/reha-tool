@@ -193,6 +193,26 @@
     .print-memo-label { font-size: 8pt; font-weight: 700; color: #2a5c45; margin-bottom: 3px; }
   }
 </style>
+<!-- ===== PWA対応コード（全HTMLの<head>内、</head>直前に追加） ===== -->
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a5c45">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="リハツール">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/reha-tool/service-worker.js');
+    });
+  }
+</script>
+
+<!-- ===== ここまで ===== -->
+
 </head>
 <body>
 
