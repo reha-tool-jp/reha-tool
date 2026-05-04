@@ -532,26 +532,6 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
   .sw-display { font-size: 2.2rem; }
 }
 </style>
-<!-- ===== PWA対応コード（全HTMLの<head>内、</head>直前に追加） ===== -->
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2a5c45">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="リハツール">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/reha-tool/service-worker.js');
-    });
-  }
-</script>
-
-<!-- ===== ここまで ===== -->
-
 </head>
 <body>
 
@@ -681,6 +661,53 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
       <button class="btn btn-print" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
       <button class="btn btn-reset" onclick="resetStatic()">リセット</button>
     </div>
+  </div>
+
+
+  <!-- ===== 説明セクション ===== -->
+  <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;">このツールについて</h2>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">バランス評価ツールは、理学療法士・作業療法士が現場で使用するバランス機能評価を、ブラウザだけで実施・記録できる無料ツールです。Berg Balance Scale（BBS）による包括的なバランス評価と、片脚立位・タンデム立位・ロンベルグテストによる静的バランス評価に対応しています。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;">Berg Balance Scale（BBS）とは</h2>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">Berg Balance Scale（BBS）は、1989年にKatherine Bergらによって開発されたバランス機能の評価スケールです。座位保持・立ち上がり・立位保持・移乗・片脚立位など15の動作課題を各0〜4点（計56点満点）で評価します。高齢者・脳卒中後・整形外科疾患など幅広い対象に使用されており、信頼性・妥当性ともに高いことが国際的に認められています。</p>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;margin-top:8px;">判定の目安としては、0〜20点は重度バランス障害（車椅子依存）、21〜40点は中等度バランス障害（歩行に介助が必要）、41〜52点は軽度バランス障害（監視または独歩）、53〜56点は正常範囲とされています。ただし判定はあくまで目安であり、患者の背景・環境・目標に合わせた総合的な解釈が重要です。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;">静的バランス評価について</h2>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">静的バランス評価は、一定の姿勢を保持する能力を評価します。本ツールでは以下の3つのテストに対応しています。</p>
+      <ul style="font-size:0.875rem;color:var(--text2);line-height:1.8;padding-left:1.5em;margin-top:8px;">
+        <li style="margin-bottom:6px;"><strong>片脚立位テスト：</strong>左右それぞれの片脚立位時間を計測します。転倒リスクの評価指標として広く使用されており、5秒未満では転倒リスクが高いとされています。</li>
+        <li style="margin-bottom:6px;"><strong>タンデム立位テスト：</strong>一方の足のつま先にもう一方のかかとをつけた姿勢の保持時間を計測します。SPPB（Short Physical Performance Battery）の構成要素のひとつでもあります。</li>
+        <li style="margin-bottom:6px;"><strong>閉眼立位（ロンベルグテスト）：</strong>開眼・閉眼それぞれの立位保持時間を計測します。閉眼時に動揺が著明に増加する場合はロンベルグ徴候陽性とみなし、深部感覚障害を疑います。</li>
+      </ul>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;">よくある質問</h2>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:0.875rem;font-weight:700;color:var(--text);margin-bottom:4px;">Q. BBSとTUGはどう使い分けますか？</p>
+        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. BBSは静的・動的バランスを15項目で包括的に評価するスケールで、能力の詳細な把握や経過観察に適しています。TUG（Timed Up and Go）は立ち上がり・歩行・方向転換・着座を一連の動作として時間計測するテストで、動的バランスと移動能力の簡便なスクリーニングに向いています。目的に応じて使い分けるか、併用することが推奨されます。</p>
+      </div>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:0.875rem;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 片脚立位の上限時間はどのくらいですか？</p>
+        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. 施設の方針により異なりますが、最大60秒または120秒で終了とする施設が多いです。若年者では120秒でも保持できる場合があるため、対象者の年齢・状態に応じて設定してください。</p>
+      </div>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:0.875rem;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
+        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. すべての評価・計測はブラウザ内で完結しており、入力されたデータが外部サーバーに送信されることはありません。患者情報を含む内容も安心してご入力ください。</p>
+      </div>
+      <div>
+        <p style="font-size:0.875rem;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 印刷して記録用紙として使えますか？</p>
+        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. はい、印刷・PDF保存に対応しています。BBSは選択済みの項目のみを2カラムで1枚に収めて出力します。静的バランスは計測済みの項目のみを印刷します。</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="footer">
