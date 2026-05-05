@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ベッド上リハビリ減算ルール完全解説｜除外条件と記録のポイント | リハビリ計算ツール</title>
+<meta name="description" content="2026年6月1日導入のベッド上リハビリ（離床を伴わないリハ）10%減算ルールを解説。減算対象・除外条件・現場での判断基準・記録のポイントまで、疑義解釈を踏まえてわかりやすくまとめます。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --danger: #b83030;
+  --danger-light: #fdf0f0;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--danger-light); color: var(--danger);
+  font-weight: 700; margin-bottom: 10px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body h3 { font-size: 0.95rem; font-weight: 700; margin: 20px 0 8px; color: var(--text); }
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* 重要ボックス */
+.danger-box {
+  background: var(--danger-light); border-left: 4px solid var(--danger);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.danger-box .danger-title { font-weight: 700; color: var(--danger); margin-bottom: 8px; font-size: 13px; }
+
+/* 注意ボックス */
+.warn-box {
+  background: var(--warn-light); border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 8px; font-size: 13px; }
+
+/* 情報ボックス */
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
+
+/* OKボックス */
+.ok-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.ok-box .ok-title { font-weight: 700; color: var(--accent); margin-bottom: 8px; font-size: 13px; }
+
+/* 2カラム */
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 16px 0 24px;
+}
+.col-card {
+  border-radius: var(--radius); padding: 14px 16px; font-size: 14px;
+}
+.col-card.danger { background: var(--danger-light); border: 1px solid #f0b0b0; }
+.col-card.ok { background: var(--accent-light); border: 1px solid #b0d4c0; }
+.col-card .col-title { font-weight: 700; font-size: 13px; margin-bottom: 10px; }
+.col-card.danger .col-title { color: var(--danger); }
+.col-card.ok .col-title { color: var(--accent); }
+.col-card ul { padding-left: 1.2em; }
+.col-card li { margin-bottom: 5px; font-size: 13px; }
+
+/* まとめ */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
+}
+.summary-box .summary-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+
+@media (max-width: 480px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>ベッド上リハビリ減算ルール完全解説<br>除外条件と記録のポイント</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    ベッド上リハビリ減算ルール
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">⚠️ 2026年6月1日導入</span>
+    <h1 class="article-title">ベッド上リハビリ減算ルール完全解説｜除外条件と記録のポイント</h1>
+    <div class="article-meta">令和8年度診療報酬改定・疑義解釈対応版｜理学療法士・作業療法士・言語聴覚士向け</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>令和8年（2026年）6月1日から、離床を伴わないベッド上リハビリテーションに対して10%の減算が適用されます。「ベッド上リハ＝すべて減算」ではなく、対象は限定的です。しかし現場での判断基準と記録対応は、施設によって大きくばらつく可能性があります。</p>
+
+    <div class="danger-box">
+      <div class="danger-title">🚨 基本ルール</div>
+      離床を伴わず、ポジショニング・拘縮予防などの他動的な訓練のみを行った入院患者に対して、疾患別リハビリテーション料が<strong>10%減算（100分の90）</strong>、かつ<strong>1日2単位まで</strong>に制限されます。
+    </div>
+
+    <h2>減算対象と除外条件</h2>
+
+    <div class="two-col">
+      <div class="col-card danger">
+        <div class="col-title">🔴 減算対象（すべて該当する場合）</div>
+        <ul>
+          <li>その日、離床していない</li>
+          <li>ベッド上で完結する訓練</li>
+          <li>主目的がポジショニング・拘縮予防</li>
+          <li>他動的な内容のみ</li>
+        </ul>
+      </div>
+      <div class="col-card ok">
+        <div class="col-title">🟢 減算対象外（通常算定）</div>
+        <ul>
+          <li>一度でも離床あり</li>
+          <li>能動・専門訓練（自力運動・排泄・STなど）</li>
+          <li>混合訓練（他動以外を含む）</li>
+          <li>早期介入等（特定加算期間内・ICU等）</li>
+          <li>医師判断（3単位以上・カルテ詳述）</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>除外条件の詳細</h2>
+
+    <h3>①離床があれば除外</h3>
+    <p>その日に一度でも離床があれば、ベッド上で実施した訓練も含めて減算対象外となります。「ベッド上でしか訓練していないから減算」ではなく、「その日の離床の有無」がポイントです。</p>
+
+    <h3>②急性期・早期加算期間中は除外</h3>
+    <p>早期リハビリテーション加算・初期加算・急性期リハビリテーション加算の算定期間中、およびICU等の治療室での実施は除外となります。</p>
+
+    <h3>③小児（15歳未満）は除外</h3>
+    <p>移動が困難な15歳未満の患者は除外対象です。</p>
+
+    <h3>④医師の判断による除外</h3>
+    <p>3単位以上を医師が医学的に必要と認め、カルテおよびレセプトに理由を詳述した場合は除外となります。この場合の記録の質が特に重要です。</p>
+
+    <h2>現場で判断がブレやすいポイント</h2>
+
+    <p>疑義解釈が出たことで減算対象はかなり限定的であることが明確になりました。しかし現場で困りそうなのは「線引きと記録の負担」です。</p>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 現場で判断が難しい場面</div>
+      <ul style="margin:0;padding-left:1.5em;">
+        <li>「他動的訓練のみ」の定義をどう解釈するか</li>
+        <li>早期加算15日目以降をどう扱うか</li>
+        <li>ベッド上でも減算されない訓練との境界線</li>
+        <li>監査で説明できる記録をどう作るか</li>
+      </ul>
+    </div>
+
+    <h2>減算を避けるための実践的対応</h2>
+
+    <p>「どこまでやればベッド上リハじゃなくなるか」——この判断が現場の動きを大きく左右します。以下のような要素を訓練に組み込むことで減算対象から外れる可能性があります。</p>
+
+    <div class="ok-box">
+      <div class="ok-title">✅ 減算を避けるための工夫</div>
+      <ul style="margin:0;padding-left:1.5em;">
+        <li>座位保持を取り入れる（端座位でも可）</li>
+        <li>起立・立位を少しでも実施する</li>
+        <li>能動的な運動を組み込む（自動介助含む）</li>
+        <li>ADL訓練へ発展させる</li>
+        <li>排泄動作・更衣など生活行為に結びつける</li>
+      </ul>
+    </div>
+
+    <h2>記録対応が最重要</h2>
+
+    <p>この改定で最も重要になるのが記録です。訓練内容そのものだけでなく、「なぜその訓練を選択したか」という医学的根拠を残すことが求められます。</p>
+
+    <div class="info-box">
+      <div class="info-title">📋 記録に残すべき内容</div>
+      <ul style="margin:0;padding-left:1.5em;">
+        <li>離床を実施した事実（日時・方法・時間）</li>
+        <li>能動的に介入した内容と患者の反応</li>
+        <li>訓練の目的（機能回復・廃用予防・ADL向上など）</li>
+        <li>医師が必要と判断した場合はその理由</li>
+        <li>除外条件に該当する場合はその根拠</li>
+      </ul>
+    </div>
+
+    <p>「やった」だけでなく「なぜやったか」「どんな効果があったか」を記録することが、監査対応と算定適正化の両面で重要になります。記録の質が算定の正当性を担保する時代になったと言えます。</p>
+
+    <h2>この改定が示すもの</h2>
+
+    <p>ベッド上リハビリの厳格化は、単なるコスト削減ではありません。「離床を促すリハビリ」「能動的な訓練」への転換を制度として後押しする意図が見えます。</p>
+
+    <p>患者を動かす、起こす、生活に結びつける——これはリハビリテーションの本来の姿でもあります。制度の圧力に押されてではなく、専門職として主体的にその方向性を体現することが、今後のリハビリテーション専門職に求められる姿勢ではないでしょうか。</p>
+
+    <div class="summary-box">
+      <div class="summary-title">この記事のまとめ</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;">
+        <li>2026年6月1日から離床を伴わない他動的訓練のみに10%減算・1日2単位制限</li>
+        <li>一度でも離床があれば除外、能動訓練・早期加算期間中・ICU等も除外</li>
+        <li>疑義解釈により減算対象は限定的だが、判断基準と記録対応が現場の課題</li>
+        <li>「なぜその訓練を選択したか」という医学的根拠の記録が最重要</li>
+        <li>制度の方向性は「離床促進・能動的訓練・生活への接続」</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="../santei-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📅</span>
+        <span class="tool-name">疾患別リハビリ算定日数ツール</span>
+      </div>
+      <div class="tool-desc">早期加算期間・算定上限日数を自動計算。ベッド上リハ減算の除外条件確認にも活用できます。</div>
+    </a>
+    <a class="tool-card" href="kangokyodo-kazan.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📰</span>
+        <span class="tool-name">看護・多職種協働加算とは何か</span>
+      </div>
+      <div class="tool-desc">同じく2024年改定で新設。リハ職の病棟での役割拡大と専門性の問題を解説。</div>
+    </a>
+    <a class="tool-card" href="ict-8000man.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📰</span>
+        <span class="tool-name">8,000万円補助の読み方</span>
+      </div>
+      <div class="tool-desc">ICT補助金・みなし単位・看護多職種協働加算、3施策に共通する厚労省の設計を読み解く。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
