@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8,000万円補助の読み方｜ICT補助金が示す厚労省の設計図 | リハビリ計算ツール</title>
+<meta name="description" content="令和8年度医療分野の業務効率化支援事業（最大8,000万円）の成果目標にリハ職の記録時間削減・早期介入率向上が明記。みなし単位・看護多職種協働加算と並べると見えてくる厚労省の設計を読み解きます。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* 概要カード */
+.summary-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 16px 0 24px;
+}
+.summary-card .card-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.summary-card .card-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 7px 0; border-bottom: 1px solid var(--surface2);
+  font-size: 14px;
+}
+.summary-card .card-row:last-child { border-bottom: none; }
+.summary-card .card-label { color: var(--text2); }
+.summary-card .card-value { font-weight: 700; color: var(--text); }
+.summary-card .card-value.accent { color: var(--accent); }
+
+/* 3施策比較 */
+.policy-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin: 16px 0 24px;
+}
+.policy-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 12px; text-align: center;
+}
+.policy-card .policy-icon { font-size: 24px; margin-bottom: 8px; }
+.policy-card .policy-name { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 6px; line-height: 1.4; }
+.policy-card .policy-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
+.policy-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--text3); margin: 4px 0;
+}
+
+/* 注意ボックス */
+.warn-box {
+  background: var(--warn-light); border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 8px; font-size: 13px; }
+
+/* 情報ボックス */
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
+
+/* 引用 */
+.quote-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 4px solid var(--text3);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px;
+  font-size: 14px; color: var(--text2); font-style: italic;
+}
+
+/* まとめ */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
+}
+.summary-box .summary-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+
+@media (max-width: 480px) {
+  .policy-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>8,000万円補助の読み方<br>ICT補助金が示す厚労省の設計図</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    8,000万円補助の読み方
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">制度分析</span>
+    <h1 class="article-title">8,000万円補助の読み方｜ICT補助金が示す厚労省の設計図</h1>
+    <div class="article-meta">令和8年度 医療分野の業務効率化支援事業｜リハビリテーション専門職向け解説</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>令和8年度、厚労省が医療機関向けに最大8,000万円の補助金を出すことが話題になりました。ICT化・業務効率化を支援する制度ですが、注目すべきは補助金の金額よりも、成果目標として設定された内容です。</p>
+
+    <h2>制度の概要</h2>
+
+    <div class="summary-card">
+      <div class="card-title">令和8年度 医療分野の業務効率化支援事業</div>
+      <div class="card-row"><span class="card-label">補助上限額</span><span class="card-value accent">1施設あたり最大8,000万円</span></div>
+      <div class="card-row"><span class="card-label">補助率</span><span class="card-value">4/5（自己負担1/5）</span></div>
+      <div class="card-row"><span class="card-label">対象</span><span class="card-value">ベースアップ評価料を届け出ている病院など（令和8年4月1日時点）</span></div>
+      <div class="card-row"><span class="card-label">対象用途</span><span class="card-value">生成AI（文書作成）・見守り機器・スマホ・インカムなど</span></div>
+      <div class="card-row"><span class="card-label">要件</span><span class="card-value">計画提出・委員会設置・定量的な成果報告・未達時は返還リスクあり</span></div>
+    </div>
+
+    <h2>本当に注目すべきは「成果目標」</h2>
+
+    <p>この補助金で気になったのは金額ではありません。成果目標の例として以下が明記されていた点です。</p>
+
+    <ul>
+      <li><strong>リハ職の記録作成時間の削減</strong></li>
+      <li><strong>早期リハ介入率の向上</strong></li>
+    </ul>
+
+    <p>単なるICT補助金ではなく、リハ職の時間の使い方そのものを見直したい意図が透けて見えます。記録時間を削減して、その空き時間で早期介入を増やしてほしい——そういうメッセージとして読めます。</p>
+
+    <h2>空いた時間はどこへ向かうのか</h2>
+
+    <p>生成AI導入で記録時間が減り、空いた時間ができるなら——現場のリハ職はまず「個別リハを増やせる」と考えると思います。しかし制度の流れを見ると、厚労省が意図するのは少し違う方向のようです。</p>
+
+    <p>厚労省は空いた時間を、個別リハにそのまま戻すのではなく、早期介入や病棟での対応に充てることを期待しているように見えます。</p>
+
+    <h2>3つの施策を並べると見えてくるもの</h2>
+
+    <p>この補助金を単独で見るのではなく、同時期に動いている他の施策と並べてみます。</p>
+
+    <div class="policy-grid">
+      <div class="policy-card">
+        <div class="policy-icon">📋</div>
+        <div class="policy-name">みなし単位</div>
+        <div class="policy-desc">訓練以外の業務を単位化し、可視化する</div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-icon">🏥</div>
+        <div class="policy-name">看護・多職種協働加算</div>
+        <div class="policy-desc">病棟業務への参加体制を評価する</div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-icon">💻</div>
+        <div class="policy-name">ICT補助金</div>
+        <div class="policy-desc">記録時間を削減し、時間を生み出す</div>
+      </div>
+    </div>
+
+    <div class="policy-arrow">↓</div>
+
+    <div class="info-box">
+      <div class="info-title">📌 3施策に共通する方向性</div>
+      個別リハを増やす設計ではなく、<strong>病棟・連携・早期介入に時間を使ってほしい</strong>という設計が見えてきます。
+    </div>
+
+    <h2>一つの矛盾</h2>
+
+    <p>ここで気になる点があります。</p>
+
+    <p>もし厚労省の意図が「個別リハより病棟や連携に時間を使ってほしい」なら、記録時間は削減しなくてもいいはずです。みなし単位で記録時間をカウントし、そこに時間を使わせればいい。なのになぜ、記録時間を削る目的の補助金を出すのでしょうか。</p>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 穿った見方をすると</div>
+      「みなし単位の業務はやってほしい。でもその業務はレセプト請求できない。その代わり、記録を楽にする補助金を出す。それでよろしくて？」——8,000万円は病院へのご褒美ではなく、制度を現場に浸透させるための呼び水かもしれません。
+    </div>
+
+    <h2>現場のリハ職はどう動くべきか</h2>
+
+    <p>この補助金が自施設に導入される際、以下の点を意識しておくことを推奨します。</p>
+
+    <ul>
+      <li>記録時間削減で生まれた時間の使い方を、事前に職場で議論しておく</li>
+      <li>「個別リハに戻す」か「病棟・早期介入に充てる」かを明確にする</li>
+      <li>成果目標の設定に現場の視点を反映させる（計画段階から関与する）</li>
+      <li>返還リスクがある以上、達成可能な目標設定かどうかを慎重に確認する</li>
+    </ul>
+
+    <p>制度の設計を読み解いた上で、現場として何を選択するかを考えることが重要です。補助金があるから導入するのではなく、自施設のリハビリテーションの方向性と合致しているかを見極める必要があります。</p>
+
+    <div class="summary-box">
+      <div class="summary-title">この記事のまとめ</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;">
+        <li>8,000万円補助の成果目標に「リハ職の記録時間削減」「早期介入率向上」が明記されている</li>
+        <li>みなし単位・看護多職種協働加算・ICT補助の3施策は「病棟・連携に時間を使う」方向で設計されている</li>
+        <li>空いた時間を個別リハに戻すか病棟に充てるか、現場での議論と合意形成が先決</li>
+        <li>返還リスクがある制度のため、計画段階から現場の視点で関与することが重要</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連記事・ツール</div>
+    <a class="tool-card" href="kangokyodo-kazan.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📰</span>
+        <span class="tool-name">看護・多職種協働加算とは何か</span>
+      </div>
+      <div class="tool-desc">急性期病棟でPT・OT・STに何が求められているのか。専門性の埋没リスクを解説。</div>
+    </a>
+    <a class="tool-card" href="../santei-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📅</span>
+        <span class="tool-name">疾患別リハビリ算定日数ツール</span>
+      </div>
+      <div class="tool-desc">疾患別リハビリテーションの算定上限日数と13単位制限の開始日を自動計算</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
