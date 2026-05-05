@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>看護・多職種協働加算とは何か｜リハ職に何が求められているのか | リハビリ計算ツール</title>
+<meta name="description" content="2024年診療報酬改定で新設された看護・多職種協働加算について解説。急性期病棟でPT・OT・STに何が期待されているのか、専門性の埋没リスクと三協会の見解を含めて詳しく解説します。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+header {
+  background: var(--accent);
+  color: #fff;
+  padding: 20px 20px 18px;
+}
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+
+/* パンくず */
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+
+/* 記事ヘッダー */
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.article-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.article-meta { font-size: 12px; color: var(--text3); }
+
+/* 本文 */
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 32px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 20px 0 8px;
+  color: var(--text);
+}
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* 概要テーブル */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.summary-table th {
+  background: var(--surface2);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text2);
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  width: 35%;
+}
+.summary-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.summary-table tr:last-child th,
+.summary-table tr:last-child td { border-bottom: none; }
+
+/* 具体例ボックス */
+.example-box {
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+.example-box .example-title {
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+/* 注意ボックス */
+.warn-box {
+  background: var(--warn-light);
+  border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  color: var(--text);
+}
+.warn-box .warn-title {
+  font-weight: 700;
+  color: var(--warn);
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+/* 引用 */
+.quote-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--text3);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  color: var(--text2);
+  font-style: italic;
+}
+.quote-source { font-size: 12px; color: var(--text3); margin-top: 8px; font-style: normal; }
+
+/* X投稿リンク */
+.x-link-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+.x-link-box:hover { border-color: var(--accent); }
+.x-icon { font-size: 20px; min-width: 28px; }
+.x-link-text { font-size: 13px; color: var(--text2); }
+.x-link-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 10px;
+  transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+/* フッター */
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>看護・多職種協働加算とは何か<br>リハ職に何が求められているのか</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="../index.html#articles">解説記事</a>
+    <span>›</span>
+    看護・多職種協働加算
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">2024年診療報酬改定</span>
+    <h1 class="article-title">看護・多職種協働加算とは何か｜リハ職に何が求められているのか</h1>
+    <div class="article-meta">2024年改定対応｜理学療法士・作業療法士・言語聴覚士向け解説</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>2024年（令和6年）診療報酬改定で新設された「看護・多職種協働加算」は、急性期病棟において看護職員や多職種を追加配置した体制を評価する加算です。PT・OT・STも追加配置の対象職種となっており、リハビリテーション専門職の急性期病棟での役割が改めて問われています。</p>
+
+    <h2>加算の基本情報</h2>
+
+    <table class="summary-table">
+      <tr><th>対象病棟</th><td>急性期一般入院料4・急性期病院B</td></tr>
+      <tr><th>看護配置</th><td>10対1</td></tr>
+      <tr><th>上乗せ配置</th><td>25対1</td></tr>
+      <tr><th>対象職種</th><td>看護職員 または 対象多職種（PT・OT・STを含む）</td></tr>
+      <tr><th>算定条件</th><td>看護職員のみでも可</td></tr>
+    </table>
+
+    <div class="example-box">
+      <div class="example-title">具体例：50床の病棟の場合</div>
+      10対1配置でNs.5人を配置、さらに25対1配置で2人を追加配置するイメージです。この追加2人にPT・OT・STを充てることが可能です。
+    </div>
+
+    <h2>表向きの目的と実態</h2>
+
+    <p>この加算の建前は「多職種連携の強化」です。急性期病棟における早期からのリハビリテーションや多職種によるチームアプローチを推進するという名目で設けられました。</p>
+
+    <p>しかし現実を直視すると、もう一つの側面が見えてきます。深刻化する看護師不足の中で、病棟業務をどう回すかという問題への対処です。看護師が足りない、でも病棟は回さないといけない。そこに多職種を組み込む仕組みを作った——連携強化と人手不足対応は、表裏一体の関係にあります。</p>
+
+    <h2>みなし単位との接続</h2>
+
+    <p>この加算は、同改定で議論された「個別リハ外の業務合算みなし単位」の考え方と地続きです。</p>
+
+    <ul>
+      <li>訓練以外の業務も可視化しよう（みなし単位）</li>
+      <li>病棟業務も多職種で支えよう（看護・多職種協働加算）</li>
+    </ul>
+
+    <p>方向性はかなり似ています。療法士が訓練室外でも役割を持ち始めることは、専門性の発揮という意味で歓迎すべき面もあります。ただし、役割が広がると業務が増える。その点は冷静に見ておく必要があります。</p>
+
+    <h2>最大のリスク：専門性の埋没</h2>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 現場で起きうること</div>
+      病院によって、この加算の運用は大きく異なります。「手伝いとして病棟業務をこなす」だけの運用になる施設もあれば、「専門性を活かしたアプローチ」ができる施設もある。導入前の取り決めが極めて重要です。
+    </div>
+
+    <p>一度「手伝い業務」として定着してしまった後に「やはり専門性を発揮してほしい」と軌道修正するのは、現場では非常に困難です。これが全国的に浸透し既成事実化することへの危機感を、多くのリハ専門職が抱えています。</p>
+
+    <p>大事なのは、導入される前に「リハ職は病棟で何を担うのか」を職場内でしっかり議論し、合意形成しておくことです。</p>
+
+    <h2>三療法士協会の公式見解</h2>
+
+    <p>こうした現場の懸念を受け、三療法士協会（PT・OT・ST協会）は看護・多職種協働加算の実践指針を公表しました。</p>
+
+    <div class="quote-box">
+      「3療法士は恒常的な介護業務や生活介助を担うものではない」
+      <div class="quote-source">出典：日本作業療法士協会 実践指針（2024年）</div>
+    </div>
+
+    <p>リハビリテーション専門職の専門性が病棟業務の中に埋没することへの危機感を、協会が公式に言語化した形です。現場の療法士がこれだけ専門性の喪失を懸念しているということを、管理者・病院側にも理解してほしいところです。</p>
+
+    <h2>リハ職として何をすべきか</h2>
+
+    <p>この加算が自施設に導入される際、以下の点を事前に確認・提案することを推奨します。</p>
+
+    <ul>
+      <li>病棟での具体的な業務内容を文書化してもらう</li>
+      <li>「専門性を活かした関わり」の定義を職場で共有する</li>
+      <li>介護・生活介助が恒常的に求められる場合は異議を申し立てる</li>
+      <li>三療法士協会の実践指針を管理者と共有する</li>
+    </ul>
+
+    <p>リハ職が病棟に出ていくこと自体は、患者にとっても有益です。問題はその中身です。専門家としての視点・判断・介入を持ち込むことが、リハビリテーション専門職としての存在意義につながります。</p>
+
+  </div>
+
+  <!-- 関連ツール -->
+  <div class="related-tools">
+    <div class="related-title">関連ツール</div>
+    <a class="tool-card" href="../fim-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">FIM評価ツール</span>
+      </div>
+      <div class="tool-desc">急性期・回復期で使用するFIM（機能的自立度評価法）の18項目を採点・集計</div>
+    </a>
+    <a class="tool-card" href="../santei-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📅</span>
+        <span class="tool-name">疾患別リハビリ算定日数ツール</span>
+      </div>
+      <div class="tool-desc">疾患別リハビリテーションの算定上限日数と13単位制限の開始日を自動計算</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../hdsr-tool.html">HDS-Rツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
