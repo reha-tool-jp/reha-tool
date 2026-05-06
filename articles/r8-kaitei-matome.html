@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年（令和8年）診療報酬改定 リハビリ関連まとめ｜PT・OT・STが押さえるべき変更点 | リハビリ計算ツール</title>
+<meta name="description" content="2026年6月施行の診療報酬改定でリハビリ関連はどう変わる？ベッドサイドリハ減算・早期リハ加算・休日加算・計画書様式変更・みなし単位など、PT・OT・STが知るべき変更点をまとめました。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --danger: #7a1a1a;
+  --danger-light: #fae8e8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.施行バッジ {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--warn-light); color: var(--warn);
+  font-weight: 700; margin-left: 8px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); margin-bottom: 28px; }
+
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 36px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body p { margin-bottom: 14px; }
+
+/* 変更点カード */
+.change-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 0 0 16px;
+  position: relative;
+}
+.change-card-head {
+  display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px;
+}
+.change-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+  white-space: nowrap; margin-top: 2px; flex-shrink: 0;
+}
+.badge-new { background: var(--accent-light); color: var(--accent); }
+.badge-change { background: var(--warn-light); color: var(--warn); }
+.badge-caution { background: var(--danger-light); color: var(--danger); }
+.change-title { font-size: 15px; font-weight: 700; line-height: 1.5; }
+.change-body { font-size: 14px; color: var(--text2); line-height: 1.8; }
+.change-link {
+  display: inline-block; margin-top: 10px; font-size: 13px;
+  color: var(--accent); text-decoration: none; font-weight: 700;
+}
+.change-link:hover { text-decoration: underline; }
+
+/* 警告・情報ボックス */
+.warn-box {
+  background: var(--warn-light); border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 6px; font-size: 13px; }
+
+.danger-box {
+  background: var(--danger-light); border-left: 4px solid var(--danger);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.danger-box .danger-title { font-weight: 700; color: var(--danger); margin-bottom: 6px; font-size: 13px; }
+
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 6px; font-size: 13px; }
+
+.accent-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+
+/* まとめ表 */
+.summary-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+.summary-table th {
+  background: var(--accent); color: #fff; padding: 8px 12px; text-align: left; font-weight: 700;
+}
+.summary-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.summary-table tr:last-child td { border-bottom: none; }
+.summary-table tr:nth-child(even) td { background: var(--surface2); }
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>2026年（令和8年）診療報酬改定<br>リハビリ関連 変更点まとめ</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    2026年診療報酬改定まとめ
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">制度・算定</span>
+    <span class="施行バッジ">2026年6月1日施行</span>
+    <h1 class="article-title">2026年（令和8年）診療報酬改定｜PT・OT・STが押さえるべきリハビリ関連の変更点</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け制度解説</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>令和8年度診療報酬改定は2026年6月1日に施行されます。今回の改定はリハビリテーション領域において「過去最大級」とも言われる変更が含まれており、現場への影響は小さくありません。</p>
+
+    <p>この記事では、PT・OT・STの実務に直結する主要な変更点をまとめます。各項目の詳細は個別の解説記事にリンクしています。</p>
+
+    <div class="info-box">
+      <div class="info-title">📋 改定の全体的な方向性</div>
+      今回の改定キーワードは<strong>「離床」と「アウトカム」</strong>。単位数を稼ぐ介入から、実際に患者の機能回復・生活再建につながる質の高いリハビリへ——という厚労省の意図が随所に反映されています。
+    </div>
+
+    <h2>① ベッドサイドリハビリ（離床を伴わない訓練）の減算</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-caution">要注意</span>
+        <div class="change-title">離床なし・20分以上の個別療法は10%減算・1日2単位上限</div>
+      </div>
+      <div class="change-body">
+        脳血管・廃用・運動器・呼吸器・心大血管の疾患別リハビリにおいて、離床を伴わずに20分以上の個別療法を実施した場合、所定点数の90%で算定（10%減算）。さらに1日2単位を上限とする規定が新設されました。ただし状態によって除外規定あり。疑義解釈（その2）で該当患者の詳細が示されています。
+      </div>
+      <a class="change-link" href="bedside-reha-gensam.html">→ ベッドサイドリハ減算の詳細・除外条件はこちら</a>
+    </div>
+
+    <h2>② 早期リハビリテーション加算の見直し</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-new">拡充</span>
+        <div class="change-title">3日以内は25点→60点に増点。算定期間は14日に統一</div>
+      </div>
+      <div class="change-body">
+        早期リハビリテーション加算が大幅に見直されました。主な変更点は以下の通りです。<br><br>
+        <strong>【点数の変更】</strong><br>
+        入院から3日以内：25点 → <strong>60点</strong>（35点増）<br>
+        入院4日目以降：25点のまま維持<br><br>
+        <strong>【算定期間】</strong><br>
+        入院した日から起算して<strong>14日目まで</strong>に統一。他院からの転院患者は転院前の入院日が起算日となります。<br><br>
+        <strong>【注意点】</strong><br>
+        2026年6月1日時点で既に早期リハ加算を算定中の患者は、起算日を変更しません。6月1日時点で15日目以降の患者は加算の算定が不可となります。また、ベッドサイドリハ（離床なし）の場合でも、早期リハビリテーション加算を算定中の患者は減算の除外対象となります。
+      </div>
+    </div>
+
+    <h2>③ 休日リハビリテーション加算の新設</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-new">新設</span>
+        <div class="change-title">入院患者の土日祝リハビリに25点/単位を加算</div>
+      </div>
+      <div class="change-body">
+        休日リハビリテーション加算（25点/単位）が今改定で新設されました。主な要件は以下の通りです。<br><br>
+        <strong>【対象】</strong>入院中の患者（外来リハビリのみの診療所は算定不可）<br>
+        <strong>【算定期間】</strong>起算日から30日目まで<br>
+        <strong>【対象日】</strong>土曜日・日曜日・祝日<br><br>
+        施行後にリハビリ総合実施計画書の様式も一部訂正されており、算定できない患者の条件も明示されています。入院設備を持つ医療機関で届出のうえ、施設基準を確認してください。
+      </div>
+    </div>
+
+    <h2>④ リハビリテーション計画書・評価料の変更</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-change">変更</span>
+        <div class="change-title">説明・署名のルールが見直し</div>
+      </div>
+      <div class="change-body">
+        これまで「医師が説明し、患者が署名する」とされていたリハビリテーション実施計画書の手続きが見直されました。「多職種が説明し、記録で確認する」形に変更されています。書類の様式も一部訂正されており、自施設の運用フローの確認が必要です。
+      </div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-change">変更</span>
+        <div class="change-title">リハビリテーション総合計画評価料が「初回」と「2回目以降」に区分</div>
+      </div>
+      <div class="change-body">
+        リハビリテーション総合計画評価料の評価が2区分に整理されました。<br><br>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;">
+          <tr style="background:var(--accent);color:#fff;">
+            <th style="padding:6px 10px;text-align:left;"></th>
+            <th style="padding:6px 10px;text-align:center;">初回</th>
+            <th style="padding:6px 10px;text-align:center;">2回目以降</th>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border-bottom:1px solid var(--border);">評価料1</td>
+            <td style="padding:6px 10px;text-align:center;border-bottom:1px solid var(--border);">300点</td>
+            <td style="padding:6px 10px;text-align:center;border-bottom:1px solid var(--border);">240点</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;">評価料2</td>
+            <td style="padding:6px 10px;text-align:center;">240点</td>
+            <td style="padding:6px 10px;text-align:center;">196点</td>
+          </tr>
+        </table>
+        評価料1と評価料2の切り替えは、標準的算定日数の「3分の1」が基準です。脳血管・廃用・運動器など介護保険あり患者の場合、3分の1を経過すると評価料2へ切り替わります。心大血管・呼吸器・がん・認知症は介護保険の有無に関わらず常に評価料1が適用されます。どちらも初回が高く設定されています。
+      </div>
+    </div>
+
+    <h2>⑤ 看護・多職種協働加算の新設</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-new">新設</span>
+        <div class="change-title">急性期病棟での多職種追加配置を評価する加算が新設</div>
+      </div>
+      <div class="change-body">
+        急性期病棟において、看護職員に加えてPT・OT・STなどの多職種を追加配置した体制を評価する「看護・多職種協働加算」が新設されました。<br><br>
+        たとえば50床の病棟で、10対1の看護配置に加えてさらに25対1で2名追加配置する形のイメージです。この追加の2名にPT・OT・STが含まれてもよいとされています。<br><br>
+        <strong>表向きの意図は「連携強化」ですが、現場視点では人手不足対応の側面もあります。</strong>看護師不足の中で病棟を回すために多職種を組み込む仕組みとも読めます。みなし単位（訓練外業務の可視化）と方向性が重なっており、「療法士が訓練室の外でも役割を持つ」という流れが強まっています。<br><br>
+        リハ三協会（PT・OT・ST協会）は実践指針を公表し、<strong>「3療法士は恒常的な介護業務や生活介助を担うものではない」</strong>と明記しました。役割が拡大する中で専門性をどう守るか、現場での事前の合意形成が重要です。
+      </div>
+      <a class="change-link" href="kangokyodo-kazan.html">→ 看護・多職種協働加算の詳細・リハ職の役割を考える記事はこちら</a>
+    </div>
+
+    <h2>⑥ みなし単位（リハ外業務の単位算定）</h2>
+
+    <div class="change-card">
+      <div class="change-card-head">
+        <span class="change-badge badge-caution">慎重に見る</span>
+        <div class="change-title">訓練以外の業務を20分合算で1単位とみなす整理が入った</div>
+      </div>
+      <div class="change-body">
+        専従のPT・OT・STが行う記録作成・移動・退院時家族指導・介護施設等への助言などの訓練外業務を、20分合算して1単位とみなす整理が入りました。<br><br>
+        ただし<strong>注意が必要です</strong>。「1単位とみなす」ことと「レセプト請求できる」ことは別の話です。請求可否は今後の疑義解釈を要確認。もし請求不可であれば、評価の拡大ではなく個別リハの請求枠を圧迫する論点になりかねません。現時点では慎重に見ておく必要があります。
+      </div>
+    </div>
+
+    <div class="danger-box">
+      <div class="danger-title">⚠️ みなし単位のレセプト請求可否は未確定</div>
+      施行（6月1日）時点でも疑義解釈が出ていない場合、自施設の判断で請求することにはリスクがあります。職能団体や都道府県の指導を確認しながら慎重に運用してください。
+    </div>
+
+    <h2>変更点の一覧まとめ</h2>
+
+    <table class="summary-table">
+      <tr>
+        <th>項目</th>
+        <th>変更内容</th>
+        <th>区分</th>
+      </tr>
+      <tr>
+        <td>ベッドサイドリハ</td>
+        <td>離床なし20分以上→10%減算・1日2単位上限</td>
+        <td>要注意</td>
+      </tr>
+      <tr>
+        <td>早期リハ加算</td>
+        <td>増点・要件整理</td>
+        <td>拡充</td>
+      </tr>
+      <tr>
+        <td>休日リハ加算</td>
+        <td>新設（25点/単位、入院患者・起算日から30日・土日祝）</td>
+        <td>新設</td>
+      </tr>
+      <tr>
+        <td>リハ計画書</td>
+        <td>説明・署名→多職種説明・記録確認へ</td>
+        <td>変更</td>
+      </tr>
+      <tr>
+        <td>看護・多職種協働加算</td>
+        <td>新設</td>
+        <td>新設</td>
+      </tr>
+      <tr>
+        <td>みなし単位</td>
+        <td>訓練外業務20分=1単位の整理（請求可否は要確認）</td>
+        <td>慎重に見る</td>
+      </tr>
+    </table>
+
+    <div class="accent-box">
+      <strong>この記事の情報について</strong><br>
+      本記事は2026年2月13日の中医協答申および厚生労働省公表資料・疑義解釈（その1・その2）をもとに作成しています。施行後に追加の疑義解釈が出る可能性があります。算定判断は必ず最新の公式通知を確認してください。
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="bedside-reha-gensam.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📄</span>
+        <span class="tool-name">ベッドサイドリハ減算の詳細・除外条件</span>
+      </div>
+      <div class="tool-desc">離床を伴わない他動的訓練に10%減算・1日2単位制限。除外条件と現場での判断基準を解説。</div>
+    </a>
+    <a class="tool-card" href="../santei-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📅</span>
+        <span class="tool-name">疾患別リハビリ算定日数ツール</span>
+      </div>
+      <div class="tool-desc">脳血管・運動器・廃用・呼吸器・心大血管の標準算定日数と起算日を自動計算。</div>
+    </a>
+    <a class="tool-card" href="../fim-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">FIM評価ツール</span>
+      </div>
+      <div class="tool-desc">回復期リハ実績指数の算出に必須。18項目を採点してFIM利得を自動計算。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
