@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>障害受容とは何か｜段階理論の限界と「折り合い」という視点 | リハビリ計算ツール</title>
+<meta name="description" content="「あの人、受容できてないよね」という言葉は正しいのか。障害受容の段階理論の出自と限界、上田敏先生の再論、そしてリハビリ専門職が本当にできることを考えます。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* 段階テーブル */
+.stage-flow {
+  display: flex; align-items: center; justify-content: center;
+  gap: 4px; flex-wrap: wrap; margin: 16px 0 24px;
+}
+.stage-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 14px; font-size: 13px;
+  font-weight: 700; color: var(--text2); text-align: center;
+}
+.stage-arrow { color: var(--text3); font-size: 16px; }
+.stage-item.last { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+/* 引用ボックス */
+.quote-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 4px solid var(--text3);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 8px;
+  font-size: 14px; color: var(--text2); font-style: italic; line-height: 1.8;
+}
+.quote-source {
+  font-size: 12px; color: var(--text3); margin: 0 0 24px 0;
+  font-style: normal; padding-left: 4px;
+}
+.quote-source a { color: var(--accent); }
+
+/* 警告ボックス */
+.warn-box {
+  background: var(--warn-light); border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 8px; font-size: 13px; }
+
+/* 情報ボックス */
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
+
+/* アクセントボックス */
+.accent-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.accent-box .accent-title { font-weight: 700; color: var(--accent); margin-bottom: 8px; font-size: 13px; }
+
+/* まとめ */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
+}
+.summary-box .summary-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>障害受容とは何か<br>段階理論の限界と「折り合い」という視点</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    障害受容とは何か
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">臨床・考察</span>
+    <h1 class="article-title">障害受容とは何か｜段階理論の限界と「折り合い」という視点</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け臨床考察</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>「あの人、受容できてないよね」——リハビリテーションの現場でよく耳にする言葉です。でも立ち止まって考えてみると、障害受容とは本当に「できる・できない」で語れるものなのでしょうか。そもそも、障害受容というものは本当に存在するのでしょうか。</p>
+
+    <h2>教科書で習った「段階理論」</h2>
+
+    <p>多くのリハビリテーション専門職が学校で習った障害受容の段階理論があります。</p>
+
+    <div class="stage-flow">
+      <div class="stage-item">ショック</div>
+      <div class="stage-arrow">→</div>
+      <div class="stage-item">否認</div>
+      <div class="stage-arrow">→</div>
+      <div class="stage-item">怒り</div>
+      <div class="stage-arrow">→</div>
+      <div class="stage-item">抑うつ</div>
+      <div class="stage-arrow">→</div>
+      <div class="stage-item last">受容</div>
+    </div>
+
+    <p>この段階を経て「受容」に至るというモデルは、国家試験にも出題されるほど広く知られています。しかし臨床の現場で、この通りにきれいに進んだ患者を見たことがあるでしょうか。完全に受容に辿り着いたと言い切れる人を見たことがあるでしょうか。</p>
+
+    <p>多くのリハビリ専門職が「ない」と感じているのではないでしょうか。</p>
+
+    <h2>概念を広めた本人が警鐘を鳴らした</h2>
+
+    <p>障害受容の概念を日本に広めた上田敏先生が、2020年に自ら再論を発表しました。</p>
+
+    <div class="quote-box">
+      「現場では患者を非難する用語として誤用されている」
+    </div>
+    <p class="quote-source">
+      上田敏（2020）「『障害の受容』再論―誤解を解き，将来を考える―」<br>
+      <a href="https://www.jstage.jst.go.jp/article/jjrmc/57/10/57_57.890/_article/-char/ja/" target="_blank">J-STAGE掲載論文</a>
+    </p>
+
+    <p>概念を広めた当事者自らが、その誤用を指摘したのです。「あの人、受容できてないよね」というスタッフの発言が、まさにその誤用にあたります。受容できていないことを患者の問題として語る——それ自体が間違っているということです。</p>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 現場で起きている誤用</div>
+      「受容できていない」という言葉が、患者を評価・批判する文脈で使われてしまっている。これは障害受容という概念の誤用であり、上田先生自身が強く警鐘を鳴らしています。
+    </div>
+
+    <h2>段階理論の出自と限界</h2>
+
+    <p>障害受容の段階理論の出発点は、戦後の傷痍軍人の心理的回復プロセスでした。それを脳卒中にも、認知症にも、発達障害にも当てはめてきたこと自体に、そもそも無理があったのかもしれません。</p>
+
+    <p>障害の種類・発症の経緯・年齢・性格・社会的背景によって、心理的プロセスはまったく異なります。一つのモデルですべての障害・すべての人を説明しようとすること自体が、臨床の現実とかけ離れています。</p>
+
+    <div class="info-box">
+      <div class="info-title">📋 近年の動向</div>
+      近年の調査では、「障害受容」という言葉の使用を控えるリハビリテーション専門職が増えているという結果も出ています。<br><br>
+      田島明子「障害受容について考える―支援の場面からの一考察―」<br>
+      <a href="https://www.jstage.jst.go.jp/article/jjrmc/57/10/57_57.913/_article/-char/ja/" target="_blank" style="color:var(--info);font-size:13px;">J-STAGE掲載論文</a>
+    </div>
+
+    <h2>受容は「ある・ない」ではない</h2>
+
+    <p>少し考えてみてください。あなたは自分の容姿を受容していますか？</p>
+
+    <p>気にする時もあれば、吹っ切れている時もある。腹が立つことすらある。その繰り返し。でもそれが人間であり、ただ折り合いをつけて生きているということではないでしょうか。</p>
+
+    <p>障害も同じです。受容を「ある・ない」の二極化で分けること自体が、人間の心理の複雑さを無視しています。揺れながら、迷いながら、時に怒りながら——それでも日常を生きていく。その過程こそが「受容」に近いものではないでしょうか。</p>
+
+    <div class="accent-box">
+      <div class="accent-title">💡 「折り合い」という視点</div>
+      受容は到達点ではなく、継続的なプロセスです。「受容できているか」を評価するのではなく、「どのように折り合いをつけながら生きているか」という視点で患者を見ることが、より実態に即したアプローチと言えます。
+    </div>
+
+    <h2>リハビリ専門職にできること</h2>
+
+    <p>かつて私自身も「障害受容ができていない」と報告したことがあります。今思えば、それは誰を納得させるための評価だったのでしょうか。患者のためではなく、チームへの説明のための言葉になっていたのではないか、と振り返ります。</p>
+
+    <p>受容は「ある・ない」の二項目で語れるものではない。その認識を持った上で、私たちにできることは何か——それは、折り合いをつけていく過程に伴走することではないでしょうか。</p>
+
+    <p>「受容できていない」と評価するのではなく、「今、その人はどこにいるのか」「何に揺れているのか」「何が折り合いの妨げになっているのか」を丁寧に見ていくこと。それが専門職としての関わりの本質だと思います。</p>
+
+    <div class="summary-box">
+      <div class="summary-title">この記事のまとめ</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;">
+        <li>障害受容の段階理論は戦後の傷痍軍人研究が出発点で、すべての障害に適用することに無理がある</li>
+        <li>概念を広めた上田敏先生自身が「患者を非難する用語として誤用されている」と2020年に警鐘</li>
+        <li>受容は「ある・ない」の二項目で語れるものではなく、揺れながら折り合いをつける継続的なプロセス</li>
+        <li>リハビリ専門職の役割は「受容できているか」を評価することではなく、折り合いをつける過程に伴走すること</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="../fim-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">FIM評価ツール</span>
+      </div>
+      <div class="tool-desc">機能的自立度評価法（FIM）の18項目を採点。ADL自立度の客観的評価に。</div>
+    </a>
+    <a class="tool-card" href="../bi-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📝</span>
+        <span class="tool-name">Barthel Index（BI）評価ツール</span>
+      </div>
+      <div class="tool-desc">バーセルインデックスの10項目を採点。ADL自立度を100点満点で評価。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
