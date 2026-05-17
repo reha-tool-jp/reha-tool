@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>回復期リハビリテーション病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点を解説 | リハビリ計算ツール</title>
+<meta name="description" content="回復期リハビリテーション病棟の実績指数の計算式をわかりやすく解説。FIM運動項目利得と在院日数÷入棟上限日数の関係、令和8年度改定での加点ルール・除外要件の変更点、入院料別の基準値まで、PT・OT・STが押さえるべきポイントをまとめました。">
+<link rel="icon" href="../images/icon.jpg" type="image/jpeg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --danger: #7a1a1a;
+  --danger-light: #fae8e8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header .site-name a { color: #fff; text-decoration: none; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.updated { font-size: 12px; color: var(--text3); margin-bottom: 24px; display: block; }
+
+/* 本文 */
+.article-body h2 {
+  font-size: 17px; font-weight: 700; color: var(--accent);
+  border-left: 4px solid var(--accent); padding-left: 12px;
+  margin: 36px 0 16px;
+}
+.article-body h3 {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin: 28px 0 12px;
+}
+.article-body p {
+  font-size: 14px; color: var(--text); line-height: 1.9;
+  margin-bottom: 16px;
+}
+.article-body ul, .article-body ol {
+  font-size: 14px; padding-left: 24px; margin-bottom: 16px;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.8; }
+
+/* 計算式ボックス */
+.formula-box {
+  background: var(--surface); border: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 20px; margin: 20px 0;
+  text-align: center;
+}
+.formula-box .formula-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; letter-spacing: 0.05em;
+}
+.formula-fraction {
+  display: inline-flex; flex-direction: column; align-items: center;
+  margin: 0 8px;
+}
+.formula-numerator, .formula-denominator {
+  font-size: 14px; font-weight: 600; color: var(--text); padding: 4px 12px;
+}
+.formula-line {
+  width: 100%; height: 2px; background: var(--text); margin: 2px 0;
+}
+.formula-label {
+  font-size: 15px; font-weight: 700; color: var(--accent);
+  margin-right: 8px; vertical-align: middle;
+}
+.formula-equal {
+  font-size: 18px; font-weight: 700; color: var(--text);
+  margin: 0 8px; vertical-align: middle;
+}
+.formula-row {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 4px;
+}
+.formula-note {
+  font-size: 12px; color: var(--text2); margin-top: 12px;
+  text-align: left; line-height: 1.7;
+}
+
+/* 計算例ボックス */
+.example-box {
+  background: var(--accent-light); border-radius: var(--radius);
+  padding: 20px; margin: 20px 0;
+}
+.example-box .example-title {
+  font-size: 14px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px;
+}
+.example-box p, .example-box li {
+  font-size: 13px; color: var(--text); line-height: 1.8;
+}
+.example-box .calc-step {
+  background: var(--surface); border-radius: 6px;
+  padding: 12px 16px; margin: 10px 0; font-size: 13px;
+}
+.example-box .calc-result {
+  font-size: 15px; font-weight: 700; color: var(--accent);
+  text-align: center; margin-top: 12px;
+}
+
+/* 注意ボックス */
+.note-box {
+  border-radius: var(--radius); padding: 16px 18px; margin: 20px 0;
+  font-size: 13px; line-height: 1.8;
+}
+.note-box.warn { background: var(--warn-light); border-left: 4px solid var(--warn); }
+.note-box.info { background: var(--info-light); border-left: 4px solid var(--info); }
+.note-box.danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.note-box .note-title {
+  font-weight: 700; margin-bottom: 6px;
+}
+.note-box.warn .note-title { color: var(--warn); }
+.note-box.info .note-title { color: var(--info); }
+.note-box.danger .note-title { color: var(--danger); }
+
+/* テーブル */
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 13px; background: var(--surface);
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.data-table th {
+  background: var(--accent); color: #fff; padding: 10px 12px;
+  text-align: left; font-weight: 600; font-size: 12px;
+}
+.data-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .num { text-align: center; font-weight: 600; }
+.data-table .highlight { background: var(--accent-light); font-weight: 600; }
+
+/* 加点ルール図解 */
+.bonus-visual {
+  display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap;
+}
+.bonus-card {
+  flex: 1; min-width: 140px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px; text-align: center;
+}
+.bonus-card .bonus-item {
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  margin-bottom: 6px;
+}
+.bonus-card .bonus-arrow {
+  font-size: 20px; color: var(--accent); margin: 4px 0;
+}
+.bonus-card .bonus-condition {
+  font-size: 12px; color: var(--text2); line-height: 1.6;
+}
+.bonus-card .bonus-point {
+  font-size: 16px; font-weight: 700; color: var(--accent);
+  margin-top: 8px;
+}
+
+/* 参考文献 */
+.references {
+  background: var(--surface2); border-radius: var(--radius);
+  padding: 18px; margin-top: 36px;
+}
+.references .ref-title {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  margin-bottom: 10px;
+}
+.references ul { padding-left: 20px; }
+.references li {
+  font-size: 12px; color: var(--text2); margin-bottom: 6px;
+  line-height: 1.7;
+}
+.references a { color: var(--info); text-decoration: none; }
+.references a:hover { text-decoration: underline; }
+
+/* 関連記事 */
+.related-section { margin-top: 36px; }
+.related-section .section-title {
+  font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px;
+}
+.related-card {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px;
+  text-decoration: none; transition: border-color 0.2s;
+}
+.related-card:hover { border-color: var(--accent); }
+.related-card .related-name {
+  font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 4px;
+}
+.related-card .related-desc {
+  font-size: 12px; color: var(--text2); line-height: 1.6;
+}
+
+/* フッター */
+.footer {
+  text-align: center; padding: 28px 16px; margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--accent); text-decoration: none; font-size: 13px; }
+.footer a:hover { text-decoration: underline; }
+.footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name"><a href="../index.html">リハビリ計算ツール</a></div>
+  <h1>回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</h1>
+</header>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">トップ</a> ＞ 解説記事 ＞ 実績指数の計算式と令和8年度改定
+  </div>
+  <span class="updated">最終更新：2026年5月17日</span>
+
+  <div class="article-body">
+
+    <p>回復期リハビリテーション病棟では、リハビリの効果を測る指標として「リハビリテーション実績指数」が用いられています。入院料の施設基準にも組み込まれており、この数値が基準を下回ると算定できる単位数が制限されるなど、病棟運営に直結する重要な指標です。</p>
+
+    <p>この記事では、実績指数の正確な計算式と、令和8年度（2026年度）診療報酬改定で変更された点をまとめます。</p>
+
+    <!-- ========== 計算式 ========== -->
+    <h2>実績指数の計算式</h2>
+
+    <p>実績指数は、退棟した患者のFIM運動項目の改善度を、在院日数と算定日数上限の比で補正したものです。</p>
+
+    <div class="formula-box">
+      <div class="formula-title">リハビリテーション実績指数</div>
+      <div class="formula-row">
+        <span class="formula-label">実績指数</span>
+        <span class="formula-equal">＝</span>
+        <div class="formula-fraction">
+          <div class="formula-numerator">Σ（退棟時FIM運動項目得点 − 入棟時FIM運動項目得点）</div>
+          <div class="formula-line"></div>
+          <div class="formula-denominator">Σ（各患者の在院日数 ÷ 各患者の算定日数上限）</div>
+        </div>
+      </div>
+      <div class="formula-note">
+        ※ 分子はFIM運動項目（13項目・91点満点）の利得のみが対象です。認知項目は含みません。<br>
+        ※ 分母は単純な在院日数の合計ではありません。各患者ごとに「在院日数÷算定日数上限」を計算し、その合計です。<br>
+        ※ ここでいう「算定日数上限」は、疾患別リハビリテーション料の算定日数上限（運動器150日等）ではなく、回復期リハビリテーション病棟入院料における入棟上限日数（別表第九の二）を指します。<br>
+        ※ スケーリング（×10や×100）は掛けません。割り算の結果がそのまま実績指数の値になります。
+      </div>
+    </div>
+
+    <h3>分母の考え方</h3>
+    <p>分母がこの計算式の要点です。在院日数をそのまま使うのではなく、回復期リハ病棟の入棟上限日数で割ることで「入院期間をどれだけ使ったか」を0〜1の比率に変換しています。</p>
+    <p>例えば、入棟上限日数が90日の大腿骨骨折術後の患者が72日で退院した場合、分母への寄与は 72÷90＝0.8 です。入棟上限150日の脳血管疾患の患者が135日で退院した場合は 135÷150＝0.9 です。</p>
+    <p>この仕組みにより、短い期間で改善させた方が実績指数は高くなります。</p>
+
+    <!-- ========== 計算例 ========== -->
+    <h2>計算例（厚労省の説明に基づく）</h2>
+
+    <div class="example-box">
+      <div class="example-title">前提条件</div>
+      <p>直近6か月間に50人が退棟。内訳は以下のとおり。</p>
+      <ul>
+        <li>大腿骨骨折術後 30人：入棟時FIM運動項目50点→退棟時80点、在院72日（入棟上限90日）</li>
+        <li>脳卒中 20人：入棟時FIM運動項目40点→退棟時65点、在院135日（入棟上限150日）</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">STEP 1：分子（総FIM利得）を計算</div>
+      <div class="calc-step">
+        （80−50）×30人 ＋（65−40）×20人<br>
+        ＝ 900 ＋ 500 ＝ <strong>1,400</strong>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">STEP 2：加点ルール（令和8年度改定で新設）を適用</div>
+      <p>退棟患者のうち、以下に該当する者がいた場合、分子に加点します。</p>
+      <ul>
+        <li>「歩行・車椅子」が入棟時5点以下→退棟時6点以上に改善：20人</li>
+        <li>「トイレ動作」が入棟時5点以下→退棟時6点以上に改善：30人</li>
+      </ul>
+      <div class="calc-step">
+        加点 ＝ 1点×20人 ＋ 1点×30人 ＝ <strong>50</strong><br>
+        総FIM利得 ＝ 1,400 ＋ 50 ＝ <strong>1,450</strong>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">STEP 3：分母を計算</div>
+      <div class="calc-step">
+        （72÷90）×30人 ＋（135÷150）×20人<br>
+        ＝ 0.8×30 ＋ 0.9×20<br>
+        ＝ 24 ＋ 18 ＝ <strong>42</strong>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">STEP 4：実績指数を算出</div>
+      <div class="calc-result">
+        実績指数 ＝ 1,450 ÷ 42 ＝ 約 34.5
+      </div>
+    </div>
+
+    <!-- ========== 加点ルール ========== -->
+    <h2>令和8年度改定：加点ルール（最大2点）</h2>
+
+    <p>令和8年度改定で、FIM運動項目のうち「歩行・車椅子」と「トイレ動作」に対する加点ルールが新設されました。</p>
+
+    <div class="bonus-visual">
+      <div class="bonus-card">
+        <div class="bonus-item">歩行・車椅子</div>
+        <div class="bonus-condition">入棟時 5点以下</div>
+        <div class="bonus-arrow">↓</div>
+        <div class="bonus-condition">退棟時 6点以上</div>
+        <div class="bonus-point">＋1点</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-item">トイレ動作</div>
+        <div class="bonus-condition">入棟時 5点以下</div>
+        <div class="bonus-arrow">↓</div>
+        <div class="bonus-condition">退棟時 6点以上</div>
+        <div class="bonus-point">＋1点</div>
+      </div>
+    </div>
+
+    <p>加点は分子の総FIM利得に加算されます。両方に該当すれば1人あたり最大2点の加点です。どちらか一方のみでも加点対象になります。</p>
+
+    <div class="note-box info">
+      <div class="note-title">この加点の意味</div>
+      <p>5点以下は「監視〜全介助」の水準、6点以上は「修正自立以上」の水準（補助具の使用等を含む自立水準）です。つまり「自分でトイレに行ける」「自分で移動できる」という在宅復帰に直結する改善を、実績指数に上乗せして評価する仕組みです。</p>
+    </div>
+
+    <div class="note-box warn">
+      <div class="note-title">経過措置：除外基準と加点ルールで適用方法が異なる</div>
+      <p>疑義解釈その2によると、除外対象・除外割合については「入棟時の基準」が適用され、2026年5月31日までに入棟した患者には改定前の基準を用いてよいとされています。一方、加点ルール（歩行・車椅子、トイレ動作）については、2026年7月以降に実績指数を算出する場合、算出対象期間のすべての患者に適用して差し支えないとされています。</p>
+      <p>つまり除外基準は「入棟時点の基準」、加点ルールは「算出時点の基準」で適用されます。この違いは現場で混乱しやすいポイントですので、実績指数の算出時に注意が必要です。</p>
+    </div>
+
+    <!-- ========== 除外要件 ========== -->
+    <h2>令和8年度改定：除外要件の変更</h2>
+
+    <p>実績指数の算出対象から除外できる患者の要件も見直されました。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>除外要件</th>
+          <th>改定前</th>
+          <th>改定後</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>80歳以上</td>
+          <td>除外可能</td>
+          <td class="highlight">削除（除外不可に）</td>
+        </tr>
+        <tr>
+          <td>FIM運動項目20点以下</td>
+          <td>除外可能</td>
+          <td class="highlight">1日平均6単位超の場合は除外不可</td>
+        </tr>
+        <tr>
+          <td>FIM認知項目</td>
+          <td>24点以下で除外可能</td>
+          <td class="highlight">14点以下に厳格化</td>
+        </tr>
+        <tr>
+          <td>FIM運動項目76点以上</td>
+          <td>除外可能</td>
+          <td>除外可能（継続）</td>
+        </tr>
+        <tr>
+          <td>除外割合の上限</td>
+          <td class="num">3割以内</td>
+          <td class="num highlight">2割以内</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box warn">
+      <div class="note-title">80歳以上の除外廃止について</div>
+      <p>厚労省の分析では、80歳以上でもリハビリの効果がFIM得点に反映されることが示されています。年齢のみを理由とした除外は廃止され、全年齢が実績指数の算出対象となりました。</p>
+    </div>
+
+    <div class="note-box warn">
+      <div class="note-title">FIM運動項目20点以下の除外について</div>
+      <p>FIM運動項目20点以下の患者は引き続き除外可能ですが、疾患別リハビリの実施単位数が1日平均6単位を超えている場合は除外対象から外れます。「6単位を超えるリハビリを提供しているのであれば、その効果も実績指数に反映すべき」という考え方です。</p>
+      <p>なお、この除外を適用する場合は「一覧性のある台帳」にその経緯が分かるよう記載する必要があるとされています。実務上、除外した患者のリストと除外理由を台帳として整備しておくことが求められます。</p>
+    </div>
+
+    <div class="note-box warn">
+      <div class="note-title">FIM認知項目の除外基準厳格化</div>
+      <p>FIM認知項目による除外基準が24点以下から14点以下に引き下げられました。これまでは比較的軽度の認知機能低下でも除外可能でしたが、改定後は重度の認知機能低下がある患者に限定されます。加えて、除外割合の上限も3割から2割に縮小されており、除外できる患者数自体が減ることになります。</p>
+    </div>
+
+    <!-- ========== 基準値 ========== -->
+    <h2>入院料別の実績指数基準値</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>入院料</th>
+          <th>改定前</th>
+          <th>改定後</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>入院料1</td>
+          <td class="num">40以上</td>
+          <td class="num highlight">42以上</td>
+        </tr>
+        <tr>
+          <td>入院料2</td>
+          <td class="num">基準なし</td>
+          <td class="num highlight">32以上（新設）</td>
+        </tr>
+        <tr>
+          <td>入院料3</td>
+          <td class="num">35以上</td>
+          <td class="num highlight">37以上</td>
+        </tr>
+        <tr>
+          <td>入院料4</td>
+          <td class="num">基準なし</td>
+          <td class="num highlight">32以上（新設）</td>
+        </tr>
+        <tr>
+          <td>入院料5</td>
+          <td class="num" colspan="2">基準なし</td>
+        </tr>
+        <tr>
+          <td>強化体制加算</td>
+          <td class="num">—</td>
+          <td class="num highlight">48以上（新設）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>入院料2・4に初めて実績指数の基準値が設定されました。2026年3月末時点で届出済みの病棟については、同年9月末までの経過措置があります。</p>
+
+    <!-- ========== 6単位制限 ========== -->
+    <h2>実績指数が低いとどうなるか</h2>
+
+    <p>実績指数が2回連続して基準を下回ると、疾患別リハビリテーション料の算定が1日6単位までに制限されます。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>改定前</th>
+          <th>改定後</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6単位制限の発動基準</td>
+          <td class="num">2回連続 27未満</td>
+          <td class="num highlight">2回連続 30未満</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>基準が27から30に引き上げられたことで、より多くの病棟が制限対象になる可能性があります。</p>
+
+    <!-- ========== 重症患者 ========== -->
+    <h2>あわせて知っておきたい：重症患者の定義変更</h2>
+
+    <p>実績指数と合わせて、回復期リハ病棟の重症患者の定義も改定されています。</p>
+
+    <h3>追加された対象</h3>
+    <ul>
+      <li>高次脳機能障害を伴う頭部外傷・脳腫瘍・脳炎・急性脳症</li>
+      <li>脊髄損傷</li>
+    </ul>
+
+    <h3>変更された基準</h3>
+    <ul>
+      <li>FIM運動項目の下限が21点に設定（20点以下は重症患者の定義から除外）</li>
+      <li>重症患者のうち退院時に改善した割合の要件は削除</li>
+    </ul>
+
+    <div class="note-box info">
+      <div class="note-title">FIM運動20点以下が除外される理由</div>
+      <p>FIM運動項目20点以下の患者ではリハビリを行ってもFIM利得がほとんど得られないケースがあることが、厚労省の分析で示されています。重症患者の定義から外すことで、回復の見込みが高い重症患者への集中的なリハビリを促す意図があります。</p>
+    </div>
+
+    <!-- ========== まとめ ========== -->
+    <h2>まとめ</h2>
+
+    <p>実績指数はFIM運動項目の利得を在院日数÷入棟上限日数で割っただけのシンプルな計算式ですが、令和8年度改定で加点ルールの新設、除外要件の厳格化、基準値の引き上げと、複数の変更が入りました。</p>
+
+    <p>特に80歳以上の除外廃止、FIM認知項目の除外基準厳格化（24点以下→14点以下）、除外割合の縮小（3割→2割）、そして入院料2・4への基準値新設は、多くの回復期リハ病棟に影響する変更です。自院の実績指数を新しい計算方法で再計算し、改定後の基準値をクリアできるか確認しておくことをお勧めします。</p>
+
+    <!-- ========== 参考文献 ========== -->
+    <div class="references">
+      <div class="ref-title">参考文献・出典</div>
+      <ul>
+        <li>厚生労働省「令和8年度診療報酬改定 個別改定項目について」（2026年2月13日 中医協答申）</li>
+        <li>厚生労働省「疑義解釈資料の送付について（その2）」（2026年3月31日事務連絡）</li>
+        <li>GemMed「リハビリ実績指数の考え方見直し、早期リハビリ加算の算定日数を『入院から14日まで』に制限し、初期点数を増点―中医協総会（3）」<br>
+          <a href="https://gemmed.ghc-j.com/?p=72679" target="_blank" rel="noopener">https://gemmed.ghc-j.com/?p=72679</a></li>
+        <li>GemMed「回復期リハ病棟、重症患者の定義・リハ実績指数の計算・リハ強化体制加算等の詳細示す―疑義解釈2」<br>
+          <a href="https://gemmed.ghc-j.com/?p=73716" target="_blank" rel="noopener">https://gemmed.ghc-j.com/?p=73716</a></li>
+        <li>PT-OT-ST.NET「リハビリテーション実績指数の算出方法及び除外対象患者等の見直し【Ⅲ－２－①】」<br>
+          <a href="https://www.pt-ot-st.net/contents4/medical-treatment-reiwa-8/department/4913" target="_blank" rel="noopener">https://www.pt-ot-st.net/contents4/medical-treatment-reiwa-8/department/4913</a></li>
+      </ul>
+    </div>
+
+    <!-- ========== 関連記事 ========== -->
+    <div class="related-section">
+      <div class="section-title">関連する解説記事</div>
+      <a class="related-card" href="r8-kaitei-matome.html">
+        <div class="related-name">2026年診療報酬改定 リハビリ関連の変更点まとめ</div>
+        <div class="related-desc">ベッドサイドリハ減算・早期リハ加算・休日加算・みなし単位など、令和8年度改定の主要項目を解説。</div>
+      </a>
+      <a class="related-card" href="bedside-reha-gensam.html">
+        <div class="related-name">ベッド上リハビリ減算ルール完全解説</div>
+        <div class="related-desc">離床を伴わない個別療法の90%減算と1日2単位上限。対象と除外の判断基準を整理。</div>
+      </a>
+      <a class="related-card" href="kangokyodo-kazan.html">
+        <div class="related-name">看護・多職種協働加算とは何か</div>
+        <div class="related-desc">新設された看護・多職種協働加算の要件と回復期リハ病棟での活用を解説。</div>
+      </a>
+    </div>
+
+  </div><!-- .article-body -->
+
+  <!-- ========== FIMツールへの導線 ========== -->
+  <div class="related-section">
+    <div class="section-title">関連ツール</div>
+    <a class="related-card" href="../fim-tool.html">
+      <div class="related-name">🔢 FIM評価ツール</div>
+      <div class="related-desc">FIM18項目の採点をオンラインで。運動項目・認知項目の自動合計と印刷に対応。</div>
+    </a>
+    <a class="related-card" href="../santei-tool.html">
+      <div class="related-name">📅 疾患別リハビリ算定日数計算ツール</div>
+      <div class="related-desc">発症日から算定日数上限と13単位制限開始日を自動計算。</div>
+    </a>
+  </div>
+
+</div><!-- .container -->
+
+<div class="footer">
+  <a href="../index.html">トップページに戻る</a><br>
+  <a href="../about.html">運営者情報</a>｜<a href="../terms.html">利用規約</a>｜<a href="../contact.html">お問い合わせ</a>
+  <div class="copyright">© 2026 リハビリ計算ツール</div>
+</div>
+
+</body>
+</html>
