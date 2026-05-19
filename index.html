@@ -4,23 +4,46 @@
 <link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>リハビリ計算ツール | 臨床に役立つ制度解説と評価の専門メディア</title>
-<meta name="google-site-verification" content="KWL3so-Yvycvz_JBnr2qALfBszpFqr8x_ZtKnwj6NJU" />
-<meta name="description" content="臨床のリアルに応える評価ツールと制度解説。現役療法士が発信するPT・OT・ST向け専門メディア。FIM・Barthel Index・TUG・疾患別算定日数など無料で使えます。登録不要。">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
-     crossorigin="anonymous"></script>
+<title>リハビリ評価・計算ツール | PT・OT・ST・機能訓練指導員向け無料ツール集</title>
+<meta name="description" content="PT・OT・ST・機能訓練指導員向けの無料リハビリ評価・計算ツール集。デイサービス・訪問リハ・回復期病棟で使えるFIM、BI、生活機能チェックシート、興味・関心チェックシート、HDS-R、歩行評価、バランス評価など。登録不要・無料。">
+<meta name="google-site-verification" content="KWL3so-Yvycvz_JBnr2qALfBszpFqr8x_ZtKnwj6NJU">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a5c45">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="リハツール">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/reha-tool/service-worker.js');
+    });
+  }
+</script>
+
 <style>
   :root {
     --bg: #f5f4f0;
     --surface: #ffffff;
     --surface2: #f0efe9;
     --border: #e0ddd4;
+    --border2: #ccc9be;
     --text: #1a1916;
     --text2: #6b6860;
     --text3: #a09d96;
     --accent: #2a5c45;
     --accent-light: #e8f2ed;
-    --radius: 12px;
+    --danger: #b83030;
+    --danger-light: #fdf0f0;
+    --warn: #8a5c00;
+    --warn-light: #fdf6e3;
+    --info: #1a4a7a;
+    --info-light: #e8f0fa;
+    --radius: 10px;
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,321 +53,269 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
+    padding: 0 0 60px;
   }
 
   header {
-    background: var(--accent);
-    color: #fff;
-    padding: 32px 20px 28px;
-    text-align: center;
+    background: var(--accent); color: #fff;
+    padding: 20px 20px 18px;
   }
-  header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.04em; }
-  header p { font-size: 13px; opacity: 0.8; margin-top: 8px; line-height: 1.6; }
+  header h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.02em; }
+  header p { font-size: 12px; opacity: 0.8; margin-top: 5px; line-height: 1.6; }
 
-  .container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+  .container { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
 
+  /* --- セクション見出し --- */
   .section-title {
-    font-size: 13px; font-weight: 700; color: var(--text2);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 12px; margin-top: 28px;
-    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px; margin-bottom: 12px; margin-top: 28px;
+    display: flex; align-items: center; gap: 6px;
   }
-  .section-title:first-child { margin-top: 0; }
+  .section-title:first-of-type { margin-top: 0; }
+  .section-title .section-icon { font-size: 15px; }
+  .section-note { font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 4px; }
 
+  /* --- ツールカード --- */
   .tool-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: box-shadow 0.15s, border-color 0.15s;
+    display: block; text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px;
+    margin-bottom: 8px; transition: border-color 0.15s, background 0.15s;
   }
-  .tool-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 2px 12px rgba(42,92,69,0.1);
-  }
+  .tool-card:hover { border-color: var(--accent); background: var(--accent-light); }
   .tool-card-head {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
   }
-  .tool-icon { font-size: 24px; min-width: 36px; text-align: center; }
-  .tool-name { font-size: 16px; font-weight: 700; }
-  .tool-tag {
-    font-size: 11px; padding: 2px 8px; border-radius: 20px;
-    background: var(--accent-light); color: var(--accent);
-    font-weight: 600; margin-left: auto; white-space: nowrap;
+  .tool-icon { font-size: 18px; min-width: 24px; }
+  .tool-name { font-size: 15px; font-weight: 700; flex: 1; }
+  .tool-badge {
+    font-size: 10px; font-weight: 600; padding: 2px 7px;
+    border-radius: 10px; white-space: nowrap;
   }
-  .tool-desc { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .badge-new { background: var(--danger-light); color: var(--danger); }
+  .badge-day { background: var(--warn-light); color: var(--warn); }
+  .badge-hospital { background: var(--info-light); color: var(--info); }
+  .badge-visit { background: var(--accent-light); color: var(--accent); }
+  .tool-desc { font-size: 12px; color: var(--text2); line-height: 1.6; padding-left: 34px; }
 
-  .about-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 12px;
+  /* 準備中カード */
+  .tool-card-coming {
+    background: var(--surface2); border: 1px dashed var(--border2);
+    border-radius: var(--radius); padding: 12px 16px;
+    margin-bottom: 8px; opacity: 0.7;
   }
-  .about-card h2 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--accent); }
-  .about-card p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 8px; }
-  .about-card p:last-child { margin-bottom: 0; }
+  .tool-card-coming .tool-card-head { margin-bottom: 0; }
+  .tool-name-coming { font-size: 14px; font-weight: 600; color: var(--text3); flex: 1; }
+  .badge-coming { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: var(--surface); color: var(--text3); border: 1px solid var(--border2); }
 
-  .feature-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
-  .feature-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 13px; color: var(--text2); line-height: 1.6;
+  /* --- 解説記事 --- */
+  .article-card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 12px 16px;
+    margin-bottom: 8px; transition: border-color 0.15s, background 0.15s;
   }
-  .feature-icon { color: var(--accent); font-size: 15px; min-width: 20px; margin-top: 1px; }
+  .article-card:hover { border-color: var(--accent); background: var(--accent-light); }
+  .article-head { display: flex; align-items: flex-start; gap: 8px; }
+  .article-icon { font-size: 16px; min-width: 22px; margin-top: 1px; }
+  .article-title { font-size: 14px; font-weight: 700; line-height: 1.5; }
+  .article-desc { font-size: 12px; color: var(--text2); line-height: 1.6; margin-top: 4px; padding-left: 30px; }
 
-  .limit-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px;
+  .more-link {
+    display: block; text-align: right; font-size: 13px;
+    color: var(--accent); font-weight: 700; text-decoration: none;
+    margin-top: 4px; padding-right: 4px;
   }
-  .limit-chip {
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 8px; text-align: center;
+  .more-link:hover { opacity: 0.75; }
+
+  /* --- サイト説明 --- */
+  .about-section {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 18px; margin-top: 28px;
   }
-  .limit-chip .disease { font-size: 11px; color: var(--text2); margin-bottom: 3px; }
-  .limit-chip .days { font-size: 20px; font-weight: 700; color: var(--accent); }
-  .limit-chip .unit { font-size: 11px; color: var(--text3); }
+  .about-section h2 { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .about-section p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 12px; }
+  .about-section p:last-child { margin-bottom: 0; }
+  .feature-list { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
+  .feature-item { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+  .feature-item::before { content: '✅'; font-size: 12px; }
 
-  .faq-item { margin-bottom: 14px; }
-  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .faq-a { font-size: 13px; color: var(--text2); line-height: 1.7; }
-
+  /* --- フッター --- */
   .footer {
-    text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px;
+    text-align: center; font-size: 12px; color: var(--text3);
+    margin-top: 40px; line-height: 2;
   }
-  .footer a { color: var(--text3); }
-
-  @media (max-width: 400px) {
-    .limit-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .footer a { color: var(--text3); text-decoration: none; }
+  .footer a:hover { color: var(--accent); }
 </style>
-<!-- ===== PWA対応コード（全HTMLの<head>
-<link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">内、</head>直前に追加） ===== -->
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2a5c45">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="リハツール">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/reha-tool/service-worker.js');
-    });
-  }
-</script>
-
-<!-- ===== ここまで ===== -->
-
 </head>
 <body>
 
 <header>
-  <h1>🩺 リハビリ計算ツール</h1>
-  <p>臨床のリアルに応える評価ツールと制度解説。現役療法士が発信するPT・OT・ST向け専門メディア</p>
+  <h1>🩺 リハビリ評価・計算ツール</h1>
+  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
 </header>
 
 <div class="container">
 
-  <div class="section-title">評価ツール</div>
+  <!-- ① ADL・身体機能の評価ツール -->
+  <div class="section-title">
+    <span class="section-icon">📋</span>
+    ADL・身体機能の評価ツール
+    <span class="section-note">回復期・訪問・外来</span>
+  </div>
 
   <a class="tool-card" href="fim-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">📋</span>
       <span class="tool-name">FIM評価ツール</span>
-      <span class="tool-tag">18項目</span>
+      <span class="tool-badge badge-hospital">回復期・病院</span>
     </div>
-    <div class="tool-desc">機能的自立度評価法（FIM）の18項目を採点。運動項目・認知項目ごとのスコアを自動集計。各点数の判定基準をタップで確認できます。印刷・PDF保存対応。</div>
+    <div class="tool-desc">機能的自立度評価法（FIM）18項目を採点・集計。運動項目・認知項目ごとのスコアを自動算出。印刷・PDF保存対応。</div>
   </a>
 
   <a class="tool-card" href="bi-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">📝</span>
-      <span class="tool-name">Barthel Index（BI）評価ツール</span>
-      <span class="tool-tag">10項目</span>
+      <span class="tool-name">BI（バーセルインデックス）評価ツール</span>
+      <span class="tool-badge badge-day">デイ・施設</span>
     </div>
-    <div class="tool-desc">バーセルインデックス（BI）の10項目を採点。100点満点でADL自立度を評価。A4印刷・PDF保存対応。介護保険のADL維持等加算の評価にも活用できます。</div>
+    <div class="tool-desc">Barthel Index 10項目・100点満点でADL自立度を評価。ADL維持等加算の評価にも対応。印刷・PDF保存対応。</div>
   </a>
 
   <a class="tool-card" href="walk-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">🚶</span>
       <span class="tool-name">歩行評価ツール（TUG・10m歩行）</span>
-      <span class="tool-tag">ストップウォッチ付き</span>
+      <span class="tool-badge badge-visit">訪問・外来</span>
     </div>
-    <div class="tool-desc">TUGと10m歩行テストをストップウォッチで計測。複数回の計測から平均タイムを自動算出。歩行速度・歩幅・歩行率も計算。カットオフ値を画面上で確認できます。</div>
-  </a>
-<a class="tool-card" href="hdsr-tool.html">
-    <div class="tool-card-head">
-      <span class="tool-icon">🧠</span>
-      <span class="tool-name">HDS-R評価ツール</span>
-      <span class="tool-tag">9項目・30点満点</span>
-    </div>
-    <div class="tool-desc">改訂長谷川式簡易知能評価スケール（HDS-R）の9項目を採点。20点以下で認知症疑い。各項目の質問文・採点基準を表示しながら入力できます。印刷して記録用紙としても使用可能。</div>
+    <div class="tool-desc">ストップウォッチ内蔵。TUG・10m歩行テストを計測し平均タイム・歩行速度・歩幅・歩行率を自動算出。カットオフ値も確認できます。</div>
   </a>
 
   <a class="tool-card" href="balance-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">⚖️</span>
-      <span class="tool-name">バランス評価ツール</span>
-      <span class="tool-tag">BBS・静的バランス</span>
+      <span class="tool-name">バランス評価ツール（BBS）</span>
+      <span class="tool-badge badge-visit">訪問・外来</span>
     </div>
-    <div class="tool-desc">Berg Balance Scale（BBS）の15項目を採点・56点満点で判定。片脚立位・タンデム立位・ロンベルグテストはストップウォッチで複数回計測し平均を自動算出。印刷・PDF保存対応。</div>
+    <div class="tool-desc">Berg Balance Scale 14項目・56点満点。片脚立位・ロンベルグテストはストップウォッチで複数回計測し平均を自動算出。</div>
   </a>
-  <div class="section-title">算定管理ツール</div>
+
+  <a class="tool-card" href="hdsr-tool.html">
+    <div class="tool-card-head">
+      <span class="tool-icon">🧠</span>
+      <span class="tool-name">HDS-R評価ツール</span>
+      <span class="tool-badge badge-day">デイ・外来</span>
+    </div>
+    <div class="tool-desc">改訂長谷川式簡易知能評価スケール（HDS-R）9項目・30点満点。質問文・採点基準を表示しながら入力。印刷・PDF保存対応。</div>
+  </a>
+
+  <!-- ② 加算・算定に使うツール -->
+  <div class="section-title">
+    <span class="section-icon">📅</span>
+    加算・算定に使うツール
+    <span class="section-note">病院・デイサービス・介護保険</span>
+  </div>
 
   <a class="tool-card" href="santei-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">📅</span>
       <span class="tool-name">疾患別リハビリ算定日数ツール</span>
-      <span class="tool-tag">複数患者対応</span>
+      <span class="tool-badge badge-hospital">病院・クリニック</span>
     </div>
-    <div class="tool-desc">発症日・手術日を入力するだけで、疾患別リハビリテーションの算定上限日数と13単位制限の開始日を自動計算。脳血管・運動器・廃用・呼吸器に対応。複数患者を一括管理できます。</div>
+    <div class="tool-desc">発症日・手術日を入力するだけで算定上限日数と13単位制限の開始日を自動計算。脳血管・運動器・廃用・呼吸器に対応。複数患者を一括管理。</div>
   </a>
 
+  <a class="tool-card" href="seikatsu-tool.html">
+    <div class="tool-card-head">
+      <span class="tool-icon">🏠</span>
+      <span class="tool-name">生活機能チェックシート</span>
+      <span class="tool-badge badge-new">NEW</span>
+      <span class="tool-badge badge-day">デイサービス</span>
+    </div>
+    <div class="tool-desc">別紙様式3-2。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力し A4一枚で印刷。</div>
+  </a>
 
-  <div class="section-title">最新の解説記事</div>
+  <a class="tool-card" href="kyoumi-tool.html">
+    <div class="tool-card-head">
+      <span class="tool-icon">💡</span>
+      <span class="tool-name">興味・関心チェックシート</span>
+      <span class="tool-badge badge-new">NEW</span>
+      <span class="tool-badge badge-day">デイサービス</span>
+    </div>
+    <div class="tool-desc">別紙様式3-1。個別機能訓練加算の目標設定に使う44項目をタップで入力。「している／してみたい／興味がある」の3択。A4印刷対応。</div>
+  </a>
 
-  <div class="article-list-home">
-    <a class="tool-card" href="articles/jisseki-shisu.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">📊</span>
-        <span class="tool-name">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
-      </div>
-      <div class="tool-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
-    </a>
-    <a class="tool-card" href="articles/r8-kaitei-matome.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">📅</span>
-        <span class="tool-name">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
-      </div>
-      <div class="tool-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を最速解説。</div>
-    </a>
-
-    <a class="tool-card" href="articles/jihi-riha-jisho-riha.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">⚖️</span>
-        <span class="tool-name">「自費リハ・自称リハ」問題と国会質疑の論点</span>
-      </div>
-      <div class="tool-desc">民間リハビリサービスの名称問題。国会での議論から見える、制度の隙間とこれからの実態。</div>
-    </a>
-
-    <a class="tool-card" href="articles/minashi-tani.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">📝</span>
-        <span class="tool-name">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
-      </div>
-      <div class="tool-desc">2026年改定で注目される「みなし単位」の概念。療法士の役割拡大と算定上のリスクを整理。</div>
-    </a>
-
-    <a class="tool-card" href="articles/shogai-juyo.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">🌱</span>
-        <span class="tool-name">「障害受容」の再考：臨床現場での向き合い方</span>
-      </div>
-      <div class="tool-desc">単なる「段階説」に留まらない、患者様の揺れ動く心理状態へのアプローチと支援のあり方。</div>
-    </a>
-
-    <div style="text-align: right; margin-top: -5px; padding-right: 5px; margin-bottom: 24px;">
-      <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">
-        すべての解説記事を見る →
-      </a>
+  <div class="tool-card-coming">
+    <div class="tool-card-head">
+      <span class="tool-icon">📋</span>
+      <span class="tool-name-coming">基本チェックリスト（総合事業）</span>
+      <span class="badge-coming">準備中</span>
     </div>
   </div>
 
-  <div class="section-title">このサイトについて</div>
+  <!-- ③ 解説記事 -->
+  <div class="section-title">
+    <span class="section-icon">📰</span>
+    解説記事
+    <span class="section-note">制度・診療報酬・データ</span>
+  </div>
 
-  <div class="about-card">
-    <h2>リハビリ専門職のための計算ツール集</h2>
-    <p>このサイトは、理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）など、リハビリテーション専門職が現場で使える計算・評価ツールを無料で提供しています。</p>
-    <p>「片手にストップウォッチ、片手に記録用紙」という現場の煩雑さを少しでも減らすことを目的に開発しました。スマートフォン・タブレット・PCのブラウザから、アプリのインストールや会員登録なしで使えます。</p>
+  <a class="article-card" href="articles/jisseki-shisu.html">
+    <div class="article-head">
+      <span class="article-icon">📊</span>
+      <span class="article-title">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
+    </div>
+    <div class="article-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/r8-kaitei-matome.html">
+    <div class="article-head">
+      <span class="article-icon">📅</span>
+      <span class="article-title">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
+    </div>
+    <div class="article-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/jihi-riha-jisho-riha.html">
+    <div class="article-head">
+      <span class="article-icon">⚖️</span>
+      <span class="article-title">「自費リハ・自称リハ」問題と国会質疑の論点</span>
+    </div>
+    <div class="article-desc">民間リハビリサービスの名称問題。国会での議論から見える制度の隙間と実態。</div>
+  </a>
+
+  <a class="article-card" href="articles/minashi-tani.html">
+    <div class="article-head">
+      <span class="article-icon">📝</span>
+      <span class="article-title">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
+    </div>
+    <div class="article-desc">2026年改定で注目される「みなし単位」の概念と算定上のリスクを整理。</div>
+  </a>
+
+  <a class="more-link" href="articles/index.html">すべての解説記事を見る →</a>
+
+  <!-- サイト説明 -->
+  <div class="about-section">
+    <h2>このサイトについて</h2>
+    <p>理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）・機能訓練指導員が現場で使えるリハビリ評価・計算ツールを無料で提供しています。デイサービス・訪問リハ・回復期病棟・外来リハビリなど幅広い場面に対応しています。</p>
     <div class="feature-list">
-      <div class="feature-item"><span class="feature-icon">✅</span>完全無料・登録不要</div>
-      <div class="feature-item"><span class="feature-icon">✅</span>スマホ・タブレット・PCすべてに対応</div>
-      <div class="feature-item"><span class="feature-icon">✅</span>入力データはすべてブラウザ内で処理（外部送信なし）</div>
-      <div class="feature-item"><span class="feature-icon">✅</span>印刷・PDF保存に対応（記録として残せます）</div>
-    </div>
-  </div>
-
-  <div class="section-title">疾患別リハビリ算定日数 早見表</div>
-
-  <div class="about-card">
-    <p>医療保険における疾患別リハビリテーションには、発症・手術・急性増悪からの算定上限日数が定められています。上限を超えると1日あたりの算定単位数が13単位に制限されます。</p>
-    <div class="limit-grid">
-      <div class="limit-chip"><div class="disease">脳血管</div><div class="days">180</div><div class="unit">日</div></div>
-      <div class="limit-chip"><div class="disease">運動器</div><div class="days">150</div><div class="unit">日</div></div>
-      <div class="limit-chip"><div class="disease">廃用</div><div class="days">120</div><div class="unit">日</div></div>
-      <div class="limit-chip"><div class="disease">呼吸器</div><div class="days">90</div><div class="unit">日</div></div>
-    </div>
-  </div>
-
-
-  <div class="section-title">リハビリ評価スケール 基礎知識</div>
-
-  <div class="about-card">
-    <h2>ADL評価（FIM・Barthel Index）</h2>
-    <p>ADL（日常生活活動）評価は、患者が日常生活をどの程度自立して行えるかを定量的に把握するための評価です。リハビリテーションの効果判定・退院先の検討・介護保険の申請など、多くの場面で活用されます。</p>
-    <p>FIM（機能的自立度評価法）は18項目7段階で評価する詳細なスケールで、運動項目だけでなくコミュニケーション・社会的認知などの認知項目も含みます。回復期リハビリテーション病棟での使用が標準的です。Barthel Index（バーセルインデックス）は10項目100点満点のシンプルなスケールで、維持期・在宅・介護施設での使用や介護保険のADL維持等加算の評価に広く活用されています。</p>
-  </div>
-
-  <div class="about-card">
-    <h2>バランス評価（BBS・静的バランステスト）</h2>
-    <p>バランス機能の評価は、転倒リスクの把握・歩行能力の予測・リハビリ介入の効果判定に欠かせません。高齢者・脳卒中後・整形外科疾患など幅広い対象で実施されます。</p>
-    <p>Berg Balance Scale（BBS）は15項目56点満点の包括的なバランス評価スケールで、座位保持から片脚立位・踏み台昇降まで多様な課題を評価します。41点未満では転倒リスクが高まるとされ、リハビリ目標設定の指標としても使用されます。静的バランステスト（片脚立位・タンデム立位・ロンベルグテスト）は道具不要で実施できる簡便な評価法で、深部感覚・前庭機能・視覚系のバランス機能を個別に評価できます。</p>
-  </div>
-
-  <div class="about-card">
-    <h2>歩行評価（TUG・10m歩行テスト）</h2>
-    <p>歩行能力は「第6のバイタルサイン」とも呼ばれ、高齢者の機能予後・転倒リスク・死亡リスクとの関連が多くの研究で示されています。客観的な数値として記録することで、経過観察や他施設との比較が可能になります。</p>
-    <p>TUG（Timed Up and Go Test）は椅子からの立ち上がり・3m歩行・方向転換・着座までの時間を計測するテストで、移動能力とバランスを総合的に評価できます。10m歩行テストは歩行速度を定量化するテストで、1.0m/s以上が屋外歩行自立の目安とされています。歩数を合わせて計測することで歩幅・歩行率（ケイデンス）も算出できます。</p>
-  </div>
-
-  <div class="about-card">
-    <h2>認知機能評価（HDS-R）</h2>
-    <p>認知機能のスクリーニングは、リハビリテーションの目標設定・退院後の生活環境の検討・介護保険の申請など、多職種連携の場面で重要な情報となります。認知機能の低下は運動機能の回復にも影響するため、早期からの評価が推奨されています。</p>
-    <p>HDS-R（改訂長谷川式簡易知能評価スケール）は日本で最も広く使用されている認知機能スクリーニングツールで、9項目30点満点で評価します。言語のみで実施でき書字・図形模写が不要なため、身体的制約がある方にも使用しやすい点が特徴です。20点以下で認知症の疑いがあるとされますが、確定診断には医師による総合的な診察が必要です。</p>
-  </div>
-
-  <div class="section-title">よくある質問</div>
-
-  <div class="about-card">
-    <div class="faq-item">
-      <div class="faq-q">Q. 入力した患者情報は外部に送信されますか？</div>
-      <div class="faq-a">A. すべての計算・評価はブラウザ内で完結しており、入力された情報が外部のサーバーに送信されることは一切ありません。個人情報を含む内容も安心して入力できます。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Q. スマートフォンやタブレットでも使えますか？</div>
-      <div class="faq-a">A. はい、スマートフォン・タブレット・PCいずれのブラウザでもご利用いただけます。歩行評価ツールのストップウォッチ機能はタブレットでの使用を特に推奨します。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Q. FIMとBarthel Indexはどう使い分けますか？</div>
-      <div class="faq-a">A. FIMは18項目7段階の詳細な評価で、回復期リハビリテーション病棟での使用が多いです。Barthel Indexは10項目でシンプルに評価でき、維持期・在宅・介護施設での使用や、介護保険のADL維持等加算の評価に活用されています。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Q. TUGテストのカットオフ値はどれを使えばよいですか？</div>
-      <div class="faq-a">A. 日本整形外科学会の運動器不安定症の診断基準では11秒以上、転倒リスクの予測では13.5秒以上（Shumway-Cook）が代表的な基準です。対象者の疾患や目的に合わせて参照してください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Q. BBSとTUGはどう使い分けますか？</div>
-      <div class="faq-a">A. BBSは15項目で静的・動的バランスを包括的に評価するスケールで、詳細な能力把握や経過観察に適しています。TUGは立ち上がり・歩行・方向転換・着座を一連の動作として時間計測するテストで、移動能力の簡便なスクリーニングに向いています。目的に応じて使い分けるか、両方を組み合わせて実施することが推奨されます。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Q. 今後追加予定のツールはありますか？</div>
-      <div class="faq-a">A. 6分間歩行テスト（6MWT）やMini-BESTestなどの追加を検討しています。</div>
+      <div class="feature-item">完全無料・登録不要</div>
+      <div class="feature-item">スマホ・タブレット・PCすべてに対応</div>
+      <div class="feature-item">入力データはブラウザ内で処理（外部送信なし）</div>
+      <div class="feature-item">印刷・PDF保存に対応</div>
     </div>
   </div>
 
   <div class="footer">
-    <a href="about.html">運営者について</a><span style="margin:0 8px;color:var(--text3);">|</span>
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span style="margin:0 8px;color:var(--text3);">|</span><a href="terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="privacy.html">プライバシーポリシー</a>
+    <a href="about.html">このサイトについて</a>　｜　
+    <a href="contact.html">お問い合わせ</a>　｜　
+    <a href="terms.html">利用規約</a>　｜　
+    <a href="privacy.html">プライバシーポリシー</a>　｜　
+    <a href="articles/index.html">解説記事一覧</a>
   </div>
 
 </div>
-
 </body>
 </html>
