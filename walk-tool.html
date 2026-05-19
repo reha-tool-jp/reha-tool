@@ -240,6 +240,17 @@
     .stopwatch-card { display: none !important; }
     .input-card { display: none !important; }
   }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 <!-- ===== PWA対応コード（全HTMLの<head>
 <link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">内、</head>直前に追加） ===== -->
@@ -332,6 +343,7 @@
 
     <button class="reset-btn" onclick="clearRecords('tug')">記録をクリア</button>
     <button class="print-btn" onclick="printPage('TUG')">🖨️ 印刷 / PDF保存</button>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
   </div>
 
@@ -405,6 +417,7 @@
 
     <button class="reset-btn" onclick="clearRecords('10m')">記録をクリア</button>
     <button class="print-btn" onclick="printPage('10m歩行')">🖨️ 印刷 / PDF保存</button>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
   </div>
 

@@ -159,6 +159,17 @@ animation: fadeIn 0.15s ease;
 .patient-card { grid-template-columns: 1fr; }
 .summary-grid { grid-template-columns: 1fr 1fr; }
 }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 <!-- ===== PWA対応コード（全HTMLの<head>
@@ -235,6 +246,7 @@ animation: fadeIn 0.15s ease;
 <button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
+<p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
 <div id="fim-info" style="margin-top:40px; border-top:1px solid #d8d5ce; padding-top:32px;">
   <h2 style="font-size:15px; font-weight:700; color:#1a4a6b; margin-bottom:10px;">このツールについて</h2>

@@ -271,6 +271,17 @@
     .free-section label { font-size: 7.5pt; color: #333; margin-bottom: 2px; font-weight: 600; }
     .free-textarea { font-size: 7.5pt; min-height: 24px; border: 1px solid #ccc; padding: 2px 4px; background: #fff !important; }
   }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 </head>
 <body>
@@ -357,6 +368,7 @@
     <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
   </div>
+  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
   <!-- 説明 -->
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">

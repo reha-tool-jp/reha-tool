@@ -317,5 +317,106 @@
   </div>
 
 </div>
+
+<!-- PWAホーム画面追加案内ポップアップ -->
+<div id="pwa-banner" class="pwa-banner" style="display: none;">
+  <button class="pwa-banner-close" onclick="closePwaBanner()">&times;</button>
+  <div class="pwa-banner-content" id="pwa-banner-message"></div>
+</div>
+
+<style>
+  .pwa-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px 24px;
+    z-index: 1000;
+    transition: transform 0.3s ease-out;
+    transform: translateY(100%);
+  }
+  .pwa-banner.show {
+    transform: translateY(0);
+  }
+  .pwa-banner-content {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    padding-right: 20px;
+  }
+  .pwa-banner-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pwa-banner-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text3, #a09d96);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+</style>
+
+<script>
+window.addEventListener('load', () => {
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if (isStandalone || localStorage.getItem('pwa_banner_shown')) {
+    return;
+  }
+
+  const ua = navigator.userAgent.toLowerCase();
+  const isiOS = /iphone|ipad|ipod/.test(ua);
+  const isAndroid = /android/.test(ua);
+
+  if (!isiOS && !isAndroid) {
+    return;
+  }
+
+  setTimeout(() => {
+    const banner = document.getElementById('pwa-banner');
+    const msgEl = document.getElementById('pwa-banner-message');
+    
+    if (isiOS) {
+      msgEl.innerHTML = `
+        <div class="pwa-banner-title">📲 ホーム画面に追加して使う</div>
+        <div>Safariの共有ボタン（<span style="font-weight: bold;">□↑</span>）→「ホーム画面に追加」で、次回からアプリのように開けます。</div>
+      `;
+    } else if (isAndroid) {
+      msgEl.innerHTML = `
+        <div class="pwa-banner-title">📲 ホーム画面に追加して使う</div>
+        <div>ブラウザのメニュー（<span style="font-weight: bold;">⋮</span>）→「ホーム画面に追加」で、次回からアプリのように開けます。</div>
+      `;
+    }
+    
+    banner.style.display = 'block';
+    banner.offsetHeight; // force reflow
+    banner.classList.add('show');
+  }, 1500);
+});
+
+function closePwaBanner() {
+  const banner = document.getElementById('pwa-banner');
+  banner.classList.remove('show');
+  localStorage.setItem('pwa_banner_shown', '1');
+  setTimeout(() => {
+    banner.style.display = 'none';
+  }, 300);
+}
+</script>
 </body>
 </html>

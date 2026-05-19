@@ -193,6 +193,17 @@
     .print-memo { margin-top: 10px; border: 1px solid #ccc; padding: 6px 10px; font-size: 8.5pt; color: #666; min-height: 40px; }
     .print-memo-label { font-size: 8pt; font-weight: 700; color: #2a5c45; margin-bottom: 3px; }
   }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 <!-- ===== PWA対応コード（全HTMLの<head>
 <link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">内、</head>直前に追加） ===== -->
@@ -290,6 +301,7 @@
     <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
   </div>
+  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
   <div class="info-section">
     <h2 class="info-title">このツールについて</h2>

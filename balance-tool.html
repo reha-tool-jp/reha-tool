@@ -532,6 +532,17 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
   .bbs-opt-btn { padding: 8px 10px; }
   .sw-display { font-size: 2.2rem; }
 }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 </head>
 <body>
@@ -592,6 +603,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
       <button class="btn btn-print" onclick="printBBS()">🖨️ 印刷 / PDF保存</button>
       <button class="btn btn-reset" onclick="resetBBS()">リセット</button>
     </div>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
   </div>
 
   <!-- ===== 静的バランス パネル ===== -->
@@ -662,6 +674,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
       <button class="btn btn-print" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
       <button class="btn btn-reset" onclick="resetStatic()">リセット</button>
     </div>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
   </div>
 
 

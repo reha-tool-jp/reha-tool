@@ -281,6 +281,17 @@
     .limit-ref { grid-template-columns: repeat(2, 1fr); }
     .fields { grid-template-columns: 1fr; }
   }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
 </style>
 <!-- ===== PWA対応コード（全HTMLの<head>
 <link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">内、</head>直前に追加） ===== -->
@@ -326,6 +337,7 @@
     <button class="add-btn" onclick="addPatient()">＋ 患者を追加</button>
     <button class="calc-btn" onclick="calcAll()">計算する</button>
   </div>
+  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
   <div id="results" class="result-section"></div>
 
