@@ -9,279 +9,77 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 <style>
   :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --surface2: #f0efe9;
-    --border: #e0ddd4;
-    --border2: #ccc9be;
-    --text: #1a1916;
-    --text2: #6b6860;
-    --text3: #a09d96;
-    --accent: #2a5c45;
-    --accent-light: #e8f2ed;
-    --danger: #b83030;
-    --danger-light: #fdf0f0;
-    --warn: #8a5c00;
-    --warn-light: #fdf6e3;
-    --info: #1a4a7a;
-    --info-light: #e8f0fa;
-    --purple: #5a2a7a;
-    --purple-light: #f0e8fa;
-    --radius: 10px;
-    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+    --border: #e0ddd4; --border2: #ccc9be; --text: #1a1916; --text2: #6b6860;
+    --text3: #a09d96; --accent: #2a5c45; --accent-light: #e8f2ed;
+    --danger: #b83030; --danger-light: #fdf0f0; --warn: #8a5c00; --warn-light: #fdf6e3;
+    --info: #1a4a7a; --info-light: #e8f0fa;
+    --purple: #5a2a7a; --purple-light: #f0e8fa;
+    --radius: 10px; --mono: "SF Mono", "Courier New", Courier, monospace;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 60px;
-  }
-
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 60px; }
   header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
   header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
   header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
-
   .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
-
-  /* --- 基本情報 --- */
-  .info-row {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
-  }
+  .info-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
   .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 72px; }
-  .info-input {
-    flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none;
-    color: var(--text); font-family: inherit; background: transparent;
-  }
+  .info-input { flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; }
   .info-input::placeholder { color: var(--text3); font-weight: 400; }
-  .info-select {
-    flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none;
-    color: var(--text); font-family: inherit; background: transparent;
-    -webkit-appearance: none; appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px;
-  }
+  .info-select { flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px; }
   .info-block { margin-bottom: 16px; }
-
-  /* --- サマリー --- */
-  .summary-bar {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 14px 16px; margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: space-around; gap: 8px;
-  }
+  .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-around; gap: 8px; }
   .summary-stat { text-align: center; flex: 1; }
   .summary-num { font-size: 28px; font-weight: 700; font-family: var(--mono); line-height: 1; }
   .summary-label { font-size: 11px; color: var(--text3); margin-top: 3px; }
-  .num-doing { color: var(--accent); }
-  .num-want { color: var(--info); }
-  .num-interest { color: var(--purple); }
-  .num-none { color: var(--text3); }
+  .num-doing { color: var(--accent); } .num-want { color: var(--info); } .num-interest { color: var(--purple); } .num-none { color: var(--text3); }
   .summary-sep { width: 1px; height: 36px; background: var(--border); }
-
-  /* --- 凡例 --- */
-  .legend {
-    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 12px; color: var(--text2);
-  }
-  .legend-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-  }
-  .dot-doing { background: var(--accent); }
-  .dot-want { background: var(--info); }
-  .dot-interest { background: var(--purple); }
-  .dot-none { background: var(--border2); }
-
-  /* --- カテゴリ見出し --- */
-  .cat-label {
-    font-size: 12px; font-weight: 700; color: var(--text2);
-    padding: 6px 0 4px; border-bottom: 1px solid var(--border);
-    margin-bottom: 8px; margin-top: 16px;
-    display: flex; align-items: center; gap: 6px;
-  }
+  .legend { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text2); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-doing { background: var(--accent); } .dot-want { background: var(--info); } .dot-interest { background: var(--purple); } .dot-none { background: var(--border2); }
+  .cat-label { font-size: 12px; font-weight: 700; color: var(--text2); padding: 6px 0 4px; border-bottom: 1px solid var(--border); margin-bottom: 8px; margin-top: 16px; display: flex; align-items: center; gap: 6px; }
   .cat-label:first-of-type { margin-top: 0; }
   .cat-icon { font-size: 14px; }
-
-  /* --- 項目グリッド --- */
-  .items-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-
-  /* --- 項目カード --- */
-  .item-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-  }
+  .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 4px; }
+  .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .item-card.status-doing { border-left: 3px solid var(--accent); }
   .item-card.status-want { border-left: 3px solid var(--info); }
   .item-card.status-interest { border-left: 3px solid var(--purple); }
   .item-card.status-none-x { border-left: 3px solid var(--border2); opacity: 0.65; }
-
-  .item-name {
-    font-size: 13px; font-weight: 700; padding: 8px 10px 6px;
-    line-height: 1.4;
-  }
-
-  /* --- 3択ボタン --- */
-  .choice-row {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--border);
-  }
-  .choice-btn {
-    padding: 6px 2px; font-size: 11px; font-weight: 600;
-    border: none; background: var(--bg); cursor: pointer;
-    font-family: inherit; color: var(--text3);
-    transition: background 0.15s, color 0.15s;
-    border-right: 1px solid var(--border);
-    line-height: 1.3;
-  }
+  .item-name { font-size: 13px; font-weight: 700; padding: 8px 10px 6px; line-height: 1.4; }
+  .choice-row { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
+  .choice-btn { padding: 6px 2px; font-size: 11px; font-weight: 600; border: none; background: var(--bg); cursor: pointer; font-family: inherit; color: var(--text3); transition: background 0.15s, color 0.15s; border-right: 1px solid var(--border); line-height: 1.3; }
   .choice-btn:last-child { border-right: none; }
   .choice-btn:hover { background: var(--surface2); }
   .choice-btn.sel-doing { background: var(--accent-light); color: var(--accent); }
   .choice-btn.sel-want { background: var(--info-light); color: var(--info); }
   .choice-btn.sel-interest { background: var(--purple-light); color: var(--purple); }
   .choice-btn.sel-nonex { background: var(--surface2); color: var(--text3); }
-
-  /* × ボタン */
-  .nonex-row {
-    border-top: 1px solid var(--border);
-    padding: 4px 8px;
-  }
-  .nonex-btn {
-    font-size: 11px; color: var(--text3); background: none; border: none;
-    cursor: pointer; font-family: inherit; padding: 0;
-  }
+  .nonex-row { border-top: 1px solid var(--border); padding: 4px 8px; }
+  .nonex-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
   .nonex-btn.active { color: var(--text2); font-weight: 700; }
-
-  /* --- 自由記入欄 --- */
-  .free-section {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 12px 16px; margin-top: 16px;
-  }
+  .free-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-top: 16px; }
   .free-section label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 6px; font-weight: 600; }
-  .free-textarea {
-    width: 100%; min-height: 60px; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text);
-    background: var(--bg); resize: vertical; outline: none; line-height: 1.6;
-  }
+  .free-textarea { width: 100%; min-height: 60px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); resize: vertical; outline: none; line-height: 1.6; }
   .free-textarea:focus { border-color: var(--accent); }
-
-  /* --- ボタン --- */
   .btn-row { display: flex; gap: 10px; margin-top: 16px; }
   .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
   .btn-primary { background: var(--accent); color: #fff; border: none; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
   .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
   .footer a { color: var(--text3); }
+  .pwa-hint { text-align: center; font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.6; }
 
-  .print-header { display: none; }
-
-  /* ========== 印刷スタイル ========== */
   @media print {
-    @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
-
-    body { background: #fff !important; padding: 0; color: #000; font-size: 8pt; }
-    header { display: none !important; }
-    .container { max-width: 100% !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
-
-    .print-header {
-      display: flex !important;
-      justify-content: space-between; align-items: flex-end;
-      margin-bottom: 4px; border-bottom: 2px solid #2a5c45; padding-bottom: 3px;
-    }
-    .print-title { font-size: 11pt; font-weight: 700; color: #2a5c45; }
-    .print-subtitle { font-size: 7pt; color: #333; }
-
-    .info-block {
-      display: flex; flex-wrap: wrap; gap: 0 16px;
-      margin-bottom: 4px; border-bottom: 1px solid #ddd; padding-bottom: 2px;
-    }
-    .info-row { border: none; padding: 1px 0; margin-bottom: 0; display: flex; align-items: center; gap: 4px; }
-    .info-row label { font-size: 7pt; color: #333; white-space: nowrap; min-width: auto; font-weight: 600; }
-    .info-input, .info-select { font-size: 9pt; font-weight: 700; color: #111; }
-
-    .summary-bar { display: none !important; }
-    .legend { display: none !important; }
-    .btn-row { display: none !important; }
-    .nonex-row { display: none !important; }
-    .info-section, .footer, .ref-section { display: none !important; }
-
-    /* カテゴリ見出し */
-    .cat-label {
-      font-size: 7.5pt; font-weight: 700; color: #2a5c45;
-      margin-top: 5px; margin-bottom: 1px; padding: 1px 0 2px;
-      border-bottom: 1.5px solid #2a5c45;
-      grid-column: 1 / -1;
-    }
-    .cat-icon { display: none; }
-
-    /* items-gridを4列に：項目名＋結果を1行で */
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-    }
-
-    /* カードを横1行レイアウトに */
-    .item-card {
-      display: flex; align-items: center;
-      border: 1px solid #ddd; border-radius: 0;
-      padding: 2px 4px; gap: 4px;
-      border-left: 2px solid #ddd;
-      page-break-inside: avoid;
-    }
-    .item-card.status-doing { border-left: 3px solid #2a5c45; background: #f5fbf8 !important; }
-    .item-card.status-want { border-left: 3px solid #1a4a7a; background: #f0f5fc !important; }
-    .item-card.status-interest { border-left: 3px solid #5a2a7a; background: #f7f0fc !important; }
-    .item-card.status-none-x { border-left: 2px solid #ccc; opacity: 0.5; }
-
-    .item-name {
-      font-size: 7pt; padding: 0; flex: 1;
-      line-height: 1.3; font-weight: 600;
-    }
-
-    /* choice-rowを非表示にしてラベルだけ出す */
-    .choice-row { display: none !important; }
-
-    /* 選択結果ラベル（JSで付与） */
-    .print-result {
-      font-size: 6.5pt; font-weight: 700; white-space: nowrap;
-      padding: 1px 3px; border-radius: 2px;
-    }
-    .print-result-doing { color: #2a5c45; background: #e8f2ed; }
-    .print-result-want { color: #1a4a7a; background: #e8f0fa; }
-    .print-result-interest { color: #5a2a7a; background: #f0e8fa; }
-    .print-result-nonex { color: #888; }
-    .print-result-empty { color: #ccc; font-size: 6pt; }
-
-    /* 自由記入欄 */
-    .free-section { margin-top: 5px; padding: 3px 6px; border: 1px solid #bbb; border-radius: 2px; }
-    .free-section label { font-size: 7.5pt; color: #333; margin-bottom: 2px; font-weight: 600; }
-    .free-textarea { font-size: 7.5pt; min-height: 24px; border: 1px solid #ccc; padding: 2px 4px; background: #fff !important; }
+    @page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }
+    body > * { display: none !important; }
+    #print-overlay { display: block !important; }
   }
-
-.pwa-hint {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text3, #a09d96);
-  margin-top: 8px;
-  line-height: 1.6;
-}
-@media print {
-  .pwa-hint { display: none; }
-}
+  #print-overlay { display: none; }
 </style>
 </head>
 <body>
@@ -292,14 +90,6 @@
 </header>
 
 <div class="container">
-
-  <div class="print-header">
-    <div>
-      <div class="print-title">興味・関心チェックシート（別紙様式3-1）</div>
-      <div class="print-subtitle">個別機能訓練加算 目標設定用</div>
-    </div>
-    <div class="print-subtitle" id="print-date"></div>
-  </div>
 
   <!-- 基本情報 -->
   <div class="info-block">
@@ -326,25 +116,13 @@
 
   <!-- サマリー -->
   <div class="summary-bar">
-    <div class="summary-stat">
-      <div class="summary-num num-doing" id="cnt-doing">0</div>
-      <div class="summary-label">している</div>
-    </div>
+    <div class="summary-stat"><div class="summary-num num-doing" id="cnt-doing">0</div><div class="summary-label">している</div></div>
     <div class="summary-sep"></div>
-    <div class="summary-stat">
-      <div class="summary-num num-want" id="cnt-want">0</div>
-      <div class="summary-label">してみたい</div>
-    </div>
+    <div class="summary-stat"><div class="summary-num num-want" id="cnt-want">0</div><div class="summary-label">してみたい</div></div>
     <div class="summary-sep"></div>
-    <div class="summary-stat">
-      <div class="summary-num num-interest" id="cnt-interest">0</div>
-      <div class="summary-label">興味がある</div>
-    </div>
+    <div class="summary-stat"><div class="summary-num num-interest" id="cnt-interest">0</div><div class="summary-label">興味がある</div></div>
     <div class="summary-sep"></div>
-    <div class="summary-stat">
-      <div class="summary-num num-none" id="cnt-none">0</div>
-      <div class="summary-label">未入力</div>
-    </div>
+    <div class="summary-stat"><div class="summary-num num-none" id="cnt-none">0</div><div class="summary-label">未入力</div></div>
   </div>
 
   <!-- 凡例 -->
@@ -370,15 +148,14 @@
   </div>
   <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
-  <!-- 説明 -->
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-1（興味・関心チェックシート）」に準拠した入力・印刷ツールです。通所介護の個別機能訓練加算の目標設定時に、利用者の生活行為に対するニーズを把握するために活用します。44項目をタップ操作で「している／してみたい／興味がある」の3択で評価し、そのまま印刷・PDF保存できます。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-1（興味・関心チェックシート）」に準拠した入力・印刷ツールです。44項目をタップ操作で「している／してみたい／興味がある」の3択で評価し、そのまま印刷・PDF保存できます。</p>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">記入方法</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">現在している生活行為には「している」、していないがしてみたいものには「してみたい」、できる・できないに関わらず興味があるものには「興味がある」を選択してください。どれにも該当しない場合は「×」を押してください。空欄はリスト以外の生活行為に使用できます。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">現在している生活行為には「している」、していないがしてみたいものには「してみたい」、できる・できないに関わらず興味があるものには「興味がある」を選択してください。どれにも該当しない場合は「×」を押してください。</p>
     </div>
   </div>
 
@@ -390,94 +167,48 @@
     </ul>
   </div>
 
-    <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a>
-    　｜　
-    <a href="santei-tool.html">算定日数ツール</a>
-    　｜　
-    <a href="fim-tool.html">FIM評価ツール</a>
-    　｜　
-    <a href="bi-tool.html">BIツール</a>
-    　｜　
-    <a href="hdsr-tool.html">HDS-Rツール</a>
-    　｜　
-    <a href="walk-tool.html">歩行評価ツール</a>
-    　｜　
-    <a href="balance-tool.html">バランス評価ツール</a>
-    　｜　
-    <a href="seikatsu-tool.html">生活機能チェック</a>
-    　｜　
-    <a href="kyoumi-tool.html">興味・関心チェック</a>
-    　｜　
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span style="margin:0 8px;color:var(--text3);">|</span><a href="terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="privacy.html">プライバシーポリシー</a>
+  <div class="footer" style="margin-top:32px;">
+    <a href="index.html">← ツール一覧</a> ｜
+    <a href="santei-tool.html">算定日数</a> ｜
+    <a href="fim-tool.html">FIM</a> ｜
+    <a href="bi-tool.html">BI</a> ｜
+    <a href="hdsr-tool.html">HDS-R</a> ｜
+    <a href="walk-tool.html">歩行評価</a> ｜
+    <a href="balance-tool.html">バランス評価</a> ｜
+    <a href="seikatsu-tool.html">生活機能チェック</a> ｜
+    <a href="kyoumi-tool.html">興味・関心チェック</a> ｜
+    <a href="/reha-tool/contact.html">お問い合わせ</a> ｜
+    <a href="terms.html">利用規約</a> ｜
+    <a href="privacy.html">プライバシーポリシー</a>
   </div>
 
 </div>
 
 <script>
 const CATEGORIES = [
-  {
-    title: 'ADL・セルフケア',
-    icon: '🧍',
-    items: ['自分でトイレへ行く','一人でお風呂に入る','自分で服を着る','自分で食べる','歯磨きをする','身だしなみを整える','好きなときに眠る']
-  },
-  {
-    title: 'IADL・家事',
-    icon: '🏠',
-    items: ['掃除・整理整頓','料理を作る','買い物','家や庭の手入れ・世話','洗濯・洗濯物たたみ']
-  },
-  {
-    title: '移動・外出',
-    icon: '🚶',
-    items: ['自転車・車の運転','電車・バスでの外出']
-  },
-  {
-    title: '社会参加・交流',
-    icon: '👥',
-    items: ['孫・子供の世話','動物の世話','友達とおしゃべり・遊ぶ','家族・親戚との団らん','デート・異性との交流','居酒屋に行く','ボランティア','地域活動（町内会・老人クラブ）','お参り・宗教活動']
-  },
-  {
-    title: '趣味・学習',
-    icon: '🎨',
-    items: ['生涯学習・歴史','読書','俳句','書道・習字','絵を描く・絵手紙','パソコン・ワープロ','写真','映画・観劇・演奏会','お茶・お花','歌を歌う・カラオケ','音楽を聴く・楽器演奏','将棋・囲碁・ゲーム','編み物','針仕事']
-  },
-  {
-    title: 'スポーツ・運動',
-    icon: '⚽',
-    items: ['体操・運動','散歩','ゴルフ・グラウンドゴルフ・水泳・テニスなどのスポーツ','ダンス・踊り','野球・相撲観戦','競馬・競輪・競艇・パチンコ']
-  },
-  {
-    title: '仕事・その他',
-    icon: '💼',
-    items: ['畑仕事','賃金を伴う仕事','旅行・温泉']
-  },
+  { title: "ADL・セルフケア", icon: "🧍", items: ["自分でトイレへ行く","一人でお風呂に入る","自分で服を着る","自分で食べる","歯磨きをする","身だしなみを整える","好きなときに眠る"] },
+  { title: "IADL・家事", icon: "🏠", items: ["掃除・整理整頓","料理を作る","買い物","家や庭の手入れ・世話","洗濯・洗濯物たたみ"] },
+  { title: "移動・外出", icon: "🚶", items: ["自転車・車の運転","電車・バスでの外出"] },
+  { title: "社会参加・交流", icon: "👥", items: ["孫・子供の世話","動物の世話","友達とおしゃべり・遊ぶ","家族・親戚との団らん","デート・異性との交流","居酒屋に行く","ボランティア","地域活動（町内会・老人クラブ）","お参り・宗教活動"] },
+  { title: "趣味・学習", icon: "🎨", items: ["生涯学習・歴史","読書","俳句","書道・習字","絵を描く・絵手紙","パソコン・ワープロ","写真","映画・観劇・演奏会","お茶・お花","歌を歌う・カラオケ","音楽を聴く・楽器演奏","将棋・囲碁・ゲーム","編み物","針仕事"] },
+  { title: "スポーツ・運動", icon: "⚽", items: ["体操・運動","散歩","ゴルフ・グラウンドゴルフ・水泳・テニスなどのスポーツ","ダンス・踊り","野球・相撲観戦","競馬・競輪・競艇・パチンコ"] },
+  { title: "仕事・その他", icon: "💼", items: ["畑仕事","賃金を伴う仕事","旅行・温泉"] },
 ];
 
-// フラット化
 let allItems = [];
-CATEGORIES.forEach(cat => {
-  cat.items.forEach(name => allItems.push({ name, cat: cat.title }));
-});
-
-// 状態：null=未入力, 'doing', 'want', 'interest', 'nonex'
+CATEGORIES.forEach(cat => cat.items.forEach(name => allItems.push({ name, cat: cat.title })));
 let state = allItems.map(() => null);
 
 function updateSummary() {
-  let doing = 0, want = 0, interest = 0, none = 0;
-  state.forEach(s => {
-    if (s === 'doing') doing++;
-    else if (s === 'want') want++;
-    else if (s === 'interest') interest++;
-    else none++;
-  });
-  document.getElementById('cnt-doing').textContent = doing;
-  document.getElementById('cnt-want').textContent = want;
-  document.getElementById('cnt-interest').textContent = interest;
-  document.getElementById('cnt-none').textContent = none;
+  let doing=0, want=0, interest=0, none=0;
+  state.forEach(s => { if(s==="doing") doing++; else if(s==="want") want++; else if(s==="interest") interest++; else none++; });
+  document.getElementById("cnt-doing").textContent = doing;
+  document.getElementById("cnt-want").textContent = want;
+  document.getElementById("cnt-interest").textContent = interest;
+  document.getElementById("cnt-none").textContent = none;
 }
 
 function select(idx, val) {
-  // 同じボタンを再タップでクリア
   state[idx] = state[idx] === val ? null : val;
   renderCard(idx);
   updateSummary();
@@ -485,102 +216,220 @@ function select(idx, val) {
 
 function renderCard(idx) {
   const s = state[idx];
-  const card = document.getElementById('card-' + idx);
+  const card = document.getElementById("card-" + idx);
   if (!card) return;
-  card.className = 'item-card' + (s ? ' status-' + (s === 'nonex' ? 'none-x' : s) : '');
-
-  const CHOICES = [
-    { val: 'doing',    label: 'している',   cls: 'sel-doing' },
-    { val: 'want',     label: 'してみたい', cls: 'sel-want' },
-    { val: 'interest', label: '興味がある', cls: 'sel-interest' },
-  ];
-
-  document.querySelectorAll('.choice-btn[data-idx="' + idx + '"]').forEach(btn => {
+  card.className = "item-card" + (s ? " status-" + (s === "nonex" ? "none-x" : s) : "");
+  document.querySelectorAll(".choice-btn[data-idx=\"" + idx + "\"]").forEach(btn => {
     const bval = btn.dataset.val;
-    btn.className = 'choice-btn' + (s === bval ? ' sel-' + (bval === 'nonex' ? 'nonex' : bval) : '');
+    btn.className = "choice-btn" + (s === bval ? " sel-" + bval : "");
   });
-  const nonexBtn = document.getElementById('nonex-' + idx);
-  if (nonexBtn) nonexBtn.className = 'nonex-btn' + (s === 'nonex' ? ' active' : '');
+  const nonexBtn = document.getElementById("nonex-" + idx);
+  if (nonexBtn) nonexBtn.className = "nonex-btn" + (s === "nonex" ? " active" : "");
 }
 
 function resetAll() {
-  if (!confirm('すべての入力をリセットしますか？')) return;
+  if (!confirm("すべての入力をリセットしますか？")) return;
   state = allItems.map(() => null);
-  document.getElementById('user-name').value = '';
-  document.getElementById('user-age').value = '';
-  document.getElementById('user-sex').value = '';
-  document.getElementById('eval-date').value = '';
-  document.getElementById('free-memo').value = '';
+  ["user-name","user-age","user-sex","eval-date","free-memo"].forEach(id => { const el = document.getElementById(id); if(el) el.value = ""; });
   allItems.forEach((_, i) => renderCard(i));
   updateSummary();
 }
 
-function printPage() {
-  const d = document.getElementById('eval-date').value;
-  const ds = d ? new Date(d).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }) : '（日付未入力）';
-  document.getElementById('print-date').textContent = '記入日：' + ds;
-
-  // 印刷用ラベルを各カードに追加
-  const LABELS = {
-    doing:    { text: 'している',   cls: 'print-result-doing' },
-    want:     { text: 'してみたい', cls: 'print-result-want' },
-    interest: { text: '興味がある', cls: 'print-result-interest' },
-    nonex:    { text: '×',         cls: 'print-result-nonex' },
+function buildPrintDOM() {
+  const getName  = () => document.getElementById("user-name").value || "　";
+  const getAge   = () => document.getElementById("user-age").value  || "　";
+  const getSex   = () => document.getElementById("user-sex").value  || "　";
+  const getFreeMemo = () => document.getElementById("free-memo").value || "";
+  const getDateStr = () => {
+    const v = document.getElementById("eval-date").value;
+    if (!v) return "　年　月　日";
+    const d = new Date(v);
+    return d.getFullYear() + "年" + (d.getMonth()+1) + "月" + d.getDate() + "日";
   };
-  state.forEach((s, i) => {
-    const card = document.getElementById('card-' + i);
-    if (!card) return;
-    let el = card.querySelector('.print-result');
-    if (!el) { el = document.createElement('span'); el.className = 'print-result'; card.appendChild(el); }
-    if (s && LABELS[s]) {
-      el.textContent = LABELS[s].text;
-      el.className = 'print-result ' + LABELS[s].cls;
-    } else {
-      el.textContent = '—';
-      el.className = 'print-result print-result-empty';
+
+  const css = `<style>
+    #print-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
+    #print-overlay {
+      font-family: "Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;
+      font-size: 9pt; color: #000; background: #fff; width: 100%;
     }
+    .pt-title-block { text-align: center; margin-bottom: 5px; position: relative; }
+    .pt-shoshiki { position: absolute; right: 0; top: 0; font-size: 7pt; }
+    .pt-title { font-size: 15pt; font-weight: 700; letter-spacing: 0.05em; }
+    .pt-subtitle { font-size: 8pt; color: #333; margin-top: 2px; }
+    .pt-info-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; border: 2px solid #000; }
+    .pt-info-table td { border: 1px solid #000; padding: 4px 6px; font-size: 8pt; }
+    .pt-info-label { background: #f0f0f0; font-weight: 700; font-size: 8pt; white-space: nowrap; text-align: center; }
+    .pt-info-value { font-weight: 700; font-size: 9.5pt; }
+    .pt-section-title { font-size: 8.5pt; font-weight: 700; background: #e8f0fa; border: 1.5px solid #000; border-bottom: none; padding: 3px 6px; margin-top: 6px; }
+    .pt-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
+    .pt-table th { border: 1px solid #000; padding: 3px 3px; font-size: 8pt; font-weight: 700; background: #f0f0f0; text-align: center; line-height: 1.3; }
+    .pt-table td { border: 1px solid #000; padding: 6px 5px; font-size: 9pt; vertical-align: middle; }
+    .pt-item-name { font-weight: 600; }
+    .pt-check { text-align: center; font-size: 11pt; font-weight: 700; }
+    .pt-circle { color: #000; }
+    .pt-free { margin-top: 6px; border: 1.5px solid #000; padding: 6px 8px; font-size: 9pt; min-height: 30px; }
+    .pt-free-label { font-size: 8pt; font-weight: 700; margin-bottom: 3px; }
+  </style>`;
+
+  // 全項目をフラット化して2列テーブルで出力
+  // 構造: [項目名|○|してみたい|興味がある] × 2列
+  let tablesHtml = "";
+
+  // 全項目をカテゴリ付きでフラット化
+  let printItems = [];
+  CATEGORIES.forEach(cat => {
+    cat.items.forEach(name => {
+      printItems.push({ name, cat: cat.title });
+    });
   });
 
+  // カテゴリ見出し行を含めて2列テーブルを生成
+  // まず左右に分ける: 偶数行=左、奇数行=右
+  // カテゴリが変わったら見出し行を挿入
+
+  // 行単位で構築
+  let rows = []; // { type: 'header'|'item', cat, name, idx }
+  let flatIdx = 0;
+  let prevCat = null;
+  printItems.forEach(item => {
+    if (item.cat !== prevCat) {
+      rows.push({ type: 'header', cat: item.cat });
+      prevCat = item.cat;
+    }
+    rows.push({ type: 'item', name: item.name, idx: flatIdx });
+    flatIdx++;
+  });
+
+  // ヘッダー行はspan=2で結合、item行は左右2列
+  // item行を左右ペアにする
+  tablesHtml += `<table class="pt-table" style="table-layout:fixed;">
+    <thead><tr>
+      <th style="width:26%">生活行為</th>
+      <th style="width:8%">して<br>いる</th>
+      <th style="width:8%">して<br>みたい</th>
+      <th style="width:8%">興味<br>がある</th>
+      <th style="width:2%;background:#ddd;"></th>
+      <th style="width:26%">生活行為</th>
+      <th style="width:8%">して<br>いる</th>
+      <th style="width:8%">して<br>みたい</th>
+      <th style="width:8%">興味<br>がある</th>
+    </tr></thead><tbody>`;
+
+  let i = 0;
+  while (i < rows.length) {
+    const row = rows[i];
+    if (row.type === 'header') {
+      // カテゴリ見出し行：9列結合
+      tablesHtml += `<tr><td colspan="9" style="background:#e8f0fa;font-weight:700;font-size:8.5pt;padding:3px 6px;border:1px solid #000;">${row.cat}</td></tr>`;
+      i++;
+    } else {
+      // item行：左右2列ペア
+      const left = row;
+      const right = (i+1 < rows.length && rows[i+1].type === 'item') ? rows[i+1] : null;
+
+      const sl = state[left.idx];
+      const ldoing    = sl === "doing"    ? '<span class="pt-circle">○</span>' : "";
+      const lwant     = sl === "want"     ? '<span class="pt-circle">○</span>' : "";
+      const linterest = sl === "interest" ? '<span class="pt-circle">○</span>' : "";
+
+      let rightCells = "";
+      if (right) {
+        const sr = state[right.idx];
+        const rdoing    = sr === "doing"    ? '<span class="pt-circle">○</span>' : "";
+        const rwant     = sr === "want"     ? '<span class="pt-circle">○</span>' : "";
+        const rinterest = sr === "interest" ? '<span class="pt-circle">○</span>' : "";
+        rightCells = `<td style="width:2%;background:#e0e0e0;border:1px solid #000;"></td>
+          <td class="pt-item-name" style="width:26%">${right.name}</td>
+          <td class="pt-check" style="width:8%">${rdoing}</td>
+          <td class="pt-check" style="width:8%">${rwant}</td>
+          <td class="pt-check" style="width:8%">${rinterest}</td>`;
+        i += 2;
+      } else {
+        rightCells = `<td style="background:#e0e0e0;border:1px solid #000;"></td><td colspan="4" style="border:1px solid #000;"></td>`;
+        i++;
+      }
+
+      tablesHtml += `<tr>
+        <td class="pt-item-name" style="width:26%">${left.name}</td>
+        <td class="pt-check" style="width:8%">${ldoing}</td>
+        <td class="pt-check" style="width:8%">${lwant}</td>
+        <td class="pt-check" style="width:8%">${linterest}</td>
+        ${rightCells}
+      </tr>`;
+    }
+  }
+
+  tablesHtml += `</tbody></table>`;
+
+  // 自由記入欄
+  const freeMemo = getFreeMemo().replace(/\n/g, "<br>");
+  const freeHtml = `<div class="pt-free"><div class="pt-free-label">その他・特記事項</div>${freeMemo}</div>`;
+
+  return `<div id="print-overlay">
+    ${css}
+    <div class="pt-title-block">
+      <span class="pt-shoshiki">別紙様式３－１</span>
+      <div class="pt-title">興味・関心チェックシート</div>
+      <div class="pt-subtitle">個別機能訓練加算 目標設定用</div>
+    </div>
+    <table class="pt-info-table" style="table-layout:fixed;">
+      <tr>
+        <td class="pt-info-label" style="padding:7px 6px;width:8%;">氏名</td>
+        <td class="pt-info-value" style="padding:7px 6px;width:22%;">${getName()}</td>
+        <td class="pt-info-label" style="padding:7px 6px;width:8%;">年齢</td>
+        <td class="pt-info-value" style="padding:7px 6px;width:10%;">${getAge()}</td>
+        <td class="pt-info-label" style="padding:7px 6px;width:8%;">性別</td>
+        <td class="pt-info-value" style="padding:7px 6px;width:10%;">${getSex()}</td>
+        <td class="pt-info-label" style="padding:7px 6px;width:8%;">記入日</td>
+        <td class="pt-info-value" style="padding:7px 6px;width:26%;">${getDateStr()}</td>
+      </tr>
+    </table>
+    ${tablesHtml}
+    ${freeHtml}
+  </div>`;
+}
+
+function printPage() {
+  const old = document.getElementById("print-overlay");
+  if (old) old.remove();
+  const div = document.createElement("div");
+  div.innerHTML = buildPrintDOM();
+  document.body.appendChild(div.firstElementChild);
   window.print();
+  setTimeout(() => { const o = document.getElementById("print-overlay"); if(o) o.remove(); }, 1500);
 }
 
 function render() {
-  const c = document.getElementById('items-container');
-  let html = '';
+  const c = document.getElementById("items-container");
+  let html = "";
   let flatIdx = 0;
-
   CATEGORIES.forEach(cat => {
-    html += '<div class="cat-label"><span class="cat-icon">' + cat.icon + '</span>' + cat.title + '</div>';
-    html += '<div class="items-grid">';
-
+    html += "<div class=\"cat-label\"><span class=\"cat-icon\">" + cat.icon + "</span>" + cat.title + "</div>";
+    html += "<div class=\"items-grid\">";
     cat.items.forEach(name => {
       const i = flatIdx;
       const s = state[i];
-      const statusCls = s ? ' status-' + (s === 'nonex' ? 'none-x' : s) : '';
-
-      html += '<div class="item-card' + statusCls + '" id="card-' + i + '">';
-      html += '<div class="item-name">' + name + '</div>';
-      html += '<div class="choice-row">';
+      const statusCls = s ? " status-" + (s === "nonex" ? "none-x" : s) : "";
+      html += "<div class=\"item-card" + statusCls + "\" id=\"card-" + i + "\">";
+      html += "<div class=\"item-name\">" + name + "</div>";
+      html += "<div class=\"choice-row\">";
       [
-        { val: 'doing',    label: 'している' },
-        { val: 'want',     label: 'してみたい' },
-        { val: 'interest', label: '興味がある' },
+        { val: "doing",    label: "している" },
+        { val: "want",     label: "してみたい" },
+        { val: "interest", label: "興味がある" },
       ].forEach(ch => {
-        const selCls = s === ch.val ? ' sel-' + ch.val : '';
-        html += '<button class="choice-btn' + selCls + '" data-idx="' + i + '" data-val="' + ch.val + '" onclick="select(' + i + ',\'' + ch.val + '\')">' + ch.label + '</button>';
+        const selCls = s === ch.val ? " sel-" + ch.val : "";
+        html += "<button class=\"choice-btn" + selCls + "\" data-idx=\"" + i + "\" data-val=\"" + ch.val + "\" onclick=\"select(" + i + ",'" + ch.val + "')\">"+ch.label+"</button>";
       });
-      html += '</div>';
-      html += '<div class="nonex-row">';
-      html += '<button class="nonex-btn' + (s === 'nonex' ? ' active' : '') + '" id="nonex-' + i + '" onclick="select(' + i + ',\'nonex\')">× 該当なし</button>';
-      html += '</div>';
-      html += '</div>';
-
+      html += "</div>";
+      html += "<div class=\"nonex-row\">";
+      html += "<button class=\"nonex-btn" + (s === "nonex" ? " active" : "") + "\" id=\"nonex-" + i + "\" onclick=\"select(" + i + ",'nonex')\">× 該当なし</button>";
+      html += "</div></div>";
       flatIdx++;
     });
-
-    html += '</div>'; // items-grid
+    html += "</div>";
   });
-
   c.innerHTML = html;
 }
 

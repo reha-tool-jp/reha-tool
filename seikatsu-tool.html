@@ -6,92 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>生活機能チェックシート（別紙様式3-2）| リハビリ評価・計算ツール</title>
 <meta name="description" content="無料で使える生活機能チェックシート（別紙様式3-2）。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力しA4一枚で印刷。登録不要。">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
-     crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 <style>
   :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --surface2: #f0efe9;
-    --border: #e0ddd4;
-    --border2: #ccc9be;
-    --text: #1a1916;
-    --text2: #6b6860;
-    --text3: #a09d96;
-    --accent: #2a5c45;
-    --accent-light: #e8f2ed;
-    --danger: #b83030;
-    --danger-light: #fdf0f0;
-    --warn: #8a5c00;
-    --warn-light: #fdf6e3;
-    --info: #1a4a7a;
-    --info-light: #e8f0fa;
-    --radius: 10px;
+    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+    --border: #e0ddd4; --border2: #ccc9be; --text: #1a1916; --text2: #6b6860;
+    --text3: #a09d96; --accent: #2a5c45; --accent-light: #e8f2ed;
+    --danger: #b83030; --danger-light: #fdf0f0; --warn: #8a5c00; --warn-light: #fdf6e3;
+    --info: #1a4a7a; --info-light: #e8f0fa; --radius: 10px;
     --mono: 'SF Mono', 'Courier New', Courier, monospace;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 60px;
-  }
-
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 60px; }
   header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
   header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
   header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
-
   .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
-
-  /* --- 基本情報入力 --- */
-  .info-row {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
-  }
-  .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 80px; }
-  .info-input {
-    flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none;
-    color: var(--text); font-family: inherit; background: transparent;
-  }
+  .info-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 90px; }
+  .info-input { flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; }
   .info-input::placeholder { color: var(--text3); font-weight: 400; }
-  .info-select {
-    flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none;
-    color: var(--text); font-family: inherit; background: transparent;
-    -webkit-appearance: none; appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px;
-  }
-
+  .info-select { flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px; }
   .info-block { margin-bottom: 16px; }
-
-  /* --- サマリー --- */
-  .summary-bar {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center;
-    justify-content: space-between; gap: 12px;
-  }
+  .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .summary-stat { text-align: center; }
   .summary-num { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--accent); line-height: 1; }
   .summary-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
   .summary-sep { width: 1px; height: 36px; background: var(--border); }
   .summary-issue { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--danger); line-height: 1; }
-
-  /* --- セクション --- */
-  .section-label {
-    font-size: 13px; font-weight: 700; color: var(--accent); padding: 8px 0 6px;
-    border-bottom: 2px solid var(--accent); margin-bottom: 10px; margin-top: 20px;
-    display: flex; align-items: center; gap: 8px;
-  }
+  .section-label { font-size: 13px; font-weight: 700; color: var(--accent); padding: 8px 0 6px; border-bottom: 2px solid var(--accent); margin-bottom: 10px; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
   .section-label:first-of-type { margin-top: 0; }
   .section-bi-note { font-size: 11px; color: var(--text3); font-weight: 400; }
-
-  /* --- 項目カード --- */
   .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
   .item-card.has-issue { border-left: 3px solid var(--danger); }
-
   .item-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; user-select: none; gap: 8px; }
   .item-header:hover { background: var(--surface2); }
   .item-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
@@ -107,193 +54,53 @@
   .item-bi-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 28px; text-align: right; }
   .item-chevron { font-size: 11px; color: var(--text3); transition: transform 0.2s; display: inline-block; }
   .item-chevron.open { transform: rotate(180deg); }
-
   .item-body { border-top: 1px solid var(--border); padding: 12px 16px; display: none; }
   .item-body.open { display: block; }
-
-  /* --- 4段階ボタン --- */
   .level-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
-  .level-btn {
-    padding: 9px 4px; border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--bg); cursor: pointer; text-align: center; font-family: inherit;
-    font-size: 12px; font-weight: 600; color: var(--text2);
-    transition: border-color 0.15s, background 0.15s;
-  }
+  .level-btn { padding: 9px 4px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); cursor: pointer; text-align: center; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text2); transition: border-color 0.15s, background 0.15s; }
   .level-btn:hover { border-color: var(--accent); background: var(--accent-light); }
   .level-btn.sel-self { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
   .level-btn.sel-watch { border-color: var(--info); background: var(--info-light); color: var(--info); }
   .level-btn.sel-partial { border-color: var(--warn); background: var(--warn-light); color: var(--warn); }
   .level-btn.sel-full { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
-
-  /* ADL用：BI点数付きボタン */
   .bi-options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
-  .bi-btn {
-    display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--bg); cursor: pointer; text-align: left; font-family: inherit;
-    transition: border-color 0.15s, background 0.15s; width: 100%;
-  }
+  .bi-btn { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); cursor: pointer; text-align: left; font-family: inherit; transition: border-color 0.15s, background 0.15s; width: 100%; }
   .bi-btn:hover { border-color: var(--accent); background: var(--accent-light); }
   .bi-btn.selected { border-color: var(--accent); background: var(--accent-light); }
   .bi-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 30px; padding-top: 1px; }
   .bi-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
-
-  /* --- 課題チェック --- */
   .issue-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .issue-label { font-size: 13px; color: var(--text2); }
-  .issue-toggle {
-    display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
-  }
-  .issue-opt {
-    padding: 6px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
-    background: var(--bg); color: var(--text3); border: none; font-family: inherit;
-    transition: background 0.15s, color 0.15s;
-  }
+  .issue-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .issue-opt { padding: 6px 16px; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--bg); color: var(--text3); border: none; font-family: inherit; transition: background 0.15s, color 0.15s; }
   .issue-opt:first-child { border-right: 1px solid var(--border); }
   .issue-opt.active-yes { background: var(--danger-light); color: var(--danger); }
   .issue-opt.active-no { background: var(--accent-light); color: var(--accent); }
-
-  /* --- 自由記載 --- */
-  .memo-toggle {
-    font-size: 12px; color: var(--accent); cursor: pointer; background: none; border: none;
-    font-family: inherit; font-weight: 600; padding: 4px 0; margin-bottom: 6px;
-  }
-  .memo-area {
-    width: 100%; min-height: 52px; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text);
-    background: var(--bg); resize: vertical; outline: none; line-height: 1.6;
-    display: none;
-  }
+  .memo-toggle { font-size: 12px; color: var(--accent); cursor: pointer; background: none; border: none; font-family: inherit; font-weight: 600; padding: 4px 0; margin-bottom: 6px; }
+  .memo-area { width: 100%; min-height: 52px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); resize: vertical; outline: none; line-height: 1.6; display: none; }
   .memo-area.open { display: block; }
   .memo-area:focus { border-color: var(--accent); }
-
-  /* --- ボタン行 --- */
+  .section-memo-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; margin-bottom: 8px; margin-top: 4px; }
+  .section-memo-label { font-size: 12px; font-weight: 700; color: var(--accent); display: block; margin-bottom: 6px; }
+  .section-memo-area { width: 100%; min-height: 60px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); resize: vertical; outline: none; line-height: 1.6; }
+  .section-memo-area:focus { border-color: var(--accent); }
   .btn-row { display: flex; gap: 10px; margin-top: 16px; }
   .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; transition: opacity 0.1s, background 0.1s; }
   .btn-primary { background: var(--accent); color: #fff; border: none; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
   .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
   .footer a { color: var(--text3); }
-
+  .pwa-hint { text-align: center; font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.6; }
   .print-header { display: none; }
 
-  /* ========== 印刷スタイル ========== */
   @media print {
-    @page { size: A4 portrait; margin: 6mm 8mm 6mm 8mm; }
-
-    body { background: #fff !important; padding: 0; color: #000; font-size: 7.5pt; }
-    header { display: none !important; }
-    .container { max-width: 100% !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
-
-    /* ヘッダー */
-    .print-header {
-      display: flex !important;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3px;
-      border-bottom: 1.5px solid #2a5c45;
-      padding-bottom: 2px;
-    }
-    .print-title { font-size: 10pt; font-weight: 700; color: #2a5c45; }
-    .print-subtitle { font-size: 7pt; color: #333; }
-
-    /* 基本情報：横並び1行 */
-    .info-block {
-      display: flex; flex-wrap: wrap; gap: 0 14px;
-      margin-bottom: 3px; border-bottom: 1px solid #ddd; padding-bottom: 2px;
-    }
-    .info-row {
-      border: none; padding: 0; margin-bottom: 0;
-      display: flex; align-items: center; gap: 3px;
-    }
-    .info-row label { font-size: 6.5pt; color: #222; white-space: nowrap; min-width: auto; }
-    .info-input, .info-select { font-size: 9.5pt; font-weight: 700; color: #111; }
-
-    /* サマリー非表示 */
-    .summary-bar { display: none !important; }
-
-    /* セクション見出し */
-    .section-label {
-      font-size: 7.5pt; margin-top: 4px; margin-bottom: 2px;
-      padding: 1px 0; border-bottom-width: 1.5px;
-      grid-column: 1 / -1;
-    }
-
-    .btn-row { display: none !important; }
-    .item-chevron { display: none !important; }
-
-    /* 項目カード：セクション内を2列グリッドに */
-    #items-container { display: block; width: 100%; }
-    .print-section-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      align-items: start;
-      width: 100%;
-    }
-
-    .item-card { border: 1px solid #bbb; border-radius: 2px; margin-bottom: 0; page-break-inside: avoid; break-inside: avoid; }
-    .item-card.has-issue { border-left: 3px solid #b83030; }
-    .item-header { padding: 1px 5px; background: #f0f0ee !important; cursor: default; }
-    .item-num { font-size: 6.5pt; color: #444; }
-    .item-name { font-size: 7.5pt; font-weight: 700; }
-    .item-badge { font-size: 7pt; padding: 0px 4px; }
-    .item-bi-score { font-size: 7.5pt; color: #000; }
-
-    .item-body { display: block !important; padding: 1px 5px 2px; }
-
-    /* 未選択を非表示、選択済みのみ表示 */
-    .bi-btn:not(.selected) { display: none !important; }
-    .level-btn:not([class*="sel-"]) { display: none !important; }
-    .level-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 1px; }
-
-    .bi-options { gap: 0; margin-bottom: 1px; }
-    .bi-btn { padding: 1px 4px; border-radius: 2px; gap: 4px; }
-    .bi-btn.selected { background: #e8f2ed !important; border-color: #2a5c45 !important; }
-    .bi-score { font-size: 7pt; min-width: 14px; }
-    .bi-text { display: none !important; }
-    .bi-label-print { display: inline !important; font-size: 7pt; color: #111; font-weight: 600; }
-
-    .level-btn { padding: 1px 3px; font-size: 7pt; border-radius: 2px; }
-    .level-btn.sel-self { background: #e8f2ed !important; border-color: #2a5c45 !important; color: #2a5c45 !important; }
-    .level-btn.sel-watch { background: #e8f0fa !important; border-color: #1a4a7a !important; color: #1a4a7a !important; }
-    .level-btn.sel-partial { background: #fdf6e3 !important; border-color: #8a5c00 !important; color: #8a5c00 !important; }
-    .level-btn.sel-full { background: #fdf0f0 !important; border-color: #b83030 !important; color: #b83030 !important; }
-
-    /* 課題チェック */
-    .issue-row { margin-bottom: 1px; gap: 6px; }
-    .issue-label { font-size: 7pt; color: #222; font-weight: 600; }
-    .issue-opt { padding: 1px 5px; font-size: 7pt; color: #222; }
-    .issue-opt.active-yes { background: #fdf0f0 !important; color: #b83030 !important; }
-    .issue-opt.active-no { background: #e8f2ed !important; color: #2a5c45 !important; }
-
-    /* 記入欄：手書きスペース確保 */
-    .memo-toggle { display: none !important; }
-    .memo-area {
-      display: block !important; font-size: 7pt;
-      min-height: 22px; border: 1px solid #ccc;
-      padding: 1px 3px; background: #fff !important;
-    }
-
-    /* 不要セクション非表示 */
-    .info-section, .footer, .ref-section { display: none !important; }
-    /* 未入力バッジ非表示 */
-    .badge-none { display: none !important; }
+    @page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }
+    body > * { display: none !important; }
+    #print-overlay { display: block !important; }
   }
-
-.pwa-hint {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text3, #a09d96);
-  margin-top: 8px;
-  line-height: 1.6;
-}
-@media print {
-  .pwa-hint { display: none; }
-}
+  #print-overlay { display: none; }
 </style>
 </head>
 <body>
@@ -335,8 +142,20 @@
       <input class="info-input" type="date" id="eval-date">
     </div>
     <div class="info-row">
-      <label>評価者・職種</label>
-      <input class="info-input" type="text" id="eval-staff" placeholder="例：佐藤 PT">
+      <label>開始時間</label>
+      <input class="info-input" type="time" id="eval-time-start">
+    </div>
+    <div class="info-row">
+      <label>終了時間</label>
+      <input class="info-input" type="time" id="eval-time-end">
+    </div>
+    <div class="info-row">
+      <label>評価スタッフ</label>
+      <input class="info-input" type="text" id="eval-staff" placeholder="例：佐藤 一郎">
+    </div>
+    <div class="info-row">
+      <label>職種</label>
+      <input class="info-input" type="text" id="eval-shoku" placeholder="例：PT">
     </div>
     <div class="info-row">
       <label>要介護度</label>
@@ -347,6 +166,7 @@
         <option>要介護４</option><option>要介護５</option>
       </select>
     </div>
+  </div>
 
   <!-- サマリー -->
   <div class="summary-bar">
@@ -379,25 +199,17 @@
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。2021年（令和3年）の介護報酬改定で「居宅訪問チェックシート」から名称変更され、BIベースのADL評価が組み込まれました。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。</p>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">個別機能訓練加算(Ⅱ)とLIFE提出</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機能訓練加算(Ⅱ)を算定する場合、LIFEへのデータ提出として「生活機能チェックシート」と「個別機能訓練計画書」の2点が必須です。居宅訪問は3か月ごとに1回以上行い、生活機能チェックシートも同様の頻度で作成します。</p>
     </div>
     <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">評価の構成</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">ADL（10項目）はBarthel Indexの評価基準に沿い、各項目に点数が設定されています。IADL（3項目：調理・洗濯・掃除）と起居動作（5項目：寝返り・起き上がり・座位・立ち上がり・立位）は「自立・見守り・一部介助・全介助」の4段階で評価します。各項目には課題の有無チェックと、環境・生活課題の自由記載欄があります。</p>
-    </div>
-    <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質問</h2>
       <div style="margin-bottom:16px;">
         <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
         <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての入力はブラウザ内で完結しており、外部に送信されることはありません。</p>
-      </div>
-      <div style="margin-bottom:16px;">
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 居宅訪問チェックシートとの違いは？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 令和3年（2021年）の介護報酬改定で「居宅訪問チェックシート」から「生活機能チェックシート」に名称変更されました。内容もBIベースのADL評価が組み込まれ、LIFE提出に対応した様式になっています。</p>
       </div>
     </div>
   </div>
@@ -412,118 +224,88 @@
   </div>
 
   <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a>
-    　｜　
-    <a href="santei-tool.html">算定日数ツール</a>
-    　｜　
-    <a href="fim-tool.html">FIM評価ツール</a>
-    　｜　
-    <a href="bi-tool.html">BIツール</a>
-    　｜　
-    <a href="hdsr-tool.html">HDS-Rツール</a>
-    　｜　
-    <a href="walk-tool.html">歩行評価ツール</a>
-    　｜　
-    <a href="balance-tool.html">バランス評価ツール</a>
-    　｜　
-    <a href="seikatsu-tool.html">生活機能チェック</a>
-    　｜　
-    <a href="kyoumi-tool.html">興味・関心チェック</a>
-    　｜　
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span style="margin:0 8px;color:var(--text3);">|</span><a href="terms.html">利用規約</a><span style="margin:0 6px;">|</span><a href="privacy.html">プライバシーポリシー</a>
+    <a href="index.html">← ツール一覧</a> ｜
+    <a href="santei-tool.html">算定日数</a> ｜
+    <a href="fim-tool.html">FIM</a> ｜
+    <a href="bi-tool.html">BI</a> ｜
+    <a href="hdsr-tool.html">HDS-R</a> ｜
+    <a href="walk-tool.html">歩行評価</a> ｜
+    <a href="balance-tool.html">バランス評価</a> ｜
+    <a href="seikatsu-tool.html">生活機能チェック</a> ｜
+    <a href="kyoumi-tool.html">興味・関心チェック</a> ｜
+    <a href="/reha-tool/contact.html">お問い合わせ</a> ｜
+    <a href="terms.html">利用規約</a> ｜
+    <a href="privacy.html">プライバシーポリシー</a>
   </div>
 
 </div>
 
 <script>
-// ===== データ定義 =====
 const SECTIONS = [
-  {
-    title: 'ADL',
-    note: 'Barthel Indexに基づく評価',
-    type: 'bi',
-    items: [
-      { name: '食事', options: [
-        { score: 10, label: '自立', text: '自立。自助具使用可。適切な時間内に完了。' },
-        { score: 5,  label: '一部介助', text: '一部介助（例：食物を切るなど）。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '椅子とベッド間の移乗', options: [
-        { score: 15, label: '自立', text: '自立。ブレーキ・フットレスト操作含め全て自立。' },
-        { score: 10, label: '監視下', text: 'どこかの段階で部分介助または監視が必要。' },
-        { score: 5,  label: '座れるが移れない', text: '座ることはできるが、移乗そのものは全介助に近い。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '整容', options: [
-        { score: 5, label: '自立', text: '自立。洗面・歯磨き・整髪・ひげそりができる。' },
-        { score: 0, label: '全介助', text: '全介助。' },
-      ]},
-      { name: 'トイレ動作', options: [
-        { score: 10, label: '自立', text: '自立。衣服の操作と後始末を含む。' },
-        { score: 5,  label: '一部介助', text: '部分介助（体を支える、ペーパー操作など）。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '入浴', options: [
-        { score: 5, label: '自立', text: '自立。浴槽またはシャワーを使える。' },
-        { score: 0, label: '全介助', text: '全介助。' },
-      ]},
-      { name: '平地歩行', options: [
-        { score: 15, label: '自立', text: '自立。45m以上。補装具可、車椅子・歩行器不可。' },
-        { score: 10, label: '歩行器等', text: '介助/監視あれば45m以上歩ける。歩行器使用含む。' },
-        { score: 5,  label: '車椅子操作可能', text: '歩行不能でも車椅子を自力で45m以上操作可能。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '階段昇降', options: [
-        { score: 10, label: '自立', text: '自立。手すり・杖の使用は問わない。' },
-        { score: 5,  label: '一部介助', text: '介助または監視が必要。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '更衣', options: [
-        { score: 10, label: '自立', text: '自立。靴・ファスナー・装具の着脱を含む。' },
-        { score: 5,  label: '一部介助', text: '半分以上は自分でできる。適切な時間内に完了。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '排便コントロール', options: [
-        { score: 10, label: '自立', text: '失禁なし。浣腸・坐薬の取り扱いも可能。' },
-        { score: 5,  label: '一部介助', text: '時に失禁あり、または浣腸・坐薬に介助を要する。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-      { name: '排尿コントロール', options: [
-        { score: 10, label: '自立', text: '失禁なし。' },
-        { score: 5,  label: '一部介助', text: '時に失禁あり、または収尿器に介助を要する。' },
-        { score: 0,  label: '全介助', text: '全介助。' },
-      ]},
-    ]
-  },
-  {
-    title: 'IADL',
-    note: '4段階評価',
-    type: 'level',
-    items: [
-      { name: '調理' },
-      { name: '洗濯' },
-      { name: '掃除' },
-    ]
-  },
-  {
-    title: '起居動作',
-    note: '4段階評価',
-    type: 'level',
-    items: [
-      { name: '寝返り' },
-      { name: '起き上がり' },
-      { name: '座位' },
-      { name: '立ち上がり' },
-      { name: '立位' },
-    ]
-  },
+  { title: 'ADL', note: 'Barthel Indexに基づく評価', type: 'bi', items: [
+    { name: '食事', options: [
+      { score: 10, label: '自立', text: '自立。自助具使用可。適切な時間内に完了。' },
+      { score: 5,  label: '一部介助', text: '一部介助（例：食物を切るなど）。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '椅子とベッド間の移乗', options: [
+      { score: 15, label: '自立', text: '自立。ブレーキ・フットレスト操作含め全て自立。' },
+      { score: 10, label: '監視下', text: 'どこかの段階で部分介助または監視が必要。' },
+      { score: 5,  label: '座れるが移れない', text: '座ることはできるが、移乗そのものは全介助に近い。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '整容', options: [
+      { score: 5, label: '自立', text: '自立。洗面・歯磨き・整髪・ひげそりができる。' },
+      { score: 0, label: '全介助', text: '全介助。' },
+    ]},
+    { name: 'トイレ動作', options: [
+      { score: 10, label: '自立', text: '自立。衣服の操作と後始末を含む。' },
+      { score: 5,  label: '一部介助', text: '部分介助（体を支える、ペーパー操作など）。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '入浴', options: [
+      { score: 5, label: '自立', text: '自立。浴槽またはシャワーを使える。' },
+      { score: 0, label: '全介助', text: '全介助。' },
+    ]},
+    { name: '平地歩行', options: [
+      { score: 15, label: '自立', text: '自立。45m以上。補装具可、車椅子・歩行器不可。' },
+      { score: 10, label: '歩行器等', text: '介助/監視あれば45m以上歩ける。歩行器使用含む。' },
+      { score: 5,  label: '車椅子操作可能', text: '歩行不能でも車椅子を自力で45m以上操作可能。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '階段昇降', options: [
+      { score: 10, label: '自立', text: '自立。手すり・杖の使用は問わない。' },
+      { score: 5,  label: '一部介助', text: '介助または監視が必要。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '更衣', options: [
+      { score: 10, label: '自立', text: '自立。靴・ファスナー・装具の着脱を含む。' },
+      { score: 5,  label: '一部介助', text: '半分以上は自分でできる。適切な時間内に完了。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '排便コントロール', options: [
+      { score: 10, label: '自立', text: '失禁なし。浣腸・坐薬の取り扱いも可能。' },
+      { score: 5,  label: '一部介助', text: '時に失禁あり、または浣腸・坐薬に介助を要する。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+    { name: '排尿コントロール', options: [
+      { score: 10, label: '自立', text: '失禁なし。' },
+      { score: 5,  label: '一部介助', text: '時に失禁あり、または収尿器に介助を要する。' },
+      { score: 0,  label: '全介助', text: '全介助。' },
+    ]},
+  ]},
+  { title: 'IADL', note: '4段階評価', type: 'level', items: [
+    { name: '調理' }, { name: '洗濯' }, { name: '掃除' },
+  ]},
+  { title: '起居動作', note: '4段階評価', type: 'level', items: [
+    { name: '寝返り' }, { name: '起き上がり' }, { name: '座位' }, { name: '立ち上がり' }, { name: '立位' },
+  ]},
 ];
 
 const LEVELS = ['自立', '見守り', '一部介助', '全介助'];
 const LEVEL_CLS = ['sel-self', 'sel-watch', 'sel-partial', 'sel-full'];
 const BADGE_CLS = ['badge-self', 'badge-watch', 'badge-partial', 'badge-full'];
 
-// フラットな全項目配列
 let allItems = [];
 let globalIdx = 0;
 SECTIONS.forEach(sec => {
@@ -533,7 +315,6 @@ SECTIONS.forEach(sec => {
   });
 });
 
-// 状態管理
 let state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
 
 function updateSummary() {
@@ -568,12 +349,10 @@ function getLevelBadge(s, item) {
 
 function selectBI(idx, score) {
   state[idx].biScore = score;
-  // 自動で課題設定: 全介助以外の介助ありなら課題あり候補
   document.querySelectorAll('.bi-btn[data-idx="' + idx + '"]').forEach(btn => {
     btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
   });
   document.getElementById('badge-' + idx).innerHTML = getLevelBadge(state[idx], allItems[idx]);
-  // BI点数表示
   const biEl = document.getElementById('biscore-' + idx);
   if (biEl) biEl.textContent = score + '点';
   updateSummary();
@@ -613,26 +392,226 @@ function toggleBody(idx) {
 function resetAll() {
   if (!confirm('すべての入力をリセットしますか？')) return;
   state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
-  document.getElementById('user-name').value = '';
-  document.getElementById('user-birth').value = '';
-  document.getElementById('user-sex').value = '';
-  document.getElementById('eval-date').value = '';
-  document.getElementById('eval-staff').value = '';
-  document.getElementById('care-level').value = '';
+  ['user-name','user-birth','user-sex','eval-date','eval-time-start','eval-time-end','eval-staff','eval-shoku','care-level'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const adlMemoEl = document.getElementById('adl-memo');
+  const iadlMemoEl = document.getElementById('iadl-memo');
+  const kikyoMemoEl = document.getElementById('kikyo-memo');
+  if (adlMemoEl) adlMemoEl.value = '';
+  if (iadlMemoEl) iadlMemoEl.value = '';
+  if (kikyoMemoEl) kikyoMemoEl.value = '';
   render();
   updateSummary();
 }
 
-function printPage() {
-  const d = document.getElementById('eval-date').value;
-  const ds = d ? new Date(d).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }) : '（日付未入力）';
-  document.getElementById('print-date').textContent = '評価日：' + ds;
-  // メモ内容を同期
+function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
+  const getName      = () => document.getElementById('user-name').value || '\u3000';
+  const getSex       = () => document.getElementById('user-sex').value || '\u3000';
+  const getCareLevel = () => document.getElementById('care-level').value || '\u3000';
+  const getStaff     = () => document.getElementById('eval-staff').value || '\u3000';
+  const getShoku     = () => document.getElementById('eval-shoku')?.value || '\u3000';
+
+  const getBirth = () => {
+    const v = document.getElementById('user-birth').value;
+    if (!v) return '\u3000';
+    const d = new Date(v);
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+  };
+
+  const getEvalDateStr = () => {
+    const v  = document.getElementById('eval-date').value;
+    const ts = document.getElementById('eval-time-start')?.value || '';
+    const te = document.getElementById('eval-time-end')?.value   || '';
+    const YOUBI = ['日','月','火','水','木','金','土'];
+    let dateStr = '令和　年　月　日';
+    let youbi = '（　）';
+    if (v) {
+      const d = new Date(v);
+      const reiwa = d.getFullYear() - 2018;
+      dateStr = '令和' + reiwa + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+      youbi = '（' + YOUBI[d.getDay()] + '）';
+    }
+    const timeStr = (ts || '--:--') + '～' + (te || '--:--');
+    return dateStr + youbi + '　' + timeStr;
+  };
+
   state.forEach((s, i) => {
     const el = document.getElementById('memo-' + i);
     if (el) s.memo = el.value;
   });
+
+  const css = `<style>
+    #print-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
+    #print-overlay {
+      font-family: 'Yu Mincho','YuMincho','游明朝','Hiragino Mincho ProN','HiraMinProN-W3',serif;
+      font-size: 9pt; color: #000; background: #fff; width: 100%;
+    }
+    .pt-title-block { text-align: center; margin-bottom: 5px; position: relative; }
+    .pt-shoshiki { position: absolute; right: 0; top: 0; font-size: 7pt; }
+    .pt-title { font-size: 14pt; font-weight: 700; letter-spacing: 0.1em; }
+    .pt-subtitle { font-size: 7.5pt; color: #333; margin-top: 2px; }
+    .pt-info-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; border: 2px solid #000; }
+    .pt-info-table td { border: 1px solid #000; padding: 12px 8px; font-size: 9pt; }
+    .pt-info-label { background: #efefef; font-weight: 700; font-size: 8pt; white-space: nowrap; }
+    .pt-info-value { font-weight: 700; font-size: 9.5pt; }
+    .pt-section-title { font-size: 8.5pt; font-weight: 700; background: #dce8e2; border: 2px solid #000; border-bottom: none; padding: 3px 6px; margin-top: 6px; }
+    .pt-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
+    .pt-table th { border: 1.5px solid #000; padding: 3px 3px; font-size: 8pt; font-weight: 700; background: #efefef; text-align: center; }
+    .pt-table td { border: 1px solid #000; padding: 5px 5px; font-size: 9pt; vertical-align: middle; }
+    .pt-item-name { font-weight: 700; text-align: center; }
+    .pt-issue { text-align: center; font-weight: 700; }
+    .pt-issue-ari { color: #b83030; }
+    .pt-issue-nasi { color: #2a5c45; }
+    .pt-memo-cell { font-size: 8.5pt; vertical-align: top !important; }
+    .pt-section-memo { font-size: 9pt; vertical-align: top !important; }
+  </style>`;
+
+  function adlRows() {
+    return SECTIONS[0].items.map((item, li) => {
+      const s = state[li];
+      const levelText = s.biScore !== null
+        ? (item.options.find(o => o.score === s.biScore)?.label || '') + '（' + s.biScore + '点）' : '';
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+        : s.issue === false ? '<span class="pt-issue-nasi">なし</span>' : '';
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+      let row = `<tr>
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+      if (li === 0) {
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="10">${(adlMemo||'').replace(/\n/g,'<br>')}</td>`;
+      }
+      row += '</tr>';
+      return row;
+    }).join('');
+  }
+
+  function iadlRows() {
+    return SECTIONS[1].items.map((item, li) => {
+      const s = state[li+10];
+      const levelText = s.level !== null ? LEVELS[s.level] : '';
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+        : s.issue === false ? '<span class="pt-issue-nasi">なし</span>' : '';
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+      let row = `<tr>
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+      if (li === 0) {
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="3">${(iadlMemo||'').replace(/\n/g,'<br>')}</td>`;
+      }
+      row += '</tr>';
+      return row;
+    }).join('');
+  }
+
+  function kikyoRows() {
+    return SECTIONS[2].items.map((item, li) => {
+      const s = state[li+13];
+      const levelText = s.level !== null ? LEVELS[s.level] : '';
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+        : s.issue === false ? '<span class="pt-issue-nasi">なし</span>' : '';
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+      let row = `<tr>
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+      if (li === 0) {
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="5">${(kikyoMemo||'').replace(/\n/g,'<br>')}</td>`;
+      }
+      row += '</tr>';
+      return row;
+    }).join('');
+  }
+
+  return `<div id="print-overlay">
+    ${css}
+    <div class="pt-title-block">
+      <span class="pt-shoshiki">別紙様式３－２</span>
+      <div class="pt-title">生活機能チェックシート</div>
+      <div class="pt-subtitle">個別機能訓練加算／LIFE提出対応</div>
+    </div>
+    <table class="pt-info-table">
+      <tr>
+        <td class="pt-info-label" style="width:13%;padding:12px 8px;">利用者氏名</td>
+        <td class="pt-info-value" style="width:22%;padding:12px 8px;">${getName()}</td>
+        <td class="pt-info-label" style="width:10%;padding:12px 8px;">生年月日</td>
+        <td class="pt-info-value" style="width:20%;padding:12px 8px;">${getBirth()}</td>
+        <td class="pt-info-label" style="width:6%;padding:12px 8px;">性別</td>
+        <td class="pt-info-value" style="padding:12px 8px;">${getSex()}</td>
+      </tr>
+      <tr>
+        <td class="pt-info-label" style="padding:12px 8px;">評価日時</td>
+        <td class="pt-info-value" colspan="5" style="padding:12px 8px;">${getEvalDateStr()}</td>
+      </tr>
+      <tr>
+        <td class="pt-info-label" style="padding:12px 8px;">要介護度</td>
+        <td class="pt-info-value" style="padding:12px 8px;">${getCareLevel()}</td>
+        <td class="pt-info-label" style="padding:12px 8px;">評価スタッフ</td>
+        <td class="pt-info-value" style="padding:12px 8px;">${getStaff()}</td>
+        <td class="pt-info-label" style="padding:12px 8px;">職種</td>
+        <td class="pt-info-value" style="padding:12px 8px;">${getShoku()}</td>
+      </tr>
+    </table>
+    <div class="pt-section-title">ＡＤＬ　―　Barthel Index に基づく評価</div>
+    <table class="pt-table">
+      <thead><tr>
+        <th style="width:13%">項目</th>
+        <th style="width:20%">レベル</th>
+        <th style="width:8%">課題</th>
+        <th style="width:33%">環境（実施場所・補助具等）</th>
+        <th style="width:26%">状況・生活課題</th>
+      </tr></thead>
+      <tbody>${adlRows()}</tbody>
+    </table>
+    <div class="pt-section-title">ＩＡＤＬ　―　自立・見守り・一部介助・全介助の４段階評価</div>
+    <table class="pt-table">
+      <thead><tr>
+        <th style="width:13%">項目</th>
+        <th style="width:20%">レベル</th>
+        <th style="width:8%">課題</th>
+        <th style="width:33%">環境（実施場所・補助具等）</th>
+        <th style="width:26%">状況・生活課題</th>
+      </tr></thead>
+      <tbody>${iadlRows()}</tbody>
+    </table>
+    <div class="pt-section-title" style="margin-top:4px;">起居動作　―　自立・見守り・一部介助・全介助の４段階評価</div>
+    <table class="pt-table">
+      <thead><tr>
+        <th style="width:13%">項目</th>
+        <th style="width:20%">レベル</th>
+        <th style="width:8%">課題</th>
+        <th style="width:33%">環境（実施場所・補助具等）</th>
+        <th style="width:26%">状況・生活課題</th>
+      </tr></thead>
+      <tbody>${kikyoRows()}</tbody>
+    </table>
+  </div>`;
+}
+
+function printPage() {
+  state.forEach((s, i) => {
+    const el = document.getElementById('memo-' + i);
+    if (el) s.memo = el.value;
+  });
+  const adlMemo   = document.getElementById('adl-memo')?.value   || '';
+  const iadlMemo  = document.getElementById('iadl-memo')?.value  || '';
+  const kikyoMemo = document.getElementById('kikyo-memo')?.value || '';
+  const old = document.getElementById('print-overlay');
+  if (old) old.remove();
+  const div = document.createElement('div');
+  div.innerHTML = buildPrintDOM(adlMemo, iadlMemo, kikyoMemo);
+  document.body.appendChild(div.firstElementChild);
   window.print();
+  setTimeout(() => {
+    const overlay = document.getElementById('print-overlay');
+    if (overlay) overlay.remove();
+  }, 1500);
 }
 
 function renderItems(items, type, flatIdxStart) {
@@ -642,7 +621,6 @@ function renderItems(items, type, flatIdxStart) {
     const s = state[i];
     const isBI = type === 'bi';
     const issueClass = s.issue ? ' has-issue' : '';
-
     html += '<div class="item-card' + issueClass + '" id="card-' + i + '">';
     html += '<div class="item-header" onclick="toggleBody(' + i + ')">';
     html += '<div class="item-title-wrap">';
@@ -655,7 +633,6 @@ function renderItems(items, type, flatIdxStart) {
     html += '<span class="item-chevron' + (s.bodyOpen ? ' open' : '') + '" id="chevron-' + i + '">▲</span>';
     html += '</div></div>';
     html += '<div class="item-body' + (s.bodyOpen ? ' open' : '') + '" id="body-' + i + '">';
-
     if (isBI) {
       html += '<div class="bi-options">';
       item.options.forEach(opt => {
@@ -675,17 +652,14 @@ function renderItems(items, type, flatIdxStart) {
       });
       html += '</div>';
     }
-
     html += '<div class="issue-row">';
     html += '<span class="issue-label">課題：</span>';
     html += '<div class="issue-toggle">';
     html += '<button class="issue-opt' + (s.issue === true ? ' active-yes' : '') + '" data-idx="' + i + '" data-val="yes" onclick="setIssue(' + i + ',true)">あり</button>';
     html += '<button class="issue-opt' + (s.issue === false ? ' active-no' : '') + '" data-idx="' + i + '" data-val="no" onclick="setIssue(' + i + ',false)">なし</button>';
     html += '</div></div>';
-
-    html += '<button class="memo-toggle" onclick="toggleMemo(' + i + ')">▼ 環境・生活課題を記入</button>';
-    html += '<textarea class="memo-area' + (s.memoOpen ? ' open' : '') + '" id="memo-' + i + '" placeholder="実施場所・補助具・状況・生活課題など">' + (s.memo || '') + '</textarea>';
-
+    html += '<button class="memo-toggle" onclick="toggleMemo(' + i + ')">▼ 環境を記入</button>';
+    html += '<textarea class="memo-area' + (s.memoOpen ? ' open' : '') + '" id="memo-' + i + '" placeholder="実施場所・補助具など">' + (s.memo || '') + '</textarea>';
     html += '</div></div>';
   });
   return html;
@@ -695,18 +669,31 @@ function render() {
   const c = document.getElementById('items-container');
   let html = '';
 
-  // ADL（10項目）: idx 0-9
   html += '<div class="print-section-grid">';
-  html += '<div class="section-label" style="grid-column:1/-1">ADL<span class="section-bi-note">Barthel Indexに基づく評価</span></div>';
+  html += '<div class="section-label" style="grid-column:1/-1">ADL<span class="section-bi-note"> Barthel Indexに基づく評価</span></div>';
   html += renderItems(SECTIONS[0].items, 'bi', 0);
   html += '</div>';
+  html += '<div class="section-memo-wrap">';
+  html += '<label class="section-memo-label">ADL 状況・生活課題</label>';
+  html += '<textarea class="section-memo-area" id="adl-memo" placeholder="ADL全体の状況・生活課題を記入"></textarea>';
+  html += '</div>';
 
-  // IADL（3項目）+ 起居動作（5項目）: idx 10-17 を同一グリッドに
-  // 起居動作見出しは省略（同じ4段階評価のため）
   html += '<div class="print-section-grid">';
-  html += '<div class="section-label" style="grid-column:1/-1">IADL・起居動作<span class="section-bi-note">4段階評価</span></div>';
+  html += '<div class="section-label" style="grid-column:1/-1">IADL<span class="section-bi-note"> 4段階評価</span></div>';
   html += renderItems(SECTIONS[1].items, 'level', 10);
+  html += '</div>';
+  html += '<div class="section-memo-wrap">';
+  html += '<label class="section-memo-label">IADL 状況・生活課題</label>';
+  html += '<textarea class="section-memo-area" id="iadl-memo" placeholder="IADL全体の状況・生活課題を記入"></textarea>';
+  html += '</div>';
+
+  html += '<div class="print-section-grid">';
+  html += '<div class="section-label" style="grid-column:1/-1">起居動作<span class="section-bi-note"> 4段階評価</span></div>';
   html += renderItems(SECTIONS[2].items, 'level', 13);
+  html += '</div>';
+  html += '<div class="section-memo-wrap">';
+  html += '<label class="section-memo-label">起居動作 状況・生活課題</label>';
+  html += '<textarea class="section-memo-area" id="kikyo-memo" placeholder="起居動作全体の状況・生活課題を記入"></textarea>';
   html += '</div>';
 
   c.innerHTML = html;
@@ -715,7 +702,6 @@ function render() {
 render();
 updateSummary();
 
-// 生年月日の初期値を80年前に設定
 (function() {
   const d = new Date();
   d.setFullYear(d.getFullYear() - 80);
@@ -724,7 +710,6 @@ updateSummary();
   const dd = String(d.getDate()).padStart(2, '0');
   document.getElementById('user-birth').value = yyyy + '-' + mm + '-' + dd;
 })();
-
 </script>
 </body>
 </html>
