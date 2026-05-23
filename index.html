@@ -148,7 +148,67 @@
   }
   .footer a { color: var(--text3); text-decoration: none; }
   .footer a:hover { color: var(--accent); }
+.news-list {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  margin-bottom: 8px;
+}
+.news-item {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px; line-height: 1.6;
+}
+.news-item:last-child { border-bottom: none; }
+.news-date { color: var(--text3); white-space: nowrap; min-width: 52px; }
+.news-text { color: var(--text2); }
+
+.faq-list {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 4px 16px;
+  margin-bottom: 8px;
+}
+.faq-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  margin-bottom: 4px;
+}
+.faq-a { font-size: 13px; color: var(--text2); line-height: 1.8; }
+
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "登録やアカウント作成は必要ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "不要です。ブラウザを開いてすぐに使えます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "入力したデータはサーバーに送られますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "すべての計算はブラウザ内で完結しており、入力データが外部に送信されることはありません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "スマホでも使えますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい、スマートフォン・タブレットに対応しています。ホーム画面に追加してアプリのように使うこともできます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "無料ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "すべてのツール・記事は無料でご利用いただけます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "印刷はできますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "生活機能チェックシート・興味関心チェックシート・基本チェックリストは印刷対応しています。各ツールの「印刷」ボタンからA4縦でそのまま印刷できます。" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -159,7 +219,26 @@
 
 <div class="container">
 
-  <!-- ① ADL・身体機能の評価ツール -->
+  <!-- 更新情報 -->
+<div class="section-title" style="margin-top:0;">
+  <span class="section-icon">🆕</span>
+  新着・更新情報
+</div>
+<div class="news-list">
+  <div class="news-item">
+    <span class="news-date">2026.05</span>
+    <span class="news-text">基本チェックリスト・生活機能チェックシート・興味関心チェックシートを追加</span>
+  </div>
+  <div class="news-item">
+    <span class="news-date">2026.05</span>
+    <span class="news-text">令和8年度診療報酬改定 リハビリ関連まとめ記事を公開</span>
+  </div>
+  <div class="news-item">
+    <span class="news-date">2026.03</span>
+    <span class="news-text">バランス評価ツール（BBS・静的バランス）を追加</span>
+  </div>
+</div>
+<!-- ① ADL・身体機能の評価ツール -->
   <div class="section-title">
     <span class="section-icon">📋</span>
     ADL・身体機能の評価ツール
@@ -332,7 +411,34 @@
     </div>
   </div>
 
-  <div class="footer">
+  <!-- よくある質問 -->
+<div class="section-title">
+  <span class="section-icon">❓</span>
+  よくある質問
+</div>
+<div class="faq-list">
+  <div class="faq-item">
+    <p class="faq-q">Q. 登録やアカウント作成は必要ですか？</p>
+    <p class="faq-a">A. 不要です。ブラウザを開いてすぐに使えます。</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Q. 入力したデータはサーバーに送られますか？</p>
+    <p class="faq-a">A. すべての計算はブラウザ内で完結しており、入力データが外部に送信されることはありません。患者情報を安心して入力いただけます。</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Q. スマホでも使えますか？</p>
+    <p class="faq-a">A. はい、スマートフォン・タブレットに対応しています。ホーム画面に追加してアプリのように使うこともできます。</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Q. 無料ですか？</p>
+    <p class="faq-a">A. すべてのツール・記事は無料でご利用いただけます。</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Q. 印刷はできますか？</p>
+    <p class="faq-a">A. 生活機能チェックシート・興味関心チェックシート・基本チェックリストは印刷対応しています。各ツールの「印刷」ボタンからA4縦でそのまま印刷できます。</p>
+  </div>
+</div>
+<div class="footer">
     <a href="about.html">このサイトについて</a>　｜　
     <a href="contact.html">お問い合わせ</a>　｜　
     <a href="terms.html">利用規約</a>　｜　
