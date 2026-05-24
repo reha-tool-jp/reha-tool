@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIM採点の迷いポイント完全整理｜現場でブレやすい項目を徹底解説 | リハビリ評価・計算ツール</title>
+<meta name="description" content="FIM（機能的自立度評価法）採点で現場が迷いやすいポイントを項目ごとに整理。食事・整容・排泄・移乗・移動・認知の採点基準と、よくある落とし穴をPT・OT・STの視点で解説します。">
+<link rel="icon" href="../images/icon.jpg" type="image/jpeg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --danger: #7a1a1a;
+  --danger-light: #fae8e8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header .site-name a { color: #fff; text-decoration: none; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.updated { font-size: 12px; color: var(--text3); margin-bottom: 24px; display: block; }
+
+.article-body h2 {
+  font-size: 17px; font-weight: 700; color: var(--accent);
+  border-left: 4px solid var(--accent); padding-left: 12px;
+  margin: 36px 0 16px;
+}
+.article-body h3 {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin: 28px 0 12px; padding-left: 10px;
+  border-left: 3px solid var(--border);
+}
+.article-body p {
+  font-size: 14px; color: var(--text); line-height: 1.9;
+  margin-bottom: 16px;
+}
+.article-body ul, .article-body ol {
+  font-size: 14px; padding-left: 24px; margin-bottom: 16px;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.8; }
+
+/* 採点ポイントカード */
+.score-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 16px 0;
+}
+.score-card .score-title {
+  font-size: 14px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.score-card ul {
+  font-size: 13px; padding-left: 20px; margin-bottom: 0;
+}
+.score-card li { margin-bottom: 8px; line-height: 1.8; }
+
+/* 注意ボックス */
+.note-box {
+  border-radius: var(--radius); padding: 16px 18px; margin: 20px 0;
+  font-size: 13px; line-height: 1.8;
+}
+.note-box.warn { background: var(--warn-light); border-left: 4px solid var(--warn); }
+.note-box.info { background: var(--info-light); border-left: 4px solid var(--info); }
+.note-box.danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.note-box .note-title { font-weight: 700; margin-bottom: 6px; }
+.note-box.warn .note-title { color: var(--warn); }
+.note-box.info .note-title { color: var(--info); }
+.note-box.danger .note-title { color: var(--danger); }
+
+/* テーブル */
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 13px; background: var(--surface);
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.data-table th {
+  background: var(--accent); color: #fff; padding: 10px 12px;
+  text-align: left; font-weight: 600; font-size: 12px;
+}
+.data-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .num { text-align: center; font-weight: 600; }
+.data-table .highlight { background: var(--accent-light); font-weight: 600; }
+
+/* ツールへの誘導 */
+.tool-cta {
+  background: var(--accent-light); border: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 18px 20px; margin: 28px 0;
+  text-align: center;
+}
+.tool-cta p { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+.tool-cta a {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 14px; font-weight: 700; padding: 10px 24px;
+  border-radius: 6px; text-decoration: none;
+}
+.tool-cta a:hover { opacity: 0.85; }
+
+/* 参考文献 */
+.references {
+  background: var(--surface2); border-radius: var(--radius);
+  padding: 18px; margin-top: 36px;
+}
+.references .ref-title {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  margin-bottom: 10px;
+}
+.references ul { padding-left: 20px; }
+.references li {
+  font-size: 12px; color: var(--text2); margin-bottom: 6px;
+  line-height: 1.7;
+}
+
+/* 関連記事 */
+.related-section { margin-top: 36px; }
+.related-section .section-title {
+  font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px;
+}
+.related-card {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px;
+  text-decoration: none; transition: border-color 0.2s;
+}
+.related-card:hover { border-color: var(--accent); }
+.related-card .related-name {
+  font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 4px;
+}
+.related-card .related-desc {
+  font-size: 12px; color: var(--text2); line-height: 1.6;
+}
+
+/* フッター */
+.footer {
+  text-align: center; padding: 28px 16px; margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--accent); text-decoration: none; font-size: 13px; }
+.footer a:hover { text-decoration: underline; }
+.footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name"><a href="../index.html">リハビリ評価・計算ツール</a></div>
+  <h1>FIM採点の迷いポイント完全整理｜現場でブレやすい項目を徹底解説</h1>
+</header>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">トップ</a> ＞ <a href="index.html">解説記事</a> ＞ FIM採点の迷いポイント
+  </div>
+  <span class="updated">最終更新：2026年5月24日</span>
+
+  <div class="article-body">
+
+    <p>FIM（機能的自立度評価法）は7段階評価で採点する分、どの点数をつけるか迷う場面が多い。特に施設間でブレやすい項目、教科書には書かれていない判断のポイントがある。</p>
+    <p>この記事では、現場でよく迷う項目を採点基準と照らし合わせながら整理する。</p>
+
+    <div class="tool-cta">
+      <p>FIMの採点・集計はツールで効率化できます</p>
+      <a href="../fim-tool.html">→ FIM評価ツールを使う（無料）</a>
+    </div>
+
+    <!-- ========== 運動項目 ========== -->
+    <h2>運動項目（13項目）の迷いポイント</h2>
+
+    <h3>食事</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li><strong>咀嚼・嚥下も採点対象</strong>。「口に運ぶ動作から咀嚼し、嚥下するまで」が食事の定義。咀嚼・嚥下を除外する誤りが多い</li>
+        <li><strong>嚥下調整食（とろみ食等）の使用は6点</strong>（補助具扱い）——食形態を工夫して嚥下という動作を助けているため、補助具と同じ扱いになる</li>
+        <li>滑り止めマット・皿の固定具を使って自立→6点</li>
+        <li>配膳・後片付けは含まない</li>
+        <li>食べ物のセッティングが必要→5点</li>
+      </ul>
+    </div>
+
+    <h3>整容</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>整容は5つの動作が対象：口腔ケア・整髪・手洗い・洗顔・ひげ剃り（または化粧）</li>
+        <li><strong>電動歯ブラシ・電動シェーバーの採点は条件次第</strong>。能力的に不要なのに使っている場合は7点、能力的に必要で使っている場合は6点（補助具扱い）</li>
+        <li><strong>義歯の着脱は整容の定義に含まれない</strong>（迷いやすい）</li>
+        <li>5つのうちひとつでも介助が必要なら満点にならない</li>
+      </ul>
+    </div>
+
+    <h3>清拭（入浴・シャワー）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>洗う・すすぐ・乾かす・体を支えるの一連が対象</li>
+        <li>背中・足先だけ介助が必要な場合の点数設定で迷いやすい→部分介助の割合で判断</li>
+        <li><strong>浴槽への移乗は「移乗：浴槽」で別採点</strong>。清拭と混在させない</li>
+        <li>入浴・シャワーどちらで評価してもよい</li>
+      </ul>
+    </div>
+
+    <h3>更衣（上半身・下半身）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li><strong>装具・義肢の着脱も採点に含む</strong>（見落としやすい）</li>
+        <li>更衣上：腰から上の衣類＋義肢・装具（上半身分）</li>
+        <li>更衣下：腰から下の衣類＋義肢・装具（下半身分）＋靴</li>
+        <li>ボタン・ファスナーが自分で操作できない場合は、補助具の有無・介助量で点数が変わる</li>
+      </ul>
+    </div>
+
+    <h3>トイレ動作</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>衣服の上げ下げ・陰部の清潔・生理用品の扱いが対象</li>
+        <li><strong>トイレへの移動は「移乗：トイレ」で別採点</strong></li>
+        <li>ポータブルトイレを使って自立→6点（補助具扱い）</li>
+        <li>おむつの交換はトイレ動作で評価（排泄コントロールではない）</li>
+      </ul>
+    </div>
+
+    <!-- 排泄 -->
+    <h3>排尿管理・排便管理</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>排泄コントロールは<strong>「頻度」で採点する唯一の項目</strong></li>
+        <li><strong>カテーテル留置は6点——ただし自己管理の場合のみ</strong>。看護師が管理している場合は減点対象</li>
+        <li><strong>下剤の使用は6点</strong>（補助具扱い）。プルーンなど自然食品での排便調整は7点</li>
+        <li>夜間のみ失敗する場合→頻度で判断する</li>
+      </ul>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>点数</th>
+          <th>排泄の状態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">7</td><td>失敗なし・補助具なし</td></tr>
+        <tr><td class="num">6</td><td>収尿器・パッド等を自己管理して失敗なし</td></tr>
+        <tr><td class="num">5</td><td>月1回未満の失敗</td></tr>
+        <tr><td class="num">4</td><td>月1回以上・週1回未満の失敗</td></tr>
+        <tr><td class="num">3</td><td>週1回以上・毎日未満の失敗</td></tr>
+        <tr><td class="num">2</td><td>毎日失敗するが、半分以上は自分でコントロール</td></tr>
+        <tr><td class="num">1</td><td>コントロール不能</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 移乗 -->
+    <h3>移乗（ベッド・椅子・車椅子 / トイレ / 浴槽・シャワー）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>ベッド・椅子・車椅子への移乗：起き上がり・座位保持・立ち上がりを含む一連の動作</li>
+        <li>手すり・スライディングボード使用→6点（補助具扱い）</li>
+        <li>車椅子のフットレスト操作が自分でできない→減点対象</li>
+        <li>浴槽またはシャワーチェアへの移乗：どちらか一方で自立していれば7点</li>
+      </ul>
+    </div>
+
+    <!-- 移動 -->
+    <h3>移動（歩行・車椅子 / 階段）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li><strong>50m以上が基準距離</strong>（意外と忘れやすい）</li>
+        <li>杖を使って50m以上自立→6点。50m未達なら5点以下</li>
+        <li><strong>車椅子移動の最高点は6点</strong>（7点は歩行のみ）</li>
+        <li>歩行と車椅子を併用する場合：<strong>最も頻繁に行う方で採点</strong>（判断がつかない場合は低い方）</li>
+        <li>階段は12〜14段が基準。手すり使用→6点</li>
+        <li><strong>FIMは原則「しているADL」で採点するが、階段だけは例外</strong>。生活環境に階段がなくてもテストして能力で採点してよい。他の項目には適用されない</li>
+        <li><strong>入院時に車椅子でも、退院までに歩行が可能と予測される場合は入院時も歩行で評価する</strong>。実績指数の計算に直結するポイント</li>
+      </ul>
+    </div>
+
+    <!-- ========== 認知項目 ========== -->
+    <h2>認知項目（5項目）の迷いポイント</h2>
+
+    <h3>理解（聴覚・視覚）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>聴覚・視覚のどちらか<strong>得意な方</strong>で採点</li>
+        <li>「複雑・抽象的な内容」を理解できるか否かが7点・5点の分岐点</li>
+        <li>補聴器を使って複雑な内容を理解→6点</li>
+      </ul>
+    </div>
+
+    <h3>表出（言語・非言語）</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>言語・非言語のどちらか<strong>得意な方</strong>で採点</li>
+        <li>複雑な内容を表出できるかが分岐点。基本的な内容だけなら5点</li>
+      </ul>
+    </div>
+
+    <h3>社会的交流</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>他患者・スタッフとの関わりが対象</li>
+        <li>問題行動の頻度で採点。認知症・精神疾患患者で迷いやすい</li>
+        <li>リハ室での様子だけでなく、病棟での日常的な関わりも含めて評価する</li>
+      </ul>
+    </div>
+
+    <h3>問題解決</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>日常生活上の問題（金銭管理・服薬等）を自分で解決できるか</li>
+        <li>「複雑な問題」vs「日常的な問題」の区別が採点の分岐点</li>
+      </ul>
+    </div>
+
+    <h3>記憶</h3>
+    <div class="score-card">
+      <div class="score-title">⚠️ ここで迷う</div>
+      <ul>
+        <li>3つの手がかりで評価：人の認識・日課の実行・伝言</li>
+        <li><strong>メモを使って補える→6点</strong>（補助具扱い。迷いやすい）</li>
+        <li>リハスタッフを認識できていても、他の患者や非日常的な人を認識できなければ満点にならない</li>
+      </ul>
+    </div>
+
+    <!-- ========== 落とし穴 ========== -->
+    <h2>採点の落とし穴（全項目共通）</h2>
+
+    <div class="note-box danger">
+      <div class="note-title">🚨 「できる」ではなく「している」で採点する</div>
+      FIMはパフォーマンス評価。「リハ室ではできるが病棟ではしていない」場合は、病棟での状態で採点する。「できるはず」は採点に反映しない。施設間でブレやすい最大のポイント。
+    </div>
+
+    <div class="note-box warn">
+      <div class="note-title">⚠️ 補助具使用時の点数</div>
+      補助具を使って自立→<strong>6点</strong>（7点ではない）。補助具なしで自立→7点。この区別は全項目共通。<br>
+      補助具使用以外にも、<strong>時間がかかる場合・安全性への配慮が必要な場合も6点</strong>。5点（監視）との境界がブレやすいポイント。
+    </div>
+
+    <div class="note-box info">
+      <div class="note-title">💡 時間がかかる場合</div>
+      「合理的な時間」内にできるかが基準。明確な秒数規定はないが、通常の3倍以上かかる場合は減点の目安とされることが多い。
+    </div>
+
+    <div class="tool-cta">
+      <p>採点結果はFIM評価ツールでまとめて集計できます</p>
+      <a href="../fim-tool.html">→ FIM評価ツールを使う（無料）</a>
+    </div>
+
+  </div><!-- /.article-body -->
+
+  <div class="references">
+    <div class="ref-title">参考資料</div>
+    <ul>
+      <li>千野直一 監訳（1991）『機能的自立度評価法（FIM）』慶應義塾大学医学部リハビリテーション医学教室</li>
+      <li>リハビリテーション機能評価研究会 FAQ（FIM採点に関するQ&A）</li>
+      <li>FIM講習会in倉敷 質問と回答（川崎医科大学附属病院）</li>
+      <li>慶應義塾大学医学部リハビリテーション医学教室（FIM公式情報）<a href="https://www.keio-rehab.jp" target="_blank" rel="noopener">https://www.keio-rehab.jp</a></li>
+    </ul>
+  </div>
+
+  <div class="related-section">
+    <div class="section-title">関連ページ</div>
+    <a class="related-card" href="../fim-tool.html">
+      <div class="related-name">FIM評価ツール</div>
+      <div class="related-desc">18項目を採点・集計。運動項目・認知項目のスコアを自動算出。印刷対応。</div>
+    </a>
+    <a class="related-card" href="jisseki-shisu.html">
+      <div class="related-name">回復期リハ病棟の実績指数とは？</div>
+      <div class="related-desc">FIM利得と実績指数の関係、令和8年度改定の変更点を解説。</div>
+    </a>
+    <a class="related-card" href="r8-kaitei-matome.html">
+      <div class="related-name">2026年診療報酬改定 リハビリ関連まとめ</div>
+      <div class="related-desc">ベッドサイドリハ減算・早期リハ加算・休日加算など今改定の変更点を整理。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧に戻る</a>
+    <div class="copyright">© リハビリ評価・計算ツール</div>
+  </div>
+
+</div>
+</body>
+</html>
