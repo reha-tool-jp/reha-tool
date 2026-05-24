@@ -1,20 +1,333 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>認知症患者の大腿骨頸部骨折後、なぜ回復が早い人がいるのか</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>認知症患者の大腿骨頸部骨折後、なぜ回復が早い人がいるのか | リハビリ計算ツール</title>
+<meta name="description" content="認知症で受傷を覚えていない大腿骨頸部骨折患者の回復が早い気がする——臨床観察から仮説を立て、間接的エビデンスとリスクの両面から考察します。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body h3 {
+  font-size: 0.95rem; font-weight: 700; margin: 20px 0 8px; color: var(--text);
+}
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* 概要テーブル */
+.summary-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+  font-size: 14px; background: var(--surface);
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
+}
+.summary-table th {
+  background: var(--surface2); padding: 10px 14px; text-align: left;
+  font-weight: 700; color: var(--text2); font-size: 13px;
+  border-bottom: 1px solid var(--border); width: 30%;
+}
+.summary-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text);
+}
+.summary-table tr:last-child th,
+.summary-table tr:last-child td { border-bottom: none; }
+
+/* 引用ボックス */
+.quote-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 4px solid var(--text3);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 8px;
+  font-size: 14px; color: var(--text2); font-style: italic; line-height: 1.8;
+}
+.quote-source {
+  font-size: 12px; color: var(--text3); margin: 0 0 24px 0;
+  font-style: normal; padding-left: 4px;
+}
+.quote-source a { color: var(--accent); }
+
+/* 警告ボックス */
+.warn-box {
+  background: var(--warn-light); border-left: 4px solid var(--warn);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 8px; font-size: 13px; }
+
+/* 情報ボックス */
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
+
+/* アクセントボックス */
+.accent-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.accent-box .accent-title { font-weight: 700; color: var(--accent); margin-bottom: 8px; font-size: 13px; }
+
+/* まとめボックス */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
+}
+.summary-box .summary-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>認知症患者の大腿骨頸部骨折後、なぜ回復が早い人がいるのか</h1>
-  </header>
-  <main>
-    <p>臨床観察から仮説を立て、間接的エビデンスとリスクの両面から考察します。</p>
-    <!-- 詳細な解説はここに追加 -->
-  </main>
-  <footer>
-    <p>© 2026 リハビリ評価・計算ツール</p>
-  </footer>
+
+<header>
+  <div class="site-name">リハビリ計算ツール｜解説記事</div>
+  <h1>認知症患者の大腿骨頸部骨折後<br>なぜ回復が早い人がいるのか</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    認知症×大腿骨頸部骨折後の回復
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">臨床・考察</span>
+    <h1 class="article-title">認知症患者の大腿骨頸部骨折後、なぜ回復が早い人がいるのか</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け臨床考察</div>
+  </div>
+
+  <div class="article-body">
+
+    <!-- 第1章：臨床での観察 -->
+    <h2>「あれ、この人やけに回復が早いな」</h2>
+
+    <p>大腿骨頸部骨折の術後リハビリで、認知症の患者を担当することがあります。痛みの訴えが少ない。受傷したことも覚えていない。そんな方が、思いのほか早く歩けるようになる——そういう経験はないでしょうか。</p>
+
+    <p>大腿骨に限らず、橈骨遠位端骨折など他の整形外科術後でも似た手ごたえを感じたことがあります。ただ、歩行に直結するぶんインパクトが大きいのは大腿骨頸部骨折です。この記事では大腿骨頸部骨折に絞って考えてみます。</p>
+
+    <table class="summary-table">
+      <tr><th>対象</th><td>認知症で受傷を覚えていない大腿骨頸部骨折後の患者</td></tr>
+      <tr><th>臨床観察</th><td>痛みの訴えが少なく、回復のスピードが速い印象</td></tr>
+      <tr><th>疑問</th><td>これを裏づけるエビデンスはあるのか？</td></tr>
+    </table>
+
+    <!-- 第2章：エビデンスは逆だった -->
+    <h2>文献を調べたら、逆の結果ばかりだった</h2>
+
+    <p>調べてみて驚きました。エビデンスとしてはむしろ逆の報告が多いのです。</p>
+
+    <p>認知症患者の整形外科術後（特に大腿骨近位部骨折やTHA）の機能回復は、認知機能が保たれた患者と比較して全体的に不良とされています。FIMやBarthel Indexの改善幅が小さい、在院日数が長い、自宅復帰率が低い。そういったデータが多い。</p>
+
+    <p>ただし、これは「認知症患者全体」の傾向です。認知症の重症度や受傷前の活動性など、条件を絞り込むと違う結果を示す報告もあります。それについては後述します。</p>
+
+    <p>全体としては不良——でも臨床では回復が早いと感じる場面がある。この食い違いは何なのか。ここからが面白いところです。</p>
+
+    <!-- 第3章：仮説 -->
+    <h2>臨床的に説明できる3つの仮説</h2>
+
+    <h3>仮説①：痛みの認知が変化している</h3>
+
+    <p>アルツハイマー型認知症では、痛みの一次知覚を担う外側疼痛経路（外側視床〜一次体性感覚野）は保たれるものの、内側疼痛経路（前帯状回、海馬、扁桃体など）が障害されます。つまり「痛い」とは感じていても、その痛みに対する評価や情動的な反応が弱くなっている。</p>
+
+    <p>その結果、痛みがあっても防御的な筋収縮や回避行動をとりにくい。疼痛による運動抑制が起きにくいぶん、早期から動作量が確保でき、力学的には回復に有利に働きます。</p>
+
+    <h3>仮説②：恐怖回避行動（Kinesiophobia）が形成されにくい</h3>
+
+    <p>受傷の記憶がない——これは大きな要因です。認知機能が保たれた患者ほど、再転倒への恐怖や「また折れるかもしれない」という不安から活動が制限されやすい（恐怖回避モデル）。</p>
+
+    <p>認知症患者はそもそも、破局的思考→回避行動→廃用の悪循環という認知過程が成立しにくい。恐怖回避行動を「形成する認知プロセス」自体が働かないため、動くことへの心理的バリアが低い。</p>
+
+    <div class="info-box">
+      <div class="info-title">📋 補足：直接検証した研究は見つからず</div>
+      認知症患者のKinesiophobiaを直接検証した研究は現時点で見つかっていません。Tampa Scale（TSK）などの評価対象から認知症患者が除外されていることが多く、研究上の空白領域です。
+    </div>
+
+    <h3>仮説③：もともとの活動性が高い</h3>
+
+    <p>仮説①②は認知症の神経学的変化に基づくもので、多くの認知症患者に当てはまりうる仮説です。一方、この仮説③は少し性質が異なります。</p>
+
+    <p>特にアルツハイマー型で多動傾向がある方——これはBPSD（行動・心理症状）の一つであり、すべての認知症患者に見られるわけではありません。しかし多動傾向がある方は、術後も安静が守れないほど動く。良くも悪くも。結果として廃用が進まず、離床が早い。動いてしまうことが、結果的に回復を後押ししている側面があります。</p>
+
+    <p>つまり仮説③は「認知症だから」ではなく「多動というBPSDがある特定のケースで」回復が早いという、より限定的な仮説です。</p>
+
+    <!-- 第4章：間接的エビデンス -->
+    <h2>仮説を支持する間接的なエビデンス</h2>
+
+    <p>直接的に「認知症だから回復が早い」と示した研究はありません。しかし、間接的にこの臨床観察を支持しうるエビデンスはいくつかあります。</p>
+
+    <div class="accent-box">
+      <div class="accent-title">💡 軽度〜中等度なら同等の回復を示す</div>
+      Allen et al.のシステマティックレビューでは、軽度〜中等度の認知症患者が骨折後に機能やADLの改善を示し、転倒リスクの低下も認められ、認知機能が保たれた患者と同等の回復を達成しうると報告されています。受傷前に歩行可能だった認知症患者では、認知症が回復を阻害しなかったとする研究も複数あります。
+    </div>
+
+    <div class="accent-box">
+      <div class="accent-title">💡 リハビリ強度を上げれば効果がある</div>
+      日本の全国入院データベースを用いた43,000例以上の研究（Uda et al.）では、認知症患者でも術後リハビリの頻度と1回あたりの時間が多いほど、退院時のBarthel Indexが有意に高かったと報告されています。
+    </div>
+
+    <p>まとめると、こういうロジックが組めます。認知症による内側疼痛経路の障害で回避行動が減弱し、受傷の記憶がないためKinesiophobiaが形成されず、活動量が維持される。さらに受傷前の歩行能力が保たれていた場合、軽度〜中等度認知症では非認知症と同等の回復が見込める。</p>
+
+    <!-- 第5章：リスク——諸刃の剣 -->
+    <h2>ただし、これは諸刃の剣である</h2>
+
+    <p>ここまで「回復が早い理由」を考えてきました。しかし、同じメカニズムが重大なリスクにもなることを忘れてはいけません。</p>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 痛みを感じにくいことの裏側</div>
+      痛みの認知が低下しているということは、危険の認知も低下しているということです。「痛くないから動ける」は「痛くないから危険がわからない」と表裏一体です。
+    </div>
+
+    <table class="summary-table">
+      <tr><th>転倒・再骨折</th><td>痛みや危険の認知低下により、荷重制限や禁忌動作を守れない。安静が守れないこと自体が転倒リスクになる。</td></tr>
+      <tr><th>術後せん妄</th><td>認知症はせん妄の最大のリスク因子。環境変化・疼痛・手術侵襲が重なり、BPSDの増悪にもつながる。</td></tr>
+      <tr><th>創部トラブル・DVT</th><td>安静が守れないことで創部への過度な負荷や、逆に同一姿勢の持続による深部静脈血栓症のリスクが生じる。</td></tr>
+      <tr><th>誤嚥性肺炎</th><td>認知機能低下に伴う嚥下機能の低下、術後の活動性変化により誤嚥リスクが上昇する。</td></tr>
+    </table>
+
+    <p>回復が早く見える認知症患者に対して、「順調だからこのまま行ける」と判断するのは危険です。回復が早い理由と同じメカニズムが、次の事故を引き起こす可能性がある。そこを見抜くのが、リハビリ専門職の仕事です。</p>
+
+    <!-- 第6章：締め -->
+    <h2>誰か、研究してくれないだろうか</h2>
+
+    <p>この臨床観察は、現時点では「筋の通った仮説」の域にとどまっています。直接検証した前向き研究はまだありません。</p>
+
+    <p>理由はおそらく、変数が多すぎるからです。認知症の重症度、BPSDの有無、骨折の型、術式、受傷前の活動性、入院環境——これらが交絡しすぎて、きれいな研究デザインを組みにくい。</p>
+
+    <p>でも、臨床で「あれ？」と感じた違和感には、何かが潜んでいるはずです。認知症の術後リハビリは「できない」前提で語られることが多い。しかし条件が揃えば、非認知症患者と同等かそれ以上の回復を見せることがある。その条件とメカニズムを解明できれば、認知症患者の術後リハビリのアプローチは変わるかもしれません。</p>
+
+    <p>誰かやってくれないかな、と本気で思っています。</p>
+
+    <div class="summary-box">
+      <div class="summary-title">この記事のまとめ</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;">
+        <li>認知症患者の大腿骨頸部骨折後、回復が早いと感じる場面がある——しかし文献上は逆の報告が多い</li>
+        <li>痛みの認知低下（内側疼痛経路の障害）、恐怖回避行動の非形成、活動性の維持が仮説として説明できる</li>
+        <li>軽度〜中等度認知症で受傷前に歩行可能だった患者は、非認知症と同等の回復を示すとする間接的エビデンスあり</li>
+        <li>ただし同じメカニズムが転倒・再骨折・せん妄などの重大リスクにもなる——諸刃の剣</li>
+        <li>変数が多く直接検証した研究はまだない——研究テーマとしての可能性を感じる</li>
+      </ul>
+    </div>
+
+    <h2>参考文献</h2>
+    <ul style="font-size:13px;color:var(--text2);line-height:2.2;">
+      <li>Allen J, Koziak A, Buddingh S, Liang J, Buckingham J, Beaupre LA. Rehabilitation in patients with dementia following hip fracture: a systematic review. <i>Physiother Can.</i> 2012;64(2):190-201. <a href="https://doi.org/10.3138/ptc.2011-06BH" target="_blank" style="color:var(--accent);">doi:10.3138/ptc.2011-06BH</a></li>
+      <li>Uda K, Matsui H, Fushimi K, Yasunaga H. Intensive in-hospital rehabilitation after hip fracture surgery and activities of daily living in patients with dementia: retrospective analysis of a nationwide inpatient database. <i>Arch Phys Med Rehabil.</i> 2019;100(12):2301-2307. <a href="https://doi.org/10.1016/j.apmr.2019.06.019" target="_blank" style="color:var(--accent);">doi:10.1016/j.apmr.2019.06.019</a></li>
+      <li>Álvaro González LC. El neurólogo frente al dolor en la demencia [The neurologist facing pain in dementia]. <i>Neurología.</i> 2015;30(9):574-585. <a href="https://doi.org/10.1016/j.nrl.2012.02.001" target="_blank" style="color:var(--accent);">doi:10.1016/j.nrl.2012.02.001</a></li>
+      <li>Larsson C, Ekvall Hansson E, Sundquist K, Jakobsson U. Kinesiophobia and its relation to pain characteristics and cognitive affective variables in older adults with chronic pain. <i>BMC Geriatr.</i> 2016;16:128. <a href="https://doi.org/10.1186/s12877-016-0302-6" target="_blank" style="color:var(--accent);">doi:10.1186/s12877-016-0302-6</a></li>
+      <li>Shibasaki K, Asahi T, Mizobuchi K, Akishita M, Ogawa S. Rehabilitation strategy for hip fracture, focused on behavioral psychological symptoms of dementia for older people with cognitive impairment: a nationwide Japan rehabilitation database. <i>PLoS One.</i> 2018;13(7):e0200143. <a href="https://doi.org/10.1371/journal.pone.0200143" target="_blank" style="color:var(--accent);">doi:10.1371/journal.pone.0200143</a></li>
+      <li>Loh YL, Wicks J, Alexander T. The impact of dementia on rehabilitation outcomes following hip fracture. <i>Aging Med.</i> 2023;6(2):132-143. <a href="https://doi.org/10.1002/agm2.12251" target="_blank" style="color:var(--accent);">doi:10.1002/agm2.12251</a></li>
+    </ul>
+
+    <p style="font-size:13px;color:var(--text3);margin-top:16px;">※本記事は臨床観察に基づく考察であり、個々の患者の治療方針を示すものではありません。</p>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="../fim-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">FIM評価ツール</span>
+      </div>
+      <div class="tool-desc">機能的自立度評価法（FIM）の18項目を採点。術後の回復度合いの客観的評価に。</div>
+    </a>
+    <a class="tool-card" href="../bi-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📝</span>
+        <span class="tool-name">Barthel Index（BI）評価ツール</span>
+      </div>
+      <div class="tool-desc">バーセルインデックスの10項目を採点。ADL自立度を100点満点で評価。</div>
+    </a>
+    <a class="tool-card" href="../hdsr-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🧠</span>
+        <span class="tool-name">HDS-R（長谷川式簡易知能評価スケール）</span>
+      </div>
+      <div class="tool-desc">認知機能のスクリーニング検査。9項目・30点満点で認知機能を評価。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
 </body>
 </html>
