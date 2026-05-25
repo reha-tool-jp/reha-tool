@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIM利得とは何か｜計算方法・実績指数との関係・FIM効率の違い | リハビリ評価・計算ツール</title>
+<meta name="description" content="FIM利得（退院時FIM－入院時FIM）の計算方法をわかりやすく解説。FIM効率との違い、実績指数への影響、入院時評価の注意点まで。回復期リハ病棟のPT・OT・ST向け。">
+<link rel="icon" href="../images/icon.jpg" type="image/jpeg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --danger: #7a1a1a;
+  --danger-light: #fae8e8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header .site-name a { color: #fff; text-decoration: none; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.updated { font-size: 12px; color: var(--text3); margin-bottom: 24px; display: block; }
+
+.article-body h2 {
+  font-size: 17px; font-weight: 700; color: var(--accent);
+  border-left: 4px solid var(--accent); padding-left: 12px;
+  margin: 36px 0 16px;
+}
+.article-body h3 {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin: 28px 0 12px;
+}
+.article-body p {
+  font-size: 14px; color: var(--text); line-height: 1.9;
+  margin-bottom: 16px;
+}
+.article-body ul, .article-body ol {
+  font-size: 14px; padding-left: 24px; margin-bottom: 16px;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.8; }
+
+/* 計算式ボックス */
+.formula-box {
+  background: var(--surface); border: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 20px; margin: 20px 0;
+  text-align: center;
+}
+.formula-box .formula-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; letter-spacing: 0.05em;
+}
+.formula-fraction {
+  display: inline-flex; flex-direction: column; align-items: center;
+  margin: 0 8px;
+}
+.formula-numerator, .formula-denominator {
+  font-size: 14px; font-weight: 600; color: var(--text); padding: 4px 12px;
+}
+.formula-line {
+  width: 100%; height: 2px; background: var(--text); margin: 2px 0;
+}
+.formula-label {
+  font-size: 15px; font-weight: 700; color: var(--accent);
+  margin-right: 8px; vertical-align: middle;
+}
+.formula-equal {
+  font-size: 18px; font-weight: 700; color: var(--text);
+  margin: 0 8px; vertical-align: middle;
+}
+.formula-row {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 4px;
+}
+.formula-note {
+  font-size: 12px; color: var(--text2); margin-top: 12px;
+  text-align: left; line-height: 1.7;
+}
+
+/* 計算例ボックス */
+.example-box {
+  background: var(--accent-light); border: 1px solid var(--accent);
+  border-radius: var(--radius); padding: 18px 20px; margin: 16px 0;
+}
+.example-box .example-title {
+  font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px;
+}
+.example-box p { font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.8; }
+.example-box p:last-child { margin-bottom: 0; }
+.example-box .result {
+  font-size: 15px; font-weight: 700; color: var(--accent);
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--accent);
+}
+
+/* 注意ボックス */
+.note-box {
+  border-radius: var(--radius); padding: 16px 18px; margin: 20px 0;
+  font-size: 13px; line-height: 1.8;
+}
+.note-box.warn { background: var(--warn-light); border-left: 4px solid var(--warn); }
+.note-box.info { background: var(--info-light); border-left: 4px solid var(--info); }
+.note-box.danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.note-box .note-title { font-weight: 700; margin-bottom: 6px; }
+.note-box.warn .note-title { color: var(--warn); }
+.note-box.info .note-title { color: var(--info); }
+.note-box.danger .note-title { color: var(--danger); }
+
+/* テーブル */
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 13px; background: var(--surface);
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.data-table th {
+  background: var(--accent); color: #fff; padding: 10px 12px;
+  text-align: left; font-weight: 600; font-size: 12px;
+}
+.data-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .highlight { background: var(--accent-light); font-weight: 600; }
+
+/* ツールCTA */
+.tool-cta {
+  background: var(--accent-light); border: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 18px 20px; margin: 28px 0;
+  text-align: center;
+}
+.tool-cta p { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+.tool-cta a {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 14px; font-weight: 700; padding: 10px 24px;
+  border-radius: 6px; text-decoration: none;
+}
+.tool-cta a:hover { opacity: 0.85; }
+
+/* 関連記事 */
+.related-section { margin-top: 36px; }
+.related-section .section-title {
+  font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px;
+}
+.related-card {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px;
+  text-decoration: none; transition: border-color 0.2s;
+}
+.related-card:hover { border-color: var(--accent); }
+.related-card .related-name {
+  font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 4px;
+}
+.related-card .related-desc {
+  font-size: 12px; color: var(--text2); line-height: 1.6;
+}
+
+/* フッター */
+.footer {
+  text-align: center; padding: 28px 16px; margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--accent); text-decoration: none; font-size: 13px; }
+.footer a:hover { text-decoration: underline; }
+.footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name"><a href="../index.html">リハビリ評価・計算ツール</a></div>
+  <h1>FIM利得とは何か｜計算方法・実績指数との関係・FIM効率の違い</h1>
+</header>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">トップ</a> ＞ <a href="index.html">解説記事</a> ＞ FIM利得とは
+  </div>
+  <span class="updated">最終更新：2026年5月26日</span>
+
+  <div class="article-body">
+
+    <p>FIM利得は、入院中にFIMスコアがどれだけ改善したかを示す指標です。回復期リハ病棟では実績指数の計算にも直結するため、PT・OT・STにとって避けて通れない数字になっています。</p>
+    <p>この記事では、FIM利得の計算方法・FIM効率との違い・実績指数への影響・入院時評価の注意点を整理します。</p>
+
+    <div class="tool-cta">
+      <p>FIMの採点・集計はツールで効率化できます</p>
+      <a href="../fim-tool.html">→ FIM評価ツールを使う（無料）</a>
+    </div>
+
+    <h2>FIM利得とは</h2>
+    <p>FIM利得は「退院時のFIMスコア」から「入院時のFIMスコア」を引いた値です。入院から退院までの間にADL自立度がどれだけ改善したかを数値で表します。</p>
+
+    <div class="formula-box">
+      <div class="formula-title">FIM利得の計算式</div>
+      <div class="formula-row">
+        <span class="formula-label">FIM利得</span>
+        <span class="formula-equal">=</span>
+        <span style="font-size:14px;font-weight:600;">退院時FIM</span>
+        <span style="font-size:16px;margin:0 6px;">－</span>
+        <span style="font-size:14px;font-weight:600;">入院時FIM</span>
+      </div>
+      <div class="formula-note">
+        ※ FIMは運動項目（13〜91点）と認知項目（5〜35点）の合計18〜126点。実績指数には運動項目のFIM利得が使われる。
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">📋 計算例</div>
+      <p>入院時FIM（運動項目）：30点</p>
+      <p>退院時FIM（運動項目）：65点</p>
+      <p class="result">FIM利得（運動項目）＝ 65 − 30 ＝ <strong>35点</strong></p>
+    </div>
+
+    <p>FIM利得が大きいほど「入院中に大きく改善した」ことを意味します。ただし入院時のFIMが低い（重症）患者ほど改善の余地が大きく、入院時のFIMが高い患者はそもそも利得が出にくい傾向があります。この点が実績指数の設計にも影響しています。</p>
+
+    <h2>FIM効率との違い</h2>
+    <p>FIM利得と混同されやすいのがFIM効率です。</p>
+
+    <div class="formula-box">
+      <div class="formula-title">FIM効率の計算式</div>
+      <div class="formula-row">
+        <span class="formula-label">FIM効率</span>
+        <span class="formula-equal">=</span>
+        <div class="formula-fraction">
+          <span class="formula-numerator">FIM利得</span>
+          <div class="formula-line"></div>
+          <span class="formula-denominator">在院日数</span>
+        </div>
+      </div>
+      <div class="formula-note">
+        ※ 1日あたりどれだけFIMが改善したかを示す。単位は「点/日」。
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>FIM利得</th>
+          <th>FIM効率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>何を示すか</td>
+          <td>改善の「量」</td>
+          <td>改善の「速さ」</td>
+        </tr>
+        <tr>
+          <td>計算式</td>
+          <td>退院時FIM－入院時FIM</td>
+          <td>FIM利得÷在院日数</td>
+        </tr>
+        <tr>
+          <td>実績指数との関係</td>
+          <td class="highlight">直接使用される</td>
+          <td>直接使用されない</td>
+        </tr>
+        <tr>
+          <td>注意点</td>
+          <td>重症患者ほど大きくなりやすい</td>
+          <td>短期間で退院した患者が高くなりやすい</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>実績指数との関係</h2>
+    <p>回復期リハ病棟の実績指数の計算には、FIM利得（運動項目）が分子として使われます。</p>
+
+    <div class="formula-box">
+      <div class="formula-title">実績指数の計算式（簡略版）</div>
+      <div class="formula-row">
+        <span class="formula-label">実績指数</span>
+        <span class="formula-equal">=</span>
+        <div class="formula-fraction">
+          <span class="formula-numerator">各患者のFIM利得（運動項目）の合計</span>
+          <div class="formula-line"></div>
+          <span class="formula-denominator">各患者の（在院日数÷入棟上限日数）の合計</span>
+        </div>
+      </div>
+      <div class="formula-note">
+        ※ 令和8年度改定では、歩行またはトイレ動作が入棟時5点以下→退棟時6点以上に改善した場合、FIM利得に1点加点される（1人最大2点）。
+      </div>
+    </div>
+
+    <p>つまり、FIM利得が大きい患者が多いほど実績指数が上がります。ただし分母に「在院日数÷入棟上限日数」が入るため、同じ利得でも在院日数が短い患者の方が実績指数への貢献が大きくなります。</p>
+
+    <div class="note-box info">
+      <div class="note-title">💡 令和8年度改定の加点ルール</div>
+      歩行またはトイレ動作のFIMスコアが「入棟時5点以下→退棟時6点以上」に改善した場合、その患者のFIM利得に1点加点されます。両方改善すれば最大2点の加点。実績指数を意識するなら、この2項目の改善を意識した介入が重要です。<br><br>
+      5点以下は監視〜全介助の状態（介助者が必要、または一人では安全に行えない水準）（監視・最小介助・中等度介助・最大介助・全介助）、6点以上は「修正自立以上」に相当します。つまりこの加点ルールは「見守りが必要な状態から、一人でできる状態への改善」を評価しているとも言えます。<br><br>
+      現実的な手段として、入棟時に歩行・トイレ動作が5点以下の患者をリストアップし、退棟時に6点以上を目指す介入計画を立てることが実績指数向上の出発点になります。
+    </div>
+
+    <h2>実績指数への貢献が大きい患者像</h2>
+
+    <div class="note-box warn">
+      <div class="note-title">⚠️ 以下は臨床的考察です</div>
+      エビデンスに基づく確定的な見解ではなく、計算式の構造から導いた筆者の臨床的考察です。
+    </div>
+
+    <p>実績指数の計算式を見ると、FIM利得が大きく、かつ在院日数が入棟上限日数に対して短い患者ほど、実績指数への貢献が大きくなります。この観点から、<strong>入棟時FIMが中等度（おおよそ20〜50点台）の患者</strong>は、改善の余地が十分ありながら在院日数も比較的短くなりやすく、実績指数に貢献しやすい患者層と考えられます。</p>
+    <p>一方、入棟時FIMが極めて低い重症患者は改善余地は大きいものの在院日数も長くなりやすく、入棟時FIMが高い患者は改善余地が少ない傾向があります。どの患者層に重点的に介入するかを意識することが、実績指数の安定につながる可能性があります。</p>
+
+    <h2>FIM利得がマイナスになるケース</h2>
+    <p>FIM利得がゼロまたはマイナスになる患者は、どの施設にも一定数存在します。主な原因は3つです。</p>
+    <ul>
+      <li><strong>廃用の進行</strong>：長期臥床・活動量低下により入院時より機能が低下するケース</li>
+      <li><strong>疾患の進行</strong>：神経変性疾患・がん等で回復が見込めない、または悪化するケース</li>
+      <li><strong>評価の不統一</strong>：入院時評価が甘く（高めに採点され）、退院時評価との間にズレが生じるケース</li>
+    </ul>
+    <p>利得がマイナスの患者は実績指数を押し下げる要因になりますが、除外要件に該当する場合は計算から外れます。該当しない場合は「なぜマイナスになったか」を記録しておくことが、施設内の評価基準の見直しにもつながります。</p>
+
+    <h2>入院時評価の注意点</h2>
+    <p>FIM利得は「退院時－入院時」で計算するため、入院時評価の精度が結果に直結します。特に注意が必要なのは移動手段の評価です。</p>
+
+    <div class="note-box warn">
+      <div class="note-title">⚠️ 移動手段の統一ルール</div>
+      入院時に車椅子で移動していても、退院までに歩行が可能と予測される場合は、入院時も「歩行」として評価する。入院時に車椅子（最高6点）、退院時に歩行（7点）として評価すると、利得が実態より小さくなる。実績指数にも直接影響するポイントなので注意。
+    </div>
+
+    <div class="note-box danger">
+      <div class="note-title">🚨 「している」ADLで評価する</div>
+      FIMは「できる」ではなく「実際にしている」ADLで評価する。入院時評価を甘くすると（高めに採点すると）FIM利得が小さくなり、実績指数を押し下げる。施設内での採点基準の統一が重要。
+    </div>
+
+    <h2>FIM利得の目安について</h2>
+    <p>FIM利得の目安値は疾患・重症度・年齢・施設によって大きく異なるため、一概には言えません。脳血管疾患でも軽症と重症では利得の幅が全く異なりますし、同じ疾患でも入院時FIMの高さによって改善の余地が変わります。</p>
+    <p>実践的には、全国平均値と比較するよりも自院の過去データを蓄積して比較することの方が意味のある指標になります。回復期リハビリテーション病棟協会が毎年発行する調査報告書に疾患別の全国データが掲載されているので、自施設の数値と照らし合わせる際の参考にしてください。</p>
+
+    <div class="tool-cta">
+      <p>FIMの採点・集計はツールで効率化できます</p>
+      <a href="../fim-tool.html">→ FIM評価ツールを使う（無料）</a>
+    </div>
+
+  </div>
+
+  <div class="related-section">
+    <div class="section-title">関連ページ</div>
+    <a class="related-card" href="../fim-tool.html">
+      <div class="related-name">FIM評価ツール</div>
+      <div class="related-desc">18項目を採点・集計。運動項目・認知項目のスコアを自動算出。印刷対応。</div>
+    </a>
+    <a class="related-card" href="jisseki-shisu.html">
+      <div class="related-name">回復期リハ病棟の実績指数とは？</div>
+      <div class="related-desc">FIM利得と実績指数の計算式・除外要件・令和8年度改定の変更点を詳しく解説。</div>
+    </a>
+    <a class="related-card" href="fim-scoring-tips.html">
+      <div class="related-name">FIM採点の迷いポイント完全整理</div>
+      <div class="related-desc">現場でブレやすい項目を徹底解説。入院時評価の精度を上げるために。</div>
+    </a>
+    <a class="related-card" href="r8-kaitei-matome.html">
+      <div class="related-name">2026年診療報酬改定 リハビリ関連まとめ</div>
+      <div class="related-desc">実績指数の変更を含む今改定のリハ関連変更点を整理。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧に戻る</a>
+    <div class="copyright">© リハビリ評価・計算ツール</div>
+  </div>
+
+</div>
+</body>
+</html>
