@@ -32,11 +32,20 @@ self.addEventListener('activate', event => {
 
 // ネットワーク優先・失敗時はキャッシュから返す
 self.addEventListener('fetch', event => {
+  // articlesディレクトリ以下はキャッシュに保存せず、常にネットワークから取得する
+  if (event.request.url.includes('/articles/')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        // レスポンスが正常な場合のみキャッシュを更新
+        if (response && response.status === 200 && response.type === 'basic') {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        }
         return response;
       })
       .catch(() => caches.match(event.request))
