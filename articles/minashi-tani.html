@@ -4,8 +4,8 @@
 <link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>みなし単位とは何か｜疑義解釈1〜5の整理とレセプト請求の結論 | リハビリ評価・計算ツール</title>
-<meta name="description" content="2026年6月1日施行のみなし単位。疑義解釈その1〜5を踏まえた現時点の解釈を整理。レセプト請求の可否、リハ計画書はみなし対象外、記録の残し方、単位数の計算例まで解説します。">
+<title>みなし単位とは何か｜疑義解釈1〜6の整理とレセプト請求の結論 | リハビリ評価・計算ツール</title>
+<meta name="description" content="2026年6月1日施行のみなし単位。疑義解釈その1〜6を踏まえた現時点の解釈を整理。レセプト請求の可否、リハ計画書はみなし対象外、記録の残し方まで解説します。">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 <style>
 :root {
@@ -39,10 +39,14 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
 .article-body li { margin-bottom: 6px; }
 
-.task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0 24px; }
-.task-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
-.task-item.ng { background: var(--danger-light); border-color: var(--danger); opacity: 0.8; }
-.task-icon { font-size: 18px; flex-shrink: 0; }
+.unit-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.unit-table th { padding: 10px 14px; text-align: left; font-weight: 700; font-size: 12px; }
+.unit-table th.include { background: var(--accent); color: #fff; }
+.unit-table th.exclude { background: var(--danger); color: #fff; }
+.unit-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 13px; }
+.unit-table tr:last-child td { border-bottom: none; }
+.unit-table .item-name { font-weight: 700; color: var(--text); }
+.unit-table .item-desc { font-size: 12px; color: var(--text2); margin-top: 3px; }
 
 .dual-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0 24px; }
 .merit-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; font-size: 14px; }
@@ -64,17 +68,11 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 6px; font-size: 13px; }
 .accent-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
 
-/* 疑義解釈テーブル */
 .gi-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
 .gi-table th { background: var(--surface2); padding: 8px 12px; text-align: left; font-weight: 700; color: var(--text2); border-bottom: 1px solid var(--border); }
 .gi-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
 .gi-table tr:last-child td { border-bottom: none; }
-.gi-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 6px; font-weight: 700; }
-.gi-tag-ok { background: var(--accent-light); color: var(--accent); }
-.gi-tag-ng { background: var(--danger-light); color: var(--danger); }
-.gi-tag-pending { background: var(--warn-light); color: var(--warn); }
 
-/* 計算例テーブル */
 .calc-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; border: 1px solid var(--border); }
 .calc-table th { background: var(--surface2); padding: 8px 10px; text-align: center; font-weight: 700; color: var(--text2); border: 1px solid var(--border); font-size: 12px; }
 .calc-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
@@ -103,7 +101,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 
 @media (max-width: 480px) {
   .dual-box { grid-template-columns: 1fr; }
-  .task-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -111,7 +108,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 
 <header>
   <div class="site-name">リハビリ評価・計算ツール｜解説記事</div>
-  <h1>みなし単位とは何か<br>疑義解釈1〜5の整理とレセプト請求の結論</h1>
+  <h1>みなし単位とは何か<br>疑義解釈1〜6の整理とレセプト請求の結論</h1>
 </header>
 
 <div class="container">
@@ -127,51 +124,117 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   <div class="article-header">
     <span class="article-tag">制度・算定</span>
     <span class="施行バッジ">2026年6月1日施行</span>
-    <span class="更新バッジ">2026年5月23日公開</span>
-    <h1 class="article-title">みなし単位とは何か｜疑義解釈1〜5の整理とレセプト請求の結論</h1>
+    <span class="更新バッジ">2026年5月28日更新</span>
+    <h1 class="article-title">みなし単位とは何か｜疑義解釈1〜6の整理とレセプト請求の結論</h1>
     <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け制度解説</div>
   </div>
 
   <div class="article-body">
 
-    <p>2026年6月1日施行の「みなし単位」について、疑義解釈がその5まで出揃いました。施行直前のこの時点で、現場が最も気にしている「レセプト請求できるのか」「リハ計画書の作成・説明時間は含まれるのか」「記録はどう残すのか」を整理します。</p>
+    <p>2026年6月1日施行の「みなし単位」について、疑義解釈がその6まで出揃いました。施行直前のこの時点で、現場が最も気にしている「レセプト請求できるのか」「リハ計画書の作成・説明時間は含まれるのか」「記録はどう残すのか」を整理します。</p>
+
+    <div class="danger-box">
+      <div class="danger-title">⚠️ 2026年5月28日 記事修正のお知らせ</div>
+      公開当初、「規定の単位数に含める業務」と「含めない業務」の記載が逆になっていました。令和8年度診療報酬改定説明資料（厚生労働省）に基づき修正しました。正確な情報の提供ができず申し訳ありませんでした。<br><br>
+      このミスは、改定説明資料のPDFをAIツールで読み込んだ際に、図の構造（含める・含めない）が正確に読み取られなかったことが原因です。同様の資料を参照して情報発信されている方も、同じ誤りをしている可能性があります。制度の確認は必ず一次資料（告示・通知・改定説明資料）の原文でご確認ください。なお、修正後の内容は厚労省の改定説明資料の原文PDFを目視で確認しております。
+    </div>
 
     <h2>みなし単位とは何か：制度の整理</h2>
 
     <p>療法士1人あたりの1日の標準実施単位数は「18単位」とされています。これまで18単位は「疾患別リハビリテーション料」と「集団コミュニケーション療法」のみで計算されていました。</p>
 
-    <p>今改定から、<strong>専従の療法士が疾患別リハビリおよび集団コミュニケーション療法以外の業務に従事した場合、その従事時間20分を1単位とみなして実施単位数に加える</strong>ことが算定要件に加わりました。</p>
+    <p>今改定から、<strong>専従の療法士が疾患別リハビリおよび集団コミュニケーション療法以外の特掲診療料に係る業務に従事した場合、その従事時間を全て合算して20分以上であれば、20分につき1単位とみなして実施単位数に含める</strong>ことが算定要件に加わりました。</p>
 
-    <h3>対象となる業務（含められる）</h3>
+    <h2>含める業務・含めない業務</h2>
 
-    <div class="task-grid">
-      <div class="task-item"><span class="task-icon">📝</span>記録作成（カルテ等）</div>
-      <div class="task-item"><span class="task-icon">🚶</span>患者間の移動時間</div>
-      <div class="task-item"><span class="task-icon">👨‍👩‍👧</span>退院時・家族指導</div>
-      <div class="task-item"><span class="task-icon">🏠</span>介護施設等への助言</div>
+    <p>厚生労働省の改定説明資料に基づき、正確に整理します。</p>
+
+    <table class="unit-table">
+      <thead>
+        <tr><th class="include">✅ 規定の単位数に含める業務</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-name">疾患別リハビリテーション料＋集団コミュニケーション療法</div>
+            <div class="item-desc">通常の個別リハビリ・集団リハビリ（これまでと同じ）</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">第2章第2部 医学管理等</div>
+            <div class="item-desc">退院時リハビリテーション指導料など（※H003-2 リハビリテーション総合計画評価料に係る計画書の作成・説明時間は除く）</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">第2章第3部 在宅医療</div>
+            <div class="item-desc">退院前訪問指導、在宅患者訪問リハビリテーション指導管理料に係る業務など</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">第2章第7部 リハビリテーション（※）</div>
+            <div class="item-desc">疾患別リハビリ料以外のリハビリテーション関連業務<br>※H003-2 リハビリテーション総合計画評価料に係る計画書の作成及び説明時間は除く</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">第2章第8部 精神科専門療法</div>
+            <div class="item-desc">精神科作業療法など</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="unit-table">
+      <thead>
+        <tr><th class="exclude">❌ 規定の単位数に含めない業務</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-name">その他リハビリテーション</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">家族等の指導に関する業務</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">介護施設等への助言に係る業務</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">リハビリテーションの記録時間</div>
+            <div class="item-desc">日常のカルテ記録・実施記録の作成時間</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">個別療法のために移動する時間</div>
+            <div class="item-desc">患者間の移動・訓練室への移動など</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 現場で混乱しやすいポイント</div>
+      「記録時間」「移動時間」「家族指導」は<strong>含めない業務</strong>です。「業務が可視化された」という報道等を見て含めると誤りになります。含めるのはあくまで「医学管理等・在宅医療・リハビリテーション（計画書除く）・精神科専門療法」に係る業務です。
     </div>
-
-    <h3>対象外の業務（含められない）</h3>
-
-    <div class="task-grid">
-      <div class="task-item ng"><span class="task-icon">❌</span>リハビリテーション総合計画評価料（H003-2）に係る計画書の作成時間</div>
-      <div class="task-item ng"><span class="task-icon">❌</span>同計画書の患者・家族への説明時間</div>
-    </div>
-
-    <p class="source-note">※上記は代表的な例です。留意事項通知では「医学管理等・在宅医療・リハビリテーション・精神科専門療法・患者家族等の指導・介護施設等への助言に係る業務」が対象として示されています（退院前訪問指導等も含まれます）。<br>出典：令和8年度診療報酬改定 留意事項通知、令和8年度診療報酬改定説明資料</p>
 
     <div class="info-box">
       <div class="info-title">📋 対象は専従の療法士のみ</div>
       みなし単位の対象となるのは「専従」のPT・OT・STです。専任の療法士は対象外です。また上限は1日24単位・週108単位（標準は18単位）の範囲内です。
     </div>
-    <div class="warn-box">
-      <div class="warn-title">⚠️ 「記録作成」と「計画書作成」は別物</div>
-      現場で混乱しやすい点として、<strong>日常のカルテ記録作成はみなし対象</strong>ですが、<strong>リハビリテーション総合計画評価料（H003-2）に係る計画書の作成・説明はみなし対象外</strong>です。同じ「記録」でも扱いが異なります。施設内でどちらに該当するか判断基準を統一しておくことが重要です。
-    </div>
 
-    <h2>疑義解釈その1〜5：5/23時点の整理</h2>
+    <h2>疑義解釈その1〜6：5/28時点の整理</h2>
 
-    <p>3月23日のその1から5月上旬のその5まで、計5回の疑義解釈が発出されました。みなし単位に直接関係する論点の整理です。</p>
+    <p>3月23日のその1から5月21日のその6まで、計6回の疑義解釈が発出されました。みなし単位に直接関係する論点の整理です。</p>
 
     <table class="gi-table">
       <thead>
@@ -195,7 +258,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
         <tr>
           <td>その3</td>
           <td>2026年4月20日</td>
-          <td>施設基準届出関係・包括期充実体制加算・ベースアップ評価料が中心。<strong>リハビリテーション関連項目の掲載なし</strong>（日本理学療法士協会確認）。みなし単位への言及なし。なお早期リハビリ加算の起算日詳細はその2（4/1）に含まれる。</td>
+          <td>施設基準届出関係・包括期充実体制加算・ベースアップ評価料が中心。<strong>リハビリテーション関連項目の掲載なし</strong>（日本理学療法士協会確認）。みなし単位への言及なし。</td>
         </tr>
         <tr>
           <td>その4</td>
@@ -207,16 +270,21 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
           <td>2026年5月8日</td>
           <td>回復期リハ強化体制加算・リハビリテーション実施計画書関連を含む整理。みなし単位のレセプト請求について依然として言及なし。</td>
         </tr>
+        <tr>
+          <td>その6</td>
+          <td>2026年5月21日</td>
+          <td>早期リハビリテーション加算の起算日詳細など。<strong>みなし単位への言及なし。</strong></td>
+        </tr>
       </tbody>
     </table>
 
-    <p class="source-note">出典：厚生労働省「疑義解釈資料の送付について（その1〜5）」各事務連絡、<a href="https://www.japanpt.or.jp/pt/function/insurance/medical_2026/" target="_blank">日本理学療法士協会 令和8年度診療報酬改定情報</a></p>
+    <p class="source-note">出典：厚生労働省「疑義解釈資料の送付について（その1〜6）」各事務連絡、<a href="https://www.japanpt.or.jp/pt/function/insurance/medical_2026/" target="_blank">日本理学療法士協会 令和8年度診療報酬改定情報</a></p>
 
     <h2>レセプト請求できるのか：現時点の結論</h2>
 
     <div class="danger-box">
       <div class="danger-title">❌ レセプト請求はできない——これが現時点の解釈</div>
-      疑義解釈その1〜5を通じて、「みなし単位をレセプトで請求できる」という記述は一度も出ていません。制度の設計上、みなし単位は<strong>「実施単位数の管理上の概念」</strong>であって、<strong>請求単位の追加ではありません</strong>。「20分を1単位とみなす」のはあくまで18単位の管理計算の話であり、その分の点数を疾患別リハビリテーション料として別途請求できるわけではありません。
+      疑義解釈その1〜6を通じて、「みなし単位をレセプトで請求できる」という記述は一度も出ていません。制度の設計上、みなし単位は<strong>「実施単位数の管理上の概念」</strong>であって、<strong>請求単位の追加ではありません</strong>。「20分を1単位とみなす」のはあくまで18単位の管理計算の話であり、その分の点数を疾患別リハビリテーション料として別途請求できるわけではありません。
     </div>
 
     <p>これは業界内でも「請求単位を増やす仕組みとして読むと運用が崩れる」という整理が定着しつつあります。施行後に疑義解釈でこの解釈が覆る可能性はゼロではありませんが、現時点では「請求できない」前提で運用を設計することが安全です。</p>
@@ -226,99 +294,12 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     <div class="dual-box">
       <div class="merit-box">
         <div class="box-title">✅ メリット側</div>
-        記録・移動・家族指導など、これまで「見えない仕事」だった業務が単位として可視化された。専従療法士の業務実態が正式に認められた形。
+        医学管理・在宅医療・精神科専門療法など、これまで18単位の計算に含まれなかった業務が単位として可視化された。専従療法士の業務実態が正式に認められた形。
       </div>
       <div class="risk-box">
         <div class="box-title">⚠️ リスク側</div>
-        みなし単位で18単位に達した場合、個別リハビリの実施単位数が圧縮される。「記録で2単位使った」なら個別リハは16単位分しか入れられない計算になる。
+        みなし単位で18単位に達した場合、個別リハビリの実施単位数が圧縮される。含める業務が積み上がるほど、個別リハに使える枠が減る計算になる。
       </div>
-    </div>
-
-    <h2>具体的な単位数の計算例</h2>
-
-    <p>1日の実施単位数がどう変わるか、具体例で確認します。</p>
-
-    <table class="calc-table">
-      <thead>
-        <tr>
-          <th>業務内容</th>
-          <th>時間</th>
-          <th>みなし単位数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align:left;">個別リハビリテーション</td>
-          <td>160分（8人×20分）</td>
-          <td>8単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">カルテ記録作成</td>
-          <td>40分</td>
-          <td>2単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">患者間移動</td>
-          <td>20分</td>
-          <td>1単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">家族指導</td>
-          <td>20分</td>
-          <td>1単位</td>
-        </tr>
-        <tr class="row-total">
-          <td style="text-align:left;">合計</td>
-          <td>240分</td>
-          <td>12単位（標準18単位内）</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>この例では12単位で18単位の上限に余裕があります。しかし記録・移動・その他業務が増えるほど個別リハに使える枠が減ります。</p>
-
-    <table class="calc-table">
-      <thead>
-        <tr>
-          <th>業務内容</th>
-          <th>時間</th>
-          <th>みなし単位数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align:left;">個別リハビリテーション</td>
-          <td>240分（12人×20分）</td>
-          <td>12単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">カルテ記録作成</td>
-          <td>60分</td>
-          <td>3単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">患者間移動</td>
-          <td>40分</td>
-          <td>2単位</td>
-        </tr>
-        <tr>
-          <td style="text-align:left;">退院時家族指導</td>
-          <td>20分</td>
-          <td>1単位</td>
-        </tr>
-        <tr class="row-warn">
-          <td style="text-align:left;">合計</td>
-          <td>360分</td>
-          <td>18単位（上限到達）</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>このケースでは18単位の上限に達しています。この状態でさらに個別リハを追加しようとすると、他の業務時間を削るか18単位を超える形になります。</p>
-
-    <div class="warn-box">
-      <div class="warn-title">⚠️ 18単位はあくまで「標準」</div>
-      上限は1日24単位・週108単位です。ただし18単位を超えた運用を常態化させることは制度上想定されていないため、施設内での管理ルールを明確にしておくことが重要です。
     </div>
 
     <h2>記録の残し方：施行前に準備すること</h2>
@@ -326,7 +307,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     <p>みなし単位を実施単位数に含める場合、その根拠となる記録が必要です。現時点で公式様式は指定されていませんが、最低限以下の情報を残すことが推奨されています。</p>
 
     <ul>
-      <li><strong>業務の種類</strong>（記録作成・移動・家族指導など）</li>
+      <li><strong>業務の種類</strong>（医学管理・在宅医療・精神科専門療法など）</li>
       <li><strong>開始・終了時刻</strong>（20分単位で管理）</li>
       <li><strong>対象患者名または患者ID</strong>（患者に関連する業務の場合）</li>
       <li><strong>従事者氏名</strong></li>
@@ -381,17 +362,19 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 
     <ul>
       <li><strong>院内の運用ルールを決める</strong>——みなし単位として計上する業務の範囲と記録の様式を統一する</li>
-      <li><strong>個別リハ枠への影響を試算する</strong>——記録・移動・指導の実態時間を把握し、18単位の配分を事前に確認する</li>
+      <li><strong>個別リハ枠への影響を試算する</strong>——含める業務の実態時間を把握し、18単位の配分を事前に確認する</li>
       <li><strong>施行後の疑義解釈を引き続き確認する</strong>——現時点ではレセプト請求不可の解釈が固まりつつあるが、施行後に追加の通知が出る可能性がある</li>
     </ul>
 
     <div class="summary-box">
-      <div class="summary-title">この記事のまとめ（5/23時点）</div>
+      <div class="summary-title">この記事のまとめ（5/28更新）</div>
       <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;">
-        <li>みなし単位＝訓練外業務（記録・移動・家族指導・施設助言）20分を1単位とみなし、18単位の計算に加える</li>
-        <li><strong>リハビリテーション総合計画評価料（H003-2）の計画書作成・説明時間はみなし対象外</strong>（留意事項通知で明示）</li>
-        <li><strong>レセプト請求はできない</strong>——疑義解釈その1〜5を通じて「請求できる」という記述は一度も出ていない。管理上の単位であって請求単位の追加ではない</li>
-        <li>上限は1日24単位・週108単位（標準18単位）。みなし単位が積み上がると個別リハ枠が圧縮される</li>
+        <li>みなし単位＝専従療法士が疾患別リハ・集団コミュニケーション療法以外の特掲診療料業務に従事した時間を20分1単位として18単位の計算に加える</li>
+        <li><strong>含める業務</strong>：医学管理等・在宅医療・リハビリテーション（計画書除く）・精神科専門療法</li>
+        <li><strong>含めない業務</strong>：記録時間・移動時間・家族指導・施設助言・その他リハビリテーション</li>
+        <li><strong>リハビリテーション総合計画評価料（H003-2）の計画書作成・説明時間はみなし対象外</strong></li>
+        <li><strong>レセプト請求はできない</strong>——管理上の単位であって請求単位の追加ではない</li>
+        <li>上限は1日24単位・週108単位（標準18単位）</li>
         <li>記録は業務種別・時刻・対象患者・従事者を残す。院内統一様式を6月1日までに決めておく</li>
         <li>施行後も随時出る疑義解釈・職能団体の指導を確認すること</li>
       </ul>
@@ -432,7 +415,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
     <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
     <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span class="footer-sep">|</span><a href="../terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="../privacy.html">プライバシーポリシー</a>
+    <a href="/reha-tool/contact.html">お問い合わせ</a><span class="footer-sep">|</span><a href="../terms.html">利用規約</a><span class="footer-sep">|</span><a href="../privacy.html">プライバシーポリシー</a>
   </div>
 
 </div>
