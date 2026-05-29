@@ -82,7 +82,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .note-box ul { padding-left: 20px; margin-bottom: 0; }
 .note-box li { margin-bottom: 6px; }
 
-/* フローチャート */
 .flowchart {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 20px; margin: 20px 0;
@@ -90,11 +89,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .flowchart .fc-title {
   font-size: 13px; font-weight: 700; color: var(--accent);
   margin-bottom: 16px; text-align: center;
-}
-.fc-node {
-  background: var(--accent-light); border: 1px solid var(--accent);
-  border-radius: 6px; padding: 10px 14px; margin: 8px 0;
-  font-size: 13px; font-weight: 600; color: var(--accent); text-align: center;
 }
 .fc-question {
   background: var(--info-light); border: 1px solid var(--info);
@@ -114,12 +108,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   background: var(--accent); color: #fff; border-radius: 6px;
   padding: 10px 14px; font-size: 13px; font-weight: 700; text-align: center; margin: 8px 0;
 }
-.fc-end-ng {
-  background: var(--danger); color: #fff; border-radius: 6px;
-  padding: 10px 14px; font-size: 13px; font-weight: 700; text-align: center; margin: 8px 0;
-}
 
-/* 計算例ボックス */
 .calc-box {
   background: var(--accent-light); border: 1px solid var(--accent);
   border-radius: var(--radius); padding: 18px 20px; margin: 16px 0;
@@ -129,6 +118,12 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .calc-box td { padding: 6px 10px; border-bottom: 1px solid var(--accent); }
 .calc-box tr:last-child td { border-bottom: none; font-weight: 700; }
 .calc-box td:last-child { text-align: right; font-weight: 600; }
+
+.accent-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 18px; margin: 20px 0; font-size: 14px; line-height: 1.9;
+}
 
 .references {
   background: var(--surface2); border-radius: var(--radius);
@@ -153,6 +148,10 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .footer a { color: var(--accent); text-decoration: none; font-size: 13px; }
 .footer a:hover { text-decoration: underline; }
 .footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
+.footer-nav { text-align: center; font-size: 12px; color: #a09d96; margin-top: 16px; line-height: 2.2; }
+.footer-nav a { color: #a09d96; text-decoration: none; }
+.footer-nav a:hover { color: var(--accent); }
+.footer-nav span { margin: 0 6px; }
 </style>
 </head>
 <body>
@@ -167,7 +166,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     <a href="../index.html">トップ</a> ＞ <a href="index.html">解説記事</a> ＞ 休日リハビリテーション加算
   </div>
   <span class="tag">2026年6月施行</span>
-  <span class="updated">最終更新：2026年5月27日</span>
+  <span class="updated">最終更新：2026年5月29日</span>
 
   <div class="article-body">
 
@@ -187,7 +186,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     </div>
 
     <h2>起算日（疾患によって異なる）</h2>
-    <p>起算日は疾患別リハビリテーション料の種類によって2つのグループに分かれます。一律ではない点に注意が必要です。</p>
+    <p>起算日は疾患別リハビリテーション料の種類によって異なります。一律ではない点に注意が必要です。</p>
 
     <table class="data-table">
       <thead>
@@ -195,8 +194,12 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
       </thead>
       <tbody>
         <tr>
-          <td><strong>心大血管・廃用症候群・呼吸器</strong></td>
+          <td><strong>心大血管・呼吸器</strong></td>
           <td>発症・手術・急性増悪から7日目、または治療開始日のいずれか早い日</td>
+        </tr>
+        <tr>
+          <td><strong>廃用症候群</strong></td>
+          <td>発症・手術・急性増悪の日（廃用症候群の急性増悪を含む）</td>
         </tr>
         <tr>
           <td><strong>脳血管疾患等・運動器</strong></td>
@@ -206,8 +209,8 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     </table>
 
     <div class="note-box warn">
-      <div class="note-title">⚠️ 廃用症候群は「7日目グループ」</div>
-      廃用症候群は脳血管疾患等と混同されやすいですが、起算日は心大血管・呼吸器と同じ「発症等から7日目または治療開始日」です。間違えると算定できない日に加算を算定することになるため注意が必要です。
+      <div class="note-title">⚠️ 廃用症候群は「発症の日グループ」</div>
+      廃用症候群は心大血管・呼吸器と混同されやすいですが、起算日は脳血管疾患等・運動器と同じ「発症・手術・急性増悪の日」です。7日目グループではない点に注意が必要です。
     </div>
 
     <h2>算定できるか判定フローチャート</h2>
@@ -329,17 +332,17 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
     <p>この加算は主に<strong>急性期病棟・地域包括ケア病棟</strong>向けの制度設計と理解するのが適切です。</p>
 
     <h2>算定する前に考えること</h2>
-<div class="accent-box">
-休日リハビリテーション加算、算定要件を満たすことより先に考えることがあるかもしれません。<br><br>
-休日出勤が常態化すれば、家庭を持つスタッフへの負担は確実に上がります。<br><br>
-加算を算定するかどうかは、点数の話だけでなく、チームの状況や採用への影響も含めて判断する必要があると思います。<br><br>
-制度を「使えるから使う」ではなく、「チームとして持続できるか」を軸に。
-</div>
+    <div class="accent-box">
+      休日リハビリテーション加算、算定要件を満たすことより先に考えることがあるかもしれません。<br><br>
+      休日出勤が常態化すれば、家庭を持つスタッフへの負担は確実に上がります。<br><br>
+      加算を算定するかどうかは、点数の話だけでなく、チームの状況や採用への影響も含めて判断する必要があると思います。<br><br>
+      制度を「使えるから使う」ではなく、「チームとして持続できるか」を軸に。
+    </div>
 
     <h2>まとめ：実務上の確認ポイント</h2>
     <ul>
       <li>疾患別リハビリテーション料と休日リハビリテーション加算、両方の施設基準届出が必要——未届けのまま算定すると返戻リスクがある</li>
-      <li>起算日は疾患によって異なる——廃用症候群は「7日目グループ」</li>
+      <li>起算日は疾患によって異なる——廃用症候群は脳血管・運動器と同じ「発症の日グループ」</li>
       <li>慢性疾患患者（運動器・呼吸器）は算定不可——急性増悪の有無で判断</li>
       <li>外来患者は原則算定不可——一部の退院患者のみ例外あり</li>
       <li>早期リハ加算・初期加算・急性期リハ加算との併算定可——最大180点/単位</li>
@@ -380,15 +383,15 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 
   <div class="footer">
     <a href="../index.html">← ツール一覧に戻る</a>
-<div style="text-align:center; font-size:12px; color:#a09d96; margin-top:16px; line-height:2.2;">
-  <a href="../index.html" style="color:#a09d96; text-decoration:none;">← ツール一覧</a><span style="margin:0 6px;">|</span>
-  <a href="index.html" style="color:#a09d96; text-decoration:none;">解説記事一覧</a><span style="margin:0 6px;">|</span>
-  <a href="../fim-tool.html" style="color:#a09d96; text-decoration:none;">FIM評価ツール</a><span style="margin:0 6px;">|</span>
-  <a href="../bi-tool.html" style="color:#a09d96; text-decoration:none;">BIツール</a><span style="margin:0 6px;">|</span>
-  <a href="../walk-tool.html" style="color:#a09d96; text-decoration:none;">歩行評価ツール</a><span style="margin:0 6px;">|</span>
-  <a href="../balance-tool.html" style="color:#a09d96; text-decoration:none;">バランス評価ツール</a><span style="margin:0 6px;">|</span>
-  <a href="../santei-tool.html" style="color:#a09d96; text-decoration:none;">算定日数ツール</a>
-</div>
+    <div class="footer-nav">
+      <a href="../index.html">← ツール一覧</a><span>|</span>
+      <a href="index.html">解説記事一覧</a><span>|</span>
+      <a href="../fim-tool.html">FIM評価ツール</a><span>|</span>
+      <a href="../bi-tool.html">BIツール</a><span>|</span>
+      <a href="../walk-tool.html">歩行評価ツール</a><span>|</span>
+      <a href="../balance-tool.html">バランス評価ツール</a><span>|</span>
+      <a href="../santei-tool.html">算定日数ツール</a>
+    </div>
     <div class="copyright">© リハビリ評価・計算ツール</div>
   </div>
 
