@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: / 
 
-Sitemap: https://reha-tool-jp.github.io/reha-tool/sitemap.xml
+Sitemap: https://reha-tool.jp/sitemap.xml

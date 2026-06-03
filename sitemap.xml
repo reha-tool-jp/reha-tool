@@ -1,135 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/</loc>
+    <loc>https://reha-tool.jp/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/fim-tool.html</loc>
+    <loc>https://reha-tool.jp/fim-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/bi-tool.html</loc>
+    <loc>https://reha-tool.jp/bi-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/walk-tool.html</loc>
+    <loc>https://reha-tool.jp/walk-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/hdsr-tool.html</loc>
+    <loc>https://reha-tool.jp/hdsr-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/balance-tool.html</loc>
+    <loc>https://reha-tool.jp/balance-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/santei-tool.html</loc>
+    <loc>https://reha-tool.jp/santei-tool.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/seikatsu-tool.html</loc>
+    <loc>https://reha-tool.jp/seikatsu-tool.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/kyoumi-tool.html</loc>
+    <loc>https://reha-tool.jp/kyoumi-tool.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/privacy.html</loc>
+    <loc>https://reha-tool.jp/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/index.html</loc>
+    <loc>https://reha-tool.jp/articles/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/kangokyodo-kazan.html</loc>
+    <loc>https://reha-tool.jp/articles/kangokyodo-kazan.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/pt-distribution.html</loc>
+    <loc>https://reha-tool.jp/articles/pt-distribution.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/ict-8000man.html</loc>
+    <loc>https://reha-tool.jp/articles/ict-8000man.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/bedside-reha-gensam.html</loc>
+    <loc>https://reha-tool.jp/articles/bedside-reha-gensam.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/shogai-juyo.html</loc>
+    <loc>https://reha-tool.jp/articles/shogai-juyo.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/r8-kaitei-matome.html</loc>
+    <loc>https://reha-tool.jp/articles/r8-kaitei-matome.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/minashi-tani.html</loc>
+    <loc>https://reha-tool.jp/articles/minashi-tani.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/jihi-riha-jisho-riha.html</loc>
+    <loc>https://reha-tool.jp/articles/jihi-riha-jisho-riha.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/about.html</loc>
+    <loc>https://reha-tool.jp/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/contact.html</loc>
+    <loc>https://reha-tool.jp/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/tug-10m-kijunchi.html</loc>
+    <loc>https://reha-tool.jp/articles/tug-10m-kijunchi.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/jisseki-shisu.html</loc>
+    <loc>https://reha-tool.jp/articles/jisseki-shisu.html</loc>
     <lastmod>2026-05-17</lastmod>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/seikatsu-chouhyo.html</loc>
+    <loc>https://reha-tool.jp/articles/seikatsu-chouhyo.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/articles/kyoumi-chouhyo.html</loc>
+    <loc>https://reha-tool.jp/articles/kyoumi-chouhyo.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://reha-tool-jp.github.io/reha-tool/kihon-checklist.html</loc>
+    <loc>https://reha-tool.jp/kihon-checklist.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

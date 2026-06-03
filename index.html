@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="/reha-tool/images/icon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>リハビリ評価・計算ツール | PT・OT・ST・機能訓練指導員向け無料ツール集</title>
+<title>リハビリ評価・計算ツール ＆ 制度解説メディア | PT・OT・ST向け無料ツール集</title>
 <meta name="description" content="PT・OT・ST・機能訓練指導員向けの無料リハビリ評価・計算ツール集。デイサービス・訪問リハ・回復期病棟で使えるFIM、BI、生活機能チェックシート、興味・関心チェックシート、HDS-R、歩行評価、バランス評価など。登録不要・無料。">
 <meta name="google-site-verification" content="KWL3so-Yvycvz_JBnr2qALfBszpFqr8x_ZtKnwj6NJU">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
@@ -72,6 +72,23 @@
   header p { font-size: 12px; opacity: 0.8; margin-top: 5px; line-height: 1.6; }
 
   .container { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
+
+  /* --- グローバルナビ --- */
+  .global-nav {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-container {
+    max-width: 640px; margin: 0 auto;
+    display: flex; gap: 12px; padding: 12px 16px;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .nav-container a {
+    color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px; background: var(--surface2);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-container a:hover { background: var(--accent-light); color: var(--accent); }
 
   /* --- セクション見出し --- */
   .section-title {
@@ -222,16 +239,23 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "リハビリ評価・計算ツール",
-  "url": "https://reha-tool-jp.github.io/reha-tool/"
+  "url": "https://reha-tool.jp/"
 }
 </script>
 </head>
 <body>
 
 <header>
-  <h1>🩺 リハビリ評価・計算ツール</h1>
-  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
+  <h1>🩺 リハビリ評価・計算ツール ＆ 制度解説メディア</h1>
+  <p>PT・OT・ST・機能訓練指導員向け 無料評価ツールとリハビリ制度の解説記事<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
 </header>
+<nav class="global-nav">
+  <div class="nav-container">
+    <a href="#articles">解説記事</a>
+    <a href="#tools">評価ツール</a>
+    <a href="#about">このサイトについて</a>
+  </div>
+</nav>
 
 <div class="container">
 
@@ -256,8 +280,73 @@
 
 </div>
 
+  <!-- ④ 解説記事 -->
+  <div id="articles" class="section-title">
+    <span class="section-icon">📰</span>
+    解説記事
+    <span class="section-note">制度・診療報酬・データ</span>
+  </div>
+
+  <a class="article-card" href="articles/giren.html">
+    <div class="article-head">
+      <span class="article-icon">🏛️</span>
+      <span class="article-title">リハビリテーションを考える議員連盟とは？設立・メンバー・2026年の動きを解説</span>
+    </div>
+    <div class="article-desc">2013年10名から2026年247名へ。PT・OT法改正・統括調整室設置の背景にある議連の13年史を一次ソースから解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/r8-kaitei-matome.html">
+    <div class="article-head">
+      <span class="article-icon">📅</span>
+      <span class="article-title">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
+    </div>
+    <div class="article-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/minashi-tani.html">
+    <div class="article-head">
+      <span class="article-icon">📝</span>
+      <span class="article-title">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
+    </div>
+    <div class="article-desc">2026年改定で注目される「みなし単位」の概念と算定上のリスクを整理。</div>
+  </a>
+
+  <a class="article-card" href="articles/jisseki-shisu.html">
+    <div class="article-head">
+      <span class="article-icon">📊</span>
+      <span class="article-title">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
+    </div>
+    <div class="article-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/jihi-riha-jisho-riha.html">
+    <div class="article-head">
+      <span class="article-icon">⚖️</span>
+      <span class="article-title">「自費リハ・自称リハ」問題と国会質疑の論点</span>
+    </div>
+    <div class="article-desc">民間リハビリサービスの名称問題。国会での議論から見える制度の隙間と実態。</div>
+  </a>
+
+  <a class="article-card" href="articles/bedside-reha-gensam.html">
+    <div class="article-head">
+      <span class="article-icon">🛏️</span>
+      <span class="article-title">ベッドサイドリハ減算とは？2026年改定の背景と現場への影響</span>
+    </div>
+    <div class="article-desc">離床・歩行練習を促す新たな減算要件の内容と、算定継続のために必要な対応を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/souki-reha-kazan.html">
+    <div class="article-head">
+      <span class="article-icon">⏱️</span>
+      <span class="article-title">早期リハビリテーション加算とは？2026年改定の変更点と算定要件</span>
+    </div>
+    <div class="article-desc">入院早期のリハ介入を評価する加算の算定要件・終了日・2026年改定による変更点を解説。</div>
+  </a>
+
+  <a class="more-link" href="articles/index.html">すべての解説記事を見る →</a>
+
 <!-- ① ADL・身体機能の評価ツール -->
-  <div class="section-title">
+  <div id="tools" class="section-title">
     <span class="section-icon">📋</span>
     ADL・身体機能の評価ツール
     <span class="section-note">回復期・訪問・外来</span>
@@ -360,73 +449,9 @@
     <div class="tool-desc">25項目をタップで入力し7つのドメインのリスクを自動判定。BMI自動計算対応。介護予防・日常生活支援総合事業対応。</div>
   </a>
 
-  <!-- ④ 解説記事 -->
-  <div class="section-title">
-    <span class="section-icon">📰</span>
-    解説記事
-    <span class="section-note">制度・診療報酬・データ</span>
-  </div>
-
-  <a class="article-card" href="articles/giren.html">
-    <div class="article-head">
-      <span class="article-icon">🏛️</span>
-      <span class="article-title">リハビリテーションを考える議員連盟とは？設立・メンバー・2026年の動きを解説</span>
-    </div>
-    <div class="article-desc">2013年10名から2026年247名へ。PT・OT法改正・統括調整室設置の背景にある議連の13年史を一次ソースから解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/r8-kaitei-matome.html">
-    <div class="article-head">
-      <span class="article-icon">📅</span>
-      <span class="article-title">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
-    </div>
-    <div class="article-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/minashi-tani.html">
-    <div class="article-head">
-      <span class="article-icon">📝</span>
-      <span class="article-title">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
-    </div>
-    <div class="article-desc">2026年改定で注目される「みなし単位」の概念と算定上のリスクを整理。</div>
-  </a>
-
-  <a class="article-card" href="articles/jisseki-shisu.html">
-    <div class="article-head">
-      <span class="article-icon">📊</span>
-      <span class="article-title">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
-    </div>
-    <div class="article-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/jihi-riha-jisho-riha.html">
-    <div class="article-head">
-      <span class="article-icon">⚖️</span>
-      <span class="article-title">「自費リハ・自称リハ」問題と国会質疑の論点</span>
-    </div>
-    <div class="article-desc">民間リハビリサービスの名称問題。国会での議論から見える制度の隙間と実態。</div>
-  </a>
-
-  <a class="article-card" href="articles/bedside-reha-gensam.html">
-    <div class="article-head">
-      <span class="article-icon">🛏️</span>
-      <span class="article-title">ベッドサイドリハ減算とは？2026年改定の背景と現場への影響</span>
-    </div>
-    <div class="article-desc">離床・歩行練習を促す新たな減算要件の内容と、算定継続のために必要な対応を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/souki-reha-kazan.html">
-    <div class="article-head">
-      <span class="article-icon">⏱️</span>
-      <span class="article-title">早期リハビリテーション加算とは？2026年改定の変更点と算定要件</span>
-    </div>
-    <div class="article-desc">入院早期のリハ介入を評価する加算の算定要件・終了日・2026年改定による変更点を解説。</div>
-  </a>
-
-  <a class="more-link" href="articles/index.html">すべての解説記事を見る →</a>
 
   <!-- サイト説明 -->
-  <div class="about-section">
+  <div id="about" class="about-section">
     <h2>このサイトについて</h2>
     <p>理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）・機能訓練指導員が現場で使えるリハビリ評価・計算ツールを無料で提供しています。デイサービス・訪問リハ・回復期病棟・外来リハビリなど幅広い場面に対応しています。</p>
     <div class="feature-list">
