@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <link rel="icon" type="image/png" href="/reha-tool/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
@@ -88,6 +88,12 @@
     #print-overlay { display: block !important; }
   }
   #print-overlay { display: none; }
+@media print {
+  .adsbygoogle,
+  ins.adsbygoogle {
+    display: none !important;
+  }
+}
 </style>
 </head>
 <body>
