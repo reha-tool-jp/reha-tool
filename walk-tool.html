@@ -1,700 +1,700 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<link rel="icon" type="image/png" href="/reha-tool/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YJLTBSGZ21');
-</script>
-
-<link rel="icon" type="image/png" href="/reha-tool/images/icon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TUG・10m歩行テスト 歩行評価ツール | リハビリ評価・計算ツール</title>
-<meta name="description" content="無料で使えるTUG（Timed Up and Go）・10m歩行テストの計測ツール。ストップウォッチ内蔵で複数回計測し平均タイムを自動算出。歩行速度・カットオフ値も確認可能。登録不要・印刷・PDF保存対応。">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
-     crossorigin="anonymous"></script>
-<style>
-  :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --surface2: #f0efe9;
-    --border: #e0ddd4;
-    --border2: #ccc9be;
-    --text: #1a1916;
-    --text2: #6b6860;
-    --text3: #a09d96;
-    --accent: #2a5c45;
-    --accent-light: #e8f2ed;
-    --danger: #b83030;
-    --danger-light: #fdf0f0;
-    --warn: #8a5c00;
-    --warn-light: #fdf6e3;
-    --info: #1a4a7a;
-    --info-light: #e8f0fa;
-    --radius: 10px;
-    --mono: 'SF Mono', 'Courier New', Courier, monospace;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 60px;
-  }
-
-  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
-  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
-  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
-
-  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
-
-  /* タブ */
-  .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-  .tab-btn {
-    flex: 1; padding: 10px; font-size: 14px; font-weight: 700;
-    border: 2px solid var(--border); border-radius: var(--radius);
-    background: var(--surface); color: var(--text2); cursor: pointer;
-    font-family: inherit; transition: all 0.15s;
-  }
-  .tab-btn.active {
-    border-color: var(--accent); background: var(--accent); color: #fff;
-  }
-
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  /* 患者名 */
-  .patient-name-wrap {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .patient-name-wrap label { font-size: 13px; color: var(--text2); white-space: nowrap; }
-  .patient-name-input {
-    flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none;
-    color: var(--text); font-family: inherit; background: transparent;
-  }
-  .patient-name-input::placeholder { color: var(--text3); font-weight: 400; }
-
-  /* ストップウォッチ */
-  .stopwatch-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
-    text-align: center;
-  }
-  .sw-display {
-    font-size: 56px; font-weight: 700; font-family: var(--mono);
-    color: var(--accent); letter-spacing: 0.05em; line-height: 1;
-    margin-bottom: 4px;
-  }
-  .sw-display.running { color: var(--danger); }
-  .sw-label { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
-
-  .sw-btns { display: flex; gap: 10px; justify-content: center; }
-  .sw-btn {
-    padding: 12px 28px; font-size: 16px; font-weight: 700;
-    border-radius: var(--radius); cursor: pointer; font-family: inherit;
-    border: none; transition: opacity 0.1s, transform 0.1s;
-    min-width: 120px;
-  }
-  .sw-btn:active { transform: scale(0.97); }
-  .sw-btn-start { background: var(--accent); color: #fff; }
-  .sw-btn-stop { background: var(--danger); color: #fff; }
-  .sw-btn-reset { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
-  .sw-btn-lap {
-    background: var(--info-light); color: var(--info);
-    border: 1px solid var(--info);
-  }
-
-  /* 計測履歴 */
-  .records-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 16px; margin-bottom: 16px;
-  }
-  .records-title {
-    font-size: 13px; font-weight: 700; color: var(--text2);
-    margin-bottom: 12px;
-  }
-  .record-list { display: flex; flex-direction: column; gap: 6px; }
-  .record-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 10px; background: var(--bg); border-radius: 6px;
-    border: 1px solid var(--border);
-  }
-  .record-num { font-size: 12px; color: var(--text3); min-width: 36px; }
-  .record-time {
-    font-size: 18px; font-weight: 700; font-family: var(--mono);
-    color: var(--text); flex: 1; text-align: center;
-  }
-  .record-delete {
-    font-size: 11px; color: var(--text3); background: none; border: none;
-    cursor: pointer; padding: 2px 6px;
-  }
-  .record-delete:hover { color: var(--danger); }
-
-  .avg-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 10px 0; border-top: 1px solid var(--border); margin-top: 8px;
-  }
-  .avg-label { font-size: 13px; color: var(--text2); font-weight: 700; }
-  .avg-value {
-    font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--accent);
-  }
-
-  .empty-records {
-    text-align: center; color: var(--text3); font-size: 13px; padding: 12px 0;
-  }
-
-  /* 判定カード */
-  .judge-card {
-    border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
-  }
-  .judge-card-title { font-size: 12px; font-weight: 700; margin-bottom: 8px; opacity: 0.8; }
-  .judge-rows { display: flex; flex-direction: column; gap: 4px; }
-  .judge-row {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; padding: 4px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-  .judge-row:last-child { border-bottom: none; }
-  .judge-row .jl { color: inherit; opacity: 0.75; }
-  .judge-row .jv { font-weight: 700; font-family: var(--mono); }
-  .judge-highlight {
-    background: var(--accent); color: #fff;
-    padding: 3px 8px; border-radius: 4px; font-size: 12px;
-  }
-
-  /* 10m歩行の歩数・速度入力 */
-  .input-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 16px; margin-bottom: 16px;
-  }
-  .input-card-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 12px; }
-  .input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .input-row label { font-size: 13px; color: var(--text2); min-width: 80px; }
-  .input-row input {
-    flex: 1; font-size: 16px; padding: 8px 10px; border: 1px solid var(--border);
-    border-radius: var(--radius); font-family: var(--mono); outline: none;
-    background: var(--bg); color: var(--text);
-    transition: border-color 0.15s;
-  }
-  .input-row input:focus { border-color: var(--accent); }
-  .input-row .unit { font-size: 13px; color: var(--text3); min-width: 24px; }
-
-  .calc-result {
-    background: var(--accent-light); border-radius: 8px; padding: 12px 14px;
-    margin-top: 4px;
-  }
-  .calc-result-row {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 14px; padding: 3px 0;
-  }
-  .calc-result-row .cl { color: var(--accent); }
-  .calc-result-row .cv {
-    font-weight: 700; font-family: var(--mono); color: var(--accent); font-size: 16px;
-  }
-
-  /* リセットボタン */
-  .reset-btn {
-    width: 100%; padding: 11px; font-size: 14px; font-family: inherit;
-    border-radius: var(--radius); cursor: pointer; font-weight: 600;
-    background: var(--surface); color: var(--text2); border: 1px solid var(--border2);
-    transition: background 0.1s, color 0.1s; margin-top: 4px;
-  }
-  .reset-btn:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-
-  .print-btn {
-    width: 100%; padding: 11px; font-size: 14px; font-family: inherit;
-    border-radius: var(--radius); cursor: pointer; font-weight: 600;
-    background: var(--accent); color: #fff; border: none;
-    transition: opacity 0.1s; margin-top: 8px;
-  }
-  .print-btn:hover { opacity: 0.88; }
-
-  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
-  .footer a { color: var(--text3); }
-
-  /* 印刷 */
-  .print-header { display: none; }
-
-  @media print {
-    @page { size: A4 portrait; margin: 14mm; }
-    body { background: #fff !important; padding: 0; }
-    header { display: none !important; }
-    .tabs { display: none !important; }
-    .container { max-width: 100%; padding: 0; }
-    .tab-content { display: block !important; }
-    .sw-btns { display: none !important; }
-    .reset-btn { display: none !important; }
-    .info-section { display: none !important; }
-    .print-btn { display: none !important; }
-    .footer { display: none !important; }
-    .print-header {
-      display: flex !important; justify-content: space-between;
-      align-items: flex-end; margin-bottom: 10px;
-      border-bottom: 2px solid #2a5c45; padding-bottom: 6px;
-    }
-    .print-title { font-size: 13pt; font-weight: 700; color: #2a5c45; }
-    .print-sub { font-size: 8.5pt; color: #666; }
-    .stopwatch-card { page-break-inside: avoid; }
-    .sw-display { font-size: 13pt; margin-bottom: 2px; }
-    .record-delete { display: none !important; }
-    .stopwatch-card { display: none !important; }
-    .input-card { display: none !important; }
-  }
-
-.pwa-hint {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text3, #a09d96);
-  margin-top: 8px;
-  line-height: 1.6;
-}
-@media print {
-  .pwa-hint { display: none; }
-}
-@media print {
-  .adsbygoogle,
-  ins.adsbygoogle {
-    display: none !important;
-  }
-}
-</style>
-<!-- ===== PWA対応コード（全HTMLの<head>
-<link rel="icon" type="image/png" href="/reha-tool/images/icon.png">内、</head>直前に追加） ===== -->
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2a5c45">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="リハツール">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/reha-tool/service-worker.js');
-    });
-  }
-</script>
-
-<!-- ===== ここまで ===== -->
-
-</head>
-<body>
-
-<header>
-  <h1>歩行評価ツール</h1>
-  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集</p>
-</header>
-
-<div class="container">
-
-  <div class="print-header">
-    <div>
-      <div class="print-title" id="print-title-text">歩行評価記録</div>
-      <div class="print-sub">TUG / 10m歩行テスト</div>
-    </div>
-    <div class="print-sub" id="print-date"></div>
-  </div>
-
-  <div class="patient-name-wrap">
-    <label>患者名&nbsp;&nbsp;</label>
-    <input class="patient-name-input" type="text" id="patient-name" placeholder="（任意）">
-  </div>
-
-  <div class="patient-name-wrap">
-    <label>評価日&nbsp;&nbsp;</label>
-    <input class="patient-name-input" type="date" id="eval-date">
-  </div>
-
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('tug')">TUG</button>
-    <button class="tab-btn" onclick="switchTab('10m')">10m歩行</button>
-  </div>
-
-  <!-- TUG -->
-  <div id="tab-tug" class="tab-content active">
-
-    <div class="stopwatch-card">
-      <div class="sw-display" id="tug-display">0.00</div>
-      <div class="sw-label">秒</div>
-      <div class="sw-btns">
-        <button class="sw-btn sw-btn-start" id="tug-start-btn" onclick="swAction('tug')">スタート</button>
-        <button class="sw-btn sw-btn-lap" onclick="swLap('tug')">記録</button>
-        <button class="sw-btn sw-btn-reset" onclick="swReset('tug')">リセット</button>
-      </div>
-    </div>
-
-    <div class="records-card">
-      <div class="records-title">計測記録</div>
-      <div class="record-list" id="tug-records">
-        <div class="empty-records">スタート → 記録ボタンで計測できます</div>
-      </div>
-      <div class="avg-row" id="tug-avg-row" style="display:none;">
-        <span class="avg-label">平均タイム</span>
-        <span class="avg-value" id="tug-avg">—</span>
-      </div>
-    </div>
-
-    <div class="judge-card" style="background:var(--surface2); border:1px solid var(--border);">
-      <div class="judge-card-title">📋 TUG 判定基準（参考値）</div>
-      <div class="judge-rows">
-        <div class="judge-row"><span class="jl">10秒未満</span><span class="jv">自立歩行</span></div>
-        <div class="judge-row"><span class="jl">11秒以上</span><span class="jv">運動器不安定症（日整会）</span></div>
-        <div class="judge-row"><span class="jl">13.5秒以上</span><span class="jv">転倒リスクあり</span></div>
-        <div class="judge-row"><span class="jl">20〜29秒</span><span class="jv">歩行不安定</span></div>
-        <div class="judge-row"><span class="jl">30秒以上</span><span class="jv">ADLに介助が必要</span></div>
-      </div>
-    </div>
-
-    <button class="reset-btn" onclick="clearRecords('tug')">記録をクリア</button>
-    <button class="print-btn" onclick="printPage('TUG')">🖨️ 印刷 / PDF保存</button>
-    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
-
-  </div>
-
-  <!-- 10m歩行 -->
-  <div id="tab-10m" class="tab-content">
-
-    <div class="stopwatch-card">
-      <div class="sw-display" id="10m-display">0.00</div>
-      <div class="sw-label">秒</div>
-      <div class="sw-btns">
-        <button class="sw-btn sw-btn-start" id="10m-start-btn" onclick="swAction('10m')">スタート</button>
-        <button class="sw-btn sw-btn-lap" onclick="swLap('10m')">記録</button>
-        <button class="sw-btn sw-btn-reset" onclick="swReset('10m')">リセット</button>
-      </div>
-    </div>
-
-    <div class="records-card">
-      <div class="records-title">計測記録</div>
-      <div class="record-list" id="10m-records">
-        <div class="empty-records">スタート → 記録ボタンで計測できます</div>
-      </div>
-      <div class="avg-row" id="10m-avg-row" style="display:none;">
-        <span class="avg-label">平均タイム</span>
-        <span class="avg-value" id="10m-avg">—</span>
-      </div>
-    </div>
-
-    <div class="input-card">
-      <div class="input-card-title">歩数・速度の計算</div>
-      <div class="input-row">
-        <label>歩数</label>
-        <input type="number" id="step-count" placeholder="例：20" min="1" oninput="calc10m()">
-        <span class="unit">歩</span>
-      </div>
-      <div class="input-row">
-        <label>使用タイム</label>
-        <input type="number" id="use-time" placeholder="例：12.5" step="0.01" min="0.01" oninput="calc10m()">
-        <span class="unit">秒</span>
-      </div>
-      <div class="calc-result" id="calc-result" style="display:none;">
-        <div class="calc-result-row">
-          <span class="cl">歩行速度</span>
-          <span class="cv" id="res-speed">—</span>
-        </div>
-        <div class="calc-result-row">
-          <span class="cl">歩幅</span>
-          <span class="cv" id="res-stride">—</span>
-        </div>
-        <div class="calc-result-row">
-          <span class="cl">歩行率（ケイデンス）</span>
-          <span class="cv" id="res-cadence">—</span>
-        </div>
-        <div class="calc-result-row">
-          <span class="cl">判定</span>
-          <span class="cv" id="res-judge">—</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="judge-card" style="background:var(--surface2); border:1px solid var(--border);">
-      <div class="judge-card-title">📋 10m歩行 判定基準（参考値・快適歩行）</div>
-      <div class="judge-rows">
-        <div class="judge-row"><span class="jl">10秒以内（1.0m/s以上）</span><span class="jv">信号横断可・屋外自立</span></div>
-        <div class="judge-row"><span class="jl">11.6秒以内（0.86m/s以上）</span><span class="jv">回復期・屋外歩行自立</span></div>
-        <div class="judge-row"><span class="jl">12.5秒以内（0.8m/s以上）</span><span class="jv">屋外歩行可能</span></div>
-        <div class="judge-row"><span class="jl">12.5秒超（0.8m/s未満）</span><span class="jv">転倒リスク・屋外困難</span></div>
-        <div class="judge-row"><span class="jl">20秒以内（0.5m/s以上）</span><span class="jv">屋内歩行自立（地域高齢者）</span></div>
-        <div class="judge-row"><span class="jl">24.6秒超（0.4m/s未満）</span><span class="jv">屋内歩行も困難</span></div>
-      </div>
-    </div>
-
-    <button class="reset-btn" onclick="clearRecords('10m')">記録をクリア</button>
-    <button class="print-btn" onclick="printPage('10m歩行')">🖨️ 印刷 / PDF保存</button>
-    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
-
-  </div>
-
-
-  <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
-
-    <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">歩行評価ツールは、TUG（Timed Up and Go Test）と10m歩行テストをブラウザ上のストップウォッチで計測・記録できる無料ツールです。複数回の計測から平均タイムを自動算出し、歩行速度・歩幅・歩行率（ケイデンス）も計算します。理学療法士・作業療法士が現場で日常的に実施する歩行評価を、スマートフォン・タブレット・PCから登録不要で利用できます。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。</p>
-    </div>
-
-    <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">TUG（Timed Up and Go Test）とは</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">TUGは1991年にPodsiadloらによって提唱された、移動能力とバランスを評価する簡便なテストです。標準的な高さの椅子から立ち上がり、3m先の目印を回って戻り、再び着座するまでの時間を計測します。歩行補助具の使用は許可されますが、他者の介助なしで実施します。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">判定の目安として、10秒未満は自立歩行が可能、11秒以上は日本整形外科学会の運動器不安定症の診断基準に該当、13.5秒以上（Shumway-Cook基準）は転倒リスクありとされています。20〜29秒では歩行に不安定さが見られ、30秒以上ではADLに介助が必要な状態とされています。</p>
-    </div>
-
-    <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">10m歩行テストとは</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">10m歩行テストは、10mの歩行路を快適速度または最大速度で歩いた際の時間を計測し、歩行速度を算出するテストです。歩行速度は「第6のバイタルサイン」とも呼ばれ、高齢者の機能予後や死亡リスクとの関連が多くの研究で示されています。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">歩行速度の目安として、1.0m/s以上は信号横断が可能で屋外歩行が自立しているレベル、0.8m/s以上は屋外歩行可能、0.8m/s未満では転倒リスクが高く屋外歩行が困難とされています。また歩数を合わせて入力することで、歩幅と歩行率（ケイデンス）も算出できます。</p>
-    </div>
-
-    <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質問</h2>
-      <div style="margin-bottom:16px;">
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. TUGと10m歩行テストはどう使い分けますか？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. TUGは立ち上がり・歩行・方向転換・着座という一連の動作を評価するため、日常生活動作の移動能力全般を把握したい場合に適しています。10m歩行テストは純粋な歩行速度の評価に特化しており、歩行能力の定量的な経過観察や他施設との比較に向いています。目的に応じて使い分けるか、両方を組み合わせて実施することが多いです。</p>
-      </div>
-      <div style="margin-bottom:16px;">
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 快適歩行と最大歩行のどちらで計測すべきですか？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 目的によって異なります。快適歩行速度は日常の歩行能力を反映し、再現性が高いため経過観察に適しています。最大歩行速度は歩行能力の上限を評価するため、回復状況の把握や運動機能の最大値を知りたい場合に使用します。どちらで計測したかを記録しておくことが重要です。</p>
-      </div>
-      <div style="margin-bottom:16px;">
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 歩行補助具を使用している場合はどう記録しますか？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 本ツールでは補助具の記録欄は設けていませんが、印刷後に手書きで追記するか、患者名欄に「T字杖使用」などと記入して記録することをお勧めします。補助具の有無は経過比較の際に重要な情報となります。</p>
-      </div>
-      <div>
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての計測・計算はブラウザ内で完結しており、入力されたデータが外部サーバーに送信されることはありません。患者情報を含む内容も安心してご入力ください。</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
-    <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
-    <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
-      <li>Podsiadlo D, Richardson S: The timed "Up & Go": a test of basic functional mobility for frail elderly persons. J Am Geriatr Soc 39(2):142-148, 1991.</li>
-      <li>厚生労働省：疾患別リハビリテーションに係る施設基準等に関する通知（10m歩行テスト関連基準）</li>
-    </ul>
-  </div>
-
-  <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
-  <div class="article-list-home">
-    <a class="tool-card" href="articles/shogai-juyo.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">🌱</span>
-        <span class="tool-name">「障害受容」の再考：臨床現場での向き合い方</span>
-      </div>
-      <div class="tool-desc">単なる「段階説」に留まらない、患者様の揺れ動く心理状態へのアプローチと支援のあり方。</div>
-    </a>
-    <a class="tool-card" href="articles/jihi-riha-jisho-riha.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">⚖️</span>
-        <span class="tool-name">「自費リハ・自称リハ」問題と国会質疑の論点</span>
-      </div>
-      <div class="tool-desc">民間リハビリサービスの名称問題。国会での議論から見える、制度の隙間とこれからの実態。</div>
-    </a>
-    <div style="text-align: right; margin-top: 12px; padding-right: 5px; margin-bottom: 24px;">
-      <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">すべての解説記事を見る →</a>
-    </div>
-  </div>
-
-  <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a>
-    　｜　
-    <a href="santei-tool.html">算定日数ツール</a>
-    　｜　
-    <a href="fim-tool.html">FIM評価ツール</a>
-    　｜　
-    <a href="bi-tool.html">BIツール</a>
-    　｜　
-    <a href="hdsr-tool.html">HDS-Rツール</a>
-    　｜　
-    <a href="walk-tool.html">歩行評価ツール</a>
-    　｜　
-    <a href="balance-tool.html">バランス評価ツール</a>
-    　｜　
-    <a href="seikatsu-tool.html">生活機能チェック</a>
-    　｜　
-    <a href="kyoumi-tool.html">興味・関心チェック</a>
-    　｜　
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span style="margin:0 8px;color:var(--text3);">|</span><a href="terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="privacy.html">プライバシーポリシー</a>
-  </div>
-
-</div>
-
-<script>
-// ストップウォッチ状態
-const sw = {
-  tug:  { running: false, startTime: 0, elapsed: 0, timer: null, records: [] },
-  '10m':{ running: false, startTime: 0, elapsed: 0, timer: null, records: [] },
-};
-
-function swAction(id) {
-  const s = sw[id];
-  if (!s.running) {
-    // スタート
-    s.startTime = performance.now() - s.elapsed;
-    s.running = true;
-    s.timer = setInterval(() => updateDisplay(id), 10);
-    document.getElementById(id + '-start-btn').textContent = 'ストップ';
-    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-stop';
-    document.getElementById(id + '-display').classList.add('running');
-  } else {
-    // ストップ
-    s.elapsed = performance.now() - s.startTime;
-    clearInterval(s.timer);
-    s.running = false;
-    document.getElementById(id + '-start-btn').textContent = 'スタート';
-    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
-    document.getElementById(id + '-display').classList.remove('running');
-    updateDisplay(id);
-  }
-}
-
-function swLap(id) {
-  const s = sw[id];
-  const current = s.running
-    ? (performance.now() - s.startTime)
-    : s.elapsed;
-  if (current < 10) return; // 10ms未満は無視
-  const timeStr = formatTime(current);
-  s.records.push(current);
-  renderRecords(id);
-  // ストップしてリセット（次回計測のため）
-  if (s.running) {
-    clearInterval(s.timer);
-    s.running = false;
-    document.getElementById(id + '-start-btn').textContent = 'スタート';
-    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
-    document.getElementById(id + '-display').classList.remove('running');
-  }
-  s.elapsed = 0;
-  updateDisplay(id);
-}
-
-function swReset(id) {
-  const s = sw[id];
-  clearInterval(s.timer);
-  s.running = false;
-  s.elapsed = 0;
-  document.getElementById(id + '-start-btn').textContent = 'スタート';
-  document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
-  document.getElementById(id + '-display').classList.remove('running');
-  updateDisplay(id);
-}
-
-function clearRecords(id) {
-  sw[id].records = [];
-  renderRecords(id);
-}
-
-function updateDisplay(id) {
-  const s = sw[id];
-  const current = s.running
-    ? (performance.now() - s.startTime)
-    : s.elapsed;
-  document.getElementById(id + '-display').textContent = formatTime(current);
-}
-
-function formatTime(ms) {
-  const s = ms / 1000;
-  return s.toFixed(2);
-}
-
-function renderRecords(id) {
-  const records = sw[id].records;
-  const container = document.getElementById(id + '-records');
-  const avgRow = document.getElementById(id + '-avg-row');
-
-  if (records.length === 0) {
-    container.innerHTML = '<div class="empty-records">スタート → 記録ボタンで計測できます</div>';
-    avgRow.style.display = 'none';
-    return;
-  }
-
-  container.innerHTML = records.map((r, i) => `
-    <div class="record-item">
-      <span class="record-num">${i + 1}回目</span>
-      <span class="record-time">${formatTime(r)} 秒</span>
-      <button class="record-delete" onclick="deleteRecord('${id}', ${i})">✕</button>
-    </div>
-  `).join('');
-
-  const avg = records.reduce((a, b) => a + b, 0) / records.length;
-  document.getElementById(id + '-avg').textContent = formatTime(avg) + ' 秒';
-  avgRow.style.display = 'flex';
-
-  // 10m歩行のuse-timeに平均を自動入力
-  if (id === '10m') {
-    const useTimeInput = document.getElementById('use-time');
-    if (!useTimeInput.value) {
-      useTimeInput.value = formatTime(avg);
-      calc10m();
-    }
-  }
-}
-
-function deleteRecord(id, idx) {
-  sw[id].records.splice(idx, 1);
-  renderRecords(id);
-}
-
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', (i === 0 && tab === 'tug') || (i === 1 && tab === '10m'));
-  });
-  document.getElementById('tab-tug').classList.toggle('active', tab === 'tug');
-  document.getElementById('tab-10m').classList.toggle('active', tab === '10m');
-}
-
-function calc10m() {
-  const steps = parseFloat(document.getElementById('step-count').value);
-  const time = parseFloat(document.getElementById('use-time').value);
-  const resultEl = document.getElementById('calc-result');
-
-  if (!time || time <= 0) { resultEl.style.display = 'none'; return; }
-
-  const speed = 10 / time;
-  resultEl.style.display = 'block';
-
-  document.getElementById('res-speed').textContent = speed.toFixed(2) + ' m/s';
-
-  if (steps && steps > 0) {
-    const stride = (10 / steps).toFixed(2);
-    const cadence = ((steps / time) * 60).toFixed(1);
-    document.getElementById('res-stride').textContent = stride + ' m';
-    document.getElementById('res-cadence').textContent = cadence + ' 歩/分';
-  } else {
-    document.getElementById('res-stride').textContent = '（歩数未入力）';
-    document.getElementById('res-cadence').textContent = '（歩数未入力）';
-  }
-
-  // 判定
-  let judge = '';
-  if (speed >= 1.0) judge = '✅ 信号横断可・屋外自立';
-  else if (speed >= 0.8) judge = '🟡 屋外歩行可能';
-  else judge = '⚠️ 転倒リスク・屋外困難';
-  document.getElementById('res-judge').textContent = judge;
-}
-
-function printPage(label) {
-  document.getElementById('print-title-text').textContent = '歩行評価記録（' + label + '）';
-  const dateInput = document.getElementById('eval-date').value;
-  const dateStr = dateInput
-    ? new Date(dateInput).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
-    : '（日付未入力）';
-  document.getElementById('print-date').textContent = '評価日：' + dateStr;
-  window.print();
-}
-</script>
-</body>
-</html>
-
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJLTBSGZ21');
+</script>
+
+<link rel="icon" type="image/png" href="/images/icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUG・10m歩行テスト 歩行評価ツール | リハビリ評価・計算ツール</title>
+<meta name="description" content="無料で使えるTUG（Timed Up and Go）・10m歩行テストの計測ツール。ストップウォッチ内蔵で複数回計測し平均タイムを自動算出。歩行速度・カットオフ値も確認可能。登録不要・印刷・PDF保存対応。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290"
+     crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e0ddd4;
+    --border2: #ccc9be;
+    --text: #1a1916;
+    --text2: #6b6860;
+    --text3: #a09d96;
+    --accent: #2a5c45;
+    --accent-light: #e8f2ed;
+    --danger: #b83030;
+    --danger-light: #fdf0f0;
+    --warn: #8a5c00;
+    --warn-light: #fdf6e3;
+    --info: #1a4a7a;
+    --info-light: #e8f0fa;
+    --radius: 10px;
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  /* タブ */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .tab-btn {
+    flex: 1; padding: 10px; font-size: 14px; font-weight: 700;
+    border: 2px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); color: var(--text2); cursor: pointer;
+    font-family: inherit; transition: all 0.15s;
+  }
+  .tab-btn.active {
+    border-color: var(--accent); background: var(--accent); color: #fff;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* 患者名 */
+  .patient-name-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .patient-name-wrap label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+  .patient-name-input {
+    flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none;
+    color: var(--text); font-family: inherit; background: transparent;
+  }
+  .patient-name-input::placeholder { color: var(--text3); font-weight: 400; }
+
+  /* ストップウォッチ */
+  .stopwatch-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+    text-align: center;
+  }
+  .sw-display {
+    font-size: 56px; font-weight: 700; font-family: var(--mono);
+    color: var(--accent); letter-spacing: 0.05em; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .sw-display.running { color: var(--danger); }
+  .sw-label { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+
+  .sw-btns { display: flex; gap: 10px; justify-content: center; }
+  .sw-btn {
+    padding: 12px 28px; font-size: 16px; font-weight: 700;
+    border-radius: var(--radius); cursor: pointer; font-family: inherit;
+    border: none; transition: opacity 0.1s, transform 0.1s;
+    min-width: 120px;
+  }
+  .sw-btn:active { transform: scale(0.97); }
+  .sw-btn-start { background: var(--accent); color: #fff; }
+  .sw-btn-stop { background: var(--danger); color: #fff; }
+  .sw-btn-reset { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
+  .sw-btn-lap {
+    background: var(--info-light); color: var(--info);
+    border: 1px solid var(--info);
+  }
+
+  /* 計測履歴 */
+  .records-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px; margin-bottom: 16px;
+  }
+  .records-title {
+    font-size: 13px; font-weight: 700; color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .record-list { display: flex; flex-direction: column; gap: 6px; }
+  .record-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px; background: var(--bg); border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .record-num { font-size: 12px; color: var(--text3); min-width: 36px; }
+  .record-time {
+    font-size: 18px; font-weight: 700; font-family: var(--mono);
+    color: var(--text); flex: 1; text-align: center;
+  }
+  .record-delete {
+    font-size: 11px; color: var(--text3); background: none; border: none;
+    cursor: pointer; padding: 2px 6px;
+  }
+  .record-delete:hover { color: var(--danger); }
+
+  .avg-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 10px 0; border-top: 1px solid var(--border); margin-top: 8px;
+  }
+  .avg-label { font-size: 13px; color: var(--text2); font-weight: 700; }
+  .avg-value {
+    font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--accent);
+  }
+
+  .empty-records {
+    text-align: center; color: var(--text3); font-size: 13px; padding: 12px 0;
+  }
+
+  /* 判定カード */
+  .judge-card {
+    border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
+  }
+  .judge-card-title { font-size: 12px; font-weight: 700; margin-bottom: 8px; opacity: 0.8; }
+  .judge-rows { display: flex; flex-direction: column; gap: 4px; }
+  .judge-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; padding: 4px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .judge-row:last-child { border-bottom: none; }
+  .judge-row .jl { color: inherit; opacity: 0.75; }
+  .judge-row .jv { font-weight: 700; font-family: var(--mono); }
+  .judge-highlight {
+    background: var(--accent); color: #fff;
+    padding: 3px 8px; border-radius: 4px; font-size: 12px;
+  }
+
+  /* 10m歩行の歩数・速度入力 */
+  .input-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px; margin-bottom: 16px;
+  }
+  .input-card-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 12px; }
+  .input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .input-row label { font-size: 13px; color: var(--text2); min-width: 80px; }
+  .input-row input {
+    flex: 1; font-size: 16px; padding: 8px 10px; border: 1px solid var(--border);
+    border-radius: var(--radius); font-family: var(--mono); outline: none;
+    background: var(--bg); color: var(--text);
+    transition: border-color 0.15s;
+  }
+  .input-row input:focus { border-color: var(--accent); }
+  .input-row .unit { font-size: 13px; color: var(--text3); min-width: 24px; }
+
+  .calc-result {
+    background: var(--accent-light); border-radius: 8px; padding: 12px 14px;
+    margin-top: 4px;
+  }
+  .calc-result-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; padding: 3px 0;
+  }
+  .calc-result-row .cl { color: var(--accent); }
+  .calc-result-row .cv {
+    font-weight: 700; font-family: var(--mono); color: var(--accent); font-size: 16px;
+  }
+
+  /* リセットボタン */
+  .reset-btn {
+    width: 100%; padding: 11px; font-size: 14px; font-family: inherit;
+    border-radius: var(--radius); cursor: pointer; font-weight: 600;
+    background: var(--surface); color: var(--text2); border: 1px solid var(--border2);
+    transition: background 0.1s, color 0.1s; margin-top: 4px;
+  }
+  .reset-btn:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+  .print-btn {
+    width: 100%; padding: 11px; font-size: 14px; font-family: inherit;
+    border-radius: var(--radius); cursor: pointer; font-weight: 600;
+    background: var(--accent); color: #fff; border: none;
+    transition: opacity 0.1s; margin-top: 8px;
+  }
+  .print-btn:hover { opacity: 0.88; }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
+  .footer a { color: var(--text3); }
+
+  /* 印刷 */
+  .print-header { display: none; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 14mm; }
+    body { background: #fff !important; padding: 0; }
+    header { display: none !important; }
+    .tabs { display: none !important; }
+    .container { max-width: 100%; padding: 0; }
+    .tab-content { display: block !important; }
+    .sw-btns { display: none !important; }
+    .reset-btn { display: none !important; }
+    .info-section { display: none !important; }
+    .print-btn { display: none !important; }
+    .footer { display: none !important; }
+    .print-header {
+      display: flex !important; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 10px;
+      border-bottom: 2px solid #2a5c45; padding-bottom: 6px;
+    }
+    .print-title { font-size: 13pt; font-weight: 700; color: #2a5c45; }
+    .print-sub { font-size: 8.5pt; color: #666; }
+    .stopwatch-card { page-break-inside: avoid; }
+    .sw-display { font-size: 13pt; margin-bottom: 2px; }
+    .record-delete { display: none !important; }
+    .stopwatch-card { display: none !important; }
+    .input-card { display: none !important; }
+  }
+
+.pwa-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3, #a09d96);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+@media print {
+  .pwa-hint { display: none; }
+}
+@media print {
+  .adsbygoogle,
+  ins.adsbygoogle {
+    display: none !important;
+  }
+}
+</style>
+<!-- ===== PWA対応コード（全HTMLの<head>
+<link rel="icon" type="image/png" href="/images/icon.png">内、</head>直前に追加） ===== -->
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a5c45">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="リハツール">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+</script>
+
+<!-- ===== ここまで ===== -->
+
+</head>
+<body>
+
+<header>
+  <h1>歩行評価ツール</h1>
+  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集</p>
+</header>
+
+<div class="container">
+
+  <div class="print-header">
+    <div>
+      <div class="print-title" id="print-title-text">歩行評価記録</div>
+      <div class="print-sub">TUG / 10m歩行テスト</div>
+    </div>
+    <div class="print-sub" id="print-date"></div>
+  </div>
+
+  <div class="patient-name-wrap">
+    <label>患者名&nbsp;&nbsp;</label>
+    <input class="patient-name-input" type="text" id="patient-name" placeholder="（任意）">
+  </div>
+
+  <div class="patient-name-wrap">
+    <label>評価日&nbsp;&nbsp;</label>
+    <input class="patient-name-input" type="date" id="eval-date">
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('tug')">TUG</button>
+    <button class="tab-btn" onclick="switchTab('10m')">10m歩行</button>
+  </div>
+
+  <!-- TUG -->
+  <div id="tab-tug" class="tab-content active">
+
+    <div class="stopwatch-card">
+      <div class="sw-display" id="tug-display">0.00</div>
+      <div class="sw-label">秒</div>
+      <div class="sw-btns">
+        <button class="sw-btn sw-btn-start" id="tug-start-btn" onclick="swAction('tug')">スタート</button>
+        <button class="sw-btn sw-btn-lap" onclick="swLap('tug')">記録</button>
+        <button class="sw-btn sw-btn-reset" onclick="swReset('tug')">リセット</button>
+      </div>
+    </div>
+
+    <div class="records-card">
+      <div class="records-title">計測記録</div>
+      <div class="record-list" id="tug-records">
+        <div class="empty-records">スタート → 記録ボタンで計測できます</div>
+      </div>
+      <div class="avg-row" id="tug-avg-row" style="display:none;">
+        <span class="avg-label">平均タイム</span>
+        <span class="avg-value" id="tug-avg">—</span>
+      </div>
+    </div>
+
+    <div class="judge-card" style="background:var(--surface2); border:1px solid var(--border);">
+      <div class="judge-card-title">📋 TUG 判定基準（参考値）</div>
+      <div class="judge-rows">
+        <div class="judge-row"><span class="jl">10秒未満</span><span class="jv">自立歩行</span></div>
+        <div class="judge-row"><span class="jl">11秒以上</span><span class="jv">運動器不安定症（日整会）</span></div>
+        <div class="judge-row"><span class="jl">13.5秒以上</span><span class="jv">転倒リスクあり</span></div>
+        <div class="judge-row"><span class="jl">20〜29秒</span><span class="jv">歩行不安定</span></div>
+        <div class="judge-row"><span class="jl">30秒以上</span><span class="jv">ADLに介助が必要</span></div>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="clearRecords('tug')">記録をクリア</button>
+    <button class="print-btn" onclick="printPage('TUG')">🖨️ 印刷 / PDF保存</button>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+
+  </div>
+
+  <!-- 10m歩行 -->
+  <div id="tab-10m" class="tab-content">
+
+    <div class="stopwatch-card">
+      <div class="sw-display" id="10m-display">0.00</div>
+      <div class="sw-label">秒</div>
+      <div class="sw-btns">
+        <button class="sw-btn sw-btn-start" id="10m-start-btn" onclick="swAction('10m')">スタート</button>
+        <button class="sw-btn sw-btn-lap" onclick="swLap('10m')">記録</button>
+        <button class="sw-btn sw-btn-reset" onclick="swReset('10m')">リセット</button>
+      </div>
+    </div>
+
+    <div class="records-card">
+      <div class="records-title">計測記録</div>
+      <div class="record-list" id="10m-records">
+        <div class="empty-records">スタート → 記録ボタンで計測できます</div>
+      </div>
+      <div class="avg-row" id="10m-avg-row" style="display:none;">
+        <span class="avg-label">平均タイム</span>
+        <span class="avg-value" id="10m-avg">—</span>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <div class="input-card-title">歩数・速度の計算</div>
+      <div class="input-row">
+        <label>歩数</label>
+        <input type="number" id="step-count" placeholder="例：20" min="1" oninput="calc10m()">
+        <span class="unit">歩</span>
+      </div>
+      <div class="input-row">
+        <label>使用タイム</label>
+        <input type="number" id="use-time" placeholder="例：12.5" step="0.01" min="0.01" oninput="calc10m()">
+        <span class="unit">秒</span>
+      </div>
+      <div class="calc-result" id="calc-result" style="display:none;">
+        <div class="calc-result-row">
+          <span class="cl">歩行速度</span>
+          <span class="cv" id="res-speed">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="cl">歩幅</span>
+          <span class="cv" id="res-stride">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="cl">歩行率（ケイデンス）</span>
+          <span class="cv" id="res-cadence">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="cl">判定</span>
+          <span class="cv" id="res-judge">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="judge-card" style="background:var(--surface2); border:1px solid var(--border);">
+      <div class="judge-card-title">📋 10m歩行 判定基準（参考値・快適歩行）</div>
+      <div class="judge-rows">
+        <div class="judge-row"><span class="jl">10秒以内（1.0m/s以上）</span><span class="jv">信号横断可・屋外自立</span></div>
+        <div class="judge-row"><span class="jl">11.6秒以内（0.86m/s以上）</span><span class="jv">回復期・屋外歩行自立</span></div>
+        <div class="judge-row"><span class="jl">12.5秒以内（0.8m/s以上）</span><span class="jv">屋外歩行可能</span></div>
+        <div class="judge-row"><span class="jl">12.5秒超（0.8m/s未満）</span><span class="jv">転倒リスク・屋外困難</span></div>
+        <div class="judge-row"><span class="jl">20秒以内（0.5m/s以上）</span><span class="jv">屋内歩行自立（地域高齢者）</span></div>
+        <div class="judge-row"><span class="jl">24.6秒超（0.4m/s未満）</span><span class="jv">屋内歩行も困難</span></div>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="clearRecords('10m')">記録をクリア</button>
+    <button class="print-btn" onclick="printPage('10m歩行')">🖨️ 印刷 / PDF保存</button>
+    <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+
+  </div>
+
+
+  <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">歩行評価ツールは、TUG（Timed Up and Go Test）と10m歩行テストをブラウザ上のストップウォッチで計測・記録できる無料ツールです。複数回の計測から平均タイムを自動算出し、歩行速度・歩幅・歩行率（ケイデンス）も計算します。理学療法士・作業療法士が現場で日常的に実施する歩行評価を、スマートフォン・タブレット・PCから登録不要で利用できます。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">TUG（Timed Up and Go Test）とは</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">TUGは1991年にPodsiadloらによって提唱された、移動能力とバランスを評価する簡便なテストです。標準的な高さの椅子から立ち上がり、3m先の目印を回って戻り、再び着座するまでの時間を計測します。歩行補助具の使用は許可されますが、他者の介助なしで実施します。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">判定の目安として、10秒未満は自立歩行が可能、11秒以上は日本整形外科学会の運動器不安定症の診断基準に該当、13.5秒以上（Shumway-Cook基準）は転倒リスクありとされています。20〜29秒では歩行に不安定さが見られ、30秒以上ではADLに介助が必要な状態とされています。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">10m歩行テストとは</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">10m歩行テストは、10mの歩行路を快適速度または最大速度で歩いた際の時間を計測し、歩行速度を算出するテストです。歩行速度は「第6のバイタルサイン」とも呼ばれ、高齢者の機能予後や死亡リスクとの関連が多くの研究で示されています。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">歩行速度の目安として、1.0m/s以上は信号横断が可能で屋外歩行が自立しているレベル、0.8m/s以上は屋外歩行可能、0.8m/s未満では転倒リスクが高く屋外歩行が困難とされています。また歩数を合わせて入力することで、歩幅と歩行率（ケイデンス）も算出できます。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質問</h2>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. TUGと10m歩行テストはどう使い分けますか？</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. TUGは立ち上がり・歩行・方向転換・着座という一連の動作を評価するため、日常生活動作の移動能力全般を把握したい場合に適しています。10m歩行テストは純粋な歩行速度の評価に特化しており、歩行能力の定量的な経過観察や他施設との比較に向いています。目的に応じて使い分けるか、両方を組み合わせて実施することが多いです。</p>
+      </div>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 快適歩行と最大歩行のどちらで計測すべきですか？</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 目的によって異なります。快適歩行速度は日常の歩行能力を反映し、再現性が高いため経過観察に適しています。最大歩行速度は歩行能力の上限を評価するため、回復状況の把握や運動機能の最大値を知りたい場合に使用します。どちらで計測したかを記録しておくことが重要です。</p>
+      </div>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 歩行補助具を使用している場合はどう記録しますか？</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 本ツールでは補助具の記録欄は設けていませんが、印刷後に手書きで追記するか、患者名欄に「T字杖使用」などと記入して記録することをお勧めします。補助具の有無は経過比較の際に重要な情報となります。</p>
+      </div>
+      <div>
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての計測・計算はブラウザ内で完結しており、入力されたデータが外部サーバーに送信されることはありません。患者情報を含む内容も安心してご入力ください。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
+    <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
+    <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
+      <li>Podsiadlo D, Richardson S: The timed "Up & Go": a test of basic functional mobility for frail elderly persons. J Am Geriatr Soc 39(2):142-148, 1991.</li>
+      <li>厚生労働省：疾患別リハビリテーションに係る施設基準等に関する通知（10m歩行テスト関連基準）</li>
+    </ul>
+  </div>
+
+  <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
+  <div class="article-list-home">
+    <a class="tool-card" href="articles/shogai-juyo.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🌱</span>
+        <span class="tool-name">「障害受容」の再考：臨床現場での向き合い方</span>
+      </div>
+      <div class="tool-desc">単なる「段階説」に留まらない、患者様の揺れ動く心理状態へのアプローチと支援のあり方。</div>
+    </a>
+    <a class="tool-card" href="articles/jihi-riha-jisho-riha.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">⚖️</span>
+        <span class="tool-name">「自費リハ・自称リハ」問題と国会質疑の論点</span>
+      </div>
+      <div class="tool-desc">民間リハビリサービスの名称問題。国会での議論から見える、制度の隙間とこれからの実態。</div>
+    </a>
+    <div style="text-align: right; margin-top: 12px; padding-right: 5px; margin-bottom: 24px;">
+      <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">すべての解説記事を見る →</a>
+    </div>
+  </div>
+
+  <div class="footer" style="margin-top:32px;">
+    <a href="index.html">← ツール一覧</a>
+    　｜　
+    <a href="santei-tool.html">算定日数ツール</a>
+    　｜　
+    <a href="fim-tool.html">FIM評価ツール</a>
+    　｜　
+    <a href="bi-tool.html">BIツール</a>
+    　｜　
+    <a href="hdsr-tool.html">HDS-Rツール</a>
+    　｜　
+    <a href="walk-tool.html">歩行評価ツール</a>
+    　｜　
+    <a href="balance-tool.html">バランス評価ツール</a>
+    　｜　
+    <a href="seikatsu-tool.html">生活機能チェック</a>
+    　｜　
+    <a href="kyoumi-tool.html">興味・関心チェック</a>
+    　｜　
+    <a href="/contact.html">お問い合わせ</a><span style="margin:0 8px;color:var(--text3);">|</span><a href="terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+
+<script>
+// ストップウォッチ状態
+const sw = {
+  tug:  { running: false, startTime: 0, elapsed: 0, timer: null, records: [] },
+  '10m':{ running: false, startTime: 0, elapsed: 0, timer: null, records: [] },
+};
+
+function swAction(id) {
+  const s = sw[id];
+  if (!s.running) {
+    // スタート
+    s.startTime = performance.now() - s.elapsed;
+    s.running = true;
+    s.timer = setInterval(() => updateDisplay(id), 10);
+    document.getElementById(id + '-start-btn').textContent = 'ストップ';
+    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-stop';
+    document.getElementById(id + '-display').classList.add('running');
+  } else {
+    // ストップ
+    s.elapsed = performance.now() - s.startTime;
+    clearInterval(s.timer);
+    s.running = false;
+    document.getElementById(id + '-start-btn').textContent = 'スタート';
+    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
+    document.getElementById(id + '-display').classList.remove('running');
+    updateDisplay(id);
+  }
+}
+
+function swLap(id) {
+  const s = sw[id];
+  const current = s.running
+    ? (performance.now() - s.startTime)
+    : s.elapsed;
+  if (current < 10) return; // 10ms未満は無視
+  const timeStr = formatTime(current);
+  s.records.push(current);
+  renderRecords(id);
+  // ストップしてリセット（次回計測のため）
+  if (s.running) {
+    clearInterval(s.timer);
+    s.running = false;
+    document.getElementById(id + '-start-btn').textContent = 'スタート';
+    document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
+    document.getElementById(id + '-display').classList.remove('running');
+  }
+  s.elapsed = 0;
+  updateDisplay(id);
+}
+
+function swReset(id) {
+  const s = sw[id];
+  clearInterval(s.timer);
+  s.running = false;
+  s.elapsed = 0;
+  document.getElementById(id + '-start-btn').textContent = 'スタート';
+  document.getElementById(id + '-start-btn').className = 'sw-btn sw-btn-start';
+  document.getElementById(id + '-display').classList.remove('running');
+  updateDisplay(id);
+}
+
+function clearRecords(id) {
+  sw[id].records = [];
+  renderRecords(id);
+}
+
+function updateDisplay(id) {
+  const s = sw[id];
+  const current = s.running
+    ? (performance.now() - s.startTime)
+    : s.elapsed;
+  document.getElementById(id + '-display').textContent = formatTime(current);
+}
+
+function formatTime(ms) {
+  const s = ms / 1000;
+  return s.toFixed(2);
+}
+
+function renderRecords(id) {
+  const records = sw[id].records;
+  const container = document.getElementById(id + '-records');
+  const avgRow = document.getElementById(id + '-avg-row');
+
+  if (records.length === 0) {
+    container.innerHTML = '<div class="empty-records">スタート → 記録ボタンで計測できます</div>';
+    avgRow.style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = records.map((r, i) => `
+    <div class="record-item">
+      <span class="record-num">${i + 1}回目</span>
+      <span class="record-time">${formatTime(r)} 秒</span>
+      <button class="record-delete" onclick="deleteRecord('${id}', ${i})">✕</button>
+    </div>
+  `).join('');
+
+  const avg = records.reduce((a, b) => a + b, 0) / records.length;
+  document.getElementById(id + '-avg').textContent = formatTime(avg) + ' 秒';
+  avgRow.style.display = 'flex';
+
+  // 10m歩行のuse-timeに平均を自動入力
+  if (id === '10m') {
+    const useTimeInput = document.getElementById('use-time');
+    if (!useTimeInput.value) {
+      useTimeInput.value = formatTime(avg);
+      calc10m();
+    }
+  }
+}
+
+function deleteRecord(id, idx) {
+  sw[id].records.splice(idx, 1);
+  renderRecords(id);
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && tab === 'tug') || (i === 1 && tab === '10m'));
+  });
+  document.getElementById('tab-tug').classList.toggle('active', tab === 'tug');
+  document.getElementById('tab-10m').classList.toggle('active', tab === '10m');
+}
+
+function calc10m() {
+  const steps = parseFloat(document.getElementById('step-count').value);
+  const time = parseFloat(document.getElementById('use-time').value);
+  const resultEl = document.getElementById('calc-result');
+
+  if (!time || time <= 0) { resultEl.style.display = 'none'; return; }
+
+  const speed = 10 / time;
+  resultEl.style.display = 'block';
+
+  document.getElementById('res-speed').textContent = speed.toFixed(2) + ' m/s';
+
+  if (steps && steps > 0) {
+    const stride = (10 / steps).toFixed(2);
+    const cadence = ((steps / time) * 60).toFixed(1);
+    document.getElementById('res-stride').textContent = stride + ' m';
+    document.getElementById('res-cadence').textContent = cadence + ' 歩/分';
+  } else {
+    document.getElementById('res-stride').textContent = '（歩数未入力）';
+    document.getElementById('res-cadence').textContent = '（歩数未入力）';
+  }
+
+  // 判定
+  let judge = '';
+  if (speed >= 1.0) judge = '✅ 信号横断可・屋外自立';
+  else if (speed >= 0.8) judge = '🟡 屋外歩行可能';
+  else judge = '⚠️ 転倒リスク・屋外困難';
+  document.getElementById('res-judge').textContent = judge;
+}
+
+function printPage(label) {
+  document.getElementById('print-title-text').textContent = '歩行評価記録（' + label + '）';
+  const dateInput = document.getElementById('eval-date').value;
+  const dateStr = dateInput
+    ? new Date(dateInput).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+    : '（日付未入力）';
+  document.getElementById('print-date').textContent = '評価日：' + dateStr;
+  window.print();
+}
+</script>
+</body>
+</html>
+

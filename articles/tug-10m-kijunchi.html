@@ -1,252 +1,252 @@
-﻿<!DOCTYPE html>
-<html lang="ja">
-<head>
-<link rel="icon" type="image/png" href="/reha-tool/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YJLTBSGZ21');
-</script>
-
-<link rel="icon" type="image/png" href="/reha-tool/images/icon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TUG・10m歩行テストの基準値と臨床的解釈｜歩行速度1.0m/sの意味 | リハビリ評価・計算ツール</title>
-<meta name="description" content="TUGのカットオフ値（11秒・13.5秒）、10m歩行の基準値（1.0m/s・0.8m/s）を一覧で整理。年齢別の正常値と臨床での活用のコツを解説します。">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
-<style>
-:root {
-  --bg: #f5f4f0;
-  --surface: #ffffff;
-  --surface2: #f0efe9;
-  --border: #e0ddd4;
-  --text: #1a1916;
-  --text2: #6b6860;
-  --text3: #a09d96;
-  --accent: #2a5c45;
-  --accent-light: #e8f2ed;
-  --warn: #8a5c00;
-  --warn-light: #fdf6e3;
-  --info: #1a4a7a;
-  --info-light: #e8f0fa;
-  --radius: 10px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.8;
-}
-header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
-header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
-header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
-.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
-.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
-.breadcrumb a { color: var(--text3); text-decoration: none; }
-.breadcrumb a:hover { color: var(--accent); }
-.breadcrumb span { margin: 0 6px; }
-.article-header { margin-bottom: 28px; }
-.article-tag {
-  display: inline-block; font-size: 11px; padding: 3px 10px;
-  border-radius: 20px; background: var(--accent-light); color: var(--accent);
-  font-weight: 700; margin-bottom: 10px;
-}
-.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
-.article-meta { font-size: 12px; color: var(--text3); }
-.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
-.article-body h2 {
-  font-size: 1.05rem; font-weight: 700; color: var(--accent);
-  margin: 32px 0 12px; padding-bottom: 6px;
-  border-bottom: 2px solid var(--accent-light);
-}
-.article-body p { margin-bottom: 14px; }
-.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
-.article-body li { margin-bottom: 6px; }
-
-/* テーブルデザイン */
-.data-table {
-  width: 100%; border-collapse: collapse; margin: 16px 0 24px;
-  font-size: 14px; text-align: left;
-}
-.data-table th, .data-table td {
-  padding: 10px 12px; border: 1px solid var(--border);
-}
-.data-table th {
-  background: var(--surface2); font-weight: 700; color: var(--text2);
-}
-.data-table tr:nth-child(even) { background: #faf9f6; }
-
-/* 情報ボックス */
-.info-box {
-  background: var(--info-light); border-left: 4px solid var(--info);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
-}
-.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
-
-/* アクセントボックス */
-.accent-box {
-  background: var(--accent-light); border-left: 4px solid var(--accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
-}
-.accent-box .accent-title { font-weight: 700; color: var(--accent); margin-bottom: 8px; font-size: 13px; }
-
-/* まとめ */
-.summary-box {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
-}
-.summary-box .summary-title {
-  font-size: 13px; font-weight: 700; color: var(--accent);
-  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
-}
-
-/* 参考文献 */
-.references {
-  margin-top: 40px; border-top: 1px solid var(--border); padding-top: 24px;
-}
-.ref-title { font-size: 14px; font-weight: 700; color: var(--text2); margin-bottom: 10px; }
-.ref-list { font-size: 12px; color: var(--text3); line-height: 1.6; padding-left: 1.5em; }
-
-/* 関連ツール */
-.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
-.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
-.tool-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 16px;
-  text-decoration: none; color: inherit; display: block;
-  margin-bottom: 10px; transition: border-color 0.15s;
-}
-.tool-card:hover { border-color: var(--accent); }
-.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-.tool-icon { font-size: 20px; }
-.tool-name { font-size: 14px; font-weight: 700; }
-.tool-desc { font-size: 13px; color: var(--text2); }
-
-.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
-.footer a { color: var(--text3); text-decoration: none; }
-.footer a:hover { color: var(--accent); }
-.footer-sep { margin: 0 6px; }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="site-name">リハビリ評価・計算ツール｜解説記事</div>
-  <h1>TUG・10m歩行テストの基準値と臨床的解釈<br>歩行速度1.0m/sの意味</h1>
-</header>
-
-<div class="container">
-
-  <div class="breadcrumb">
-    <a href="../index.html">ホーム</a>
-    <span>›</span>
-    <a href="index.html">解説記事一覧</a>
-    <span>›</span>
-    TUG・10m歩行テストの基準値
-  </div>
-
-  <div class="article-header">
-    <span class="article-tag">評価・測定</span>
-    <h1 class="article-title">TUG・10m歩行テストの基準値と臨床的解釈｜歩行速度1.0m/sの意味</h1>
-    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け臨床考察</div>
-  </div>
-
-  <div class="article-body">
-
-    <h2>TUG（Timed Up and Go Test）とは何か</h2>
-    <p>TUGは、椅子から立ち上がり、3m歩いて折り返し、再び椅子に座るまでの時間を計測する評価指標です。歩行能力だけでなく、立ち上がり、方向転換という複合的な動作が含まれるため、高齢者の転倒リスクや動的バランス能力を総合的に評価するのに非常に適しています。</p>
-
-    <h2>TUGの基準値・カットオフ値</h2>
-    <table class="data-table">
-      <tr><th>対象・目的</th><th>基準値・カットオフ値</th><th>出典・備考</th></tr>
-      <tr><td>地域在住高齢者（転倒リスク予測）</td><td><strong>13.5秒 以上</strong></td><td>Shumway-Cookら (2000)</td></tr>
-      <tr><td>運動器不安定症の診断基準</td><td><strong>11秒 以上</strong></td><td>日本整形外科学会</td></tr>
-      <tr><td>健常高齢者（移動の自立）</td><td><strong>10秒 未満</strong></td><td>Podsiadloら (1991)</td></tr>
-    </table>
-
-    <div class="info-box">
-      <div class="info-title">💡 年齢別の正常値の目安</div>
-      <p style="margin-bottom:0;">・<strong>60代</strong>：約 7〜8秒<br>・<strong>70代</strong>：約 8〜9秒<br>・<strong>80代</strong>：約 10〜11秒<br><span style="font-size:12px;">※複数の研究により幅がありますが、概ね加齢とともに延長します。</span></p>
-    </div>
-
-    <h2>10m歩行テストの基準値と臨床的意味</h2>
-    <p>10m歩行テストは、歩行速度そのものを純粋に評価する指標です。特に「歩行速度（m/s）」は生命予後や生活機能と強く相関することが知られています。</p>
-    <table class="data-table">
-      <tr><th>歩行速度</th><th>臨床的意味・目安</th></tr>
-      <tr><td><strong>1.0 m/s 以上</strong></td><td>地域社会で自立して生活できるレベル。一般的な横断歩道を安全に渡りきれる速度。</td></tr>
-      <tr><td><strong>0.8 m/s 未満</strong></td><td>屋外での移動に制限が出やすい。サルコペニアの診断基準（AWGS）の一つ。</td></tr>
-      <tr><td><strong>0.4 m/s 未満</strong></td><td>屋内生活が中心となり、外出には介助が必要となるレベル。</td></tr>
-    </table>
-
-    <h2>歩行速度の臨床的解釈（1.0m/s・0.8m/sの意味）</h2>
-    <p>よく「1.0m/s」が一つの目標とされますが、これは<strong>一般的な青信号の点滅時間に横断歩道を渡りきれる速度（約1.0m/s）</strong>が根拠となっています。つまり、1.0m/s以上あれば、社会参加（買い物や散歩など）が安全に行えるポテンシャルがあるということです。</p>
-    <p>一方「0.8m/s」は、サルコペニア（加齢による筋肉量・筋力低下）の診断基準（AWGS 2019）における歩行速度のカットオフ値として用いられます。これを下回ると、将来的な要介護リスクや転倒リスクが急激に高まると解釈されます。</p>
-
-    <h2>TUGと10m歩行テストの使い分け</h2>
-    <table class="data-table">
-      <tr><th>項目</th><th>TUG</th><th>10m歩行テスト</th></tr>
-      <tr><td><strong>主な評価対象</strong></td><td>動的バランス、転倒リスク、複合的動作</td><td>純粋な歩行能力、移動効率、予後予測</td></tr>
-      <tr><td><strong>特徴</strong></td><td>方向転換や立ち座りを含むため、より実生活の「動作」に近い</td><td>測定がシンプルで、歩行の質（歩幅、ケイデンス）の分析に優れる</td></tr>
-      <tr><td><strong>こんな患者に</strong></td><td>屋内での転倒が多い、方向転換でふらつく</td><td>屋外歩行の自立判定、体力低下のスクリーニング</td></tr>
-    </table>
-
-    <h2>臨床での活用のコツ</h2>
-    <div class="accent-box">
-      <div class="accent-title">現場で活かすための5つの視点</div>
-      <ul style="margin-bottom:0; padding-left:1.2em;">
-        <li><strong>タイムだけでなく「質」を見る：</strong>TUGで時間がかかっている原因は「立ち上がり」か「方向転換」か「歩行そのもの」かを観察する。</li>
-        <li><strong>測定条件を統一する：</strong>靴の有無、歩行補助具（杖・歩行器）の有無、事前の練習の有無など、カルテに条件を明記して再現性を担保する。</li>
-        <li><strong>カットオフ値は絶対ではない：</strong>13.5秒を超えたから即転倒するわけではなく、他の評価（BBSや下肢筋力）と組み合わせて総合的に判断する。</li>
-        <li><strong>患者へのフィードバックに使う：</strong>「横断歩道を渡れる速度になりましたよ」など、具体的な生活イメージと結びつけて説明するとモチベーション向上に繋がる。</li>
-        <li><strong>最大歩行と快適歩行の差を見る：</strong>10m歩行で快適速度と最大速度の差が少ない場合、予備能（いざという時に素早く動ける能力）が低下していると解釈できる。</li>
-      </ul>
-    </div>
-
-    <div class="summary-box">
-      <div class="summary-title">この記事のまとめ</div>
-      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;margin-bottom:0;">
-        <li>TUGの転倒リスクのカットオフ値は<strong>13.5秒</strong>、運動器不安定症の基準は<strong>11秒</strong>。</li>
-        <li>10m歩行での<strong>1.0m/s</strong>は横断歩道を渡れる目安、<strong>0.8m/s</strong>はサルコペニアの基準。</li>
-        <li>TUGは「複合的な動作とバランス」、10m歩行は「純粋な移動能力と予備能」を評価するのに適している。</li>
-        <li>数字（タイム）だけでなく、動作の「質」を観察し、患者の生活に結びつけて解釈することが重要。</li>
-      </ul>
-    </div>
-
-    <div class="references">
-      <div class="ref-title">参考文献</div>
-      <ul class="ref-list">
-        <li>Podsiadlo D, Richardson S. The timed "Up & Go": a test of basic functional mobility for frail elderly persons. J Am Geriatr Soc. 1991;39(2):142-148.</li>
-        <li>Shumway-Cook A, et al. Predicting the probability for falls in community-dwelling older adults using the Timed Up & Go Test. Phys Ther. 2000;80(9):896-903.</li>
-        <li>日本整形外科学会：運動器不安定症の診断基準</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="related-tools">
-    <div class="related-title">関連ツール</div>
-    <a class="tool-card" href="../walk-tool.html">
-      <div class="tool-card-head">
-        <span class="tool-icon">🚶</span>
-        <span class="tool-name">歩行評価ツール（TUG・10m歩行）</span>
-      </div>
-      <div class="tool-desc">TUGや10m歩行のタイムを入力するだけで、歩行速度（m/s）や転倒リスクのカットオフ判定を自動で行います。</div>
-    </a>
-  </div>
-
-  <div class="footer">
-    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
-    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
-    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
-    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
-    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
-    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
-    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
-    <a href="/reha-tool/contact.html">お問い合わせ</a><span class="footer-sep">|</span><a href="../terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="../privacy.html">プライバシーポリシー</a>
-  </div>
-
-</div>
-</body>
-</html>
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJLTBSGZ21');
+</script>
+
+<link rel="icon" type="image/png" href="/images/icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUG・10m歩行テストの基準値と臨床的解釈｜歩行速度1.0m/sの意味 | リハビリ評価・計算ツール</title>
+<meta name="description" content="TUGのカットオフ値（11秒・13.5秒）、10m歩行の基準値（1.0m/s・0.8m/s）を一覧で整理。年齢別の正常値と臨床での活用のコツを解説します。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e0ddd4;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #2a5c45;
+  --accent-light: #e8f2ed;
+  --warn: #8a5c00;
+  --warn-light: #fdf6e3;
+  --info: #1a4a7a;
+  --info-light: #e8f0fa;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.8;
+}
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-header { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--accent);
+  margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+
+/* テーブルデザイン */
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+  font-size: 14px; text-align: left;
+}
+.data-table th, .data-table td {
+  padding: 10px 12px; border: 1px solid var(--border);
+}
+.data-table th {
+  background: var(--surface2); font-weight: 700; color: var(--text2);
+}
+.data-table tr:nth-child(even) { background: #faf9f6; }
+
+/* 情報ボックス */
+.info-box {
+  background: var(--info-light); border-left: 4px solid var(--info);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 8px; font-size: 13px; }
+
+/* アクセントボックス */
+.accent-box {
+  background: var(--accent-light); border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
+}
+.accent-box .accent-title { font-weight: 700; color: var(--accent); margin-bottom: 8px; font-size: 13px; }
+
+/* まとめ */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px; margin: 24px 0;
+}
+.summary-box .summary-title {
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* 参考文献 */
+.references {
+  margin-top: 40px; border-top: 1px solid var(--border); padding-top: 24px;
+}
+.ref-title { font-size: 14px; font-weight: 700; color: var(--text2); margin-bottom: 10px; }
+.ref-list { font-size: 12px; color: var(--text3); line-height: 1.6; padding-left: 1.5em; }
+
+/* 関連ツール */
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ評価・計算ツール｜解説記事</div>
+  <h1>TUG・10m歩行テストの基準値と臨床的解釈<br>歩行速度1.0m/sの意味</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    TUG・10m歩行テストの基準値
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">評価・測定</span>
+    <h1 class="article-title">TUG・10m歩行テストの基準値と臨床的解釈｜歩行速度1.0m/sの意味</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け臨床考察</div>
+  </div>
+
+  <div class="article-body">
+
+    <h2>TUG（Timed Up and Go Test）とは何か</h2>
+    <p>TUGは、椅子から立ち上がり、3m歩いて折り返し、再び椅子に座るまでの時間を計測する評価指標です。歩行能力だけでなく、立ち上がり、方向転換という複合的な動作が含まれるため、高齢者の転倒リスクや動的バランス能力を総合的に評価するのに非常に適しています。</p>
+
+    <h2>TUGの基準値・カットオフ値</h2>
+    <table class="data-table">
+      <tr><th>対象・目的</th><th>基準値・カットオフ値</th><th>出典・備考</th></tr>
+      <tr><td>地域在住高齢者（転倒リスク予測）</td><td><strong>13.5秒 以上</strong></td><td>Shumway-Cookら (2000)</td></tr>
+      <tr><td>運動器不安定症の診断基準</td><td><strong>11秒 以上</strong></td><td>日本整形外科学会</td></tr>
+      <tr><td>健常高齢者（移動の自立）</td><td><strong>10秒 未満</strong></td><td>Podsiadloら (1991)</td></tr>
+    </table>
+
+    <div class="info-box">
+      <div class="info-title">💡 年齢別の正常値の目安</div>
+      <p style="margin-bottom:0;">・<strong>60代</strong>：約 7〜8秒<br>・<strong>70代</strong>：約 8〜9秒<br>・<strong>80代</strong>：約 10〜11秒<br><span style="font-size:12px;">※複数の研究により幅がありますが、概ね加齢とともに延長します。</span></p>
+    </div>
+
+    <h2>10m歩行テストの基準値と臨床的意味</h2>
+    <p>10m歩行テストは、歩行速度そのものを純粋に評価する指標です。特に「歩行速度（m/s）」は生命予後や生活機能と強く相関することが知られています。</p>
+    <table class="data-table">
+      <tr><th>歩行速度</th><th>臨床的意味・目安</th></tr>
+      <tr><td><strong>1.0 m/s 以上</strong></td><td>地域社会で自立して生活できるレベル。一般的な横断歩道を安全に渡りきれる速度。</td></tr>
+      <tr><td><strong>0.8 m/s 未満</strong></td><td>屋外での移動に制限が出やすい。サルコペニアの診断基準（AWGS）の一つ。</td></tr>
+      <tr><td><strong>0.4 m/s 未満</strong></td><td>屋内生活が中心となり、外出には介助が必要となるレベル。</td></tr>
+    </table>
+
+    <h2>歩行速度の臨床的解釈（1.0m/s・0.8m/sの意味）</h2>
+    <p>よく「1.0m/s」が一つの目標とされますが、これは<strong>一般的な青信号の点滅時間に横断歩道を渡りきれる速度（約1.0m/s）</strong>が根拠となっています。つまり、1.0m/s以上あれば、社会参加（買い物や散歩など）が安全に行えるポテンシャルがあるということです。</p>
+    <p>一方「0.8m/s」は、サルコペニア（加齢による筋肉量・筋力低下）の診断基準（AWGS 2019）における歩行速度のカットオフ値として用いられます。これを下回ると、将来的な要介護リスクや転倒リスクが急激に高まると解釈されます。</p>
+
+    <h2>TUGと10m歩行テストの使い分け</h2>
+    <table class="data-table">
+      <tr><th>項目</th><th>TUG</th><th>10m歩行テスト</th></tr>
+      <tr><td><strong>主な評価対象</strong></td><td>動的バランス、転倒リスク、複合的動作</td><td>純粋な歩行能力、移動効率、予後予測</td></tr>
+      <tr><td><strong>特徴</strong></td><td>方向転換や立ち座りを含むため、より実生活の「動作」に近い</td><td>測定がシンプルで、歩行の質（歩幅、ケイデンス）の分析に優れる</td></tr>
+      <tr><td><strong>こんな患者に</strong></td><td>屋内での転倒が多い、方向転換でふらつく</td><td>屋外歩行の自立判定、体力低下のスクリーニング</td></tr>
+    </table>
+
+    <h2>臨床での活用のコツ</h2>
+    <div class="accent-box">
+      <div class="accent-title">現場で活かすための5つの視点</div>
+      <ul style="margin-bottom:0; padding-left:1.2em;">
+        <li><strong>タイムだけでなく「質」を見る：</strong>TUGで時間がかかっている原因は「立ち上がり」か「方向転換」か「歩行そのもの」かを観察する。</li>
+        <li><strong>測定条件を統一する：</strong>靴の有無、歩行補助具（杖・歩行器）の有無、事前の練習の有無など、カルテに条件を明記して再現性を担保する。</li>
+        <li><strong>カットオフ値は絶対ではない：</strong>13.5秒を超えたから即転倒するわけではなく、他の評価（BBSや下肢筋力）と組み合わせて総合的に判断する。</li>
+        <li><strong>患者へのフィードバックに使う：</strong>「横断歩道を渡れる速度になりましたよ」など、具体的な生活イメージと結びつけて説明するとモチベーション向上に繋がる。</li>
+        <li><strong>最大歩行と快適歩行の差を見る：</strong>10m歩行で快適速度と最大速度の差が少ない場合、予備能（いざという時に素早く動ける能力）が低下していると解釈できる。</li>
+      </ul>
+    </div>
+
+    <div class="summary-box">
+      <div class="summary-title">この記事のまとめ</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.9;padding-left:1.5em;margin-bottom:0;">
+        <li>TUGの転倒リスクのカットオフ値は<strong>13.5秒</strong>、運動器不安定症の基準は<strong>11秒</strong>。</li>
+        <li>10m歩行での<strong>1.0m/s</strong>は横断歩道を渡れる目安、<strong>0.8m/s</strong>はサルコペニアの基準。</li>
+        <li>TUGは「複合的な動作とバランス」、10m歩行は「純粋な移動能力と予備能」を評価するのに適している。</li>
+        <li>数字（タイム）だけでなく、動作の「質」を観察し、患者の生活に結びつけて解釈することが重要。</li>
+      </ul>
+    </div>
+
+    <div class="references">
+      <div class="ref-title">参考文献</div>
+      <ul class="ref-list">
+        <li>Podsiadlo D, Richardson S. The timed "Up & Go": a test of basic functional mobility for frail elderly persons. J Am Geriatr Soc. 1991;39(2):142-148.</li>
+        <li>Shumway-Cook A, et al. Predicting the probability for falls in community-dwelling older adults using the Timed Up & Go Test. Phys Ther. 2000;80(9):896-903.</li>
+        <li>日本整形外科学会：運動器不安定症の診断基準</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール</div>
+    <a class="tool-card" href="../walk-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🚶</span>
+        <span class="tool-name">歩行評価ツール（TUG・10m歩行）</span>
+      </div>
+      <div class="tool-desc">TUGや10m歩行のタイムを入力するだけで、歩行速度（m/s）や転倒リスクのカットオフ判定を自動で行います。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="/contact.html">お問い合わせ</a><span class="footer-sep">|</span><a href="../terms.html">利用規約</a><span class="footer-sep" style="margin:0 6px;">|</span><a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+</body>
+</html>
