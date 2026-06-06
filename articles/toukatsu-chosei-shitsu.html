@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リハビリテーション統括調整室とは何か｜PT・OT法改正と診療報酬への影響を整理 | リハビリ評価・計算ツール集</title>
+  <meta name="description" content="2026年5月19日、厚生労働省に「リハビリテーション統括調整室」が設置されました。省令改正なし、独立予算なし。室長・次長4人の素性と、PT・OT法改正の現在地を一次資料から読み解きます。">
+  <meta property="og:title" content="リハビリテーション統括調整室とは何か｜PT・OT法改正と診療報酬への影響を整理">
+  <meta property="og:description" content="省令改正なし、独立予算なし。室長・次長4人の素性と、PT・OT法改正の現在地を一次資料から読み解く。">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://reha-tool.jp/articles/toukatsu-chosei-shitsu.html">
+  <style>
+    :root {
+      --primary: #1a5f7a;
+      --primary-light: #2d8fb3;
+      --accent: #e8a020;
+      --accent-light: #f5c76a;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --bg: #fff;
+      --bg-light: #f8f9fa;
+      --bg-note: #f0f7fb;
+      --border: #e0e0e0;
+      --border-accent: #1a5f7a;
+      --tag-bg: #e8f4f8;
+      --tag-text: #1a5f7a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--primary);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .site-header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .site-header a:hover { text-decoration: underline; }
+
+    /* パンくず */
+    .breadcrumb {
+      max-width: 860px;
+      margin: 16px auto 0;
+      padding: 0 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* 記事コンテナ */
+    .article-container {
+      max-width: 860px;
+      margin: 24px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* タグ */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* 記事タイトル */
+    .article-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 32px;
+    }
+
+    /* 導入文 */
+    .article-lead {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #2a2a2a;
+      margin-bottom: 40px;
+      padding: 24px 28px;
+      background: var(--bg-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* 目次 */
+    .toc {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+    .toc-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+    .toc ol {
+      padding-left: 20px;
+    }
+    .toc li {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+    .toc a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+
+    /* 章見出し */
+    .chapter-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--primary-light);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: clamp(18px, 3vw, 23px);
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+      margin: 56px 0 24px;
+      line-height: 1.45;
+      scroll-margin-top: 70px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 32px 0 14px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 24px 0 10px;
+    }
+
+    /* 本文 */
+    p {
+      margin-bottom: 20px;
+      font-size: 15.5px;
+    }
+
+    /* 引用 */
+    blockquote {
+      background: var(--bg-note);
+      border-left: 4px solid var(--primary-light);
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2a2a2a;
+    }
+    blockquote cite {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: normal;
+    }
+
+    /* 強調ボックス */
+    .highlight-box {
+      background: #fff8e8;
+      border: 1px solid var(--accent-light);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .highlight-box-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #b07a10;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* 人物紹介カード */
+    .person-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .person-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+    .person-card-role {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--primary-light);
+      margin-bottom: 4px;
+    }
+    .person-card-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .person-card-position {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .person-card-body {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .person-card-key {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* 構成図 */
+    .structure-box {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 24px;
+      margin: 28px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 2;
+    }
+    .structure-box .role-line {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .role-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-family: sans-serif;
+    }
+    .role-badge.head { background: var(--primary); color: #fff; }
+    .role-badge.deputy { background: var(--primary-light); color: #fff; }
+    .role-desc {
+      font-family: sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* 注記ボックス */
+    .note-box {
+      background: #f9f9f9;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .note-box-label {
+      font-weight: 700;
+      color: var(--text);
+      margin-right: 6px;
+    }
+
+    /* 警告ボックス */
+    .caution-box {
+      background: #fff5f5;
+      border-left: 4px solid #c0392b;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 14.5px;
+      line-height: 1.8;
+    }
+    .caution-box-title {
+      font-weight: 700;
+      color: #c0392b;
+      margin-bottom: 6px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* 温度計（法改正進捗） */
+    .progress-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 24px 0;
+    }
+    .progress-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-left: 3px solid var(--border);
+      margin-left: 16px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .progress-step::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .progress-step.done::before { background: var(--primary); }
+    .progress-step.current::before { background: var(--accent); }
+    .progress-step-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      min-width: 80px;
+      padding-top: 2px;
+    }
+    .progress-step-text {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .progress-step.done .progress-step-text { color: var(--text); }
+    .progress-step.current .progress-step-text { color: var(--accent); font-weight: 700; }
+    .progress-step.future .progress-step-text { color: var(--text-muted); }
+
+    /* 関連記事 */
+    .related-articles {
+      border-top: 2px solid var(--border);
+      margin-top: 60px;
+      padding-top: 32px;
+    }
+    .related-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .related-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+    .related-card:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 2px 8px rgba(26,95,122,0.1);
+    }
+    .related-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .related-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* フッター */
+    .site-footer {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      margin-top: 80px;
+    }
+    .site-footer a { color: #ccc; text-decoration: none; }
+
+    /* スマホ対応 */
+    @media (max-width: 600px) {
+      .article-container { padding: 0 16px; }
+      .article-lead { padding: 18px 16px; font-size: 15.5px; }
+      .person-card { padding: 16px 18px; }
+      h2 { font-size: 19px; }
+    }
+
+    /* 印刷非表示 */
+    .closing-statement {
+      border-top: 2px solid var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding: 24px 8px; margin: 40px 0; text-align: center;
+    }
+    .closing-statement p {
+      font-size: 16.5px; line-height: 2.2; color: var(--text);
+      font-weight: 400; margin-bottom: 0;
+    }
+
+    @media print {
+      .site-header, .site-footer, .related-articles { display: none; }
+    }
+
+    /* コラム：寄り道ボックス */
+    .column-aside {
+      background: #f0f7fa;
+      border-left: 4px solid #2d8fb3;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text);
+    }
+    .column-aside p {
+      margin-bottom: 8px;
+    }
+    .column-aside p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a>
+</header>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <a href="https://reha-tool.jp/">ホーム</a>
+  <span>›</span>
+  <a href="https://reha-tool.jp/articles/">解説記事</a>
+  <span>›</span>
+  リハビリテーション統括調整室とは何か
+</nav>
+
+<main class="article-container">
+
+  <div class="article-tags">
+    <span class="tag">制度解説</span>
+    <span class="tag">リハビリ政策</span>
+    <span class="tag">PT・OT法</span>
+    <span class="tag">厚生労働省</span>
+    <span class="tag">2026年</span>
+  </div>
+
+  <h1 class="article-title">リハビリテーション統括調整室とは何か<br>──厚労省に初めて横断調整組織が置かれた日</h1>
+  <p class="article-subtitle">診療報酬・法制度・介護予防の担当者が、初めて同じテーブルについた日。</p>
+
+  <div class="article-meta">
+    <span>📅 2026年5月公開</span>
+    <span>✍️ reha-tool編集部</span>
+    <span>🔗 一次資料：厚生労働省大臣会見・国会答弁・経済財政諮問会議資料</span>
+  </div>
+
+  <div class="article-lead">
+    前回の記事では、リハビリテーションを考える議員連盟の13年を追いました。247人の国会議員が集まり、PT・OT法改正と統括部署の設置を求め続けてきた歴史です。では、その結果、何が起きたのか。<br><br>
+    2026年5月19日。厚生労働省に「リハビリテーション統括調整室」が設置されました。議連が総会で要望を決議してから27日後、田野瀬太道議員が国会で設置を求めてから、わずか6日後のことです。<br><br>
+    ただし、これはゴールではありません。むしろスタートラインです。<br><br>
+    法律はまだ変わっていません。処遇改善も実現していません。予算も増えていません。省令改正もなく、独立した予算もなく、正式な内部部局でもありません。<br><br>
+    それでも、この設置には注目する理由があります。<br><br>
+    少なくともリハビリテーション政策を横断的に扱う組織としては、現時点で前例を確認できません。診療報酬・法制度・介護予防の担当者が同一の調整組織に明示的に配置された例は、極めて珍しいものです。<br><br>
+    この室は何者なのか。どこまでの力を持ち、どこから先はできないのか。そして、私たちの仕事にどんな影響を与える可能性があるのか——この記事ではその点を整理します。<br><br>
+    結論から言えば、明日から診療報酬が変わるわけではありません。しかし、診療報酬・PT・OT法・介護予防政策を同じテーブルで調整する仕組みが、初めて明示的に設けられました。この記事では、その意味と職場への影響を整理します。
+  </div>
+
+  <nav class="toc">
+    <div class="toc-title">目次</div>
+    <ol>
+      <li><a href="#chapter1">何ができたのか──組織の外形</a></li>
+      <li><a href="#chapter-power">この室の力の範囲──できることとできないこと</a></li>
+      <li><a href="#chapter2">なぜ今できたのか──リハ政策の重要性が高まる中で</a></li>
+      <li><a href="#chapter3">誰が座っているのか──4人の素性</a></li>
+      <li><a href="#chapter4">PT・OT法改正との関係──議論の前提条件が整い始めた段階</a></li>
+      <li><a href="#chapter5">誰に影響するのか──職場別に読む</a></li>
+    </ol>
+  </nav>
+
+
+  <!-- ==============================
+       第1章
+  =============================== -->
+  <div class="chapter-label">Chapter 1</div>
+  <h2 id="chapter1">何ができたのか──組織の外形</h2>
+
+  <p>2026年5月19日の閣議後記者会見で、上野賢一郎厚生労働大臣は次のように述べています。</p>
+
+  <blockquote>
+    「省内の関係部局が一丸となって、分野横断的にリハビリテーション政策を進めるために、本日、医療介護連携・データヘルス改革担当の大臣官房審議官を室長とするリハビリテーション統括調整室を設置いたしました。この体制の下で、国民の健康の増進に寄与するリハビリテーションを戦略的に推進していきたいと考えています。」
+    <cite>── 上野賢一郎厚生労働大臣 閣議後記者会見（令和8年5月19日）</cite>
+  </blockquote>
+
+  <p>同日、厚生労働省が公表した1枚の資料（「リハビリテーション統括調整室について」）に、設置の根拠と構成員が明記されている。事実として確定しているのは以下の3点です。</p>
+
+  <h3>公式資料：「リハビリテーション統括調整室について」</h3>
+
+  <div class="doc-image-box">
+    <div class="doc-image-label">
+      出典：厚生労働省「リハビリテーション統括調整室について」（令和8年5月19日 大臣会見配布資料）
+      ／ <a href="https://www.mhlw.go.jp/content/001701525.pdf" target="_blank" rel="noopener">原文PDF（mhlw.go.jp）</a>
+    </div>
+    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fafafa;">
+      <rect width="760" height="420" fill="#fafafa"/>
+      <rect x="0" y="0" width="760" height="44" fill="#1a5f7a"/>
+      <text x="380" y="28" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="sans-serif">リハビリテーション統括調整室について</text>
+      <!-- 左：経緯 -->
+      <rect x="16" y="56" width="356" height="352" rx="6" fill="#fff" stroke="#c8dce8" stroke-width="1.5"/>
+      <rect x="16" y="56" width="356" height="30" rx="6" fill="#2d8fb3"/>
+      <rect x="16" y="72" width="356" height="14" fill="#2d8fb3"/>
+      <text x="194" y="76" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">経　緯</text>
+      <text x="30" y="107" fill="#333" font-size="11" font-family="sans-serif">○ リハビリテーション専門職の活躍の場は、医療、介護に</text>
+      <text x="30" y="122" fill="#333" font-size="11" font-family="sans-serif">とどまらず、予防や健康増進の分野にも拡大。</text>
+      <text x="30" y="146" fill="#333" font-size="11" font-family="sans-serif">○ 今後、「攻めの予防医療」の具体化に取り組んでいく中で、</text>
+      <text x="30" y="161" fill="#333" font-size="11" font-family="sans-serif">リハビリテーション専門職が果たす役割は大きい。</text>
+      <text x="30" y="185" fill="#333" font-size="11" font-family="sans-serif">○ こうした背景を踏まえ、「理学療法士及び作業療法士法」</text>
+      <text x="30" y="200" fill="#333" font-size="11" font-family="sans-serif">施行後約60年の間での役割の変化等も踏まえながら、</text>
+      <text x="30" y="215" fill="#333" font-size="11" font-family="sans-serif">制度的な見直しというものが考えられるかどうか、</text>
+      <text x="30" y="230" fill="#333" font-size="11" font-family="sans-serif">検討していく必要。</text>
+      <text x="30" y="254" fill="#333" font-size="11" font-family="sans-serif">○ このため、厚生労働省において、省内の関係部局が</text>
+      <text x="30" y="269" fill="#333" font-size="11" font-family="sans-serif">一丸となり、分野横断的にリハビリテーション政策を</text>
+      <text x="30" y="284" fill="#333" font-size="11" font-family="sans-serif">進めるため、「リハビリテーション統括調整室」を</text>
+      <text x="30" y="299" fill="#333" font-size="11" font-family="sans-serif">令和８年５月19日に設置。</text>
+      <!-- 右上：概要 -->
+      <rect x="388" y="56" width="356" height="168" rx="6" fill="#fff" stroke="#c8dce8" stroke-width="1.5"/>
+      <rect x="388" y="56" width="356" height="30" rx="6" fill="#2d8fb3"/>
+      <rect x="388" y="72" width="356" height="14" fill="#2d8fb3"/>
+      <text x="566" y="76" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="sans-serif">リハビリテーション統括調整室　概要</text>
+      <text x="402" y="106" fill="#333" font-size="11" font-family="sans-serif">○ 医療、介護、障害福祉の垣根を越え、分野横断的に</text>
+      <text x="402" y="121" fill="#333" font-size="11" font-family="sans-serif">リハビリテーション政策を推進する必要。</text>
+      <text x="402" y="143" fill="#333" font-size="11" font-family="sans-serif">○ リハビリテーション専門職を有効的に活用し、将来にわたり</text>
+      <text x="402" y="158" fill="#333" font-size="11" font-family="sans-serif">国民の健康の増進に寄与するリハビリテーションを</text>
+      <rect x="402" y="165" width="280" height="22" rx="3" fill="#fff3cd"/>
+      <text x="542" y="181" text-anchor="middle" fill="#b07a10" font-size="12" font-weight="bold" font-family="sans-serif">国家戦略として推進。</text>
+      <text x="402" y="206" fill="#333" font-size="11" font-family="sans-serif">○ リハビリテーションに関わる施策の総合的な調整に</text>
+      <text x="402" y="221" fill="#333" font-size="11" font-family="sans-serif">関する事務を所掌する。</text>
+      <!-- 右下：構成員 -->
+      <rect x="388" y="240" width="356" height="168" rx="6" fill="#fff" stroke="#c8dce8" stroke-width="1.5"/>
+      <rect x="388" y="240" width="356" height="30" rx="6" fill="#2d8fb3"/>
+      <rect x="388" y="256" width="356" height="14" fill="#2d8fb3"/>
+      <text x="566" y="260" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="sans-serif">構成員（敬称略）</text>
+      <rect x="388" y="270" width="356" height="20" fill="#e8f4f8"/>
+      <text x="420" y="284" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">役職</text>
+      <text x="488" y="284" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">氏名</text>
+      <text x="560" y="284" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">本務</text>
+      <line x1="388" y1="290" x2="744" y2="290" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="420" y="303" fill="#222" font-size="11" font-family="sans-serif">室長</text>
+      <text x="488" y="303" fill="#222" font-size="11" font-family="sans-serif">江浪 武志</text>
+      <text x="560" y="303" fill="#666" font-size="10" font-family="sans-serif">大臣官房審議官</text>
+      <line x1="388" y1="310" x2="744" y2="310" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="420" y="323" fill="#222" font-size="11" font-family="sans-serif">次長</text>
+      <text x="488" y="323" fill="#222" font-size="11" font-family="sans-serif">中田 勝己</text>
+      <text x="560" y="323" fill="#666" font-size="10" font-family="sans-serif">医政局医事課長</text>
+      <line x1="388" y1="330" x2="744" y2="330" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="420" y="343" fill="#222" font-size="11" font-family="sans-serif">〃</text>
+      <text x="488" y="343" fill="#222" font-size="11" font-family="sans-serif">堀 裕行</text>
+      <text x="560" y="343" fill="#666" font-size="10" font-family="sans-serif">老健局老人保健課長</text>
+      <line x1="388" y1="350" x2="744" y2="350" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="420" y="363" fill="#222" font-size="11" font-family="sans-serif">〃</text>
+      <text x="488" y="363" fill="#222" font-size="11" font-family="sans-serif">林 修一郎</text>
+      <text x="560" y="363" fill="#666" font-size="10" font-family="sans-serif">保険局医療課長</text>
+      <line x1="388" y1="370" x2="744" y2="370" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="402" y="388" fill="#888" font-size="10" font-family="sans-serif">室員：介護予防・高齢者保健事業等を担当する関係部局職員</text>
+      <text x="402" y="402" fill="#888" font-size="10" font-family="sans-serif">５月19日現在、総勢17名。</text>
+    </svg>
+  </div>
+
+  <h3>設置日・構成員・所掌</h3>
+
+  <p><strong>設置日：</strong>令和8年（2026年）5月19日。大臣会見当日に即日設置されています。</p>
+
+  <p><strong>構成員（5月19日現在・総勢17名）：</strong></p>
+
+  <div class="structure-box">
+    <div class="role-line">
+      <span class="role-badge head">室長</span>
+      <strong>江浪 武志</strong>
+      <span class="role-desc">大臣官房審議官（医療介護連携・データヘルス改革担当）</span>
+    </div>
+    <div class="role-line">
+      <span class="role-badge deputy">次長</span>
+      <strong>中田 勝己</strong>
+      <span class="role-desc">医政局医事課長</span>
+    </div>
+    <div class="role-line">
+      <span class="role-badge deputy">次長</span>
+      <strong>堀 裕行</strong>
+      <span class="role-desc">老健局老人保健課長</span>
+    </div>
+    <div class="role-line">
+      <span class="role-badge deputy">次長</span>
+      <strong>林 修一郎</strong>
+      <span class="role-desc">保険局医療課長</span>
+    </div>
+    <div class="role-line" style="margin-top:8px; color:#666; font-size:13px; font-family:sans-serif;">
+      室員13名：地域における介護予防の事業や高齢者の保健事業等を担当する関係部局職員
+    </div>
+  </div>
+
+  <p><strong>所掌事務：</strong>公式資料の原文は「リハビリテーションに関わる施策の総合的な調整に関する事務を所掌する」とあります。ミッションとして掲げられているのは「医療、介護、障害福祉の垣根を越え、分野横断的にリハビリテーション政策を推進」「リハビリテーション専門職を有効的に活用し、将来にわたり国民の健康の増進に寄与するリハビリテーションを<strong>国家戦略として推進</strong>」という2点です。</p>
+
+  <div class="note-box">
+    <span class="note-box-label">補足：</span>「国家戦略として推進」という文言は、大臣会見の口頭発言ではなく、厚生労働省が正式に公表した文書（会見配布資料）に記載されている。大臣の言葉として引用されることが多いが、省として文書に残した表現です。
+  </div>
+
+  <h3>組織としての位置づけ</h3>
+
+  <p>この室は、省令（厚生労働省組織規則）を改正して設けた正式な内部部局ではない。厚労省の組織図上に正式部局として位置づけるには省令改正が必要だが、今回そのプロセスは踏んでいない。大臣の決定による省内横断的な調整組織として設置された、という性格のものです。</p>
+
+<div class="column-aside">
+<p><strong>少し寄り道します</strong></p>
+<p>今回できたのは「室」です。「課」ではありません。</p>
+<p>厚労省には看護課があります。厚労省には歯科保健課があります。どちらも省令上の正式な部署です。</p>
+<p>看護課長は看護系技官、つまり看護師が務めています。歯科保健課長は歯科医師が務めています。</p>
+<p>リハビリの「課」はありません。</p>
+<p>そして、今回の統括調整室は大臣の判断で設置されました。室長は医師です。</p>
+<p>この話はまた今度。</p>
+</div>
+
+  <p>専用の予算枠も設けられていません。室員17名は全員が各所属部局からの兼務であり、人件費・運営費は各局の予算内に収まります。</p>
+
+  <p>つまり外形だけ見れば「軽い」組織です。しかし、それだけを見て判断するのは早計です。</p>
+
+
+  <!-- ==============================
+       力の範囲セクション
+  =============================== -->
+  <div class="chapter-label">Structure</div>
+  <h2 id="chapter-power">この室の力の範囲──できることとできないこと</h2>
+
+  <p>「国家戦略として推進」という言葉が公式資料に記載されている。ただしその前に、この組織の権限範囲を整理しておく必要があります。この室は独立した執行権限を持ちません。各部局の実務担当者が兼務で参加する調整組織という位置づけです。</p>
+
+  <p>各部局が個別に持つ執行権限はそのままに、横断的な調整の場を設ける——それがこの室の設計思想です。</p>
+
+  <h3>厚労省内の位置図</h3>
+
+  <p>まず、この室が組織のどこにあるかを確認します。</p>
+
+  <div class="doc-image-box">
+    <div class="doc-image-label">厚労省組織内におけるリハビリテーション統括調整室の位置づけ</div>
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fafafa;padding:16px 0;">
+      <!-- 大臣 -->
+      <rect x="260" y="16" width="200" height="36" rx="6" fill="#1a5f7a"/>
+      <text x="360" y="38" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">厚生労働大臣</text>
+      <!-- 大臣から3局へ線 -->
+      <line x1="360" y1="52" x2="360" y2="72" stroke="#999" stroke-width="1.5"/>
+      <line x1="120" y1="72" x2="600" y2="72" stroke="#999" stroke-width="1.5"/>
+      <line x1="120" y1="72" x2="120" y2="90" stroke="#999" stroke-width="1.5"/>
+      <line x1="360" y1="72" x2="360" y2="90" stroke="#999" stroke-width="1.5"/>
+      <line x1="600" y1="72" x2="600" y2="90" stroke="#999" stroke-width="1.5"/>
+      <!-- 大臣官房 -->
+      <rect x="50" y="90" width="140" height="32" rx="4" fill="#2d8fb3"/>
+      <text x="120" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="sans-serif">大臣官房</text>
+      <!-- 医政局 -->
+      <rect x="290" y="90" width="140" height="32" rx="4" fill="#4a9bb5"/>
+      <text x="360" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="sans-serif">医政局</text>
+      <!-- 老健局 -->
+      <rect x="530" y="90" width="140" height="32" rx="4" fill="#4a9bb5"/>
+      <text x="600" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="sans-serif">老健局・保険局</text>
+      <!-- 大臣官房→審議官 -->
+      <line x1="120" y1="122" x2="120" y2="140" stroke="#999" stroke-width="1.5"/>
+      <rect x="50" y="140" width="140" height="44" rx="4" fill="#e8f4f8" stroke="#2d8fb3" stroke-width="1.5"/>
+      <text x="120" y="158" text-anchor="middle" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">江浪審議官（室長）</text>
+      <text x="120" y="174" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">医療介護連携担当</text>
+      <!-- 医政局→医事課 -->
+      <line x1="360" y1="122" x2="360" y2="140" stroke="#999" stroke-width="1.5"/>
+      <rect x="290" y="140" width="140" height="44" rx="4" fill="#e8f4f8" stroke="#4a9bb5" stroke-width="1.5"/>
+      <text x="360" y="158" text-anchor="middle" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">中田課長（次長）</text>
+      <text x="360" y="174" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">医事課長</text>
+      <!-- 老健局→2課 -->
+      <line x1="560" y1="122" x2="560" y2="140" stroke="#999" stroke-width="1.5"/>
+      <line x1="640" y1="122" x2="640" y2="140" stroke="#999" stroke-width="1.5"/>
+      <rect x="490" y="140" width="130" height="44" rx="4" fill="#e8f4f8" stroke="#4a9bb5" stroke-width="1.5"/>
+      <text x="555" y="158" text-anchor="middle" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">堀課長（次長）</text>
+      <text x="555" y="174" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">老人保健課長</text>
+      <rect x="630" y="140" width="80" height="44" rx="4" fill="#e8f4f8" stroke="#4a9bb5" stroke-width="1.5"/>
+      <text x="670" y="158" text-anchor="middle" fill="#1a5f7a" font-size="11" font-weight="bold" font-family="sans-serif">林課長</text>
+      <text x="670" y="174" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">（次長）</text>
+      <!-- 4人から統括調整室へ矢印 -->
+      <line x1="120" y1="184" x2="120" y2="220" stroke="#1a5f7a" stroke-width="2" stroke-dasharray="6,3"/>
+      <line x1="360" y1="184" x2="360" y2="220" stroke="#1a5f7a" stroke-width="2" stroke-dasharray="6,3"/>
+      <line x1="555" y1="184" x2="410" y2="220" stroke="#1a5f7a" stroke-width="2" stroke-dasharray="6,3"/>
+      <line x1="670" y1="184" x2="430" y2="220" stroke="#1a5f7a" stroke-width="2" stroke-dasharray="6,3"/>
+      <!-- 統括調整室 -->
+      <rect x="200" y="220" width="320" height="52" rx="8" fill="#1a5f7a"/>
+      <text x="360" y="243" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">リハビリテーション統括調整室</text>
+      <text x="360" y="261" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">省令改正なし・独立予算なし・兼務17名</text>
+      <!-- 注釈 -->
+      <text x="360" y="305" text-anchor="middle" fill="#999" font-size="11" font-family="sans-serif">各部局から兼務として集まる横断組織。新たな局・課ができたわけではない。</text>
+    </svg>
+  </div>
+
+  <h3>できることとできないこと</h3>
+
+  <div class="doc-image-box">
+    <div class="doc-image-label">統括調整室の権限範囲</div>
+    <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fafafa;padding:8px 0;">
+      <!-- 左：できること -->
+      <rect x="20" y="20" width="330" height="220" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+      <rect x="20" y="20" width="330" height="36" rx="8" fill="#27ae60"/>
+      <rect x="20" y="42" width="330" height="14" fill="#27ae60"/>
+      <text x="185" y="42" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">✓ できること・起きうること</text>
+      <text x="40" y="78" fill="#222" font-size="12" font-family="sans-serif">・ 医療・介護・法制度の部局横断の調整</text>
+      <text x="40" y="100" fill="#222" font-size="12" font-family="sans-serif">・ リハビリ政策を「大臣案件」として扱わせる</text>
+      <text x="40" y="122" fill="#222" font-size="12" font-family="sans-serif">・ 省内調整の迅速化・優先順位の引き上げ</text>
+      <text x="40" y="144" fill="#222" font-size="12" font-family="sans-serif">・ 制度改正に向けた論点整理</text>
+      <text x="40" y="166" fill="#222" font-size="12" font-family="sans-serif">・ 処遇改善の目詰まりチェック</text>
+      <text x="40" y="188" fill="#222" font-size="12" font-family="sans-serif">・ PT・OT法改正の検討議論の土台づくり</text>
+      <text x="40" y="210" fill="#222" font-size="12" font-family="sans-serif">・ 攻めの予防医療とリハビリの接続</text>
+      <!-- 右：できないこと -->
+      <rect x="370" y="20" width="330" height="220" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+      <rect x="370" y="20" width="330" height="36" rx="8" fill="#e74c3c"/>
+      <rect x="370" y="42" width="330" height="14" fill="#e74c3c"/>
+      <text x="535" y="42" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">✗ すぐには起きないこと</text>
+      <text x="390" y="78" fill="#222" font-size="12" font-family="sans-serif">・ 診療報酬の改定（中医協の決定が必要）</text>
+      <text x="390" y="100" fill="#222" font-size="12" font-family="sans-serif">・ PT・OT法の改正（国会審議が必要）</text>
+      <text x="390" y="122" fill="#222" font-size="12" font-family="sans-serif">・ 処遇改善の実現（改定・予算が必要）</text>
+      <text x="390" y="144" fill="#222" font-size="12" font-family="sans-serif">・ 新規予算の創設</text>
+      <text x="390" y="166" fill="#222" font-size="12" font-family="sans-serif">・ 業務独占化（法改正が前提）</text>
+      <text x="390" y="188" fill="#222" font-size="12" font-family="sans-serif">・ 経産省・デジタル庁への指示</text>
+      <text x="390" y="210" fill="#222" font-size="12" font-family="sans-serif">・ 民間・自費リハへの直接的な制度変更</text>
+    </svg>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">この室の構造的な特徴</div>
+    <p style="margin:0; font-size:15px; line-height:1.95;">
+      統括調整室は独立した法的権限を持ちません。診療報酬の改定権限は保険局・中医協にあり、法改正権限は国会にあります。独自予算もありません。<br>
+      一方、<strong>診療報酬担当（医療課長）・資格法担当（医事課長）・介護予防担当（老人保健課長）</strong>が同一の調整組織に配置されています。<br>
+      各制度の実務担当者が横断的に参加する構成は、従来の縦割り体制にはなかったものです。
+    </p>
+  </div>
+
+  <!-- ==============================
+       第2章
+  =============================== -->
+  <div class="chapter-label">Chapter 2</div>
+  <h2 id="chapter2">なぜ今できたのか──リハ政策の重要性が高まる中で</h2>
+
+  <p>リハビリテーション政策はこれまで、医療・介護・障害福祉という3つの縦割り構造の中に分断されてきました。回復期を退院した患者が在宅や介護サービスに移行するとき、リハビリの記録が引き継がれる制度的な保証はなく、担当者も変わります。病院・介護・地域をまたいで政策を動かす仕組みがなかったからです。</p>
+
+  <p>その縦割りを打破しようという動きが、国会質疑と議員連盟の両方から同時に押し寄せたのが2026年です。攻めの予防医療・フレイル対策・在宅医療の拡大という政策的背景が重なり、「リハビリ専門職を横断的に活用する体制」への要求が高まりました。</p>
+
+  <h3>一次資料が示す構造問題</h3>
+
+  <p>この分断の構造は、現場感覚だけでなく国の文書にも繰り返し記されてきました。2026年5月22日の経済財政諮問会議（第7回）で上野厚労大臣が提出した資料4には、「攻めの予防医療」の具体策として次の記載がある。</p>
+
+  <blockquote>
+    「地域における介護予防の取組を強化するため、①地域ケア会議、住民運営の通いの場等へのリハビリテーション専門職等の関与を促進、②高齢者の保健事業との一体的実施を推進」
+    <cite>── 経済財政諮問会議第7回（令和8年5月22日）資料4「持続可能な社会保障制度の構築に向けて」（上野賢一郎厚生労働大臣提出）</cite>
+  </blockquote>
+
+  <p>この文言が示しているのは、リハビリ専門職の「活躍の場」が医療・介護という従来の枠を超えて、地域の予防・健康増進の領域に拡大しているという認識です。そしてそれを政策として実現しようとすると、医療（医政局・保険局）と介護予防（老健局）をまたぐ調整が不可欠になります。縦割りのまま各局が個別に動いていたのでは、この図は完成しません。</p>
+
+  <h3>縦割りの構造</h3>
+
+  <p>厚生労働省内では、リハビリ関連の政策を以下の部局が個別に所管してきました。</p>
+
+  <ul style="margin: 16px 0 20px 24px; line-height: 2;">
+    <li><strong>医政局</strong>：PT・OT・STの資格・養成・業務範囲（医事課）、地域医療計画</li>
+    <li><strong>老健局</strong>：介護予防、地域ケア会議、通いの場、高齢者保健事業</li>
+    <li><strong>保険局</strong>：診療報酬、リハビリの点数設計、算定要件</li>
+    <li><strong>社会・援護局障害保健福祉部</strong>：障害者のリハビリ、自立支援給付</li>
+  </ul>
+
+  <p>これらの部局は個別の法律と予算を持ち、それぞれの論理で動いています。医療のリハビリを充実させようとしても、介護予防側の担当者がそのテーブルにいません。診療報酬を変えようとしても、法改正の担当者は別の課にいます。</p>
+
+  <p>「横串を通す」という言葉はよく使われますが、それをやろうとすると省内調整だけで相当なエネルギーを要します。統括調整室は、その調整コストを下げるための装置です。</p>
+
+  <h3>設置への道のり──3カ月で「体制整備→チーム→室」</h3>
+
+  <p>この室が突然生まれたわけではありません。国会での追及と、議連からの継続的な要望が積み重なった結果です。</p>
+
+  <div class="progress-steps">
+    <div class="progress-step done">
+      <span class="progress-step-date">2026年2月27日</span>
+      <span class="progress-step-text">衆院予算委員会で山本香苗委員（中道改革連合・元公明党参院議員）が「厚労省にリハビリを統括する部署がない」と問題提起しました。上野大臣は「省内体制をしっかり取る」と答弁しています。この山本委員が4月22日にも同テーマで質疑を重ね、設置への流れを作りました。</span>
+    </div>
+    <div class="progress-step done">
+      <span class="progress-step-date">2026年4月22日</span>
+      <span class="progress-step-text">衆院厚労委で山本香苗委員（2月と同一人物）が重ねて質疑。大臣が「関係チームのようなものを立ち上げたい」と答弁し、「チーム」という言葉が初めて登場。</span>
+    </div>
+    <div class="progress-step done">
+      <span class="progress-step-date">2026年4月22日</span>
+      <span class="progress-step-text">リハビリテーションを考える議員連盟（リハ議連）第13回総会。PT・OT法改正と統括部署設置を正式に決議・要望。</span>
+    </div>
+    <div class="progress-step done">
+      <span class="progress-step-date">2026年5月13日</span>
+      <span class="progress-step-text">衆院厚労委で田野瀬太道議員（リハ議連幹事長）が15分間のリハビリ政策質疑。大臣が「室を設置したい」と正式名称「リハビリテーション統括調整室」を答弁。</span>
+    </div>
+    <div class="progress-step current">
+      <span class="progress-step-date">2026年5月19日</span>
+      <span class="progress-step-text">大臣会見で即日設置を発表。答弁からわずか6日。</span>
+    </div>
+    <div class="progress-step done">
+      <span class="progress-step-date">2026年5月21日</span>
+      <span class="progress-step-text">自民党厚生労働部会リハビリテーション小委員会（鬼木誠委員長）でPT・OT・ST3協会がヒアリングを受けました。3協会はPT・OT法の抜本的見直しと次期通常国会への改正法案提出を要望。統括調整室の設置については「政策に横串を刺すことになる。画期的だ」と評価しています。</span>
+    </div>
+  </div>
+
+  <p>2月の「体制整備」から5月の「室設置」まで、わずか3カ月弱で組織形態が段階的に具体化した。田野瀬議員が求めていたのは実質的に「課」レベルの組織でした。届いたのは「室」です。課には届きませんでしたが、省内の正式な横断組織として設けられる意味は小さくありません。</p>
+
+  <p>なぜここまで速かったのか。議連の決議（4月22日）と国会答弁（5月13日）が重なり、大臣として「言ったからには動く」という状況が生まれた。政策の進め方として、議連と国会質疑が組み合わさって設置が実現した経緯です。リハ議連については別記事でまとめています。</p>
+
+  <a href="https://reha-tool.jp/articles/giren.html" class="related-card" style="margin: 20px 0;">
+    <div class="related-card-label">関連記事</div>
+    <div class="related-card-title">リハビリテーションを考える議員連盟（リハ議連）とは何か──247名が動かした13年の軌跡</div>
+  </a>
+
+
+  <!-- ==============================
+       第3章
+  =============================== -->
+  <div class="chapter-label">Chapter 3</div>
+  <h2 id="chapter3">誰が座っているのか──4人の素性と構成上の意味</h2>
+
+  <p>省令改正なし、独立予算なし。外形だけ見れば軽い組織だ。しかしこの室の構成員を確認すると、各制度の実務担当者が直接配置されていることがわかります。省令上の権限を持たない代わりに、各制度の執行担当者を一か所に集める設計になっています。</p>
+
+  <div class="note-box" style="border-left: 3px solid #e74c3c; background:#fff5f5;">
+    <span class="note-box-label" style="color:#c0392b;">構造的な事実：</span>
+    「医系技官」とは医師・歯科医師免許を持つ厚労省職員のことです。PT・OT・STはこのルートでは採用されていません。室員13名の詳細は非公開のため、PT・OT・ST資格保有者が室員として参加しているかどうかは確認できません（医系技官以外の事務系・技術系職員を含む構成である可能性が高いと見られます）。<br><br>
+    現在は医師・歯科医師免許を持つ医系技官が政策設計の中心を担う構造になっています。PT・OT法改正の議論でリハビリ専門職の業務範囲や制度上の位置づけが整理されれば、専門職が政策立案の場に関わる形が変わる可能性があります。その意味で、この室の設置とPT・OT法改正の議論は連動して見ていく必要があります。
+  </div>
+
+  <p>4人を「役職が何か」ではなく「何ができるか」で紹介します。</p>
+
+  <!-- 林 -->
+  <div class="person-card">
+    <div class="person-card-role">次長（保険局）</div>
+    <div class="person-card-name">林 修一郎</div>
+    <div class="person-card-position">保険局医療課長</div>
+    <span class="person-card-key">診療報酬の蛇口</span>
+    <div class="person-card-body">
+      <p>保険局医療課長とは、診療報酬の総元締めです。中央社会保険医療協議会（中医協）の事務局を担い、点数の設計・算定要件の策定・疑義解釈の発出まで、医療保険で動くお金の全てにこの課が関わります。リハビリ専門職であれば毎日算定している疾患別リハビリテーション料も、ベッドサイドリハ減算も、ベースアップ評価料も、全て医療課が作った仕組みです。</p>
+      <p>林氏は2000年入省の医系技官です。東京大学医学部卒業後、ハーバード大学公衆衛生大学院で修士号を取得しています。介護保険・難病・精神保健医療・感染症・がん対策・診療報酬改定と、政策の幅が広く、医事課長から医療課長への異動は「出世コースの王道」とされています。</p>
+      <p>田野瀬議員が「処遇改善が現場に届いていない、目詰まりを解消してほしい」と要請したのは、まさにこの医療課長というポストに向けた発言です。診療報酬の設計権限を持つポストが統括調整室に直接参加している構造になっています。</p>
+      <p>もう一点、見逃せない経歴の連続性があります。林氏は医療課長に就任する直前、<strong>医政局医事課長</strong>を務めていました。PT・OT法の所管者だった人物が、そのまま診療報酬の設計権限を持つ立場に移っています。法改正担当から診療報酬担当へのこの連続性は、統括調整室での役割を考えるうえで示唆的です。</p>
+      <p style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:14px; color:var(--primary);">▶ 医療課長が調整室に参加していることで、将来の診療報酬改定でリハ政策が議論される際、調整室の議論が直接医療課へ届く構造になっています。</p>
+    </div>
+  </div>
+
+  <!-- 中田 -->
+  <div class="person-card">
+    <div class="person-card-role">次長（医政局）</div>
+    <div class="person-card-name">中田 勝己</div>
+    <div class="person-card-position">医政局医事課長（死因究明等推進本部事務局参事官 併任）</div>
+    <span class="person-card-key">PT・OT法改正の鍵</span>
+    <div class="person-card-body">
+      <p>医政局医事課長とは、医師・歯科医師・薬剤師・理学療法士・作業療法士・言語聴覚士など、医療職種全般の資格と業務範囲を所掌する課の長です。PT・OT法（理学療法士及び作業療法士法）は、この課が所管している。法改正の検討を「誰かに頼む」ではなく、「当事者がテーブルにいる」ことの意味はここにある。</p>
+      <p>中田氏は1976年生まれで、北海道大学医学部卒業後、国立病院東京医療センターを経て2002年に入省した医系技官です。研究開発政策課長・地域医療計画課長（2040年を見据えた新たな地域医療構想の担当）を経て医事課長に就任しています。前任の地域医療計画課長時代には「2040年ごろを見据えた病院機能の在り方」を担当しました。</p>
+      <p>田野瀬議員の質疑で医政局から答弁に立った森光医政局長は「5月7日から医療関係職種の安定的な養成・確保に関する検討会を開催し、議論を開始した」と述べています。この検討会の担当も医事課です。PT・OT法の制度的見直しに向けた議論が動くとすれば、中田氏が担当することになります。</p>
+      <p style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:14px; color:var(--primary);">▶ 医事課長が同席していることで、PT・OT法の制度的見直しの議論が起きたとき、資格・業務範囲の設計担当者が最初から調整の場にいる状態になっています。</p>
+    </div>
+  </div>
+
+  <!-- 堀 -->
+  <div class="person-card">
+    <div class="person-card-role">次長（老健局）</div>
+    <div class="person-card-name">堀 裕行</div>
+    <div class="person-card-position">老健局老人保健課長</div>
+    <span class="person-card-key">介護予防・通いの場</span>
+    <div class="person-card-body">
+      <p>老健局老人保健課長とは、地域支援事業・介護予防・高齢者の保健事業を所掌する課の長です。「地域ケア会議」「住民運営の通いの場」「後期高齢者の保健事業との一体的実施」──これらは全て老人保健課が担当する。経済財政諮問会議の資料4（上野大臣提出）に「攻めの予防医療」の具体策として明記された「地域ケア会議・通いの場へのリハビリテーション専門職等の関与促進」は、まさにこの課の所管事項だ。</p>
+      <p>上野大臣が会見で「攻めの予防医療の具体化に取り組んでいく中で、リハビリテーション専門職が果たす役割は大きい」と述べた文脈は、医療や診療報酬の話ではありません。介護予防・通いの場・健康寿命延伸という文脈です。その実務担当者が、統括調整室のテーブルに直接座っている。</p>
+      <p>介護予防の現場に専門職が関わる制度設計は、堀氏が担当する領域に直結します。</p>
+      <p style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:14px; color:var(--primary);">▶ 老人保健課長が参加していることで、介護予防・通いの場へのリハビリ専門職の関与を強化する施策が、調整室の議論から直接制度設計に反映されやすい構造になっています。</p>
+    </div>
+  </div>
+
+  <!-- 江浪 -->
+  <div class="person-card">
+    <div class="person-card-role">室長（大臣官房）</div>
+    <div class="person-card-name">江浪 武志</div>
+    <div class="person-card-position">大臣官房審議官（医療介護連携・データヘルス改革担当）医政局・老健局 併任</div>
+    <span class="person-card-key">司令塔・横断調整</span>
+    <div class="person-card-body">
+      <p>審議官は局長の一段下で、政策を実際に動かす中枢です。江浪氏の肩書きにある「医療介護連携」という言葉は、この室の存在意義そのものを示しています。医政局と老健局を兼務しており、医療と介護の橋渡し役として省内調整を専任とするポストです。</p>
+      <p>江浪氏は医療AIの黎明期から政府側の責任者として動いてきた人物でもあります。2019年には厚生科学課医療イノベーション企画官として「健康・医療・介護領域におけるAI開発の加速」をテーマに政府の方針を説明していた。データヘルス改革も担当範囲に含まれており、電子カルテ・PHR・マイナ保険証など医療DX全般が守備範囲だ。</p>
+      <p>林（診療報酬）・中田（法改正）・堀（介護予防）の3人を束ねる調整役として、江浪氏がいます。3局がバラバラに動いていた政策を、一つのテーブルで調整できる体制が、これまでになかった形で整いました。</p>
+      <p>昨年7月（2025年7月8日付）の人事で、医療介護連携・データヘルス改革担当審議官として就任しています。設置のタイミングと就任1年未満という時期は、この室がその審議官ポストに「縦割り打破」というミッションを後付けで与えた形ともいえます。</p>
+      <p style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:14px; color:var(--primary);">▶ 医政局・老健局を兼務する審議官が室長を務めていることで、医療と介護にまたがる政策判断を、省内調整なしに一か所で進められる体制になっています。</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">4人の構図を整理すると</div>
+    <p style="margin:0; font-size:15px; line-height:1.9;">
+      <strong>林</strong>（医療課長）= 診療報酬の蛇口を持つ<br>
+      <strong>中田</strong>（医事課長）= PT・OT法の所管者<br>
+      <strong>堀</strong>（老人保健課長）= 介護予防・通いの場の担当者<br>
+      <strong>江浪</strong>（審議官・室長）= 医療と介護を横断する調整役<br>
+      <br>
+      「課ではなく室」「省令改正なし」「専用予算なし」という外形上の制約がある一方、診療報酬・資格法・介護予防という各制度の実務担当者が直接配置されています。
+    </p>
+  </div>
+
+
+  <!-- ==============================
+       第4章
+  =============================== -->
+  <div class="chapter-label">Chapter 4</div>
+  <h2 id="chapter4">PT・OT法改正との関係──議論の前提条件が整い始めた段階</h2>
+
+  <p>この統括調整室の設置に際して、最も注目を集めたトピックの一つがPT・OT法（理学療法士及び作業療法士法）の改正です。ただし現時点での状況を正確に整理すると、「議論の前提条件が整い始めた段階」という位置づけが適切です。</p>
+
+  <h3>大臣の言葉をそのまま読む</h3>
+
+  <p>上野大臣の会見での発言は次の通りです。</p>
+
+  <blockquote>
+    「『理学療法士及び作業療法士法』施行後約60年の間での役割の変化等も踏まえながら、制度的な見直しというものが考えられるかどうか、検討していく必要がある。」
+    <cite>── 上野賢一郎厚生労働大臣 閣議後記者会見（令和8年5月19日）</cite>
+  </blockquote>
+
+  <p>この言葉には二重の留保があります。「制度的な見直しが<strong>考えられるかどうか</strong>」──見直す、ではなく「考えられるかどうか」です。さらに「<strong>検討していく必要がある</strong>」──決定ではなく「必要がある」という認識の表明です。</p>
+
+  <p>田野瀬議員が5月13日の厚労委で述べた内容はより踏み込んでいます。「昭和40年にこの法律ができた──ちょうど私が生まれた年だ」という上野大臣の言葉を引き出したうえで、「来年のこの委員会で法改正の議論ができることを期待する」と述べた。これは田野瀬議員が設定した目標であり、政府の約束ではない。</p>
+
+  <h3>現在動いている検討会の性格</h3>
+
+  <p>森光医政局長が答弁で言及した「医療関係職種の安定的な養成・確保に関する検討会」は、2026年5月7日に第1回が開催されました。PT・OT・STの3協会会長が構成員として参加しています。</p>
+
+  <p>ただし、この検討会のテーマは「養成・確保」です。PT・OT法の業務範囲や業務独占・名称独占の在り方を正面から議論する場ではありません。法改正に向けた専門の検討会が立ち上がったわけではなく、既存の「養成確保」という文脈の中でPT・OT法の制度的課題も議論されうる、という位置づけです。</p>
+
+  <div class="caution-box">
+    <div class="caution-box-title">現状の正確な理解として</div>
+    PT・OT法の法改正は「決定」でも「約束」でもありません。しかし「議論の場がない」状態は終わりました。法改正の所管課長（中田氏）が統括調整室の次長として座り、3協会会長が参加する検討会が動き始めています。法改正の所管担当者が同じ調整組織にいる状態が、現時点での正確な位置づけです。
+  </div>
+
+  <h3>3協会が自民党小委員会に提出した要望内容（5月21日）</h3>
+
+  <p>統括調整室が設置されてから2日後の5月21日、自民党厚生労働部会リハビリテーション小委員会（鬼木誠委員長）が開かれました。日本理学療法士協会・日本作業療法士協会・日本言語聴覚士協会の3団体がヒアリングを受け、次の内容を要望しています。</p>
+
+  <ul style="margin: 16px 0 20px 24px; line-height: 2.2;">
+    <li><strong>PT・OT法の目的に「予防・健康増進・公衆衛生・保健指導への寄与」を明記</strong>──現在の法律が医療・リハビリを「障害者」対象として規定しているのを見直す。</li>
+    <li><strong>名称独占の厳罰化・行政指導の強化</strong>──無資格者による紛らわしい名称使用が散見されることへの対応。</li>
+    <li><strong>養成課程を現行の3年から4年へ見直し</strong>──活躍の場の広がりに対して質を確保するため。</li>
+    <li><strong>次期通常国会への改正法案提出</strong>──1965年の施行から60年間改正されていない現状を踏まえた要望。</li>
+  </ul>
+
+  <p>3協会は統括調整室の設置についても「政策に横串を刺すことになる。画期的だ」と評価しています。これは当事者団体として、この室の設置を「形式的な組織変更」ではなく「実質的な政策推進の仕組み」として受け止めていることを示しています。</p>
+
+  <div class="note-box">
+    <span class="note-box-label">出典：</span>自民党厚生労働部会リハビリテーション小委員会（2026年5月21日）ヒアリング内容（福祉新聞、2026年6月4日配信）
+  </div>
+
+  <h3>田野瀬議員が挙げた4つの論点</h3>
+
+  <p>5月13日の質疑で田野瀬議員が提起した論点は、PT・OT法改正だけではありません。統括調整室が今後取り組む可能性のある課題群として、以下の4点が答弁で確認されています。</p>
+
+  <ul style="margin: 16px 0 20px 24px; line-height: 2.2;">
+    <li><strong>PT・OT法の制度的見直し</strong>──業務独占・名称独占・罰則の整備。60年間一度も主体的改正が行われていない事実。</li>
+    <li><strong>処遇改善の目詰まり解消</strong>──R8改定でR8・R9それぞれ3.2%ベースアップの措置が講じられているが、現場に届いていないという指摘。統括調整室がチェック機能を持つことを要請。</li>
+    <li><strong>在留資格「医療」への言語聴覚士追加</strong>──PTとOTは在留資格「医療」に含まれますがSTは含まれていません。法務省・磯部在留管理支援部長が「厚生労働省と協議を開始している」と明言。</li>
+    <li><strong>専門職の偏在・地方での確保</strong>──都市部への集中と過疎地での担い手不足。「医療関係職種の安定的な養成・確保に関する検討会」のテーマ。</li>
+  </ul>
+
+  <p>これらは全て「統括調整室でないと動かせなかった」課題です。医事課単独では処遇改善は動かせません。医療課単独では法改正は議論できません。老人保健課単独ではSTの在留資格は関係ありません。横断的に議論するテーブルが必要だった理由が、この4点に凝縮されています。</p>
+
+
+  <!-- ==============================
+       第5章
+  =============================== -->
+  <div class="chapter-label">Chapter 5</div>
+  <h2 id="chapter5">誰に影響するのか──職場別に読む</h2>
+
+  <p>「統括調整室ができた」という事実に対して、現場のPT・OT・STが最初に抱く問いはシンプルです。「で、俺たちに何が起きるの？」——以下、職場別に整理します。</p>
+
+  <h3>病院勤務のPT・OT・ST</h3>
+
+  <p>診療報酬（医療課長・林氏）と資格・業務範囲（医事課長・中田氏）の両担当者が同席しており、制度上の接点が最も多い構成になっています。</p>
+
+  <p>ただし、今すぐ給与が上がるわけではありません。診療報酬の改定は中医協の審議が必要であり、PT・OT法の改正は国会審議が前提です。統括調整室がそれらを「決める」権限はありません。</p>
+
+  <p>以前との変化は、診療報酬担当者と法改正担当者が同一の調整組織に配置された点です。タスクシフト・業務範囲の見直し・処遇改善は複数部局にまたがる課題でしたが、その調整の場が一か所に設けられました。</p>
+
+  <h3>通所・介護予防分野（デイサービス・地域ケア会議等）</h3>
+
+  <p>公式資料の記述を見ると、介護予防領域での制度接続が最も明確に設計されています。</p>
+
+  <p>経済財政諮問会議（第7回、2026年5月22日）で上野大臣が提出した資料4には「地域ケア会議・住民運営の通いの場等へのリハビリテーション専門職等の関与促進」が具体策として明記されています。この記述は医療機関への影響より地域・介護予防領域への接続が先行して設計されていることを示しています。統括調整室に老人保健課長（堀氏）が配置されているのも、この政策方向と整合しています。</p>
+
+  <p>介護予防の現場にリハビリ専門職が関わる制度設計が強化される方向性は、少なくとも行政の文書上は明確になっています。具体的にどう変わるかは今後の検討次第ですが、この分野への政策的な関心は医療側より高い可能性があります。</p>
+
+  <h3>訪問リハビリ</h3>
+
+  <p>処遇改善の「目詰まり解消」が最も直撃する可能性がある分野の一つです。田野瀬議員が「現場に届いていない」と指摘した処遇改善の問題は、訪問リハビリに顕著に表れやすい傾向があります。統括調整室がこのチェック機能を果たすかどうかは、訪問リハ事業者・従事者が注目すべきポイントです。</p>
+
+  <h3>民間リハ・自費リハ</h3>
+
+  <p>現時点では、直接的な影響はほぼありません。統括調整室が触れるのは診療報酬・介護保険・資格制度という公的制度の範囲です。自費リハやリハベンチャー・フランチャイズ型リハは、現時点では制度の外にあります。</p>
+
+  <p>ただし、間接的なルートは存在します。PT・OT法改正によって業務範囲の整理が始まれば、誰が・どの領域で・どの程度リハビリ関連業務を提供できるかの輪郭が変わる可能性があります。その変化は民間の事業設計にも影響しうるため、PT・OT法の動向は民間事業者にとっても無関係ではありません。</p>
+
+  <h3>現時点で届いていない領域──経産省・デジタル庁・AIリハ機器</h3>
+
+  <p>ここが最も重要な整理です。</p>
+
+  <p>統括調整室はあくまで厚生労働省内の横断組織です。省外には手が届きません。AIリハビリ機器の開発支援・スタートアップ支援は経産省領域、医療データ連携・PHR活用はデジタル庁領域、こども・障害分野の一部はこども家庭庁領域に及びます。これらは現時点で、統括調整室の守備範囲ではありません。</p>
+
+  <p>仮に「国家戦略」という位置づけが実質化するならば、厚労省内だけでは対応できない領域が生じます。経産省・デジタル庁との政策連携が生まれるかどうかは、今後の動向を見る上での一つの指標になります。現時点ではその動きは確認されていません。</p>
+
+  <p>AIリハの視点から見ると、AIリハ機器・医療介護横断のデータ連携・PHR活用・在宅リハモニタリングといった領域は、厚労省単独では完結しません。経産省・デジタル庁との共同プロジェクトが現れるかどうかが、「国家戦略」の実質化を測る一つの指標になります。この点については、今後の「攻めの予防医療とリハビリテーション」の動向とあわせて見ていく必要があります。</p>
+
+  <div class="caution-box">
+    <div class="caution-box-title">SNSに多い両極端の反応について</div>
+    「すごい！リハの時代が来た！」と「ただの室でしょ、意味ない」の両方が流れています。公式資料が示す権限範囲に基づけば、単独での制度変更はできませんが、各制度の担当者が集まる調整の場として機能する構造になっています。
+  </div>
+
+  <h3>この室が機能しないシナリオ</h3>
+
+  <p>この室への期待が高まる一方、機能しない可能性も整理しておく必要があります。以下のリスクは、公式資料と組織の構造から導き出せる現実的な懸念です。</p>
+
+  <div class="caution-box">
+    <div class="caution-box-title">空回りシナリオ：4つのリスク</div>
+    <p style="margin-bottom:10px;"><strong>① 専任職員がいない</strong><br>室員17名は全員が各部局からの兼務です。本来業務を抱えたまま「調整」を担うため、優先順位が下がりやすい構造になっています。</p>
+    <p style="margin-bottom:10px;"><strong>② 独自予算がない</strong><br>予算権限を持たない調整組織は、各局の予算判断に依存します。「調整はできるが、実現には各局の予算が必要」という構造的な限界があります。</p>
+    <p style="margin-bottom:10px;"><strong>③ 法的権限がない</strong><br>省令上の正式部局でないため、他局に対して指示・命令する権限はありません。あくまで「調整」であり、各局が動かなければ前に進みません。</p>
+    <p style="margin-bottom:0;"><strong>④ 人事異動で継続性が失われる</strong><br>室長・次長は全員が現ポストの兼務です。通常の人事サイクルで担当者が変われば、積み上げた調整の文脈が引き継がれない可能性があります。</p>
+  </div>
+
+  <p>これらのリスクは「あるかもしれない」ではなく、組織の設計上「すでに内包されている」ものです。だからこそ、骨太方針や検討会の議事録を追い続ける意味があります。この室が本物かどうかは、そこから出てくる成果物で判断されます。</p>
+
+  <h3>政策ウォッチャー向け：検証ポイント</h3>
+
+  <p>この室の実効性は、今後の動きによって判断されます。現時点で設定できる検証ポイントを整理します。</p>
+
+  <p><strong>骨太の方針2026（6月中旬）：</strong>リハビリが「攻めの予防医療の柱」として具体的に明記されるか、それとも削減論の文脈に埋没するか。この室の政治的重みが文言に反映されるかどうかが一つの指標です。</p>
+
+  <p><strong>来年5月の衆院厚労委：</strong>田野瀬議員は「来年のこの委員会で法改正の議論ができることを期待する」と述べています。2027年5月に法改正をテーマとした議論が行われているかどうかが、もう一つの指標です。</p>
+
+  <p><strong>「医療関係職種の養成・確保に関する検討会」の行方：</strong>5月7日開始のこの検討会が「養成・確保」の範囲に収まるのか、業務範囲・法的根拠という本丸に踏み込むのかも注目点です。議事録と資料は逐次確認する価値がある。</p>
+
+  <p><strong>処遇改善の現場波及：</strong>R8改定（2026年6月施行）でR8・R9それぞれ3.2%ベースアップ措置が講じられています。田野瀬議員が指摘した「目詰まり」が解消されているかどうかは、現場の給与改定の実績で確認できます。</p>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">この記事のまとめ</div>
+    <p style="margin:0; font-size:15px; line-height:1.95;">
+      リハビリテーション統括調整室は、省令改正なし・独立予算なし・組織規則上の正式部局でもない組織です。一方、<strong>診療報酬担当（林）・資格法担当（中田）・介護予防担当（堀）・横断調整（江浪）</strong>という各制度の実務担当者が同一の調整組織に配置されています。<br><br>
+      医療機関は診療報酬・資格制度の両担当者が同席する構成で接点が最も多くなっています。介護予防・通所分野は公式資料上で最も具体的な制度接続が記述されています。訪問リハは処遇改善の目詰まり解消が直接関わります。民間・自費リハへの直接的な制度変更は現時点では対象外です。経産省・デジタル庁領域には現時点では届いていません。<br><br>
+      骨太2026原案（6月中旬）と来年5月の田野瀬発言が、最初の検証ポイントになります。
+    </p>
+  </div>
+
+    <div class="highlight-box" style="margin-bottom:32px;">
+    <div class="highlight-box-title">私の見解</div>
+    <p style="margin:0; font-size:15px; line-height:2;">
+      リハビリテーション統括調整室は、法改正や診療報酬を直接決める組織ではありません。しかし60年間分断されていたリハビリ政策の調整窓口としては、現時点で前例を確認できない存在です。この室が本当に機能するかどうかは、今後の法改正・処遇改善・DX政策にどこまで具体的な成果を残せるかで判断されます。
+    </p>
+  </div>
+
+  <div class="closing-statement">
+    <p>リハビリテーション統括調整室は、制度変更の結果ではありません。</p>
+    <p>制度変更に向けた調整の場です。</p>
+    <p>この組織の意義は設置日ではなく、そこから何が生まれるかによって判断されます。</p>
+  </div>
+
+  <div class="note-box">
+    <span class="note-box-label">出典・参考資料：</span>上野賢一郎厚生労働大臣 閣議後記者会見（令和8年5月19日）／「リハビリテーション統括調整室について」（厚生労働省会見配布資料）／衆議院厚生労働委員会 令和8年5月13日 田野瀬太道議員質疑（1POST既報）／経済財政諮問会議第7回資料4（令和8年5月22日）／厚生労働省幹部名簿（令和8年5月11日）
+  </div>
+
+
+  <!-- 関連記事 -->
+  <div class="related-articles">
+    <div class="related-title">関連記事</div>
+    <a href="https://reha-tool.jp/articles/giren.html" class="related-card">
+      <div class="related-card-label">関連記事</div>
+      <div class="related-card-title">リハビリテーションを考える議員連盟とは何か──247名が動かした13年の軌跡</div>
+    </a>
+    <a href="https://reha-tool.jp/articles/r8-kaitei-matome.html" class="related-card">
+      <div class="related-card-label">関連記事</div>
+      <div class="related-card-title">2026年（令和8年）診療報酬改定まとめ──リハビリに関わる主な変更点</div>
+    </a>
+    <a href="https://reha-tool.jp/articles/bedside-reha-gensam.html" class="related-card">
+      <div class="related-card-label">関連記事</div>
+      <div class="related-card-title">ベッドサイドリハビリテーション減算とは──6月施行の新たな評価基準を読む</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p><a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a> | PT・OT・ST・機能訓練指導員向け 無料ツール＆解説記事</p>
+  <p style="margin-top:8px;">※本記事は公表されている一次資料に基づいて作成していますが、制度の解釈や判断は必ず原文をご確認ください。</p>
+</footer>
+
+</body>
+</html>
