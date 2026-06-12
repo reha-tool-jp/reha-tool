@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YJLTBSGZ21');
-</script>
-
-<link rel="icon" type="image/png" href="/images/icon.png">
+<link rel="icon" type="image/jpeg" href="/reha-tool/images/icon.jpg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>リハビリ評価・計算ツール ＆ 制度解説メディア | PT・OT・ST向け無料ツール集</title>
+<title>リハビリ評価・計算ツール | PT・OT・ST・機能訓練指導員向け無料ツール集</title>
 <meta name="description" content="PT・OT・ST・機能訓練指導員向けの無料リハビリ評価・計算ツール集。デイサービス・訪問リハ・回復期病棟で使えるFIM、BI、生活機能チェックシート、興味・関心チェックシート、HDS-R、歩行評価、バランス評価など。登録不要・無料。">
 <meta name="google-site-verification" content="KWL3so-Yvycvz_JBnr2qALfBszpFqr8x_ZtKnwj6NJU">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
@@ -27,7 +19,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js');
+      navigator.serviceWorker.register('/reha-tool/service-worker.js');
     });
   }
 </script>
@@ -73,23 +65,6 @@
 
   .container { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
 
-  /* --- グローバルナビ --- */
-  .global-nav {
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .nav-container {
-    max-width: 640px; margin: 0 auto;
-    display: flex; gap: 12px; padding: 12px 16px;
-    overflow-x: auto; white-space: nowrap;
-  }
-  .nav-container a {
-    color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
-    padding: 6px 14px; border-radius: 20px; background: var(--surface2);
-    transition: background 0.15s, color 0.15s;
-  }
-  .nav-container a:hover { background: var(--accent-light); color: var(--accent); }
-
   /* --- セクション見出し --- */
   .section-title {
     font-size: 13px; font-weight: 700; color: var(--accent);
@@ -134,6 +109,23 @@
   .tool-name-coming { font-size: 14px; font-weight: 600; color: var(--text3); flex: 1; }
   .badge-coming { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: var(--surface); color: var(--text3); border: 1px solid var(--border2); }
 
+  /* --- お知らせ --- */
+  .news-list {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 10px 16px;
+    margin-bottom: 8px;
+  }
+  .news-item {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 6px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.5;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date { color: var(--text3); white-space: nowrap; font-size: 12px; min-width: 56px; }
+  .news-text { color: var(--text); }
+  .news-text a { color: var(--accent); text-decoration: none; }
+  .news-text a:hover { text-decoration: underline; }
+
   /* --- 解説記事 --- */
   .article-card {
     display: block; text-decoration: none; color: inherit;
@@ -173,188 +165,19 @@
   }
   .footer a { color: var(--text3); text-decoration: none; }
   .footer a:hover { color: var(--accent); }
-.news-list {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 16px;
-  margin-bottom: 8px;
-}
-.news-item {
-  display: flex; gap: 12px; align-items: baseline;
-  padding: 6px 0; border-bottom: 1px solid var(--border);
-  font-size: 13px; line-height: 1.6;
-}
-.news-item:last-child { border-bottom: none; }
-.news-date { color: var(--text3); white-space: nowrap; min-width: 52px; }
-.news-text { color: var(--text2); }
-
-.faq-list {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 4px 16px;
-  margin-bottom: 8px;
-}
-.faq-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
-.faq-item:last-child { border-bottom: none; }
-.faq-q {
-  font-size: 13px; font-weight: 700; color: var(--text);
-  margin-bottom: 4px;
-}
-.faq-a { font-size: 13px; color: var(--text2); line-height: 1.8; }
-
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "登録やアカウント作成は必要ですか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "不要です。ブラウザを開いてすぐに使えます。" }
-    },
-    {
-      "@type": "Question",
-      "name": "入力したデータはサーバーに送られますか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "すべての計算はブラウザ内で完結しており、入力データが外部に送信されることはありません。" }
-    },
-    {
-      "@type": "Question",
-      "name": "スマホでも使えますか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "はい、スマートフォン・タブレットに対応しています。ホーム画面に追加してアプリのように使うこともできます。" }
-    },
-    {
-      "@type": "Question",
-      "name": "無料ですか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "すべてのツール・記事は無料でご利用いただけます。" }
-    },
-    {
-      "@type": "Question",
-      "name": "印刷はできますか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "生活機能チェックシート・興味関心チェックシート・基本チェックリストは印刷対応しています。各ツールの「印刷」ボタンからA4縦でそのまま印刷できます。" }
-    }
-  ]
-}
-</script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "リハビリ評価・計算ツール",
-  "url": "https://reha-tool.jp/"
-}
-</script>
 </head>
 <body>
 
 <header>
-  <h1>🩺 リハビリ評価・計算ツール ＆ 制度解説メディア</h1>
-  <p>PT・OT・ST・機能訓練指導員向け 無料評価ツールとリハビリ制度の解説記事<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
+  <h1>🩺 リハビリ評価・計算ツール</h1>
+  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
 </header>
-<nav class="global-nav">
-  <div class="nav-container">
-    <a href="#articles">解説記事</a>
-    <a href="#tools">評価ツール</a>
-    <a href="#about">このサイトについて</a>
-  </div>
-</nav>
 
 <div class="container">
 
-  <!-- 更新情報 -->
-<div class="section-title" style="margin-top:0;">
-  <span class="section-icon">🆕</span>
-  新着・更新情報
-</div>
-<div class="news-list">
-  <div class="news-item">
-    <span class="news-date">2026.06</span>
-    <span class="news-text"><a href="articles/toukatsu-chosei-shitsu.html">リハビリテーション統括調整室とは何か｜PT・OT法改正と診療報酬への影響を整理</a></span>
-  </div>
-  <div class="news-item">
-    <span class="news-date">2026.05</span>
-    <span class="news-text"><a href="articles/giren.html">リハビリテーションを考える議員連盟とは？設立・メンバー・2026年の動きを解説</a></span>
-  </div>
-  <div class="news-item">
-    <span class="news-date">2026.05</span>
-    <span class="news-text">早期・休日リハビリテーション加算の解説記事を追加</span>
-  </div>
-
-</div>
-
-  <!-- ④ 解説記事 -->
-  <div id="articles" class="section-title">
-    <span class="section-icon">📰</span>
-    解説記事
-    <span class="section-note">制度・診療報酬・データ</span>
-  </div>
-
-  <a class="article-card" href="articles/toukatsu-chosei-shitsu.html">
-    <div class="article-head">
-      <span class="article-icon">🏢</span>
-      <span class="article-title">リハビリテーション統括調整室とは何か｜PT・OT法改正と診療報酬への影響を整理</span>
-    </div>
-    <div class="article-desc">診療報酬・法制度・介護予防の担当者が初めて同じテーブルについた。この室は何者で、どこまでの力があり、職場にどんな影響を与えるのか。一次資料から読み解く政策分析記事。</div>
-  </a>
-
-  <a class="article-card" href="articles/giren.html">
-    <div class="article-head">
-      <span class="article-icon">🏛️</span>
-      <span class="article-title">リハビリテーションを考える議員連盟とは？設立・メンバー・2026年の動きを解説</span>
-    </div>
-    <div class="article-desc">2013年10名から2026年247名へ。PT・OT法改正・統括調整室設置の背景にある議連の13年史を一次ソースから解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/r8-kaitei-matome.html">
-    <div class="article-head">
-      <span class="article-icon">📅</span>
-      <span class="article-title">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
-    </div>
-    <div class="article-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/minashi-tani.html">
-    <div class="article-head">
-      <span class="article-icon">📝</span>
-      <span class="article-title">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
-    </div>
-    <div class="article-desc">2026年改定で注目される「みなし単位」の概念と算定上のリスクを整理。</div>
-  </a>
-
-  <a class="article-card" href="articles/jisseki-shisu.html">
-    <div class="article-head">
-      <span class="article-icon">📊</span>
-      <span class="article-title">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
-    </div>
-    <div class="article-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/jihi-riha-jisho-riha.html">
-    <div class="article-head">
-      <span class="article-icon">⚖️</span>
-      <span class="article-title">「自費リハ・自称リハ」問題と国会質疑の論点</span>
-    </div>
-    <div class="article-desc">民間リハビリサービスの名称問題。国会での議論から見える制度の隙間と実態。</div>
-  </a>
-
-  <a class="article-card" href="articles/bedside-reha-gensam.html">
-    <div class="article-head">
-      <span class="article-icon">🛏️</span>
-      <span class="article-title">ベッドサイドリハ減算とは？2026年改定の背景と現場への影響</span>
-    </div>
-    <div class="article-desc">離床・歩行練習を促す新たな減算要件の内容と、算定継続のために必要な対応を解説。</div>
-  </a>
-
-  <a class="article-card" href="articles/souki-reha-kazan.html">
-    <div class="article-head">
-      <span class="article-icon">⏱️</span>
-      <span class="article-title">早期リハビリテーション加算とは？2026年改定の変更点と算定要件</span>
-    </div>
-    <div class="article-desc">入院早期のリハ介入を評価する加算の算定要件・終了日・2026年改定による変更点を解説。</div>
-  </a>
-
-  <a class="more-link" href="articles/index.html">すべての解説記事を見る →</a>
-
-<!-- ① ADL・身体機能の評価ツール -->
-  <div id="tools" class="section-title">
+  <!-- ① ADL・身体機能の評価ツール -->
+  <div class="section-title">
     <span class="section-icon">📋</span>
     ADL・身体機能の評価ツール
     <span class="section-note">回復期・訪問・外来</span>
@@ -409,7 +232,7 @@
   <div class="section-title">
     <span class="section-icon">📅</span>
     加算・算定に使うツール
-    <span class="section-note">病院・クリニック</span>
+    <span class="section-note">病院・デイサービス・介護保険</span>
   </div>
 
   <a class="tool-card" href="santei-tool.html">
@@ -421,13 +244,6 @@
     <div class="tool-desc">発症日・手術日を入力するだけで算定上限日数と13単位制限の開始日を自動計算。脳血管・運動器・廃用・呼吸器に対応。複数患者を一括管理。</div>
   </a>
 
-  <!-- ③ アセスメント・書類作成ツール -->
-  <div class="section-title">
-    <span class="section-icon">📝</span>
-    アセスメント・書類作成ツール
-    <span class="section-note">デイサービス・総合事業</span>
-  </div>
-
   <a class="tool-card" href="seikatsu-tool.html">
     <div class="tool-card-head">
       <span class="tool-icon">🏠</span>
@@ -435,7 +251,7 @@
       <span class="tool-badge badge-new">NEW</span>
       <span class="tool-badge badge-day">デイサービス</span>
     </div>
-    <div class="tool-desc">別紙様式3-2。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力し A4一枚で印刷。</div>
+    <div class="tool-desc">別紙様式3-2。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力しA4一枚で印刷。</div>
   </a>
 
   <a class="tool-card" href="kyoumi-tool.html">
@@ -457,9 +273,70 @@
     <div class="tool-desc">25項目をタップで入力し7つのドメインのリスクを自動判定。BMI自動計算対応。介護予防・日常生活支援総合事業対応。</div>
   </a>
 
+  <!-- ② お知らせ -->
+  <div class="section-title" style="margin-top:0;">
+    <span class="section-icon">📢</span>
+    お知らせ
+  </div>
+
+  <div class="news-list">
+    <div class="news-item">
+      <span class="news-date">2026.06</span>
+      <span class="news-text"><a href="articles/houmon-reha-shogu-kaizen.html">訪問リハビリテーション 処遇改善加算 2026年6月から対象に</a></span>
+    </div>
+  </div>
+
+  <!-- ③ 解説記事 -->
+  <div class="section-title">
+    <span class="section-icon">📰</span>
+    解説記事
+    <span class="section-note">制度・診療報酬・データ</span>
+  </div>
+
+  <a class="article-card" href="articles/houmon-reha-shogu-kaizen.html">
+    <div class="article-head">
+      <span class="article-icon">💴</span>
+      <span class="article-title">訪問リハビリテーション 処遇改善加算 2026年6月から対象に</span>
+    </div>
+    <div class="article-desc">PT・OT・STが初めて処遇改善加算の対象に。加算率1.5%の実額計算、給料への反映時期、確認・交渉テンプレートまでわかりやすく解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/jisseki-shisu.html">
+    <div class="article-head">
+      <span class="article-icon">📊</span>
+      <span class="article-title">回復期リハ病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点</span>
+    </div>
+    <div class="article-desc">FIM運動項目利得と入棟上限日数の関係、加点ルール、除外要件の変更、入院料別基準値を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/r8-kaitei-matome.html">
+    <div class="article-head">
+      <span class="article-icon">📅</span>
+      <span class="article-title">2026年診療報酬改定 リハビリ関連の変更点まとめ</span>
+    </div>
+    <div class="article-desc">令和8年度改定の主要項目（ベッドサイドリハ減算・早期リハ加算・休日加算等）を解説。</div>
+  </a>
+
+  <a class="article-card" href="articles/jihi-riha-jisho-riha.html">
+    <div class="article-head">
+      <span class="article-icon">⚖️</span>
+      <span class="article-title">「自費リハ・自称リハ」問題と国会質疑の論点</span>
+    </div>
+    <div class="article-desc">民間リハビリサービスの名称問題。国会での議論から見える制度の隙間と実態。</div>
+  </a>
+
+  <a class="article-card" href="articles/minashi-tani.html">
+    <div class="article-head">
+      <span class="article-icon">📝</span>
+      <span class="article-title">「みなし単位」とは何か？訓練外業務の可視化と注意点</span>
+    </div>
+    <div class="article-desc">2026年改定で注目される「みなし単位」の概念と算定上のリスクを整理。</div>
+  </a>
+
+  <a class="more-link" href="articles/index.html">すべての解説記事を見る →</a>
 
   <!-- サイト説明 -->
-  <div id="about" class="about-section">
+  <div class="about-section">
     <h2>このサイトについて</h2>
     <p>理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）・機能訓練指導員が現場で使えるリハビリ評価・計算ツールを無料で提供しています。デイサービス・訪問リハ・回復期病棟・外来リハビリなど幅広い場面に対応しています。</p>
     <div class="feature-list">
@@ -470,34 +347,7 @@
     </div>
   </div>
 
-  <!-- よくある質問 -->
-<div class="section-title">
-  <span class="section-icon">❓</span>
-  よくある質問
-</div>
-<div class="faq-list">
-  <div class="faq-item">
-    <p class="faq-q">Q. 登録やアカウント作成は必要ですか？</p>
-    <p class="faq-a">A. 不要です。ブラウザを開いてすぐに使えます。</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Q. 入力したデータはサーバーに送られますか？</p>
-    <p class="faq-a">A. すべての計算はブラウザ内で完結しており、入力データが外部に送信されることはありません。患者情報を安心して入力いただけます。</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Q. スマホでも使えますか？</p>
-    <p class="faq-a">A. はい、スマートフォン・タブレットに対応しています。ホーム画面に追加してアプリのように使うこともできます。</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Q. 無料ですか？</p>
-    <p class="faq-a">A. すべてのツール・記事は無料でご利用いただけます。</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Q. 印刷はできますか？</p>
-    <p class="faq-a">A. 生活機能チェックシート・興味関心チェックシート・基本チェックリストは印刷対応しています。各ツールの「印刷」ボタンからA4縦でそのまま印刷できます。</p>
-  </div>
-</div>
-<div class="footer">
+  <div class="footer">
     <a href="about.html">このサイトについて</a>　｜　
     <a href="contact.html">お問い合わせ</a>　｜　
     <a href="terms.html">利用規約</a>　｜　
@@ -506,106 +356,5 @@
   </div>
 
 </div>
-
-<!-- PWAホーム画面追加案内ポップアップ -->
-<div id="pwa-banner" class="pwa-banner" style="display: none;">
-  <button class="pwa-banner-close" onclick="closePwaBanner()">&times;</button>
-  <div class="pwa-banner-content" id="pwa-banner-message"></div>
-</div>
-
-<style>
-  .pwa-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
-    padding: 20px 24px;
-    z-index: 1000;
-    transition: transform 0.3s ease-out;
-    transform: translateY(100%);
-  }
-  .pwa-banner.show {
-    transform: translateY(0);
-  }
-  .pwa-banner-content {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text);
-    padding-right: 20px;
-  }
-  .pwa-banner-title {
-    font-weight: bold;
-    font-size: 14px;
-    color: var(--accent);
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .pwa-banner-close {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: var(--text3, #a09d96);
-    cursor: pointer;
-    padding: 4px;
-    line-height: 1;
-  }
-</style>
-
-<script>
-window.addEventListener('load', () => {
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-  if (isStandalone || localStorage.getItem('pwa_banner_shown')) {
-    return;
-  }
-
-  const ua = navigator.userAgent.toLowerCase();
-  const isiOS = /iphone|ipad|ipod/.test(ua);
-  const isAndroid = /android/.test(ua);
-
-  if (!isiOS && !isAndroid) {
-    return;
-  }
-
-  setTimeout(() => {
-    const banner = document.getElementById('pwa-banner');
-    const msgEl = document.getElementById('pwa-banner-message');
-    
-    if (isiOS) {
-      msgEl.innerHTML = `
-        <div class="pwa-banner-title">📲 ホーム画面に追加して使う</div>
-        <div>Safariの共有ボタン（<span style="font-weight: bold;">□↑</span>）→「ホーム画面に追加」で、次回からアプリのように開けます。</div>
-      `;
-    } else if (isAndroid) {
-      msgEl.innerHTML = `
-        <div class="pwa-banner-title">📲 ホーム画面に追加して使う</div>
-        <div>ブラウザのメニュー（<span style="font-weight: bold;">⋮</span>）→「ホーム画面に追加」で、次回からアプリのように開けます。</div>
-      `;
-    }
-    
-    banner.style.display = 'block';
-    banner.offsetHeight; // force reflow
-    banner.classList.add('show');
-  }, 1500);
-});
-
-function closePwaBanner() {
-  const banner = document.getElementById('pwa-banner');
-  banner.classList.remove('show');
-  localStorage.setItem('pwa_banner_shown', '1');
-  setTimeout(() => {
-    banner.style.display = 'none';
-  }, 300);
-}
-</script>
 </body>
 </html>
