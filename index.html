@@ -165,6 +165,23 @@
   }
   .footer a { color: var(--text3); text-decoration: none; }
   .footer a:hover { color: var(--accent); }
+
+  /* --- グローバルナビ --- */
+  .global-nav {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-container {
+    max-width: 640px; margin: 0 auto;
+    display: flex; gap: 12px; padding: 12px 16px;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .nav-container a {
+    color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px; background: var(--surface2);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-container a:hover { background: var(--accent-light); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -173,6 +190,14 @@
   <h1>🩺 リハビリ評価・計算ツール</h1>
   <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集<br>登録不要・アプリ不要・ブラウザだけで使えます</p>
 </header>
+
+<nav class="global-nav">
+  <div class="nav-container">
+    <a href="#articles">解説記事</a>
+    <a href="#tools">評価ツール</a>
+    <a href="#about">このサイトについて</a>
+  </div>
+</nav>
 
 <div class="container">
 
