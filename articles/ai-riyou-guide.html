@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="/images/icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJLTBSGZ21');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リハ・介護現場でChatGPTを使っても大丈夫？｜ガイドラインと国内研究から考える生成AI活用 | リハビリ評価・計算ツール</title>
+<meta name="description" content="リハビリサマリーにAI導入で57%時間削減、でも8割にエラー。ChatGPT・Google Workspace・個人Googleドライブの違いを厚労省ガイドライン・HAIPガイドラインから解説。リハ・介護職向けAI利用チェッカー付き。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+  --border: #e0ddd4; --text: #1a1916; --text2: #6b6860; --text3: #a09d96;
+  --accent: #2a5c45; --accent-light: #e8f2ed;
+  --warn: #8a5c00; --warn-light: #fdf6e3;
+  --info: #1a4a7a; --info-light: #e8f0fa;
+  --danger: #7a1a1a; --danger-light: #fae8e8;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
+.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.breadcrumb a { color: var(--text3); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 6px; }
+.article-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--accent-light); color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); margin-bottom: 28px; }
+.article-body { font-size: 15px; color: var(--text); line-height: 1.9; }
+.article-body h2 { font-size: 1.05rem; font-weight: 700; color: var(--accent); margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent-light); }
+.article-body h3 { font-size: 0.95rem; font-weight: 700; margin: 20px 0 8px; color: var(--text); }
+.article-body p { margin-bottom: 14px; }
+.article-body ul { padding-left: 1.5em; margin-bottom: 14px; }
+.article-body li { margin-bottom: 6px; }
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0 28px; }
+.toc-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
+.toc ol { padding-left: 1.4em; font-size: 14px; }
+.toc li { margin-bottom: 4px; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.info-box { background: var(--info-light); border-left: 4px solid var(--info); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 6px; font-size: 13px; }
+.warn-box { background: var(--warn-light); border-left: 4px solid var(--warn); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 6px; font-size: 13px; }
+.danger-box { background: var(--danger-light); border-left: 4px solid var(--danger); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.danger-box .danger-title { font-weight: 700; color: var(--danger); margin-bottom: 6px; font-size: 13px; }
+.accent-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.gi-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.gi-table th { background: var(--surface2); padding: 8px 12px; text-align: left; font-weight: 700; color: var(--text2); border-bottom: 1px solid var(--border); }
+.gi-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+.gi-table tr:last-child td { border-bottom: none; }
+.source-box { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin: 24px 0; font-size: 13px; }
+.source-box .source-title { font-weight: 700; color: var(--text2); margin-bottom: 8px; }
+.source-box ul { padding-left: 1.4em; }
+.source-box li { margin-bottom: 4px; color: var(--text2); }
+.source-box a { color: var(--accent); }
+.checker-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 24px 0; }
+.checker-wrap .checker-title { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.checker-wrap .checker-sub { font-size: 13px; color: var(--text2); margin-bottom: 16px; }
+.q-block { margin-bottom: 20px; }
+.q-num { font-size: 11px; font-weight: 700; color: var(--text3); letter-spacing: .06em; margin-bottom: 4px; }
+.q-text { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+.q-sub { font-size: 12px; color: var(--text2); margin-bottom: 10px; line-height: 1.5; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, background .15s; background: var(--surface); }
+.opt:hover { border-color: var(--accent); background: var(--accent-light); }
+.opt.selected { border-color: var(--accent); background: var(--accent-light); }
+.opt input { margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); }
+.opt-label { font-size: 14px; color: var(--text); line-height: 1.5; font-weight: 700; }
+.opt-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.check-btn { display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 700; border-radius: var(--radius); border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; margin-top: 8px; }
+.check-btn:hover { opacity: .9; }
+.reset-btn { display: inline-block; padding: 8px 16px; font-size: 13px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; color: var(--text2); cursor: pointer; margin-top: 12px; }
+.result-block { padding: 16px; border-radius: var(--radius); border: 1px solid; margin-top: 12px; }
+.result-block.green { background: #e8f2ed; border-color: var(--accent); }
+.result-block.yellow { background: var(--warn-light); border-color: var(--warn); }
+.result-block.red { background: var(--danger-light); border-color: var(--danger); }
+.result-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+.result-block.green .result-title { color: var(--accent); }
+.result-block.yellow .result-title { color: var(--warn); }
+.result-block.red .result-title { color: var(--danger); }
+.result-section { margin-bottom: 10px; }
+.result-section-title { font-size: 11px; font-weight: 700; letter-spacing: .05em; margin-bottom: 6px; }
+.result-block.green .result-section-title { color: var(--accent); }
+.result-block.yellow .result-section-title { color: var(--warn); }
+.result-block.red .result-section-title { color: var(--danger); }
+.result-item { font-size: 13px; line-height: 1.6; padding: 3px 0; color: var(--text); display: flex; gap: 8px; }
+.result-item::before { flex-shrink: 0; margin-top: 1px; }
+.result-block.green .result-item.ok::before { content: "✓"; color: var(--accent); }
+.result-block.green .result-item.ng::before { content: "✗"; color: var(--danger); }
+.result-block.yellow .result-item.ok::before { content: "△"; color: var(--warn); }
+.result-block.yellow .result-item.ng::before { content: "✗"; color: var(--danger); }
+.result-block.red .result-item.ok::before { content: "○"; color: #3B6D11; }
+.result-block.red .result-item.ng::before { content: "✗"; color: var(--danger); }
+.result-warn { font-size: 12px; padding: 8px 12px; background: var(--surface2); border-radius: var(--radius); color: var(--text2); margin-top: 10px; line-height: 1.6; border-left: 2px solid var(--border); }
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; margin-bottom: 12px; }
+.tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: block; margin-bottom: 10px; transition: border-color 0.15s; }
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+.footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2.2; }
+.footer a { color: var(--text3); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-sep { margin: 0 6px; }
+@media (max-width: 480px) {
+  .opt { padding: 8px 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">リハビリ評価・計算ツール｜解説記事</div>
+  <h1>リハ・介護現場でChatGPTを使っても大丈夫？<br>ガイドラインと国内研究から考える生成AI活用</h1>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    リハ・介護現場のAI利用
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">AI・DX・制度</span>
+    <h1 class="article-title">リハ・介護現場でChatGPTを使っても大丈夫？<br>ガイドラインと国内研究から考える生成AI活用</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士・介護職向け解説｜2026年6月</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>生成AIを業務で使い始めたという話を、職場でも耳にするようになってきました。</p>
+    <p>記録の下書き、リハビリサマリーの作成、勉強会の資料づくり。ChatGPTをはじめとする生成AIの用途はさまざまですが、共通しているのは「便利だから使っている」という感覚です。</p>
+    <p>ただ、その便利さの裏側に何があるのか、職場としてどこまで許容するのか、答えを出せている現場はまだ少ないと思われます。</p>
+    <p>この記事では、リハ・介護現場でのAI利用をめぐる現状と、今使えるガイドラインを読み解きます。</p>
+
+    <nav class="toc">
+      <p class="toc-title">目次</p>
+      <ol>
+        <li><a href="#rule">ルールの現状</a></li>
+        <li><a href="#haip">HAIPという選択肢</a></li>
+        <li><a href="#research">実際に使うとどうなるか</a></li>
+        <li><a href="#diff">個人利用と施設単位での導入の違い</a></li>
+        <li><a href="#action">組織・個人でできること</a></li>
+        <li><a href="#checker">AI利用チェッカー</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="rule">ルールの現状</h2>
+
+    <p>現在、医療情報の取り扱いに関する主なガイドラインは、厚生労働省「医療情報システムの安全管理に関するガイドライン第6.0版」（令和5年5月）です。</p>
+    <p>このガイドラインでは、国外サーバーや海外事業者のクラウドを利用する場合、安全管理や責任の所在（責任分界点）を厳格に評価・書面化することが義務付けられています。個人が無断で海外のAIサービスや一般的なクラウドに患者情報を入力することは、この要件から完全に逸脱します。</p>
+    <p>ただし、このガイドラインが策定されたのは2023年です。ChatGPTをはじめとする生成AIが急速に普及し始めた時期と重なりますが、個人が業務でAIを使う場面に関する具体的な規定は設けられていませんでした。</p>
+    <p>つまり現状は、個人での生成AI利用に関する明確なルールが存在しない状態で、現場で利用事例が報告され始めているということです。</p>
+
+    <h2 id="haip">HAIPという選択肢</h2>
+
+    <p>そのような状況の中で、現時点で医療現場向けの生成AI利用ガイドラインの一つとして参照できるのが、HAIP（医療AIプラットフォーム技術研究組合）が策定した「医療・ヘルスケア分野における生成AI利用ガイドライン」です。</p>
+    <p>このガイドラインは令和5年度厚生労働行政推進調査事業費（特別研究）補助金の研究成果として2024年10月に公表され、2025年7月には第2版が発行されています。</p>
+    <p>個人利用者向けに「組織が利用可能と判断したサービスであることを確認する」「医療情報を入力する場合は再学習に使われない設定であることを確認する」など、具体的な注意点がまとめられています。</p>
+    <p>厚労省の公式ガイドラインではありませんが、現時点で生成AIの医療現場での活用を考える上での現実的な指針として活用できます。</p>
+
+    <h2 id="research">実際に使うとどうなるか</h2>
+
+    <p>実際にリハ職がAI記録作成を業務に導入したらどうなるのか、国内の研究が一つの答えを示しています。</p>
+    <p>2026年5月、京都・蘇生会総合病院リハビリテーション科の研究チームが国際誌Cureusに発表した論文では、ユビー生成AIとExcel/VBAマクロを組み合わせたワークフローを導入した結果が報告されました。</p>
+    <p>作成時間の中央値は導入前の23分から導入後10分へと約57%削減されました。ただしこの「10分」には、AIが生成した内容を療法士が確認・修正する工程も含まれています。</p>
+    <p>一方で安全性の評価では、無作為に抽出した11件のAI生成サマリーのうち9件（81.8%）に少なくとも1件のエラーが含まれていました。このエラーはハルシネーション（幻覚）と呼ばれるAI特有の現象で、「電子カルテに記載のない合併症が追加される」「症状から根拠なく病名が生成される」といった内容でした。患者管理に影響しうる重大なエラーも含まれていました。</p>
+    <p>また研究で使われたプロンプトは「バージョン4.0」でした。試行錯誤の積み重ねの末にたどり着いた数字です。</p>
+
+    <div class="info-box">
+      <div class="info-title">📊 研究データまとめ</div>
+      作成時間：23分→10分（約57%削減）／エラー発生率：11件中9件（81.8%）／ハルシネーション：19件（うち重大エラー52.6%）／プロンプト：バージョン4.0まで改良／出典：Cureus 2026 DOI: 10.7759/cureus.109247
+    </div>
+
+    <h2 id="diff">個人利用と施設単位での導入の違い</h2>
+
+    <p>リハビリサマリーや介護記録の作成負担は、現場の療法士なら誰もが実感していることです。書類業務に追われ、患者さんと向き合う時間が削られていく。AIに手を出したくなるのは、ある意味当然の流れです。</p>
+    <p>問題は、どう使うかです。</p>
+    <p>AIの導入には大きく2つのパターンがあります。施設単位での導入と、個人での利用です。</p>
+    <p>施設単位での導入は、電子カルテベンダーや専門業者が関与するため、セキュリティ要件や情報管理のルールがある程度担保された状態でスタートします。蘇生会総合病院の事例もこれにあたります。</p>
+    <p>問題は個人での利用です。ChatGPTや生成AIに患者情報を入力したり、患者情報をやり取りするといった動きが現場で見られます。</p>
+    <p>ここで重要なのは、クラウドサービスの利用が「すべてアウト」ではないという点です。</p>
+
+    <div class="info-box">
+      <div class="info-title">📋 個人Googleドライブ vs Google Workspace：何が違うのか</div>
+      <p style="margin-bottom:8px;"><strong>個人の無料アカウント（Gmailに紐づいたGoogleドライブ）</strong>：組織管理・委託契約・アクセス管理が担保されないため、安全管理措置の要件を満たさない可能性が高く、情報漏洩や義務違反に抵触するリスクがあります。</p>
+      <p style="margin-bottom:8px;"><strong>Google Workspaceのような施設契約サービス</strong>：施設として正式に契約し、利用規約の整備と委託契約が締結されている場合は、安全管理の要件を満たせる可能性があります。施設契約のもとでGoogleドライブを使う場合も、契約内容によっては要件を満たせるケースがあります。</p>
+      <p>ただし、Google WorkspaceのBAAは主に米国HIPAA対応であり、日本の医療情報安全管理ガイドライン上の要件を満たすかどうかは施設側での確認が必要です。</p>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ クラウドサービスを使う前に確認すべき3点</div>
+      厚労省ガイドライン第6.0版とHAIPガイドライン（2章・組織向けポイント）では、クラウドサービスを医療情報に使う場合の確認事項として以下が示されています。<br><br>
+      ① データ管理体制・適用法域が国内法に準拠しているか<br>
+      ② 入力したデータがAIの学習に使われない設定になっているか<br>
+      ③ 医療機関とクラウドを接続するネットワークはセキュアか（VPN等）<br><br>
+      個人の無料アカウントでは①②③のいずれも確認・担保できません。施設契約サービスであっても、施設の情報管理担当者と確認した上で利用することが求められます。詳細はHAIPガイドライン第2版の2章をご参照ください。
+    </div>
+
+    <h2 id="action">組織・個人でできること</h2>
+
+    <p>では、今の段階で何ができるでしょうか。</p>
+    <p>施設単位での対応としては、HAIPのガイドラインに準拠した形で利用可能なサービスを選定し、職員への周知とルールの明文化を進めることが現実的な第一歩です。</p>
+    <p>個人としてできることは、まず施設が承認していない生成AIに患者情報を入力しないことです。匿名化した情報や一般的な文書作成の補助として使う範囲に限定することが現時点での現実的な使い方といえます。</p>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 「匿名化すれば大丈夫」は要注意</div>
+      氏名を消しただけでは匿名化になりません。年齢・疾患名・入院日・経過・地域などの組み合わせで個人が特定できる場合があります。施設の情報管理規程に従い判断してください（HAIP第2版・個人情報保護法）。
+    </div>
+
+    <p>また、蘇生会の研究が示すように、AIをうまく使えるようになるにはプロンプトの試行錯誤が必要です。「バージョン4.0」という数字が示すように、すぐに使いこなせるものではなく、組織として蓄積していくものです。</p>
+    <p>生成AIのルールは今後さらに変化していきます。HAIPが第2版を出したように、指針は更新され続けています。個人や部署単位で先に動くより、組織としての方針を持った上で使い始めることが、現時点では有力な選択肢と思われます。</p>
+
+    <div class="accent-box">
+      AIで生まれた13分を、次のリハプログラムを深く練る時間に、あるいはもう一度患者さんのベッドサイドに足を運ぶ時間に変えるために、正しい枠組みでAIを使いこなすことが、これからのリハ・介護職に求められていることかもしれません。
+    </div>
+
+    <h2 id="checker">AI利用チェッカー：あなたの職場では何がOKで何がNGか</h2>
+
+    <p>5つの質問に答えると、あなたの職場でのAI利用の適切な範囲が判定されます。</p>
+
+    <div class="checker-wrap">
+      <div class="checker-title">🤖 リハ・介護現場のAI利用チェッカー</div>
+      <div class="checker-sub">5問に答えると「できること・できないこと」が判定されます</div>
+
+      <div id="checker-questions"></div>
+      <div id="checker-btns"></div>
+      <div id="checker-result"></div>
+    </div>
+
+    <div class="source-box">
+      <p class="source-title">参考・一次資料</p>
+      <ul>
+        <li>蘇生会総合病院リハビリテーション科 論文（Cureus 2026）：<a href="https://www.cureus.com/articles/493029" target="_blank" rel="noopener">DOI: 10.7759/cureus.109247</a></li>
+        <li>PT-OT-ST.NET 記事：<a href="https://www.pt-ot-st.net/index.php/topics/detail/1925" target="_blank" rel="noopener">リハビリサマリー作成にAI導入、作業時間57%削減も8割にエラー</a></li>
+        <li>厚労省 医療情報システムの安全管理に関するガイドライン第6.0版：<a href="https://www.mhlw.go.jp/stf/shingi/0000516275_00006.html" target="_blank" rel="noopener">mhlw.go.jp</a></li>
+        <li>HAIP 医療・ヘルスケア分野における生成AI利用ガイドライン第2版（2025年7月）：<a href="https://haip-cip.org/assets/documents/nr_20250711.pdf" target="_blank" rel="noopener">PDF直リンク</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="toukatsu-chosei-shitsu.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🏛️</span>
+        <span class="tool-name">リハビリテーション統括調整室とは何か</span>
+      </div>
+      <div class="tool-desc">2026年5月設置。厚労省内のリハビリ政策を一元管理する組織の役割と権限を解説。</div>
+    </a>
+    <a class="tool-card" href="giren.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🏛️</span>
+        <span class="tool-name">リハビリテーションを考える議員連盟とは</span>
+      </div>
+      <div class="tool-desc">2013年設立・2026年247名。リハビリ政策の背景にある議連の13年史を一次資料から解説。</div>
+    </a>
+    <a class="tool-card" href="../fim-tool.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">FIM評価ツール</span>
+      </div>
+      <div class="tool-desc">機能的自立度評価法。18項目を入力するとFIMスコアを自動計算。</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← ツール一覧</a><span class="footer-sep">|</span>
+    <a href="index.html">解説記事一覧</a><span class="footer-sep">|</span>
+    <a href="../fim-tool.html">FIM評価ツール</a><span class="footer-sep">|</span>
+    <a href="../bi-tool.html">BIツール</a><span class="footer-sep">|</span>
+    <a href="../walk-tool.html">歩行評価ツール</a><span class="footer-sep">|</span>
+    <a href="../balance-tool.html">バランス評価ツール</a><span class="footer-sep">|</span>
+    <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
+    <a href="/contact.html">お問い合わせ</a><span class="footer-sep">|</span>
+    <a href="../terms.html">利用規約</a><span class="footer-sep">|</span>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+
+</div>
+
+<script>
+const qs=[
+  {
+    text:"入力するデータに、患者・利用者に関する情報が少しでも含まれますか？",
+    sub:"氏名、年齢、疾患名、リハビリ経過、家族構成など",
+    opts:[
+      {label:"含まない",sub:"文体の修正、勉強会資料の作成、一般的な情報収集のみ",val:"A"},
+      {label:"含む予定（または含む可能性がある）",sub:"サマリー作成、記録の下書きなど",val:"B"}
+    ]
+  },
+  {
+    text:"使いたいAIサービスは、施設・法人として正式に契約・承認されていますか？",
+    sub:"個人のスマホや個人アカウントでの利用は「いいえ」",
+    opts:[
+      {label:"はい、施設として契約・承認されている",val:"A"},
+      {label:"いいえ、個人アカウント（無料版ChatGPT・個人Gmailなど）を使っている",val:"B"},
+      {label:"わからない",val:"C"}
+    ]
+  },
+  {
+    text:"そのサービスは、入力したデータがAIの学習に使われない設定になっていますか？",
+    sub:"再学習オフ・API契約・エンタープライズ契約など",
+    opts:[
+      {label:"はい、確認済み",val:"A"},
+      {label:"おそらく大丈夫だと思うが未確認",val:"B"},
+      {label:"わからない・確認していない",val:"C"}
+    ]
+  },
+  {
+    text:"入力する患者情報は、氏名・IDなどの直接的な個人識別情報が除外されていますか？",
+    sub:"※名前を消しただけでは不十分。疾患名・年齢・入院日・経過の組み合わせで個人が特定できる場合があります",
+    opts:[
+      {label:"はい、適切に加工されている",val:"A"},
+      {label:"名前だけ消している（疾患名・経過などはそのまま）",val:"B"},
+      {label:"加工せず入力する予定",val:"C"}
+    ]
+  },
+  {
+    text:"AIが生成した文章を、有資格者が必ず目視で確認・修正するルールになっていますか？",
+    sub:"AIの出力をそのままカルテに使うことは、ガイドライン上「不適正利用」にあたります",
+    opts:[
+      {label:"はい、必ず確認・修正するルールがある",val:"A"},
+      {label:"決まったルールはないが、おそらく確認する",val:"B"},
+      {label:"AIの出力をそのまま使う予定",val:"C"}
+    ]
+  }
+];
+
+const answers=new Array(qs.length).fill(null);
+
+function getResult(){
+  const a=answers;
+  if(a[0]==="A") return "green_nophi";
+  if(a[1]==="B"||a[1]==="C") return "red_noapproval";
+  if(a[2]==="C") return "red_nocheck";
+  if(a[3]==="C") return "red_phi";
+  if(a[4]==="C") return "red_noconfirm";
+  if(a[1]==="A"&&a[2]==="A"&&a[3]==="A"&&a[4]==="A") return "green_full";
+  return "yellow";
+}
+
+const results={
+  green_nophi:{cls:"green",title:"🟢 患者情報を含まない利用範囲では問題ありません",
+    ok:["文体の修正・校正","勉強会や研修資料の構成案づくり","一般的な医学知識の検索・要約","Excelの数式や文書テンプレートの作成"],
+    ng:["患者の個別情報（氏名・疾患名・経過など）を1文字でも含む入力"],action:[],
+    warn:"個人アカウントの画面に、カルテの文章を少しでもコピペすることは禁止です。"},
+  green_full:{cls:"green",title:"🟢 適切な条件が揃っています。安全な範囲での利用が可能です",
+    ok:["施設契約・承認済みサービスでのリハビリサマリー作成の補助","記録・文書作成の効率化","AIが生成した下書きを有資格者が確認・修正した上での業務利用"],
+    ng:["施設が承認していないサービスへの患者情報の入力","AIの出力をそのままカルテに転記すること（必ず人間が確認・修正）"],action:[],
+    warn:"AI出力には81.8%の確率でエラーが含まれるという国内研究があります。必ず有資格者が目視確認・修正してから使用してください（蘇生会総合病院・Cureus 2026）。"},
+  red_noapproval:{cls:"red",title:"🔴 現時点では患者情報を含む利用は控えることを推奨します",
+    ok:["患者情報を1文字も含まない個人的な学習・情報収集","匿名化した架空事例での練習"],
+    ng:["個人アカウントのGoogleドライブ（無料版）での患者情報のやり取り","個人の無料ChatGPTへの患者情報の入力","施設未承認サービスへの業務情報の入力"],
+    action:["施設の情報管理担当者・上司にAIルール整備を提案する","HAIPガイドライン第2版を担当者に共有する"],
+    warn:"個人アカウントは施設の安全管理措置の対象外です。厚労省ガイドラインが求める委託契約・アクセス管理が担保できません。"},
+  red_nocheck:{cls:"red",title:"🔴 再学習への利用が未確認のため、患者情報の入力は控えてください",
+    ok:["患者情報を含まない範囲での利用（文書の文体修正・資料作成など）"],
+    ng:["再学習設定が未確認のサービスへの患者情報の入力"],
+    action:["施設のシステム担当者に「入力データが再学習に使われない設定か」を確認する"],
+    warn:"入力データが再学習に使われる設定の場合、個人情報保護法の第三者提供に該当する可能性があります（HAIP第2版）。"},
+  red_phi:{cls:"red",title:"🔴 個人識別情報の取り扱いに問題があります",
+    ok:["完全に一般化・抽象化した情報（例：80代・大腿骨頸部骨折術後の一般的なリハプログラム案）"],
+    ng:["名前のみ消して疾患名・経過・年齢をそのまま入力すること"],
+    action:["「名前を消す」だけでなく、個人が特定できる情報をすべて除外または一般化する","施設の情報管理規程で匿名化の基準を確認する"],
+    warn:"氏名を消しただけでは匿名化になりません。年齢・疾患名・入院日・地域などの組み合わせで個人が特定できる場合があります。"},
+  red_noconfirm:{cls:"red",title:"🔴 AIの出力をそのまま使うことは推奨できません",
+    ok:["AIの出力を下書きとして使い、有資格者が必ず内容を確認・修正すること"],
+    ng:["AIが生成した文章をそのままカルテ・記録に使用すること"],
+    action:["「AIの出力は必ず有資格者が確認・修正する」というルールを施設で明文化する"],
+    warn:"国内研究では11件中9件（81.8%）のAI生成サマリーにエラーが含まれていました（蘇生会総合病院・Cureus 2026）。"},
+  yellow:{cls:"yellow",title:"🟡 一部条件が未整備です。確認・整備を進めながら限定的に利用できます",
+    ok:["患者情報を含まない範囲での利用（文体修正・一般資料作成）","完全に一般化・抽象化した情報の入力"],
+    ng:["患者情報をそのまま入力すること","施設未契約サービスへの患者情報の入力"],
+    action:["情報管理担当者にAI利用ルールの整備を相談する","HAIPガイドライン第2版の2章を担当者と確認する","再学習設定・委託契約の有無をシステム担当者に確認する"],
+    warn:"「匿名化すれば安全」とは限りません。疾患名・年齢・経過の組み合わせで個人が特定できる場合があります。"}
+};
+
+function renderAll(){
+  const qArea=document.getElementById("checker-questions");
+  qArea.innerHTML="";
+  qs.forEach(function(q,idx){
+    const div=document.createElement("div");
+    div.className="q-block";
+    div.innerHTML='<div class="q-num">質問 '+(idx+1)+' / '+qs.length+'</div><div class="q-text">'+q.text+'</div>'+(q.sub?'<div class="q-sub">'+q.sub+'</div>':'');
+    const opts=document.createElement("div");
+    opts.className="options";
+    q.opts.forEach(function(o){
+      const label=document.createElement("label");
+      label.className="opt"+(answers[idx]===o.val?" selected":"");
+      label.innerHTML='<input type="radio" name="q'+idx+'" value="'+o.val+'" '+(answers[idx]===o.val?"checked":"")+"><div><div class='opt-label'>"+o.label+"</div>"+(o.sub?"<div class='opt-sub'>"+o.sub+"</div>":"")+"</div>";
+      label.querySelector("input").addEventListener("change",function(){
+        answers[idx]=o.val;
+        opts.querySelectorAll(".opt").forEach(function(el){el.classList.remove("selected");});
+        label.classList.add("selected");
+        renderBtns();
+      });
+      opts.appendChild(label);
+    });
+    div.appendChild(opts);
+    qArea.appendChild(div);
+  });
+  renderBtns();
+}
+
+function renderBtns(){
+  const row=document.getElementById("checker-btns");
+  row.innerHTML="";
+  if(answers.every(function(a){return a!==null;})){
+    const btn=document.createElement("button");
+    btn.className="check-btn";
+    btn.textContent="判定する →";
+    btn.onclick=showResult;
+    row.appendChild(btn);
+  }
+}
+
+function showResult(){
+  const key=getResult();
+  const r=results[key];
+  const area=document.getElementById("checker-result");
+  let html='<div class="result-block '+r.cls+'"><div class="result-title">'+r.title+'</div>';
+  if(r.ok.length){html+='<div class="result-section"><div class="result-section-title">できること</div>';r.ok.forEach(function(i){html+='<div class="result-item ok">'+i+'</div>';});html+='</div>';}
+  if(r.ng.length){html+='<div class="result-section"><div class="result-section-title">できないこと</div>';r.ng.forEach(function(i){html+='<div class="result-item ng">'+i+'</div>';});html+='</div>';}
+  if(r.action.length){html+='<div class="result-section"><div class="result-section-title">今すぐやること</div>';r.action.forEach(function(i){html+='<div class="result-item ok">'+i+'</div>';});html+='</div>';}
+  if(r.warn){html+='<div class="result-warn">'+r.warn+'</div>';}
+  html+='</div>';
+  html+='<button class="reset-btn" onclick="resetChecker()">もう一度やり直す</button>';
+  area.innerHTML=html;
+  document.getElementById("checker-btns").innerHTML="";
+}
+
+function resetChecker(){
+  answers.fill(null);
+  document.getElementById("checker-result").innerHTML="";
+  renderAll();
+}
+
+renderAll();
+</script>
+
+</body>
+</html>
