@@ -386,7 +386,7 @@ function getResult(){
   if(a[0]==="A") return "green_nophi";
   if(a[1]==="B"||a[1]==="C") return "red_noapproval";
   if(a[2]==="C") return "red_nocheck";
-  if(a[3]==="C") return "red_phi";
+  if(a[3]==="C"&&(a[1]!=="A"||a[2]!=="A")) return "red_phi";
   if(a[4]==="C") return "red_noconfirm";
   if(a[1]==="A"&&a[2]==="A"&&a[3]==="A"&&a[4]==="A") return "green_full";
   return "yellow";
