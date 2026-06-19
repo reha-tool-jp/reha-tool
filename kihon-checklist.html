@@ -1,588 +1,1286 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YJLTBSGZ21');
-</script>
-
-<link rel="icon" type="image/png" href="/images/icon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>基本チェックリスト 無料ツール（総合事業・介護予防）| リハビリ評価・計算ツール</title>
-<meta name="description" content="無料で使える基本チェックリスト（総合事業）。25項目をタップで入力し、7つのドメインのリスク判定を自動表示。BMI自動計算対応。登録不要・印刷対応。">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
-<style>
-  :root {
-    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
-    --border: #e0ddd4; --border2: #ccc9be; --text: #1a1916; --text2: #6b6860;
-    --text3: #a09d96; --accent: #2a5c45; --accent-light: #e8f2ed;
-    --danger: #b83030; --danger-light: #fdf0f0; --warn: #8a5c00; --warn-light: #fdf6e3;
-    --info: #1a4a7a; --info-light: #e8f0fa; --radius: 10px;
-    --mono: 'SF Mono', 'Courier New', Courier, monospace;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 60px; }
-  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
-  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
-  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
-  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
-
-  /* 基本情報 */
-  .info-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 80px; }
-  .info-input { flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; }
-  .info-input::placeholder { color: var(--text3); font-weight: 400; }
-  .info-block { margin-bottom: 16px; }
-
-  /* BMI欄 */
-  .bmi-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; }
-  .bmi-inputs { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
-  .bmi-field { display: flex; align-items: center; gap: 6px; flex: 1; }
-  .bmi-field label { font-size: 13px; color: var(--text2); white-space: nowrap; }
-  .bmi-field input { flex: 1; font-size: 15px; font-weight: 700; border: none; border-bottom: 1px solid var(--border); outline: none; color: var(--text); font-family: inherit; background: transparent; padding: 2px 0; text-align: right; max-width: 70px; }
-  .bmi-field span { font-size: 12px; color: var(--text3); }
-  .bmi-result { font-size: 13px; color: var(--text2); }
-  .bmi-result .bmi-val { font-weight: 700; font-family: var(--mono); }
-  .bmi-result .bmi-flag { font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
-  .bmi-flag-ng { background: var(--danger-light); color: var(--danger); }
-  .bmi-flag-ok { background: var(--accent-light); color: var(--accent); }
-
-  /* サマリー */
-  .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; }
-  .summary-title { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 10px; }
-  .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .summary-item { background: var(--surface2); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; }
-  .summary-item.risk { background: var(--danger-light); }
-  .summary-domain { font-size: 12px; color: var(--text2); }
-  .summary-status { font-size: 12px; font-weight: 700; }
-  .status-risk { color: var(--danger); }
-  .status-ok { color: var(--accent); }
-  .status-incomplete { color: var(--text3); }
-
-  /* セクション */
-  .section-label { font-size: 13px; font-weight: 700; color: var(--accent); padding: 8px 0 6px; border-bottom: 2px solid var(--accent); margin-bottom: 10px; margin-top: 20px; }
-
-  /* 項目カード */
-  .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; overflow: hidden; }
-  .item-card.ans-yes { border-left: 3px solid var(--danger); }
-  .item-card.ans-no { border-left: 3px solid var(--accent); }
-  .item-body { display: flex; align-items: center; padding: 10px 14px; gap: 10px; }
-  .item-num { font-size: 11px; font-family: var(--mono); color: var(--text3); min-width: 22px; }
-  .item-text { flex: 1; font-size: 13px; line-height: 1.5; }
-  .item-btns { display: flex; gap: 6px; }
-  .yn-btn { padding: 6px 14px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; font-family: inherit; color: var(--text2); transition: all 0.15s; white-space: nowrap; }
-  .yn-btn:hover { border-color: var(--accent); }
-  .yn-btn.sel-yes { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-  .yn-btn.sel-no { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-
-  /* ボタン */
-  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
-  .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
-  .btn-primary { background: var(--accent); color: #fff; border: none; }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
-  .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-
-  .pwa-hint { text-align: center; font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.6; }
-  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2; }
-  .footer a { color: var(--text3); text-decoration: none; }
-
-  /* 印刷 */
-  @media print {
-    @page { size: A4 portrait; margin: 10mm 12mm 10mm 12mm; }
-    body > * { display: none !important; }
-    #print-overlay { display: block !important; }
-  }
-  #print-overlay { display: none; }
-@media print {
-  .adsbygoogle,
-  ins.adsbygoogle {
-    display: none !important;
-  }
-}
-</style>
-</head>
-<body>
-
-<header>
-  <h1>基本チェックリスト</h1>
-  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集</p>
-</header>
-
-<div class="container">
-
-  <!-- 基本情報 -->
-  <div class="info-block">
-    <div class="info-row">
-      <label>氏名</label>
-      <input class="info-input" type="text" id="user-name" placeholder="（任意）">
-    </div>
-    <div class="info-row">
-      <label>生年月日</label>
-      <input class="info-input" type="date" id="user-birth">
-    </div>
-    <div class="info-row">
-      <label>実施日</label>
-      <input class="info-input" type="date" id="eval-date">
-    </div>
-    <div class="info-row">
-      <label>実施者</label>
-      <input class="info-input" type="text" id="eval-staff" placeholder="例：佐藤 PT">
-    </div>
-
-    <!-- BMI欄（項目12） -->
-    <div class="bmi-row">
-      <div class="bmi-inputs">
-        <div class="bmi-field">
-          <label>身長</label>
-          <input type="number" id="height" placeholder="例：158" min="100" max="220" step="0.1" oninput="calcBMI()">
-          <span>cm</span>
-        </div>
-        <div class="bmi-field">
-          <label>体重</label>
-          <input type="number" id="weight" placeholder="例：48.5" min="20" max="200" step="0.1" oninput="calcBMI()">
-          <span>kg</span>
-        </div>
-      </div>
-      <div class="bmi-result" id="bmi-result">BMI：身長・体重を入力してください</div>
-    </div>
-  </div>
-
-  <!-- リスク判定サマリー -->
-  <div class="summary-bar">
-    <div class="summary-title">リスク判定</div>
-    <div class="summary-grid" id="summary-grid"></div>
-  </div>
-
-  <!-- 項目 -->
-  <div id="items-container"></div>
-
-  <div class="btn-row">
-    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
-    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
-  </div>
-  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
-
-  <div class="footer" style="margin-top:32px;">
-    <a href="index.html">← ツール一覧</a> ｜
-    <a href="seikatsu-tool.html">生活機能チェック</a> ｜
-    <a href="kyoumi-tool.html">興味・関心チェック</a> ｜
-    <a href="fim-tool.html">FIM</a> ｜
-    <a href="bi-tool.html">BI</a> ｜
-    <a href="hdsr-tool.html">HDS-R</a> ｜
-    <a href="santei-tool.html">算定日数</a> ｜
-    <a href="/contact.html">お問い合わせ</a> ｜
-    <a href="terms.html">利用規約</a> ｜
-    <a href="privacy.html">プライバシーポリシー</a>
-  </div>
-</div>
-
-<script>
-// 25項目定義
-// ans_yes_is_risk: trueなら「はい」がリスク該当、falseなら「いいえ」がリスク該当
-const SECTIONS = [
-  {
-    title: '日常生活関連動作',
-    domain: 'life',
-    items: [
-      { no: 1,  text: 'バスや電車で、一人で外出していますか', yes_risk: false },
-      { no: 2,  text: '日用品の買い物をしていますか', yes_risk: false },
-      { no: 3,  text: '預貯金の出し入れをしていますか', yes_risk: false },
-      { no: 4,  text: '友人の家を訪ねていますか', yes_risk: false },
-      { no: 5,  text: '家族や友人の相談にのっていますか', yes_risk: false },
-    ]
-  },
-  {
-    title: '運動器の機能',
-    domain: 'motion',
-    items: [
-      { no: 6,  text: '階段を手すりや壁をつたわらずに昇っていますか', yes_risk: false },
-      { no: 7,  text: '椅子に座った状態から何もつかまらずに立ち上がっていますか', yes_risk: false },
-      { no: 8,  text: '15分位続けて歩いていますか', yes_risk: false },
-      { no: 9,  text: 'この1年間に転んだことがありますか', yes_risk: true },
-      { no: 10, text: '転倒に対する不安は大きいですか', yes_risk: true },
-    ]
-  },
-  {
-    title: '栄養状態（BMI自動判定）',
-    domain: 'nutrition',
-    items: [
-      { no: 11, text: '6ヶ月間で2〜3kg以上の体重減少がありましたか', yes_risk: true },
-      { no: 12, text: 'BMI（体重÷身長²）が18.5未満ですか', yes_risk: true, bmi: true },
-    ]
-  },
-  {
-    title: '口腔機能',
-    domain: 'oral',
-    items: [
-      { no: 13, text: '半年前に比べて固いものが食べにくくなりましたか', yes_risk: true },
-      { no: 14, text: 'お茶や汁物等でむせることがありますか', yes_risk: true },
-      { no: 15, text: '口の渇きが気になりますか', yes_risk: true },
-    ]
-  },
-  {
-    title: '閉じこもり',
-    domain: 'hikikomori',
-    items: [
-      { no: 16, text: '週に1回以上は外出していますか', yes_risk: false },
-      { no: 17, text: '昨年と比べて外出の回数が減っていますか', yes_risk: true },
-    ]
-  },
-  {
-    title: '認知機能',
-    domain: 'cognition',
-    items: [
-      { no: 18, text: '周りの人から「いつも同じ事を聞く」などの物忘れがあると言われますか', yes_risk: true },
-      { no: 19, text: '自分で電話番号を調べて、電話をかけることをしていますか', yes_risk: false },
-      { no: 20, text: '今日が何月何日かわからない時がありますか', yes_risk: true },
-    ]
-  },
-  {
-    title: 'うつ傾向（ここ2週間の状態）',
-    domain: 'depression',
-    items: [
-      { no: 21, text: '（ここ2週間）毎日の生活に充実感がない', yes_risk: true },
-      { no: 22, text: '（ここ2週間）これまで楽しんでやれていたことが楽しめなくなった', yes_risk: true },
-      { no: 23, text: '（ここ2週間）以前は楽にできていたことが今はおっくうに感じられる', yes_risk: true },
-      { no: 24, text: '（ここ2週間）自分が役に立つ人間だと思えない', yes_risk: true },
-      { no: 25, text: '（ここ2週間）わけもなく疲れたような感じがする', yes_risk: true },
-    ]
-  },
-];
-
-// フラット化
-let allItems = [];
-SECTIONS.forEach(sec => sec.items.forEach(item => allItems.push({ ...item, domain: sec.domain })));
-
-// 状態：null=未入力, true=はい, false=いいえ
-let state = allItems.map(() => null);
-let bmiValue = null;
-
-// 判定基準
-const DOMAIN_RULES = {
-  life:        { label: '生活機能全般',   check: () => {
-    // 1-20のうち10項目以上リスク該当（生活機能全般は1-20を横断するが、ここではlife+motion+nutrition+oral+hikikomori+cognitionを合算）
-    const nos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-    let cnt = 0;
-    nos.forEach(no => {
-      const item = allItems.find(i => i.no === no);
-      const idx = allItems.indexOf(item);
-      const s = state[idx];
-      if (s === null) return;
-      if (item.yes_risk && s === true) cnt++;
-      if (!item.yes_risk && s === false) cnt++;
-    });
-    const answered = nos.filter(no => {
-      const item = allItems.find(i => i.no === no);
-      return state[allItems.indexOf(item)] !== null;
-    }).length;
-    if (answered < nos.length) return 'incomplete';
-    return cnt >= 10 ? 'risk' : 'ok';
-  }},
-  motion:      { label: '運動機能',       check: () => riskCount([6,7,8,9,10], 3) },
-  nutrition:   { label: '栄養状態',       check: () => riskCount([11,12], 2) },
-  oral:        { label: '口腔機能',       check: () => riskCount([13,14,15], 2) },
-  hikikomori:  { label: '閉じこもり',     check: () => {
-    const item16 = allItems.find(i => i.no === 16);
-    const idx = allItems.indexOf(item16);
-    const s = state[idx];
-    if (s === null) return 'incomplete';
-    // 16が「いいえ」→リスク
-    return s === false ? 'risk' : 'ok';
-  }},
-  cognition:   { label: '認知機能',       check: () => riskCount([18,19,20], 1) },
-  depression:  { label: 'うつ傾向',       check: () => riskCount([21,22,23,24,25], 2) },
-};
-
-function riskCount(nos, threshold) {
-  let cnt = 0;
-  let incomplete = false;
-  nos.forEach(no => {
-    const item = allItems.find(i => i.no === no);
-    const idx = allItems.indexOf(item);
-    const s = state[idx];
-    if (s === null) { incomplete = true; return; }
-    if (item.yes_risk && s === true) cnt++;
-    if (!item.yes_risk && s === false) cnt++;
-  });
-  if (incomplete) return 'incomplete';
-  return cnt >= threshold ? 'risk' : 'ok';
-}
-
-function calcBMI() {
-  const h = parseFloat(document.getElementById('height').value);
-  const w = parseFloat(document.getElementById('weight').value);
-  const el = document.getElementById('bmi-result');
-  if (!h || !w) {
-    bmiValue = null;
-    el.innerHTML = 'BMI：身長・体重を入力してください';
-    // 項目12のstateをリセット
-    const idx = allItems.findIndex(i => i.no === 12);
-    state[idx] = null;
-    updateCard(idx);
-    updateSummary();
-    return;
-  }
-  const bmi = w / ((h/100) * (h/100));
-  bmiValue = bmi;
-  const isLow = bmi < 18.5;
-  // 項目12を自動設定
-  const idx = allItems.findIndex(i => i.no === 12);
-  state[idx] = isLow; // 18.5未満なら「はい」=リスク
-  updateCard(idx);
-  updateSummary();
-  el.innerHTML = 'BMI：<span class="bmi-val">' + bmi.toFixed(1) + '</span>'
-    + '<span class="bmi-flag ' + (isLow ? 'bmi-flag-ng' : 'bmi-flag-ok') + '">'
-    + (isLow ? '18.5未満・該当' : '18.5以上・非該当') + '</span>';
-}
-
-function answer(idx, val) {
-  const item = allItems[idx];
-  if (item.bmi) return; // BMI項目は自動
-  state[idx] = state[idx] === val ? null : val;
-  updateCard(idx);
-  updateSummary();
-}
-
-function updateCard(idx) {
-  const s = state[idx];
-  const card = document.getElementById('card-' + idx);
-  if (!card) return;
-  card.className = 'item-card' + (s === true ? ' ans-yes' : s === false ? ' ans-no' : '');
-  const yesBtn = card.querySelector('.btn-yes');
-  const noBtn  = card.querySelector('.btn-no');
-  if (yesBtn) yesBtn.className = 'yn-btn btn-yes' + (s === true ? ' sel-yes' : '');
-  if (noBtn)  noBtn.className  = 'yn-btn btn-no'  + (s === false ? ' sel-no' : '');
-}
-
-function updateSummary() {
-  const grid = document.getElementById('summary-grid');
-  let html = '';
-  Object.entries(DOMAIN_RULES).forEach(([key, rule]) => {
-    const result = rule.check();
-    const cls = result === 'risk' ? ' risk' : '';
-    const statusCls = result === 'risk' ? 'status-risk' : result === 'ok' ? 'status-ok' : 'status-incomplete';
-    const statusText = result === 'risk' ? '⚠️ リスクあり' : result === 'ok' ? '✅ 該当なし' : '— 未入力';
-    html += '<div class="summary-item' + cls + '">'
-      + '<span class="summary-domain">' + rule.label + '</span>'
-      + '<span class="summary-status ' + statusCls + '">' + statusText + '</span>'
-      + '</div>';
-  });
-  grid.innerHTML = html;
-}
-
-function buildPrintDOM() {
-  const getName   = () => document.getElementById('user-name').value || '　';
-  const getStaff  = () => document.getElementById('eval-staff').value || '　';
-  const getBirth  = () => {
-    const v = document.getElementById('user-birth').value;
-    if (!v) return '　';
-    const d = new Date(v);
-    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
-  };
-  const getDate   = () => {
-    const v = document.getElementById('eval-date').value;
-    if (!v) return '　';
-    const d = new Date(v);
-    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
-  };
-  const getHeightWeight = () => {
-    const h = document.getElementById('height').value;
-    const w = document.getElementById('weight').value;
-    if (!h || !w) return '　';
-    return h + 'cm / ' + w + 'kg / BMI ' + (parseFloat(w)/((parseFloat(h)/100)**2)).toFixed(1);
-  };
-
-  const css = `<style>
-    #print-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
-    #print-overlay {
-      font-family: 'Yu Gothic','YuGothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
-      font-size: 8.5pt; color: #000; background: #fff; width: 100%;
-    }
-    .pt-title-block { text-align: center; margin-bottom: 5px; position: relative; }
-    .pt-shoshiki { position: absolute; right: 0; top: 0; font-size: 7pt; }
-    .pt-title { font-size: 14pt; font-weight: 700; letter-spacing: 0.05em; }
-    .pt-subtitle { font-size: 7.5pt; color: #333; margin-top: 2px; }
-    .pt-info-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; border: 2px solid #000; }
-    .pt-info-table td { border: 1px solid #000; padding: 5px 7px; font-size: 8.5pt; }
-    .pt-info-label { background: #f0f0f0; font-weight: 700; font-size: 7.5pt; white-space: nowrap; text-align: center; }
-    .pt-info-value { font-weight: 700; }
-    .pt-section { font-size: 8.5pt; font-weight: 700; background: #e8f0fa; border: 1.5px solid #000; border-bottom: none; padding: 3px 6px; margin-top: 5px; }
-    .pt-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
-    .pt-table th { border: 1px solid #000; padding: 3px 4px; font-size: 7.5pt; font-weight: 700; background: #f0f0f0; text-align: center; }
-    .pt-table td { border: 1px solid #000; padding: 4px 5px; font-size: 8pt; vertical-align: middle; }
-    .pt-no { text-align: center; font-size: 7.5pt; color: #555; }
-    .pt-ans { text-align: center; font-weight: 700; font-size: 10pt; }
-    .pt-ans-yes { color: #b83030; }
-    .pt-ans-no { color: #2a5c45; }
-    .pt-risk-row { background: #fff0f0; }
-    .pt-result-table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-top: 6px; table-layout: fixed; }
-    .pt-result-table th { border: 1px solid #000; padding: 4px 6px; font-size: 8pt; font-weight: 700; background: #f0f0f0; text-align: center; }
-    .pt-result-table td { border: 1px solid #000; padding: 5px 8px; font-size: 8.5pt; }
-    .pt-result-risk { color: #b83030; font-weight: 700; text-align: center; }
-    .pt-result-ok { color: #2a5c45; font-weight: 700; text-align: center; }
-    .pt-result-inc { color: #999; text-align: center; }
-    .pt-result-sep { background: #e0e0e0; }
-  </style>`;
-
-  // 項目テーブル生成
-  let tableRows = '';
-  SECTIONS.forEach(sec => {
-    tableRows += `<tr><td colspan="3" style="background:#e8f0fa;font-weight:700;font-size:8pt;padding:3px 6px;border:1px solid #000;">${sec.title}</td></tr>`;
-    sec.items.forEach(item => {
-      const idx = allItems.findIndex(i => i.no === item.no);
-      const s = state[idx];
-      const isRisk = s !== null && ((item.yes_risk && s === true) || (!item.yes_risk && s === false));
-      const rowCls = isRisk ? ' class="pt-risk-row"' : '';
-      const yesAns = s === true ? '<span class="pt-ans pt-ans-yes">○</span>' : '';
-      const noAns  = s === false ? '<span class="pt-ans pt-ans-no">○</span>' : '';
-      tableRows += `<tr${rowCls}>
-        <td class="pt-no" style="width:6%">${item.no}</td>
-        <td style="width:70%">${item.text}${item.bmi ? '<br><small style="color:#555;">(' + getHeightWeight() + ')</small>' : ''}</td>
-        <td style="width:12%;text-align:center;">${yesAns}</td>
-        <td style="width:12%;text-align:center;">${noAns}</td>
-      </tr>`;
-    });
-  });
-
-  // リスク判定結果（2列構成）
-  const domainEntries = Object.entries(DOMAIN_RULES);
-  const colSize = Math.ceil(domainEntries.length / 3); // 3列に分割
-  let resultRows2col = '';
-  const rows = Math.ceil(domainEntries.length / 3);
-  for (let r = 0; r < rows; r++) {
-    resultRows2col += '<tr>';
-    for (let c = 0; c < 3; c++) {
-      const idx = c * rows + r;
-      if (idx < domainEntries.length) {
-        const [key, rule] = domainEntries[idx];
-        const result = rule.check();
-        const cls = result === 'risk' ? 'pt-result-risk' : result === 'ok' ? 'pt-result-ok' : 'pt-result-inc';
-        const text = result === 'risk' ? '⚠️ 該当' : result === 'ok' ? '非該当' : '未入力';
-        resultRows2col += `<td>${rule.label}</td><td class="${cls}">${text}</td>`;
-      } else {
-        resultRows2col += '<td></td><td></td>';
-      }
-      if (c < 2) resultRows2col += '<td class="pt-result-sep" style="border:1px solid #000;"></td>';
-    }
-    resultRows2col += '</tr>';
-  }
-  let resultRows = resultRows2col; // 後方互換
-
-  return `<div id="print-overlay">
-    ${css}
-    <div class="pt-title-block">
-      <span class="pt-shoshiki">総合事業</span>
-      <div class="pt-title">基本チェックリスト</div>
-      <div class="pt-subtitle">介護予防・日常生活支援総合事業</div>
-    </div>
-    <table class="pt-info-table">
-      <tr>
-        <td class="pt-info-label" style="width:10%;padding:5px 7px;">氏名</td>
-        <td class="pt-info-value" style="width:24%;padding:5px 7px;">${getName()}</td>
-        <td class="pt-info-label" style="width:10%;padding:5px 7px;">生年月日</td>
-        <td class="pt-info-value" style="width:22%;padding:5px 7px;">${getBirth()}</td>
-        <td class="pt-info-label" style="width:10%;padding:5px 7px;">実施日</td>
-        <td class="pt-info-value" style="padding:5px 7px;">${getDate()}</td>
-      </tr>
-      <tr>
-        <td class="pt-info-label" style="padding:5px 7px;">実施者</td>
-        <td class="pt-info-value" colspan="5" style="padding:5px 7px;">${getStaff()}</td>
-      </tr>
-    </table>
-    <table class="pt-table">
-      <thead><tr>
-        <th style="width:6%">No.</th>
-        <th style="width:70%">質問</th>
-        <th style="width:12%">はい</th>
-        <th style="width:12%">いいえ</th>
-      </tr></thead>
-      <tbody>${tableRows}</tbody>
-    </table>
-    <div style="font-size:8.5pt;font-weight:700;background:#e8f0fa;border:1.5px solid #000;border-bottom:none;padding:3px 6px;margin-top:6px;">リスク判定結果</div>
-    <table class="pt-result-table">
-      <thead><tr>
-        <th style="width:24%">ドメイン</th>
-        <th style="width:14%">判定</th>
-        <td class="pt-result-sep" style="width:4%;border:1px solid #000;"></td>
-        <th style="width:24%">ドメイン</th>
-        <th style="width:14%">判定</th>
-        <td class="pt-result-sep" style="width:4%;border:1px solid #000;"></td>
-        <th style="width:24%">ドメイン</th>
-        <th style="width:14%">判定</th>
-      </tr></thead>
-      <tbody>${resultRows2col}</tbody>
-    </table>
-  </div>`;
-}
-
-function printPage() {
-  const old = document.getElementById('print-overlay');
-  if (old) old.remove();
-  const div = document.createElement('div');
-  div.innerHTML = buildPrintDOM();
-  document.body.appendChild(div.firstElementChild);
-  window.print();
-  setTimeout(() => { const o = document.getElementById('print-overlay'); if(o) o.remove(); }, 1500);
-}
-
-function resetAll() {
-  if (!confirm('すべての入力をリセットしますか？')) return;
-  state = allItems.map(() => null);
-  ['user-name','user-birth','eval-date','eval-staff','height','weight'].forEach(id => {
-    const el = document.getElementById(id); if(el) el.value = '';
-  });
-  bmiValue = null;
-  document.getElementById('bmi-result').innerHTML = 'BMI：身長・体重を入力してください';
-  render();
-  updateSummary();
-}
-
-function render() {
-  const c = document.getElementById('items-container');
-  let html = '';
-  let flatIdx = 0;
-  SECTIONS.forEach(sec => {
-    html += '<div class="section-label">' + sec.title + '</div>';
-    sec.items.forEach(item => {
-      const i = flatIdx;
-      const s = state[i];
-      const cardCls = s === true ? ' ans-yes' : s === false ? ' ans-no' : '';
-      const isBMI = item.bmi;
-      html += '<div class="item-card' + cardCls + '" id="card-' + i + '">';
-      html += '<div class="item-body">';
-      html += '<span class="item-num">' + item.no + '</span>';
-      html += '<span class="item-text">' + item.text + '</span>';
-      if (isBMI) {
-        html += '<span style="font-size:11px;color:var(--text3);white-space:nowrap;">自動判定</span>';
-      } else {
-        html += '<div class="item-btns">';
-        html += '<button class="yn-btn btn-yes' + (s === true ? ' sel-yes' : '') + '" onclick="answer(' + i + ',true)">はい</button>';
-        html += '<button class="yn-btn btn-no' + (s === false ? ' sel-no' : '') + '" onclick="answer(' + i + ',false)">いいえ</button>';
-        html += '</div>';
-      }
-      html += '</div></div>';
-      flatIdx++;
-    });
-  });
-  c.innerHTML = html;
-}
-
-render();
-updateSummary();
-
-(function() {
-  const d = new Date();
-  d.setFullYear(d.getFullYear() - 80);
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  document.getElementById('user-birth').value = yyyy + '-' + mm + '-' + dd;
-})();
-</script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-YJLTBSGZ21');
+
+</script>
+
+
+
+<link rel="icon" type="image/png" href="/images/icon.png">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>基本チェックリスト 無料ツール（総合事業・介護予防）| リハビリ評価・計算ツール</title>
+
+<meta name="description" content="無料で使える基本チェックリスト（総合事業）。25項目をタップで入力し、7つのドメインのリスク判定を自動表示。BMI自動計算対応。登録不要・印刷対応。">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+
+<style>
+
+  :root {
+
+    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+
+    --border: #e0ddd4; --border2: #ccc9be; --text: #1a1916; --text2: #6b6860;
+
+    --text3: #a09d96; --accent: #2a5c45; --accent-light: #e8f2ed;
+
+    --danger: #b83030; --danger-light: #fdf0f0; --warn: #8a5c00; --warn-light: #fdf6e3;
+
+    --info: #1a4a7a; --info-light: #e8f0fa; --radius: 10px;
+
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 60px; }
+
+  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+
+  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+
+
+  /* 基本情報 */
+
+  .info-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+
+  .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 80px; }
+
+  .info-input { flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; }
+
+  .info-input::placeholder { color: var(--text3); font-weight: 400; }
+
+  .info-block { margin-bottom: 16px; }
+
+
+
+  /* BMI欄 */
+
+  .bmi-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; }
+
+  .bmi-inputs { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+
+  .bmi-field { display: flex; align-items: center; gap: 6px; flex: 1; }
+
+  .bmi-field label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+
+  .bmi-field input { flex: 1; font-size: 15px; font-weight: 700; border: none; border-bottom: 1px solid var(--border); outline: none; color: var(--text); font-family: inherit; background: transparent; padding: 2px 0; text-align: right; max-width: 70px; }
+
+  .bmi-field span { font-size: 12px; color: var(--text3); }
+
+  .bmi-result { font-size: 13px; color: var(--text2); }
+
+  .bmi-result .bmi-val { font-weight: 700; font-family: var(--mono); }
+
+  .bmi-result .bmi-flag { font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+
+  .bmi-flag-ng { background: var(--danger-light); color: var(--danger); }
+
+  .bmi-flag-ok { background: var(--accent-light); color: var(--accent); }
+
+
+
+  /* サマリー */
+
+  .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; }
+
+  .summary-title { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 10px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+
+  .summary-item { background: var(--surface2); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; }
+
+  .summary-item.risk { background: var(--danger-light); }
+
+  .summary-domain { font-size: 12px; color: var(--text2); }
+
+  .summary-status { font-size: 12px; font-weight: 700; }
+
+  .status-risk { color: var(--danger); }
+
+  .status-ok { color: var(--accent); }
+
+  .status-incomplete { color: var(--text3); }
+
+
+
+  /* セクション */
+
+  .section-label { font-size: 13px; font-weight: 700; color: var(--accent); padding: 8px 0 6px; border-bottom: 2px solid var(--accent); margin-bottom: 10px; margin-top: 20px; }
+
+
+
+  /* 項目カード */
+
+  .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; overflow: hidden; }
+
+  .item-card.ans-yes { border-left: 3px solid var(--danger); }
+
+  .item-card.ans-no { border-left: 3px solid var(--accent); }
+
+  .item-body { display: flex; align-items: center; padding: 10px 14px; gap: 10px; }
+
+  .item-num { font-size: 11px; font-family: var(--mono); color: var(--text3); min-width: 22px; }
+
+  .item-text { flex: 1; font-size: 13px; line-height: 1.5; }
+
+  .item-btns { display: flex; gap: 6px; }
+
+  .yn-btn { padding: 6px 14px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; font-family: inherit; color: var(--text2); transition: all 0.15s; white-space: nowrap; }
+
+  .yn-btn:hover { border-color: var(--accent); }
+
+  .yn-btn.sel-yes { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+  .yn-btn.sel-no { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+
+
+  /* ボタン */
+
+  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+
+  .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
+
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
+
+  .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+
+
+  .pwa-hint { text-align: center; font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.6; }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2; }
+
+  .footer a { color: var(--text3); text-decoration: none; }
+
+
+
+  /* 印刷 */
+
+  @media print {
+
+    @page { size: A4 portrait; margin: 10mm 12mm 10mm 12mm; }
+
+    body > * { display: none !important; }
+
+    #print-overlay { display: block !important; }
+
+  }
+
+  #print-overlay { display: none; }
+
+@media print {
+
+  .adsbygoogle,
+
+  ins.adsbygoogle {
+
+    display: none !important;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<header>
+
+  <h1>基本チェックリスト</h1>
+
+  <p>PT・OT・ST・機能訓練指導員向け 無料評価・計算ツール集</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+
+  <!-- 基本情報 -->
+
+  <div class="info-block">
+
+    <div class="info-row">
+
+      <label>氏名</label>
+
+      <input class="info-input" type="text" id="user-name" placeholder="（任意）">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>生年月日</label>
+
+      <input class="info-input" type="date" id="user-birth">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>実施日</label>
+
+      <input class="info-input" type="date" id="eval-date">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>実施者</label>
+
+      <input class="info-input" type="text" id="eval-staff" placeholder="例：佐藤 PT">
+
+    </div>
+
+
+
+    <!-- BMI欄（項目12） -->
+
+    <div class="bmi-row">
+
+      <div class="bmi-inputs">
+
+        <div class="bmi-field">
+
+          <label>身長</label>
+
+          <input type="number" id="height" placeholder="例：158" min="100" max="220" step="0.1" oninput="calcBMI()">
+
+          <span>cm</span>
+
+        </div>
+
+        <div class="bmi-field">
+
+          <label>体重</label>
+
+          <input type="number" id="weight" placeholder="例：48.5" min="20" max="200" step="0.1" oninput="calcBMI()">
+
+          <span>kg</span>
+
+        </div>
+
+      </div>
+
+      <div class="bmi-result" id="bmi-result">BMI：身長・体重を入力してください</div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- リスク判定サマリー -->
+
+  <div class="summary-bar">
+
+    <div class="summary-title">リスク判定</div>
+
+    <div class="summary-grid" id="summary-grid"></div>
+
+  </div>
+
+
+
+  <!-- 項目 -->
+
+  <div id="items-container"></div>
+
+
+
+  <div class="btn-row">
+
+    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
+
+    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
+
+  </div>
+
+  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+
+
+
+  <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+
+  <div style="margin-bottom:28px;">
+    <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
+    <p style="font-size:14px;color:var(--text2);line-height:1.8;">基本チェックリストは、介護予防・日常生活支援総合事業（総合事業）において、高齢者の生活機能低下リスクをスクリーニングするためのツールです。25項目に「はい」「いいえ」で回答し、7つのドメイン（日常生活関連動作・運動機能・栄養状態・口腔機能・閉じこもり・認知機能・うつ傾向）ごとにリスク判定を自動表示します。BMIは身長・体重を入力すると自動計算されます。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。</p>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">基本チェックリストとは</h2>
+    <p style="font-size:14px;color:var(--text2);line-height:1.8;">基本チェックリストは、厚生労働省が定めた25項目の質問票で、高齢者の生活機能全般を簡便にスクリーニングするために使用されます。市区町村が実施する介護予防・日常生活支援総合事業（総合事業）において、介護サービスの必要性を判定する際の補助的なツールとして活用されています。</p>
+    <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">全25項目のうち、20項目以上でリスクが確認された場合は生活機能全般の低下が疑われます。各ドメインの判定基準に該当した場合は、介護予防サービスや地域支援事業への繋ぎを検討します。</p>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">7つのドメインと判定基準</h2>
+    <p style="font-size:14px;color:var(--text2);line-height:1.8;">基本チェックリストは以下の7領域でリスクを判定します。</p>
+    <table style="width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;">
+      <tr style="background:var(--accent);color:#fff;">
+        <th style="padding:8px 12px;text-align:left;">ドメイン</th>
+        <th style="padding:8px 12px;text-align:left;">該当項目</th>
+        <th style="padding:8px 12px;text-align:left;">リスク判定基準</th>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">日常生活関連動作</td>
+        <td style="padding:8px 12px;">1〜20番</td>
+        <td style="padding:8px 12px;">10項目以上該当</td>
+      </tr>
+      <tr style="background:var(--surface2);border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">運動機能</td>
+        <td style="padding:8px 12px;">6〜10番</td>
+        <td style="padding:8px 12px;">3項目以上該当</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">栄養状態</td>
+        <td style="padding:8px 12px;">11〜12番</td>
+        <td style="padding:8px 12px;">2項目該当</td>
+      </tr>
+      <tr style="background:var(--surface2);border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">口腔機能</td>
+        <td style="padding:8px 12px;">13〜15番</td>
+        <td style="padding:8px 12px;">2項目以上該当</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">閉じこもり</td>
+        <td style="padding:8px 12px;">16〜17番</td>
+        <td style="padding:8px 12px;">16番が「いいえ」</td>
+      </tr>
+      <tr style="background:var(--surface2);border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;">認知機能</td>
+        <td style="padding:8px 12px;">18〜20番</td>
+        <td style="padding:8px 12px;">1項目以上該当</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;">うつ傾向</td>
+        <td style="padding:8px 12px;">21〜25番</td>
+        <td style="padding:8px 12px;">2項目以上該当</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質問</h2>
+    <div style="margin-bottom:16px;">
+      <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 要介護認定を受けている人には使用しますか？</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 基本チェックリストは要支援・要介護認定を受けていない65歳以上の高齢者が対象です。すでに要介護認定を受けている方には原則として使用しません。総合事業の対象者確認や介護予防の必要性を判断する際に活用されます。</p>
+    </div>
+    <div style="margin-bottom:16px;">
+      <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. BMI（項目12）は自動計算されますか？</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. はい、身長と体重を入力するとBMIが自動計算され、18.5未満の場合は項目12が自動的に「該当あり」と判定されます。手動での操作は不要です。</p>
+    </div>
+    <div style="margin-bottom:16px;">
+      <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 印刷・記録はできますか？</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 「印刷 / PDF保存」ボタンからA4縦で印刷できます。氏名・生年月日・実施日・実施者を入力した状態で印刷すると、記録用紙として活用できます。入力データはブラウザを閉じると消去されます。</p>
+    </div>
+    <div>
+      <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての評価はブラウザ内で完結しており、入力されたデータが外部サーバーに送信されることはありません。個人情報を含む内容も安心してご入力ください。</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
+  <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
+  <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
+    <li>厚生労働省：介護予防・日常生活支援総合事業のガイドライン（基本チェックリスト関連）</li>
+    <li>厚生労働省老健局：地域支援事業実施要綱</li>
+  </ul>
+</div>
+
+<div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
+<div class="article-list-home">
+  <a class="tool-card" href="articles/ai-riyou-guide.html">
+    <div class="tool-card-head">
+      <span class="tool-icon">🤖</span>
+      <span class="tool-name">リハ・介護現場のAI利用ガイド</span>
+    </div>
+    <div class="tool-desc">ChatGPTなどのAIを現場で使う際の注意点・施設での利用判断チェッカー付き。</div>
+  </a>
+  <a class="tool-card" href="articles/r8-kaitei-matome.html">
+    <div class="tool-card-head">
+      <span class="tool-icon">📋</span>
+      <span class="tool-name">2026年診療報酬改定 リハビリ関連まとめ</span>
+    </div>
+    <div class="tool-desc">ベッド減算・早期リハ・休日加算・みなし単位など今改定の変更点を一覧で確認。</div>
+  </a>
+  <div style="text-align: right; margin-top: 12px; padding-right: 5px; margin-bottom: 24px;">
+    <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">すべての解説記事を見る →</a>
+  </div>
+</div>
+  <div class="footer" style="margin-top:32px;">
+
+    <a href="index.html">← ツール一覧</a> ｜
+
+    <a href="seikatsu-tool.html">生活機能チェック</a> ｜
+
+    <a href="kyoumi-tool.html">興味・関心チェック</a> ｜
+
+    <a href="fim-tool.html">FIM</a> ｜
+
+    <a href="bi-tool.html">BI</a> ｜
+
+    <a href="hdsr-tool.html">HDS-R</a> ｜
+
+    <a href="santei-tool.html">算定日数</a> ｜
+
+    <a href="/contact.html">お問い合わせ</a> ｜
+
+    <a href="terms.html">利用規約</a> ｜
+
+    <a href="privacy.html">プライバシーポリシー</a>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+// 25項目定義
+
+// ans_yes_is_risk: trueなら「はい」がリスク該当、falseなら「いいえ」がリスク該当
+
+const SECTIONS = [
+
+  {
+
+    title: '日常生活関連動作',
+
+    domain: 'life',
+
+    items: [
+
+      { no: 1,  text: 'バスや電車で、一人で外出していますか', yes_risk: false },
+
+      { no: 2,  text: '日用品の買い物をしていますか', yes_risk: false },
+
+      { no: 3,  text: '預貯金の出し入れをしていますか', yes_risk: false },
+
+      { no: 4,  text: '友人の家を訪ねていますか', yes_risk: false },
+
+      { no: 5,  text: '家族や友人の相談にのっていますか', yes_risk: false },
+
+    ]
+
+  },
+
+  {
+
+    title: '運動器の機能',
+
+    domain: 'motion',
+
+    items: [
+
+      { no: 6,  text: '階段を手すりや壁をつたわらずに昇っていますか', yes_risk: false },
+
+      { no: 7,  text: '椅子に座った状態から何もつかまらずに立ち上がっていますか', yes_risk: false },
+
+      { no: 8,  text: '15分位続けて歩いていますか', yes_risk: false },
+
+      { no: 9,  text: 'この1年間に転んだことがありますか', yes_risk: true },
+
+      { no: 10, text: '転倒に対する不安は大きいですか', yes_risk: true },
+
+    ]
+
+  },
+
+  {
+
+    title: '栄養状態（BMI自動判定）',
+
+    domain: 'nutrition',
+
+    items: [
+
+      { no: 11, text: '6ヶ月間で2〜3kg以上の体重減少がありましたか', yes_risk: true },
+
+      { no: 12, text: 'BMI（体重÷身長²）が18.5未満ですか', yes_risk: true, bmi: true },
+
+    ]
+
+  },
+
+  {
+
+    title: '口腔機能',
+
+    domain: 'oral',
+
+    items: [
+
+      { no: 13, text: '半年前に比べて固いものが食べにくくなりましたか', yes_risk: true },
+
+      { no: 14, text: 'お茶や汁物等でむせることがありますか', yes_risk: true },
+
+      { no: 15, text: '口の渇きが気になりますか', yes_risk: true },
+
+    ]
+
+  },
+
+  {
+
+    title: '閉じこもり',
+
+    domain: 'hikikomori',
+
+    items: [
+
+      { no: 16, text: '週に1回以上は外出していますか', yes_risk: false },
+
+      { no: 17, text: '昨年と比べて外出の回数が減っていますか', yes_risk: true },
+
+    ]
+
+  },
+
+  {
+
+    title: '認知機能',
+
+    domain: 'cognition',
+
+    items: [
+
+      { no: 18, text: '周りの人から「いつも同じ事を聞く」などの物忘れがあると言われますか', yes_risk: true },
+
+      { no: 19, text: '自分で電話番号を調べて、電話をかけることをしていますか', yes_risk: false },
+
+      { no: 20, text: '今日が何月何日かわからない時がありますか', yes_risk: true },
+
+    ]
+
+  },
+
+  {
+
+    title: 'うつ傾向（ここ2週間の状態）',
+
+    domain: 'depression',
+
+    items: [
+
+      { no: 21, text: '（ここ2週間）毎日の生活に充実感がない', yes_risk: true },
+
+      { no: 22, text: '（ここ2週間）これまで楽しんでやれていたことが楽しめなくなった', yes_risk: true },
+
+      { no: 23, text: '（ここ2週間）以前は楽にできていたことが今はおっくうに感じられる', yes_risk: true },
+
+      { no: 24, text: '（ここ2週間）自分が役に立つ人間だと思えない', yes_risk: true },
+
+      { no: 25, text: '（ここ2週間）わけもなく疲れたような感じがする', yes_risk: true },
+
+    ]
+
+  },
+
+];
+
+
+
+// フラット化
+
+let allItems = [];
+
+SECTIONS.forEach(sec => sec.items.forEach(item => allItems.push({ ...item, domain: sec.domain })));
+
+
+
+// 状態：null=未入力, true=はい, false=いいえ
+
+let state = allItems.map(() => null);
+
+let bmiValue = null;
+
+
+
+// 判定基準
+
+const DOMAIN_RULES = {
+
+  life:        { label: '生活機能全般',   check: () => {
+
+    // 1-20のうち10項目以上リスク該当（生活機能全般は1-20を横断するが、ここではlife+motion+nutrition+oral+hikikomori+cognitionを合算）
+
+    const nos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+    let cnt = 0;
+
+    nos.forEach(no => {
+
+      const item = allItems.find(i => i.no === no);
+
+      const idx = allItems.indexOf(item);
+
+      const s = state[idx];
+
+      if (s === null) return;
+
+      if (item.yes_risk && s === true) cnt++;
+
+      if (!item.yes_risk && s === false) cnt++;
+
+    });
+
+    const answered = nos.filter(no => {
+
+      const item = allItems.find(i => i.no === no);
+
+      return state[allItems.indexOf(item)] !== null;
+
+    }).length;
+
+    if (answered < nos.length) return 'incomplete';
+
+    return cnt >= 10 ? 'risk' : 'ok';
+
+  }},
+
+  motion:      { label: '運動機能',       check: () => riskCount([6,7,8,9,10], 3) },
+
+  nutrition:   { label: '栄養状態',       check: () => riskCount([11,12], 2) },
+
+  oral:        { label: '口腔機能',       check: () => riskCount([13,14,15], 2) },
+
+  hikikomori:  { label: '閉じこもり',     check: () => {
+
+    const item16 = allItems.find(i => i.no === 16);
+
+    const idx = allItems.indexOf(item16);
+
+    const s = state[idx];
+
+    if (s === null) return 'incomplete';
+
+    // 16が「いいえ」→リスク
+
+    return s === false ? 'risk' : 'ok';
+
+  }},
+
+  cognition:   { label: '認知機能',       check: () => riskCount([18,19,20], 1) },
+
+  depression:  { label: 'うつ傾向',       check: () => riskCount([21,22,23,24,25], 2) },
+
+};
+
+
+
+function riskCount(nos, threshold) {
+
+  let cnt = 0;
+
+  let incomplete = false;
+
+  nos.forEach(no => {
+
+    const item = allItems.find(i => i.no === no);
+
+    const idx = allItems.indexOf(item);
+
+    const s = state[idx];
+
+    if (s === null) { incomplete = true; return; }
+
+    if (item.yes_risk && s === true) cnt++;
+
+    if (!item.yes_risk && s === false) cnt++;
+
+  });
+
+  if (incomplete) return 'incomplete';
+
+  return cnt >= threshold ? 'risk' : 'ok';
+
+}
+
+
+
+function calcBMI() {
+
+  const h = parseFloat(document.getElementById('height').value);
+
+  const w = parseFloat(document.getElementById('weight').value);
+
+  const el = document.getElementById('bmi-result');
+
+  if (!h || !w) {
+
+    bmiValue = null;
+
+    el.innerHTML = 'BMI：身長・体重を入力してください';
+
+    // 項目12のstateをリセット
+
+    const idx = allItems.findIndex(i => i.no === 12);
+
+    state[idx] = null;
+
+    updateCard(idx);
+
+    updateSummary();
+
+    return;
+
+  }
+
+  const bmi = w / ((h/100) * (h/100));
+
+  bmiValue = bmi;
+
+  const isLow = bmi < 18.5;
+
+  // 項目12を自動設定
+
+  const idx = allItems.findIndex(i => i.no === 12);
+
+  state[idx] = isLow; // 18.5未満なら「はい」=リスク
+
+  updateCard(idx);
+
+  updateSummary();
+
+  el.innerHTML = 'BMI：<span class="bmi-val">' + bmi.toFixed(1) + '</span>'
+
+    + '<span class="bmi-flag ' + (isLow ? 'bmi-flag-ng' : 'bmi-flag-ok') + '">'
+
+    + (isLow ? '18.5未満・該当' : '18.5以上・非該当') + '</span>';
+
+}
+
+
+
+function answer(idx, val) {
+
+  const item = allItems[idx];
+
+  if (item.bmi) return; // BMI項目は自動
+
+  state[idx] = state[idx] === val ? null : val;
+
+  updateCard(idx);
+
+  updateSummary();
+
+}
+
+
+
+function updateCard(idx) {
+
+  const s = state[idx];
+
+  const card = document.getElementById('card-' + idx);
+
+  if (!card) return;
+
+  card.className = 'item-card' + (s === true ? ' ans-yes' : s === false ? ' ans-no' : '');
+
+  const yesBtn = card.querySelector('.btn-yes');
+
+  const noBtn  = card.querySelector('.btn-no');
+
+  if (yesBtn) yesBtn.className = 'yn-btn btn-yes' + (s === true ? ' sel-yes' : '');
+
+  if (noBtn)  noBtn.className  = 'yn-btn btn-no'  + (s === false ? ' sel-no' : '');
+
+}
+
+
+
+function updateSummary() {
+
+  const grid = document.getElementById('summary-grid');
+
+  let html = '';
+
+  Object.entries(DOMAIN_RULES).forEach(([key, rule]) => {
+
+    const result = rule.check();
+
+    const cls = result === 'risk' ? ' risk' : '';
+
+    const statusCls = result === 'risk' ? 'status-risk' : result === 'ok' ? 'status-ok' : 'status-incomplete';
+
+    const statusText = result === 'risk' ? '⚠️ リスクあり' : result === 'ok' ? '✅ 該当なし' : '— 未入力';
+
+    html += '<div class="summary-item' + cls + '">'
+
+      + '<span class="summary-domain">' + rule.label + '</span>'
+
+      + '<span class="summary-status ' + statusCls + '">' + statusText + '</span>'
+
+      + '</div>';
+
+  });
+
+  grid.innerHTML = html;
+
+}
+
+
+
+function buildPrintDOM() {
+
+  const getName   = () => document.getElementById('user-name').value || '　';
+
+  const getStaff  = () => document.getElementById('eval-staff').value || '　';
+
+  const getBirth  = () => {
+
+    const v = document.getElementById('user-birth').value;
+
+    if (!v) return '　';
+
+    const d = new Date(v);
+
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+
+  };
+
+  const getDate   = () => {
+
+    const v = document.getElementById('eval-date').value;
+
+    if (!v) return '　';
+
+    const d = new Date(v);
+
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+
+  };
+
+  const getHeightWeight = () => {
+
+    const h = document.getElementById('height').value;
+
+    const w = document.getElementById('weight').value;
+
+    if (!h || !w) return '　';
+
+    return h + 'cm / ' + w + 'kg / BMI ' + (parseFloat(w)/((parseFloat(h)/100)**2)).toFixed(1);
+
+  };
+
+
+
+  const css = `<style>
+
+    #print-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    #print-overlay {
+
+      font-family: 'Yu Gothic','YuGothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+
+      font-size: 8.5pt; color: #000; background: #fff; width: 100%;
+
+    }
+
+    .pt-title-block { text-align: center; margin-bottom: 5px; position: relative; }
+
+    .pt-shoshiki { position: absolute; right: 0; top: 0; font-size: 7pt; }
+
+    .pt-title { font-size: 14pt; font-weight: 700; letter-spacing: 0.05em; }
+
+    .pt-subtitle { font-size: 7.5pt; color: #333; margin-top: 2px; }
+
+    .pt-info-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; border: 2px solid #000; }
+
+    .pt-info-table td { border: 1px solid #000; padding: 5px 7px; font-size: 8.5pt; }
+
+    .pt-info-label { background: #f0f0f0; font-weight: 700; font-size: 7.5pt; white-space: nowrap; text-align: center; }
+
+    .pt-info-value { font-weight: 700; }
+
+    .pt-section { font-size: 8.5pt; font-weight: 700; background: #e8f0fa; border: 1.5px solid #000; border-bottom: none; padding: 3px 6px; margin-top: 5px; }
+
+    .pt-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
+
+    .pt-table th { border: 1px solid #000; padding: 3px 4px; font-size: 7.5pt; font-weight: 700; background: #f0f0f0; text-align: center; }
+
+    .pt-table td { border: 1px solid #000; padding: 4px 5px; font-size: 8pt; vertical-align: middle; }
+
+    .pt-no { text-align: center; font-size: 7.5pt; color: #555; }
+
+    .pt-ans { text-align: center; font-weight: 700; font-size: 10pt; }
+
+    .pt-ans-yes { color: #b83030; }
+
+    .pt-ans-no { color: #2a5c45; }
+
+    .pt-risk-row { background: #fff0f0; }
+
+    .pt-result-table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-top: 6px; table-layout: fixed; }
+
+    .pt-result-table th { border: 1px solid #000; padding: 4px 6px; font-size: 8pt; font-weight: 700; background: #f0f0f0; text-align: center; }
+
+    .pt-result-table td { border: 1px solid #000; padding: 5px 8px; font-size: 8.5pt; }
+
+    .pt-result-risk { color: #b83030; font-weight: 700; text-align: center; }
+
+    .pt-result-ok { color: #2a5c45; font-weight: 700; text-align: center; }
+
+    .pt-result-inc { color: #999; text-align: center; }
+
+    .pt-result-sep { background: #e0e0e0; }
+
+  </style>`;
+
+
+
+  // 項目テーブル生成
+
+  let tableRows = '';
+
+  SECTIONS.forEach(sec => {
+
+    tableRows += `<tr><td colspan="3" style="background:#e8f0fa;font-weight:700;font-size:8pt;padding:3px 6px;border:1px solid #000;">${sec.title}</td></tr>`;
+
+    sec.items.forEach(item => {
+
+      const idx = allItems.findIndex(i => i.no === item.no);
+
+      const s = state[idx];
+
+      const isRisk = s !== null && ((item.yes_risk && s === true) || (!item.yes_risk && s === false));
+
+      const rowCls = isRisk ? ' class="pt-risk-row"' : '';
+
+      const yesAns = s === true ? '<span class="pt-ans pt-ans-yes">○</span>' : '';
+
+      const noAns  = s === false ? '<span class="pt-ans pt-ans-no">○</span>' : '';
+
+      tableRows += `<tr${rowCls}>
+
+        <td class="pt-no" style="width:6%">${item.no}</td>
+
+        <td style="width:70%">${item.text}${item.bmi ? '<br><small style="color:#555;">(' + getHeightWeight() + ')</small>' : ''}</td>
+
+        <td style="width:12%;text-align:center;">${yesAns}</td>
+
+        <td style="width:12%;text-align:center;">${noAns}</td>
+
+      </tr>`;
+
+    });
+
+  });
+
+
+
+  // リスク判定結果（2列構成）
+
+  const domainEntries = Object.entries(DOMAIN_RULES);
+
+  const colSize = Math.ceil(domainEntries.length / 3); // 3列に分割
+
+  let resultRows2col = '';
+
+  const rows = Math.ceil(domainEntries.length / 3);
+
+  for (let r = 0; r < rows; r++) {
+
+    resultRows2col += '<tr>';
+
+    for (let c = 0; c < 3; c++) {
+
+      const idx = c * rows + r;
+
+      if (idx < domainEntries.length) {
+
+        const [key, rule] = domainEntries[idx];
+
+        const result = rule.check();
+
+        const cls = result === 'risk' ? 'pt-result-risk' : result === 'ok' ? 'pt-result-ok' : 'pt-result-inc';
+
+        const text = result === 'risk' ? '⚠️ 該当' : result === 'ok' ? '非該当' : '未入力';
+
+        resultRows2col += `<td>${rule.label}</td><td class="${cls}">${text}</td>`;
+
+      } else {
+
+        resultRows2col += '<td></td><td></td>';
+
+      }
+
+      if (c < 2) resultRows2col += '<td class="pt-result-sep" style="border:1px solid #000;"></td>';
+
+    }
+
+    resultRows2col += '</tr>';
+
+  }
+
+  let resultRows = resultRows2col; // 後方互換
+
+
+
+  return `<div id="print-overlay">
+
+    ${css}
+
+    <div class="pt-title-block">
+
+      <span class="pt-shoshiki">総合事業</span>
+
+      <div class="pt-title">基本チェックリスト</div>
+
+      <div class="pt-subtitle">介護予防・日常生活支援総合事業</div>
+
+    </div>
+
+    <table class="pt-info-table">
+
+      <tr>
+
+        <td class="pt-info-label" style="width:10%;padding:5px 7px;">氏名</td>
+
+        <td class="pt-info-value" style="width:24%;padding:5px 7px;">${getName()}</td>
+
+        <td class="pt-info-label" style="width:10%;padding:5px 7px;">生年月日</td>
+
+        <td class="pt-info-value" style="width:22%;padding:5px 7px;">${getBirth()}</td>
+
+        <td class="pt-info-label" style="width:10%;padding:5px 7px;">実施日</td>
+
+        <td class="pt-info-value" style="padding:5px 7px;">${getDate()}</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="pt-info-label" style="padding:5px 7px;">実施者</td>
+
+        <td class="pt-info-value" colspan="5" style="padding:5px 7px;">${getStaff()}</td>
+
+      </tr>
+
+    </table>
+
+    <table class="pt-table">
+
+      <thead><tr>
+
+        <th style="width:6%">No.</th>
+
+        <th style="width:70%">質問</th>
+
+        <th style="width:12%">はい</th>
+
+        <th style="width:12%">いいえ</th>
+
+      </tr></thead>
+
+      <tbody>${tableRows}</tbody>
+
+    </table>
+
+    <div style="font-size:8.5pt;font-weight:700;background:#e8f0fa;border:1.5px solid #000;border-bottom:none;padding:3px 6px;margin-top:6px;">リスク判定結果</div>
+
+    <table class="pt-result-table">
+
+      <thead><tr>
+
+        <th style="width:24%">ドメイン</th>
+
+        <th style="width:14%">判定</th>
+
+        <td class="pt-result-sep" style="width:4%;border:1px solid #000;"></td>
+
+        <th style="width:24%">ドメイン</th>
+
+        <th style="width:14%">判定</th>
+
+        <td class="pt-result-sep" style="width:4%;border:1px solid #000;"></td>
+
+        <th style="width:24%">ドメイン</th>
+
+        <th style="width:14%">判定</th>
+
+      </tr></thead>
+
+      <tbody>${resultRows2col}</tbody>
+
+    </table>
+
+  </div>`;
+
+}
+
+
+
+function printPage() {
+
+  const old = document.getElementById('print-overlay');
+
+  if (old) old.remove();
+
+  const div = document.createElement('div');
+
+  div.innerHTML = buildPrintDOM();
+
+  document.body.appendChild(div.firstElementChild);
+
+  window.print();
+
+  setTimeout(() => { const o = document.getElementById('print-overlay'); if(o) o.remove(); }, 1500);
+
+}
+
+
+
+function resetAll() {
+
+  if (!confirm('すべての入力をリセットしますか？')) return;
+
+  state = allItems.map(() => null);
+
+  ['user-name','user-birth','eval-date','eval-staff','height','weight'].forEach(id => {
+
+    const el = document.getElementById(id); if(el) el.value = '';
+
+  });
+
+  bmiValue = null;
+
+  document.getElementById('bmi-result').innerHTML = 'BMI：身長・体重を入力してください';
+
+  render();
+
+  updateSummary();
+
+}
+
+
+
+function render() {
+
+  const c = document.getElementById('items-container');
+
+  let html = '';
+
+  let flatIdx = 0;
+
+  SECTIONS.forEach(sec => {
+
+    html += '<div class="section-label">' + sec.title + '</div>';
+
+    sec.items.forEach(item => {
+
+      const i = flatIdx;
+
+      const s = state[i];
+
+      const cardCls = s === true ? ' ans-yes' : s === false ? ' ans-no' : '';
+
+      const isBMI = item.bmi;
+
+      html += '<div class="item-card' + cardCls + '" id="card-' + i + '">';
+
+      html += '<div class="item-body">';
+
+      html += '<span class="item-num">' + item.no + '</span>';
+
+      html += '<span class="item-text">' + item.text + '</span>';
+
+      if (isBMI) {
+
+        html += '<span style="font-size:11px;color:var(--text3);white-space:nowrap;">自動判定</span>';
+
+      } else {
+
+        html += '<div class="item-btns">';
+
+        html += '<button class="yn-btn btn-yes' + (s === true ? ' sel-yes' : '') + '" onclick="answer(' + i + ',true)">はい</button>';
+
+        html += '<button class="yn-btn btn-no' + (s === false ? ' sel-no' : '') + '" onclick="answer(' + i + ',false)">いいえ</button>';
+
+        html += '</div>';
+
+      }
+
+      html += '</div></div>';
+
+      flatIdx++;
+
+    });
+
+  });
+
+  c.innerHTML = html;
+
+}
+
+
+
+render();
+
+updateSummary();
+
+
+
+(function() {
+
+  const d = new Date();
+
+  d.setFullYear(d.getFullYear() - 80);
+
+  const yyyy = d.getFullYear();
+
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+
+  const dd = String(d.getDate()).padStart(2, '0');
+
+  document.getElementById('user-birth').value = yyyy + '-' + mm + '-' + dd;
+
+})();
+
+</script>
+
+</body>
+
+</html>
+
