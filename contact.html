@@ -60,9 +60,30 @@
   .footer a:hover { color: var(--accent); }
   .footer-sep { margin: 0 8px; color: #a09d96; }
   .back-link { display: inline-block; margin-top: 40px; color: var(--accent); text-decoration: none; font-size: 14px; font-weight: bold; }
-</style>
+.global-nav {
+  background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 680px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 20px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text, #1a1916); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }</style>
 </head>
-<body>
+<body>
+<nav class="global-nav">
+  <div class="nav-container">
+    <a href="/">トップ</a>
+    <a href="/#articles">解説記事</a>
+    <a href="/#tools">評価ツール</a>
+  </div>
+</nav>
 
 <h1>お問い合わせ</h1>
 
