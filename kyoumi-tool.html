@@ -190,6 +190,21 @@
 
 }
 
+.global-nav {
+  background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 680px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 20px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text, #1a1916); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }
 </style>
 
 </head>
@@ -333,27 +348,25 @@
 
 
 
-  <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
-
+    <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
     <div style="margin-bottom:28px;">
-
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
-
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-1（興味・関心チェックシート）」に準拠した入力・印刷ツールです。44項目をタップ操作で「している／してみたい／興味がある」の3択で評価し、そのまま印刷・PDF保存できます。</p>
-
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">縺薙・繝・・繝ｫ縺ｫ縺､縺・※</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">蜴夂函蜉ｴ蜒咲怐縲悟挨邏呎ｧ伜ｼ・-1・郁・蜻ｳ繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝茨ｼ峨阪↓貅匁侠縺励◆蜈･蜉帙・蜊ｰ蛻ｷ繝・・繝ｫ縺ｧ縺吶・4鬆・岼繧偵ち繝・・謫堺ｽ懊〒縲後＠縺ｦ縺・ｋ・上＠縺ｦ縺ｿ縺溘＞・剰・蜻ｳ縺後≠繧九阪・3謚槭〒隧穂ｾ｡縺励√◎縺ｮ縺ｾ縺ｾ蜊ｰ蛻ｷ繝ｻPDF菫晏ｭ倥〒縺阪∪縺吶・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">闊亥袖繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝医・縲・壽園莉玖ｭｷ繝ｻ蝨ｰ蝓溷ｯ・捩蝙矩壽園莉玖ｭｷ縺ｧ蛟句挨讖溯・險鍋ｷｴ蜉邂励ｒ邂怜ｮ壹☆繧矩圀縺ｫ縲∝茜逕ｨ閠・・譌･蟶ｸ逕滓ｴｻ繧・､ｾ莨夂函豢ｻ遲峨↓縺､縺・※縲∫樟蝨ｨ陦後▲縺ｦ縺・ｋ縺薙→繝ｻ莉雁ｾ瑚｡後＞縺溘＞縺薙→繧呈滑謠｡縺吶ｋ縺溘ａ縺ｫ豢ｻ逕ｨ縺吶ｋ讒伜ｼ上〒縺呻ｼ亥挨邏呎ｧ伜ｼ擾ｼ難ｼ搾ｼ托ｼ峨ょ句挨讖溯・險鍋ｷｴ險育判縺ｮ逶ｮ讓呵ｨｭ螳壹↓縺ゅ◆繧翫∝ｱ・ｮ・ｨｪ蝠上〒縺ｮ閨槭″蜿悶ｊ縺ｨ蜷医ｏ縺帙※菴ｿ逕ｨ縺励∪縺吶・/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">逕滓ｴｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医→縺ｮ髢｢菫・/h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">闊亥袖繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝医・縲∫函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝茨ｼ亥挨邏呎ｧ伜ｼ擾ｼ難ｼ搾ｼ抵ｼ峨→繧ｻ繝・ヨ縺ｧ菴ｿ縺・％縺ｨ縺梧Φ螳壹＆繧後※縺・∪縺吶ら函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医′ADL繝ｻIADL縺ｪ縺ｩ縲後〒縺阪ｋ縺薙→繝ｻ縺ｧ縺阪↑縺・％縺ｨ縲阪ｒ謚頑升縺吶ｋ縺ｮ縺ｫ蟇ｾ縺励∬・蜻ｳ繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝医・縲梧悽莠ｺ縺後＠縺溘＞縺薙→繝ｻ闊亥袖縺後≠繧九％縺ｨ縲阪ｒ謚頑升縺吶ｋ繧ゅ・縺ｧ縲∽ｸ｡譁ｹ縺ｮ諠・ｱ繧貞粋繧上○繧九％縺ｨ縺ｧ蛟句挨讖溯・險鍋ｷｴ險育判縺ｮ逶ｮ讓吶′繧医ｊ蜈ｷ菴鍋噪縺ｫ縺ｪ繧翫∪縺吶・/p>
     </div>
-
     <div style="margin-bottom:28px;">
-
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">記入方法</h2>
-
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">現在している生活行為には「している」、していないがしてみたいものには「してみたい」、できる・できないに関わらず興味があるものには「興味がある」を選択してください。どれにも該当しない場合は「×」を押してください。</p>
-
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">險伜・譁ｹ豕・/h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">迴ｾ蝨ｨ縺励※縺・ｋ逕滓ｴｻ陦檎ぜ縺ｫ縺ｯ縲後＠縺ｦ縺・ｋ縲阪√＠縺ｦ縺・↑縺・′縺励※縺ｿ縺溘＞繧ゅ・縺ｫ縺ｯ縲後＠縺ｦ縺ｿ縺溘＞縲阪√〒縺阪ｋ繝ｻ縺ｧ縺阪↑縺・↓髢｢繧上ｉ縺夊・蜻ｳ縺後≠繧九ｂ縺ｮ縺ｫ縺ｯ縲瑚・蜻ｳ縺後≠繧九阪ｒ驕ｸ謚槭＠縺ｦ縺上□縺輔＞縲ゅ←繧後↓繧りｩｲ蠖薙＠縺ｪ縺・ｴ蜷医・縲古励阪ｒ謚ｼ縺励※縺上□縺輔＞縲・/p>
     </div>
-
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">迴ｾ蝣ｴ縺ｧ縺ｮ菴ｿ縺・婿・郁・蠎翫・隕也せ縺九ｉ・・/h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">逅・ｭｦ逋よｳ募｣ｫ縺ｨ縺励※25蟷ｴ莉･荳翫・壽園繝ｻ蝨ｨ螳・ｒ蜷ｫ繧蟷・ｺ・＞迴ｾ蝣ｴ縺ｫ謳ｺ繧上▲縺ｦ縺阪◆遶句ｴ縺九ｉ隕九※縺・※縲√％縺ｮ繧ｷ繝ｼ繝医・萓｡蛟､縺後ｂ縺｣縺ｨ繧ら匱謠ｮ縺輔ｌ繧狗椪髢薙・縲≫雷ﾃ励□縺代〒邨ゅｏ繧峨○縺ｪ縺九▲縺溘→縺阪□縺ｨ諢溘§縺ｦ縺・∪縺吶・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">縲後＠縺ｦ縺・ｋ縲阪後＠縺ｦ縺ｿ縺溘＞縲阪瑚・蜻ｳ縺後≠繧九阪・繝√ぉ繝・け縺縺代〒邨ゅ∴縺ｦ縺励∪縺・→縲∵悽莠ｺ縺ｮ譛ｬ蠖薙・繝九・繧ｺ縺ｾ縺ｧ螻翫°縺ｪ縺・％縺ｨ縺後≠繧翫∪縺吶ゅメ繧ｧ繝・け縺ｮ蠕後↓縲後＞縺､縲阪後←縺薙〒縲阪瑚ｪｰ縺ｨ縲阪後←繧薙↑蝣ｴ髱｢縺ｧ縲阪∪縺ｧ閨槭￠繧九°縺ｩ縺・°縺ｧ縲√◎縺ｮ蠕後・逶ｮ讓呵ｨｭ螳壹・隗｣蜒丞ｺｦ縺悟､ｧ縺阪￥螟峨ｏ縺｣縺ｦ縺阪∪縺吶・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">縺溘→縺医・縲梧侭逅・阪↓笳九′縺､縺・※縺・※繧ゅ∵ｯ取律縺ｮ鬟滉ｺ倶ｽ懊ｊ縺ｪ縺ｮ縺九∝ｭ｣遽縺ｮ陦御ｺ区侭逅・□縺代↑縺ｮ縺九∽ｸ莠ｺ縺ｧ繧・ｊ縺溘＞縺ｮ縺玖ｪｰ縺九→荳邱偵′縺・＞縺ｮ縺九↓繧医▲縺ｦ縲∝句挨讖溯・險鍋ｷｴ縺ｮ邨・∩遶九※譁ｹ縺ｯ螟峨ｏ縺｣縺ｦ縺阪∪縺吶り｡ｨ髱｢逧・↑繝√ぉ繝・け縺ｧ邨ゅｏ繧峨○縺壹√◎縺ｮ蜈医・莨夊ｩｱ縺ｾ縺ｧ雕上∩霎ｼ繧√ｋ縺九′縲√％縺ｮ繧ｷ繝ｼ繝医ｒ譛ｬ蠖薙↓豢ｻ縺九☆繝昴う繝ｳ繝医□縺ｨ閠・∴縺ｦ縺・∪縺吶・/p>
+    </div>
   </div>
-
-
 
   <div class="ref-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
 
@@ -984,3 +997,4 @@ updateSummary();
 </body>
 
 </html>
+

@@ -232,6 +232,21 @@
 
 }
 
+.global-nav {
+  background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 680px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 20px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text, #1a1916); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }
 </style>
 
 </head>
@@ -429,41 +444,36 @@
 
   <!-- 説明セクション -->
 
-  <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
-
+    <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
     <div style="margin-bottom:28px;">
-
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">このツールについて</h2>
-
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。</p>
-
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">縺薙・繝・・繝ｫ縺ｫ縺､縺・※</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">蜴夂函蜉ｴ蜒咲怐縲悟挨邏呎ｧ伜ｼ・-2・育函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝茨ｼ峨阪↓貅匁侠縺励◆蜈･蜉帙・蜊ｰ蛻ｷ繝・・繝ｫ縺ｧ縺吶る壽園莉玖ｭｷ・医ョ繧､繧ｵ繝ｼ繝薙せ・峨・蛟句挨讖溯・險鍋ｷｴ蜉邂励・邂怜ｮ壹↓蠢・ｦ√↑螻・ｮ・ｨｪ蝠乗凾縺ｮ隧穂ｾ｡繧偵√せ繝槭・繝医ヵ繧ｩ繝ｳ繧・ち繝悶Ξ繝・ヨ縺ｧ蜈･蜉帙＠縲√◎縺ｮ縺ｾ縺ｾ蜊ｰ蛻ｷ繝ｻPDF菫晏ｭ倥〒縺阪∪縺吶・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">逕滓ｴｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医・縲・壽園莉玖ｭｷ繝ｻ蝨ｰ蝓溷ｯ・捩蝙矩壽園莉玖ｭｷ縺ｧ蛟句挨讖溯・險鍋ｷｴ蜉邂励ｒ邂怜ｮ壹☆繧矩圀縺ｫ縲∝茜逕ｨ閠・・螻・ｮ・〒縺ｮ逕滓ｴｻ迥ｶ豕√ｒ謚頑升縺吶ｋ縺溘ａ縺ｫ豢ｻ逕ｨ縺吶ｋ讒伜ｼ上〒縺呻ｼ亥挨邏呎ｧ伜ｼ擾ｼ難ｼ搾ｼ抵ｼ峨・DL・磯｣滉ｺ九・謗呈ｳ・・蜈･豬ｴ繝ｻ譖ｴ陦｣縺ｪ縺ｩ・峨！ADL・郁ｪｿ逅・・豢玲ｿｯ繝ｻ雋ｷ縺・黄縺ｪ縺ｩ・峨∬ｵｷ螻・虚菴懊↓縺､縺・※縲∝ｱ・ｮ・ｒ險ｪ蝠上＠縺滉ｸ翫〒閾ｪ遶九Ξ繝吶Ν縺ｨ隱ｲ鬘後ｒ遒ｺ隱阪＠縺ｾ縺吶・/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">縺・▽菴ｿ縺・°</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">蛟句挨讖溯・險鍋ｷｴ險育判縺ｮ菴懈・蜑阪√♀繧医・險育判縺ｮ隕狗峩縺玲凾・・縺区怦縺斐→縺ｫ1蝗樔ｻ･荳奇ｼ峨・螻・ｮ・ｨｪ蝠上〒菴ｿ逕ｨ縺励∪縺吶ら函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医・縲∫岼讓呵ｨｭ螳壹・蛟句挨讖溯・險鍋ｷｴ險育判縺ｮ菴懈・縺ｮ蜑阪↓陦後≧繧ゅ・縺ｨ縺輔ｌ縺ｦ縺・∪縺吶・/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">遒ｺ隱阪☆繧句・螳ｹ</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">ADL繝ｻIADL繝ｻ襍ｷ螻・虚菴懊・蜷・・岼繧偵瑚・遶九阪瑚ｦ句ｮ医ｊ縲阪御ｸ驛ｨ莉句勧縲阪悟・莉句勧縲阪・4谿ｵ髫弱〒隧穂ｾ｡縺励√◎繧後◇繧後↓隱ｲ鬘後・譛臥┌繧定ｨ倩ｼ峨＠縺ｾ縺吶ゅ≠繧上○縺ｦ縲∝ｮ滓命蝣ｴ謇繧・ｽｿ逕ｨ縺励※縺・ｋ遖冗･臥畑蜈ｷ縺ｪ縺ｩ縺ｮ縲檎腸蠅・阪∫函豢ｻ迺ｰ蠅・・蝠城｡檎せ繧・ｪｲ鬘後′縺ゅｌ縺ｰ縲檎憾豕√・逕滓ｴｻ隱ｲ鬘後阪・谺・↓險倩ｼ峨＠縺ｾ縺吶・/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">闊亥袖繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝医→縺ｮ髢｢菫・/h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">逕滓ｴｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医・縲∬・蜻ｳ繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝茨ｼ亥挨邏呎ｧ伜ｼ擾ｼ難ｼ搾ｼ托ｼ峨→繧ｻ繝・ヨ縺ｧ菴ｿ縺・％縺ｨ縺梧Φ螳壹＆繧後※縺・∪縺吶ら函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医′縲後〒縺阪ｋ縺薙→繝ｻ縺ｧ縺阪↑縺・％縺ｨ縲阪ｒ謚頑升縺吶ｋ縺ｮ縺ｫ蟇ｾ縺励∬・蜻ｳ繝ｻ髢｢蠢・メ繧ｧ繝・け繧ｷ繝ｼ繝医・縲梧悽莠ｺ縺後＠縺溘＞縺薙→繝ｻ闊亥袖縺後≠繧九％縺ｨ縲阪ｒ謚頑升縺吶ｋ繧ゅ・縺ｧ縲∽ｸ｡譁ｹ縺ｮ諠・ｱ繧貞粋繧上○繧九％縺ｨ縺ｧ蛟句挨讖溯・險鍋ｷｴ險育判縺ｮ逶ｮ讓吶′繧医ｊ蜈ｷ菴鍋噪縺ｫ縺ｪ繧翫∪縺吶・/p>
     </div>
-
     <div style="margin-bottom:28px;">
-
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">個別機能訓練加算(Ⅱ)とLIFE提出</h2>
-
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機能訓練加算(Ⅱ)を算定する場合、LIFEへのデータ提出として「生活機能チェックシート」と「個別機能訓練計画書」の2点が必須です。居宅訪問は3か月ごとに1回以上行い、生活機能チェックシートも同様の頻度で作成します。</p>
-
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">蛟句挨讖溯・險鍋ｷｴ蜉邂・竇｡)縺ｨLIFE謠仙・</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">蛟句挨讖溯・險鍋ｷｴ蜉邂・竇｡)繧堤ｮ怜ｮ壹☆繧句ｴ蜷医´IFE縺ｸ縺ｮ繝・・繧ｿ謠仙・縺ｨ縺励※縲檎函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医阪→縲悟句挨讖溯・險鍋ｷｴ險育判譖ｸ縲阪・2轤ｹ縺悟ｿ・医〒縺吶ょｱ・ｮ・ｨｪ蝠上・3縺区怦縺斐→縺ｫ1蝗樔ｻ･荳願｡後＞縲∫函豢ｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医ｂ蜷梧ｧ倥・鬆ｻ蠎ｦ縺ｧ菴懈・縺励∪縺吶・/p>
     </div>
-
     <div style="margin-bottom:28px;">
-
-      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質問</h2>
-
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">迴ｾ蝣ｴ縺ｧ縺ｮ菴ｿ縺・婿・郁・蠎翫・隕也せ縺九ｉ・・/h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">逅・ｭｦ逋よｳ募｣ｫ縺ｨ縺励※25蟷ｴ莉･荳翫・壽園繝ｻ蝨ｨ螳・ｒ蜷ｫ繧蟷・ｺ・＞迴ｾ蝣ｴ縺ｫ謳ｺ繧上▲縺ｦ縺阪◆遶句ｴ縺九ｉ郢ｰ繧願ｿ斐＠螳滓─縺励※縺阪◆縺ｮ縺ｯ縲・壽園繧・・髯｢荳ｭ縺ｮ讒伜ｭ舌□縺代〒蛻､譁ｭ縺吶ｋ縺ｨ縲∬・螳・〒縺ｮ螳滄圀縺ｮ蟋ｿ縺ｨ繧ｺ繝ｬ縺檎函縺倥ｄ縺吶＞縺ｨ縺・≧縺薙→縺ｧ縺吶・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">譁ｽ險ｭ縺ｮ荳ｭ縺ｧ縺ｯ霆頑､・ｭ舌〒驕弱＃縺励※縺・ｋ譁ｹ縺ｧ繧ゅ∬・螳・〒縺ｯ謇九☆繧翫ｒ菴ｿ縺｣縺ｦ縺､縺溘＞豁ｩ縺阪〒遘ｻ蜍輔〒縺阪※縺・◆繧翫√↑繧薙→縺玖・蛻・〒繝医う繝ｬ縺ｾ縺ｧ陦後￠縺ｦ縺・◆繧翫☆繧九％縺ｨ縺後≠繧翫∪縺吶よ命險ｭ蜀・・蝣ｴ髱｢縺縺代〒縲悟・豬ｴ縲阪梧賜豕・阪梧峩陦｣縲阪ｒ隱ｲ鬘後→豎ｺ繧√▽縺代※縺励∪縺・→縲∵悽莠ｺ縺瑚・螳・〒逋ｺ謠ｮ縺ｧ縺阪※縺・ｋ蜉帙ｒ隕玖誠縺ｨ縺励◆縺ｾ縺ｾ險育判繧堤ｫ九※繧九％縺ｨ縺ｫ縺ｪ繧翫°縺ｭ縺ｾ縺帙ｓ縲・/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">逕滓ｴｻ讖溯・繝√ぉ繝・け繧ｷ繝ｼ繝医ｒ菴ｿ縺｣縺溷ｱ・ｮ・ｨｪ蝠上・縲√％縺ｮ縲梧命險ｭ縺ｧ隕九∴縺ｦ縺・ｋ蟋ｿ縲阪→縲瑚・螳・〒縺ｮ螳滄圀縺ｮ蟋ｿ縲阪・繧ｮ繝｣繝・・繧貞沂繧√ｋ縺溘ａ縺ｮ驥崎ｦ√↑讖滉ｼ壹□縺ｨ謐峨∴縺ｦ縺・∪縺吶ら腸蠅・・隱ｲ鬘後・谺・↓縺ｯ縲∝腰縺ｪ繧九メ繧ｧ繝・け縺縺代〒縺ｪ縺上√◎縺ｮ蝣ｴ縺ｧ豌励▼縺・◆蜈ｷ菴鍋噪縺ｪ蟾･螟ｫ繧・ｪｲ鬘後ｂ譖ｸ縺肴ｷｻ縺医ｋ繧医≧縺ｫ縺励※縺・∪縺吶・/p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">繧医￥縺ゅｋ雉ｪ蝠・/h2>
       <div style="margin-bottom:16px;">
-
-        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか？</p>
-
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての入力はブラウザ内で完結しており、外部に送信されることはありません。</p>
-
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 蜈･蜉帙＠縺溘ョ繝ｼ繧ｿ縺ｯ縺ｩ縺薙°縺ｫ騾∽ｿ｡縺輔ｌ縺ｾ縺吶°・・/p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. 縺吶∋縺ｦ縺ｮ蜈･蜉帙・繝悶Λ繧ｦ繧ｶ蜀・〒螳檎ｵ舌＠縺ｦ縺翫ｊ縲∝､夜Κ縺ｫ騾∽ｿ｡縺輔ｌ繧九％縺ｨ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲・/p>
       </div>
-
     </div>
-
   </div>
-
-
 
   <div class="ref-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
 
@@ -1502,4 +1512,5 @@ updateSummary();
 </body>
 
 </html>
+
 
