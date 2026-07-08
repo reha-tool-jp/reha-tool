@@ -550,6 +550,7 @@ animation: fadeIn 0.15s ease;
 .detail-item td { padding: 6px 10px; border-top: 1px solid var(--border); color: var(--muted); }
 .detail-item td.score-cell { font-weight: 700; color: var(--primary); width: 28px; }
 .detail-item td.label-cell { font-weight: 700; color: var(--text); width: 90px; }
+.judgment-note { font-size: 12px; color: var(--text); line-height: 1.7; padding: 10px 12px; background: #fff8e6; border-top: 1px solid var(--border); }
 @media print { .detail-table-wrap { display: none !important; } }
 </style>
 
@@ -726,17 +727,17 @@ animation: fadeIn 0.15s ease;
 
 </div>
 
-<div class="detail-table-wrap">
-  <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
-  <div id="fim-detail-accordion"></div>
-</div>
-
 <div class="actions">
 
 <button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
 
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 
+</div>
+
+<div class="detail-table-wrap">
+  <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
+  <div id="fim-detail-accordion"></div>
 </div>
 
 <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
@@ -1537,6 +1538,16 @@ document.getElementById('eval-date').value = new Date().toISOString().split('T')
 
 document.getElementById('admission-fim').addEventListener('input', updateScores);
 
+const judgmentNotes = {
+"階段": "12〜14段の昇降が可能かをまず判断し、次に介助の程度を見ます。可能な場合、触れる程度の介助なら4点、足の運びや体の引き上げまで介助が必要なら3点です。12〜14段は昇降できないが4〜6段は自立している場合は5点、8段や4段を触れる程度の介助で昇降できる場合は2点、二人がかりの介助が必要な場合や、訓練室ではできても実生活で階段を使わない場合は1点になります。",
+"排尿管理": "「失敗の頻度」と「介助量」という2つの軸で評価し、点数が低い方を採用します。おむつに失禁があっても、そのおむつ処理を自分で行っていれば「失敗」とはみなしません（特別ルール）。器具や薬剤の使用は「介助」に含まれます。",
+"排便管理": "「失敗の頻度」と「介助量」という2つの軸で評価し、点数が低い方を採用します。おむつに失禁があっても、そのおむつ処理を自分で行っていれば「失敗」とはみなしません（特別ルール）。座薬や下剤の使用は「介助」に含まれます。",
+"浴槽・シャワー": "浴槽をまたぐ動作で、片足のみ介助が必要な場合は4点、両足とも介助が必要な場合は3点と、介助が及ぶ範囲で細かく分かれます。浴槽移乗ではなくシャワー入浴に切り替えることで点数が上がる場合もありますが、これは「しているADL」を評価するFIMの原則通りです。",
+"社会的交流": "「複雑な課題か、簡単な課題か」で評価の軸が変わります。7〜5点は不慣れな環境・複雑な場面での交流を評価し、4〜1点は慣れた環境・日常的な場面での交流を評価します。1回の交流場面だけでなく、全体的な傾向で判断します。",
+"問題解決": "社会的交流と同様、複雑な課題（7〜5点）と日常的な課題（5〜1点）で評価軸が分かれます。「解決できるか」ではなく「問題を認識し、判断し、行動できるか」を評価します。的外れな行動・危険な行動・行動しないことは減点対象です。",
+"記憶": "評価するのは3つに限定されます。①よく会う人を認識している（名前が言えなくてもよい）②日課を覚えている③人から頼まれたことに対応できる、の3点です。子供の頃の記憶や歴史の年号などは対象外です。"
+};
+
 function renderDetailAccordion() {
   const container = document.getElementById('fim-detail-accordion');
   let html = '';
@@ -1548,9 +1559,12 @@ function renderDetailAccordion() {
         const c = criteria[item.name][score];
         rows += `<tr><td class="score-cell">${score}</td><td class="label-cell">${c.label}</td><td>${c.desc}</td></tr>`;
       });
+      const note = judgmentNotes[item.name];
+      const noteHtml = note ? `<div class="judgment-note">💡 判断のポイント：${note}</div>` : '';
       html += `<details class="detail-item"${isFirst ? ' open' : ''}>
 <summary>${item.id}. ${item.name}</summary>
 <table><tbody>${rows}</tbody></table>
+${noteHtml}
 </details>`;
     });
   });
