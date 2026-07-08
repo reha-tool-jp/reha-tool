@@ -348,14 +348,111 @@
 
   <div class="info-section">
     <h2 class="info-title">このツールについて</h2>
-    <p class="info-text">HDS-R（改訂長谷川式簡易知能評価スケール）は、1974年に長谷川和夫らによって開発され、1991年に改訂された認知機能スクリーニングツールです。9項目30点満点で評価し、20点以下で認知症の疑いがあるとされています。日本で最も広く使用されている認知症スクリーニング検査のひとつです。</p>
-
-    <h2 class="info-title">使い方</h2>
-    <p class="info-text">各項目をタップして採点します。印刷して記録用紙として使用することも、検査後に結果を入力して保存することも可能です。採点後は「印刷 / PDF保存」ボタンで記録として残せます。</p>
-
-    <h2 class="info-title">判定の目安</h2>
-    <p class="info-text">20点以下で認知症の疑いがあるとされています。ただしHDS-Rはスクリーニングツールであり、確定診断には医師による総合的な診察が必要です。教育歴・文化的背景・身体状態なども考慮して解釈することが重要です。</p>
-
+</div>
+
+  <div class="print-header">
+    <div>
+      <div class="print-title">HDS-R（改訂長谷川式簡易知能評価スケール）</div>
+      <div class="print-sub">9項目・30点満点</div>
+    </div>
+    <div class="print-sub" id="print-date"></div>
+  </div>
+
+  <div class="patient-wrap">
+    <div class="patient-field">
+      <label>患者名</label>
+      <input type="text" id="patient-name" placeholder="（任意）">
+    </div>
+    <div class="patient-field">
+      <label>評価日</label>
+      <input type="date" id="eval-date">
+    </div>
+  </div>
+
+  <div class="score-summary">
+    <div>
+      <div>
+        <span class="score-total" id="total-score">—</span>
+        <span class="score-max"> / 30</span>
+      </div>
+      <div class="score-label">合計点</div>
+    </div>
+    <div class="score-right">
+      <div class="score-judge" id="judge-label" style="background:#f0efe9; color:#a09d96;">未入力</div>
+      <div class="score-progress">
+        <div class="score-progress-bar" id="progress-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="items-container"></div>
+
+  <!-- 印刷用テーブル（画面では非表示） -->
+  <table class="print-table" id="print-table" style="display:none;">
+    <thead>
+      <tr>
+        <th class="pt-num">No.</th>
+        <th class="pt-name">項目</th>
+        <th class="pt-q">質問・採点基準</th>
+        <th class="pt-max">満点</th>
+        <th class="pt-score">得点</th>
+      </tr>
+    </thead>
+    <tbody id="print-tbody"></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" style="text-align:right; font-weight:700; padding:6px 8px;">合計</td>
+        <td class="pt-max">30</td>
+        <td class="pt-score" id="print-total">—</td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="print-memo" style="display:none;">
+    <div class="print-memo-label">備考・特記事項</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
+    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
+  </div>
+  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+
+  <div class="info-section">
+    <h2 class="info-title">このツールについて</h2>
+    <p class="info-text">HDS-R（改訂長谷川式簡易知能評価スケール）は、1974年に長谷川和夫らによって開発され、1991年に改訂された認知機能スクリーニングツールです。9項目30点満点で評価し、20点以下で認知症の疑いがあるとされています。日本で最も広く使用されている認知症スクリーニング検査のひとつです。</p>
+
+    <h2 class="info-title">使い方</h2>
+    <p class="info-text">各項目をタップして採点します。印刷して記録用紙として使用することも、検査後に結果を入力して保存することも可能です。採点後は「印刷 / PDF保存」ボタンで記録として残せます。</p>
+
+    <h2 class="info-title">判定の目安</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:13px; margin:12px 0;">
+      <thead>
+        <tr style="background:var(--accent-light);">
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">合計点</th>
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">判定</th>
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">目安</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">24点以上</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">正常範囲</td>
+          <td style="padding:8px 10px; border:1px solid var(--border); color:var(--text2);">認知機能低下の疑いは低い</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">21〜23点</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">境界域</td>
+          <td style="padding:8px 10px; border:1px solid var(--border); color:var(--text2);">他の検査・生活状況と合わせて経過観察</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">20点以下</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">認知症の疑い</td>
+          <td style="padding:8px 10px; border:1px solid var(--border); color:var(--text2);">確定診断ではなく医師による総合的な診察が必要</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="info-text">ただしHDS-Rはスクリーニングツールであり、確定診断には医師による総合的な診察が必要です。教育歴・文化的背景・身体状態なども考慮して解釈することが重要です。</p>
+
     <h2 class="info-title">開発者・長谷川和夫先生のこと</h2>
     <p class="info-text">HDS-Rは、精神科医・長谷川和夫先生が1974年に開発し、1991年に改訂したスケールです。長谷川先生は2017年に自らが認知症であることを公表し、後年、認知症の診断を受けています。「痴呆」という呼称を「認知症」に変える議論を主導した先生自身が、晩年に当事者となった、という経緯はNHKスペシャルや著書でも広く語られています。</p>
     <p class="info-text">臨床でHDS-Rを使うとき、この背景を知っているかどうかで、検査に向き合う姿勢が変わってくると感じています。数字だけを追う検査ではなく、開発者自身が「点数の向こう側にある本人の体験」を伝え続けた検査である、という視点を持ちたいものです。</p>
@@ -375,6 +472,21 @@
     <h2 class="info-title">点数だけ見るな。その人らしさを見ろ。</h2>
     <p class="info-text">HDS-Rはスクリーニングの目安でしかありません。特にPTが機能訓練を組む際は、その日の状態・BPSD・人生歴・残存能力を総合的に見て調整することが求められます。HDS-Rは、その人を理解する入口です。数字だけで終わらせず、「その人らしさ」を評価につなげてください。</p>
     <p class="info-text" style="font-size:13px;color:#888;margin-top:8px;">※本記事は臨床経験と公開資料をもとに作成しています。評価・運用は最新の通知や所属施設のルールをご確認ください。</p>
+
+    <h2 class="info-title">検査を嫌がる方に、どう向き合うか</h2>
+    <p class="info-text">HDS-Rを実施しようとすると、「テストされるのが嫌」「バカにされてるみたい」と機嫌を損ねる方が少なくありません。特に軽度の認知症の方や、もともと自尊心の高い方にこの傾向が強く出る印象があります。途中で「もういい」「疲れた」と中断を求められることもありますし、家族が同席していると、本人が答えに詰まった瞬間に先回りして助言してしまい、かえって本人のプレッシャーや拒否感を強めてしまう場面もよく見かけます。</p>
+    <p class="info-text">拒否反応が出た時は、一旦中断して雑談に切り替えることが多いです。「疲れましたか？今日はこの辺にしましょうか。〇〇さん、昔はどんなお仕事されてたんですか？」というように話題を変え、最後に「よくできましたよ」「お疲れ様でした」とねぎらいを添えると、機嫌が直りやすいと感じています。その日の体調が良くなさそうであれば、無理をせず日を改めることも選択肢です。</p>
+    <p class="info-text">個人的に一番おすすめしたいのは、そもそも「認知症の検査です」と強調しないことです。「健康チェックの一環です」「年齢的な確認をさせてください」といった形で、一般的な会話の延長として導入する方が、抵抗感なく進められることが多いと感じています。ここは声かけのスキルが問われる部分ですが、身につけておく価値は大きいです。</p>
+
+    <h2 class="info-title">点数以外に見ておきたいこと</h2>
+    <p class="info-text">検査中は、点数以外の反応にも目を向けるようにしています。わからない時にイライラしたり怒りが出る方は、日常生活で困った場面での反応パターンを予測するヒントになります。逆に諦めて俯いてしまう方は、自信を失いやすいタイプで、支援時に励ましが重要になってきます。ヒントを出した時に嬉しそうに訂正できる方は、残存能力が保たれているサインとして、軽度の段階でのモチベーション維持につながりやすいです。年齢を実際より若く言うなど、少し「盛る」反応が出る方は、自尊心が高く、認知機能の低下を認めたくない性格である場合が多いと感じています。</p>
+
+    <h2 class="info-title">同じ点数でも、見るべき場所は変わる</h2>
+    <p class="info-text">HDS-Rは合計点だけで判断すると見落としが生まれます。同じ20点でも、どの項目で失点したかによって、生活上で注意すべきポイントは変わってきます。記憶項目(即時・遅延再生)だけが弱い方は、服薬管理や約束事の記憶漏れに注意が必要です。見当識(日付・場所)が特に悪い方は、季節に合わない服装や、道に迷うリスクに気を配る必要があります。計算・逆唱が苦手な方は、金銭管理や、複数の作業を同時に行う場面でのミスにつながりやすい印象があります。</p>
+    <p class="info-text">記録の取り方も工夫しています。点数だけでなく「計算で3回間違えたが自分で気づいて訂正した」「遅延再生でヒントなしで2つ出てきた」といった経過をメモに残すようにしています。拒否・中断があった場合も、そのきっかけと反応を記録しておくと、次回の実施時の工夫につながります。繰り返し実施する際は、点数の増減だけでなく、反応の変化そのものを比較する視点も大切にしています。</p>
+
+    <h2 class="info-title">点数より、拒否された理由を考えろ。</h2>
+    <p class="info-text">検査を嫌がる方には、必ず理由があります。テストされる不安、自尊心が傷つく感覚、体調の悪さ、家族への遠慮。拒否そのものを問題として扱うのではなく、その裏にある理由を考えることが、HDS-Rを「検査」から「その人を知る機会」に変える分かれ目だと思っています。</p>
 
     <h2 class="info-title">よくある質問</h2>
     <div class="faq-item">
