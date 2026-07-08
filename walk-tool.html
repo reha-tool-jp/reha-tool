@@ -345,13 +345,13 @@
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('tug')">TUG</button>
-    <button class="tab-btn" onclick="switchTab('10m')">10m歩行</button>
+    <button class="tab-btn" onclick="switchTab('tug')">TUG</button>
+    <button class="tab-btn active" onclick="switchTab('10m')">10m歩行</button>
   </div>
   <p style="font-size:12px;color:var(--text2);text-align:center;margin:-8px 0 16px;">📐 歩数を入力すると、歩行速度・歩幅・歩行率（ケイデンス）も自動計算されます（10m歩行タブ）</p>
 
   <!-- TUG -->
-  <div id="tab-tug" class="tab-content active">
+  <div id="tab-tug" class="tab-content">
 
     <div class="stopwatch-card">
       <div class="sw-display" id="tug-display">0.00</div>
@@ -392,7 +392,7 @@
   </div>
 
   <!-- 10m歩行 -->
-  <div id="tab-10m" class="tab-content">
+  <div id="tab-10m" class="tab-content active">
 
     <div class="stopwatch-card">
       <div class="sw-display" id="10m-display">0.00</div>
