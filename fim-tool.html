@@ -540,7 +540,18 @@ animation: fadeIn 0.15s ease;
   padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
   transition: background 0.15s, color 0.15s;
 }
-.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }</style>
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }
+.detail-table-wrap { background: var(--surface); border-radius: 12px; padding: 16px; margin-top: 16px; box-shadow: var(--shadow); }
+.detail-table-header { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+.detail-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.detail-item summary { cursor: pointer; padding: 10px 12px; font-size: 13px; font-weight: 700; color: var(--text); background: var(--bg); list-style: none; }
+.detail-item summary::-webkit-details-marker { display: none; }
+.detail-item table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.detail-item td { padding: 6px 10px; border-top: 1px solid var(--border); color: var(--muted); }
+.detail-item td.score-cell { font-weight: 700; color: var(--primary); width: 28px; }
+.detail-item td.label-cell { font-weight: 700; color: var(--text); width: 90px; }
+@media print { .detail-table-wrap { display: none !important; } }
+</style>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 
@@ -713,6 +724,11 @@ animation: fadeIn 0.15s ease;
 
 </div>
 
+</div>
+
+<div class="detail-table-wrap">
+  <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
+  <div id="fim-detail-accordion"></div>
 </div>
 
 <div class="actions">
@@ -1521,9 +1537,31 @@ document.getElementById('eval-date').value = new Date().toISOString().split('T')
 
 document.getElementById('admission-fim').addEventListener('input', updateScores);
 
+function renderDetailAccordion() {
+  const container = document.getElementById('fim-detail-accordion');
+  let html = '';
+  fimData.forEach((cat, catIdx) => {
+    cat.items.forEach((item, idx) => {
+      const isFirst = catIdx === 0 && idx === 0;
+      let rows = '';
+      [7,6,5,4,3,2,1].forEach(score => {
+        const c = criteria[item.name][score];
+        rows += `<tr><td class="score-cell">${score}</td><td class="label-cell">${c.label}</td><td>${c.desc}</td></tr>`;
+      });
+      html += `<details class="detail-item"${isFirst ? ' open' : ''}>
+<summary>${item.id}. ${item.name}</summary>
+<table><tbody>${rows}</tbody></table>
+</details>`;
+    });
+  });
+  container.innerHTML = html;
+}
+
 renderFIM();
 
 updateScores();
+
+renderDetailAccordion();
 
 </script>
 
