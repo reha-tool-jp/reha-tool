@@ -122,7 +122,7 @@
 
   /* ========== 印刷スタイル ========== */
   @media print {
-    @page { size: A4 portrait; margin: 12mm 12mm 12mm 12mm; }
+    @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
 
     body { background: #fff !important; padding: 0; color: #000; }
     header { display: none !important; }
@@ -198,7 +198,8 @@
     .option-text { font-size: 8.5pt; color: #333; line-height: 1.35; }
 
     .info-section { display: none !important; }
-    .footer { display: none !important; }
+    .footer { display: none !important; }
+    .no-print { display: none !important; }
   }
 
 .pwa-hint {
@@ -270,7 +271,7 @@
 
 <div class="container">
 
-<div class="breadcrumb">
+<div class="breadcrumb no-print">
   <a href="./index.html">トップ</a>
   <span>›</span>
   <a href="./index.html#tools">評価ツール</a>
@@ -395,13 +396,14 @@
 
   </div>
 
-  <div style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
+  <div class="no-print" style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
     <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
     <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
       <li>Mahoney FI, Barthel DW: Functional Evaluation: The Barthel Index. Maryland State Medical Journal 14:61-65, 1965.</li>
     </ul>
   </div>
 
+  <div class="no-print">
   <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
   <div class="article-list-home">
     <a class="tool-card" href="articles/kangokyodo-kazan.html">
@@ -421,6 +423,7 @@
     <div style="text-align: right; margin-top: 12px; padding-right: 5px; margin-bottom: 24px;">
       <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">すべての解説記事を見る →</a>
     </div>
+  </div>
   </div>
 
   <div class="footer" style="margin-top:32px;">
