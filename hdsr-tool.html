@@ -155,7 +155,7 @@
 
   /* ========== 印刷スタイル ========== */
   @media print {
-    @page { size: A4 portrait; margin: 12mm 12mm 12mm 12mm; }
+    @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
     html, body { height: auto !important; overflow: visible !important; background: #fff !important; padding: 0; }
     header { display: none !important; }
     .container { max-width: 100%; padding: 0; }
@@ -182,7 +182,8 @@
     .btn-row { display: none !important; }
     .footer { display: none !important; }
     .info-section { display: none !important; }
-    #items-container { display: none !important; }
+    #items-container { display: none !important; }
+    .no-print { display: none !important; }
 
     /* 印刷用テーブル */
     .print-table { display: table !important; width: 100%; border-collapse: collapse; font-size: 9.5pt; }
@@ -271,7 +272,7 @@
 
 <div class="container">
 
-<div class="breadcrumb">
+<div class="breadcrumb no-print">
   <a href="./index.html">トップ</a>
   <span>›</span>
   <a href="./index.html#tools">評価ツール</a>
@@ -279,77 +280,6 @@
   HDS-R(改訂長谷川式簡易知能評価スケール)
 </div>
 
-  <div class="print-header">
-    <div>
-      <div class="print-title">HDS-R（改訂長谷川式簡易知能評価スケール）</div>
-      <div class="print-sub">9項目・30点満点</div>
-    </div>
-    <div class="print-sub" id="print-date"></div>
-  </div>
-
-  <div class="patient-wrap">
-    <div class="patient-field">
-      <label>患者名</label>
-      <input type="text" id="patient-name" placeholder="（任意）">
-    </div>
-    <div class="patient-field">
-      <label>評価日</label>
-      <input type="date" id="eval-date">
-    </div>
-  </div>
-
-  <div class="score-summary">
-    <div>
-      <div>
-        <span class="score-total" id="total-score">—</span>
-        <span class="score-max"> / 30</span>
-      </div>
-      <div class="score-label">合計点</div>
-    </div>
-    <div class="score-right">
-      <div class="score-judge" id="judge-label" style="background:#f0efe9; color:#a09d96;">未入力</div>
-      <div class="score-progress">
-        <div class="score-progress-bar" id="progress-bar" style="width:0%"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="items-container"></div>
-
-  <!-- 印刷用テーブル（画面では非表示） -->
-  <table class="print-table" id="print-table" style="display:none;">
-    <thead>
-      <tr>
-        <th class="pt-num">No.</th>
-        <th class="pt-name">項目</th>
-        <th class="pt-q">質問・採点基準</th>
-        <th class="pt-max">満点</th>
-        <th class="pt-score">得点</th>
-      </tr>
-    </thead>
-    <tbody id="print-tbody"></tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3" style="text-align:right; font-weight:700; padding:6px 8px;">合計</td>
-        <td class="pt-max">30</td>
-        <td class="pt-score" id="print-total">—</td>
-      </tr>
-    </tfoot>
-  </table>
-  <div class="print-memo" style="display:none;">
-    <div class="print-memo-label">備考・特記事項</div>
-  </div>
-
-  <div class="btn-row">
-    <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
-    <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
-  </div>
-  <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
-
-  <div class="info-section">
-    <h2 class="info-title">このツールについて</h2>
-</div>
-
   <div class="print-header">
     <div>
       <div class="print-title">HDS-R（改訂長谷川式簡易知能評価スケール）</div>
@@ -511,13 +441,15 @@
     </div>
   </div>
 
-  <div style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
+  <div class="no-print" style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
     <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
     <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
       <li>加藤伸司, 他：改訂長谷川式簡易知能評価スケール（HDS-R）の作成. 老年精神医学雑誌 2(11):1339-1347, 1991.</li>
     </ul>
   </div>
 
+  <div class="no-print">
+
   <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
   <div class="article-list-home">
     <a class="tool-card" href="articles/shogai-juyo.html">
@@ -539,6 +471,8 @@
     </div>
   </div>
 
+  </div>
+
   <div class="footer" style="margin-top:32px;">
     <a href="index.html">← ツール一覧</a>
     　｜　
