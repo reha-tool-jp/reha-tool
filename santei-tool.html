@@ -421,6 +421,51 @@
     </ul>
     <p class="info-text">通知・疑義解釈の文言が「発症等」のように幅を持たせた表現になっていることも、解釈が割れる一因です。医師・PT/OT・事務それぞれの認識をすり合わせ、疾患ごと・加算ごとに起算日を別管理する運用ルールを、院内で明文化しておくことが実務上の予防策になります。</p>
 
+    <h2 class="info-title">同じ発症日でも、起算日の見え方は違う</h2>
+    <p class="info-text">算定日数は発症日だけを見ると同じに見えても、転院の有無によって起算日の数え方はまったく異なります。</p>
+    <table style="width:100%; border-collapse:collapse; font-size:13px; margin:12px 0;">
+      <thead>
+        <tr style="background:var(--accent-light);">
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">項目</th>
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">Aさん（発症後すぐ自院入院）</th>
+          <th style="padding:8px 10px; text-align:left; border:1px solid var(--border);">Bさん（前院で3日間治療後に転院）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">発症日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">自院入院日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月4日</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">算定日数上限の起算日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日（発症日）</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日（発症日。転院でも変わらない）</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">早期リハ加算の起算日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月1日（自院入院日＝発症日と同じ）</td>
+          <td style="padding:8px 10px; border:1px solid var(--border); color:var(--warn);">4月1日（前院の入院日）</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">早期リハ加算の算定期限（14日目）</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月14日</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">4月14日</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; border:1px solid var(--border);">自院入院時点での早期リハ加算の残り日数</td>
+          <td style="padding:8px 10px; border:1px solid var(--border);">まだ14日残っている</td>
+          <td style="padding:8px 10px; border:1px solid var(--border); color:var(--danger);">残り11日（前院分の3日を消化済み）</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="info-text">発症日が同じでも、Bさんのように転院を挟むと、早期リハ加算の起算日は自院の入院日ではなく前院の入院日になります。「自院に来た日から14日」と誤解してしまうと、実際の期限より遅く数えてしまい、知らないうちに早期リハ加算の算定期間を超過する危険があります。</p>
+
     <h2 class="info-title">「日数がまだある」で安心してはいけない</h2>
     <p class="info-text">算定日数の計算で見落としやすいのが、起算日の「二重管理」です。早期リハ加算・初期加算・標準的算定日数では、それぞれ起算日が異なります。</p>
     <p class="info-text">早期リハ加算は入院日（転院時は前医の入院日）、標準的算定日数は発症・手術・急性増悪・診断日のうち最も早い日が起算日です。これらを1つのカレンダーで管理しようとすると、算定漏れや超過算定につながります。</p>
