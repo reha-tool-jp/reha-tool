@@ -84,7 +84,7 @@
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; line-height: 2; }
   .footer a { color: var(--text3); text-decoration: none; }
   /* 印刷 */
-  @media print {
+  @media print { .author-block-top, .author-block-bottom { display: none !important; }
     @page { size: A4 portrait; margin: 10mm 12mm 10mm 12mm; }
     body > * { display: none !important; }
     #print-overlay { display: block !important; }
@@ -139,7 +139,7 @@
   <span>›</span>
   基本チェックリスト
 </div>
-<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+<div class="author-block-top" style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士　|　<a href="about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
@@ -387,7 +387,7 @@
     <a href="articles/index.html" style="font-size: 14px; color: var(--accent); text-decoration: none; font-weight: bold;">すべての解説記事を見る →</a>
   </div>
 </div>
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
+  <div class="author-block-bottom" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
 この記事は、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修しています。<br>
 経歴の詳細はこちら → <a href="about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について</a>
 </div>

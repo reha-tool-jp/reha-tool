@@ -468,7 +468,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 .footer-sep { margin: 0 6px; }
 
 /* ── Print ── */
-@media print {
+@media print { .author-block-top, .author-block-bottom { display: none !important; }
   @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
   html, body { height: auto !important; overflow: visible !important; }
   header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 12px; }
@@ -605,7 +605,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
   <span>›</span>
   BBS(バランス評価)
 </div>
-<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+<div class="author-block-top" style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士　|　<a href="about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
@@ -882,7 +882,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
   </div>
 
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
+  <div class="author-block-bottom" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
 この記事は、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修しています。<br>
 経歴の詳細はこちら → <a href="about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について</a>
 </div>
