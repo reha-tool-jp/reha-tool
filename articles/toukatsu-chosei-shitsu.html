@@ -9,7 +9,8 @@
   <meta property="og:description" content="省令改正なし、独立予算なし。室長・次長4人の素性と、PT・OT法改正の現在地を一次資料から読み解く。">
   <meta property="og:type" content="article">
   <link rel="canonical" href="https://reha-tool.jp/articles/toukatsu-chosei-shitsu.html">
-  <style>
+  <link rel="stylesheet" href="css/style.css">
+<style>
     :root {
       --primary: #1a5f7a;
       --primary-light: #2d8fb3;
@@ -30,41 +31,17 @@
       --text3: #a09d96;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-      font-size: 16px;
-      line-height: 1.85;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    /* ヘッダー */
-    .site-header {
-      background: var(--primary);
-      padding: 12px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    .site-header a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .site-header a:hover { text-decoration: underline; }
-
-    /* パンくず */
     .breadcrumb {
       max-width: 860px;
       margin: 16px auto 0;
       padding: 0 20px;
-      font-size: 13px;
-      color: var(--text-muted);
     }
-    .breadcrumb a { color: var(--primary); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb span { margin: 0 6px; }
+
+    
+
+    
+
+    
 
     /* 記事コンテナ */
     .article-container {
@@ -274,10 +251,7 @@
       padding-bottom: 14px;
       border-bottom: 1px solid var(--border);
     }
-    .person-card-body {
-      font-size: 15px;
-      line-height: 1.8;
-    }
+    .person-card-
     .person-card-key {
       display: inline-block;
       background: var(--primary);
@@ -440,16 +414,7 @@
       line-height: 1.5;
     }
 
-    /* フッター */
-    .site-footer {
-      background: #1a1a1a;
-      color: #aaa;
-      text-align: center;
-      padding: 32px 20px;
-      font-size: 13px;
-      margin-top: 80px;
-    }
-    .site-footer a { color: #ccc; text-decoration: none; }
+    
 
     /* スマホ対応 */
     @media (max-width: 600px) {
@@ -471,7 +436,7 @@
     }
 
     @media print {
-      .site-header, .site-footer, .related-articles { display: none; }
+      header, .footer, .related-articles { display: none; }
     }
 
     /* コラム：寄り道ボックス */
@@ -491,21 +456,7 @@
     .column-aside p:last-child {
       margin-bottom: 0;
     }
-  .global-nav {
-  background: var(--surface); border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
-}
-.nav-container {
-  max-width: 640px; margin: 0 auto;
-  display: flex; gap: 12px; padding: 12px 16px;
-  overflow-x: auto; white-space: nowrap;
-}
-.nav-container a {
-  color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
-  padding: 6px 14px; border-radius: 20px; background: var(--surface2);
-  transition: background 0.15s, color 0.15s;
-}
-.nav-container a:hover { background: var(--accent-light); color: var(--accent); }</style>
+  </style>
 </head>
 <body>
 <nav class="global-nav">
@@ -517,8 +468,9 @@
   </div>
 </nav>
 
-<header class="site-header">
-  <a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a>
+<header>
+  <div class="site-name">リハビリ評価・計算ツール｜解説記事</div>
+  <h1>リハビリテーション統括調整室とは何か<br>――厚労省に初めて横断調整組織が置かれた日</h1>
 </header>
 
 <nav class="breadcrumb" aria-label="パンくずリスト">
@@ -528,7 +480,7 @@
   <span>›</span>
   リハビリテーション統括調整室とは何か
 </nav>
-<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+<div style="max-width:860px;margin:0 auto 16px;padding:0 20px 12px;font-size:13px;color:var(--text2);border-bottom:1px solid var(--border);">
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
@@ -543,7 +495,6 @@
   </div>
 
   <h1 class="article-title">リハビリテーション統括調整室とは何か<br>──厚労省に初めて横断調整組織が置かれた日</h1>
-  <p class="article-subtitle">診療報酬・法制度・介護予防の担当者が、初めて同じテーブルについた日。</p>
 
   <div class="article-meta">
     <span>📅 2026年5月公開</span>
@@ -1210,10 +1161,10 @@
 </div>
 </main>
 
-<footer class="site-footer">
+<div class="footer">
   <p><a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a> | PT・OT・ST・機能訓練指導員向け 無料ツール＆解説記事</p>
   <p style="margin-top:8px;">※本記事は公表されている一次資料に基づいて作成していますが、制度の解釈や判断は必ず原文をご確認ください。</p>
-</footer>
+</div>
 
 </body>
 </html>
