@@ -15,40 +15,9 @@
 <meta name="description" content="FIM利得（退院時FIM－入院時FIM）の計算方法をわかりやすく解説。FIM効率との違い、実績指数への影響、入院時評価の注意点まで。回復期リハ病棟のPT・OT・ST向け。">
 <link rel="icon" href="../images/icon.png" type="image/png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/style.css">
 <style>
-:root {
-  --bg: #f5f4f0;
-  --surface: #ffffff;
-  --surface2: #f0efe9;
-  --border: #e0ddd4;
-  --text: #1a1916;
-  --text2: #6b6860;
-  --text3: #a09d96;
-  --accent: #2a5c45;
-  --accent-light: #e8f2ed;
-  --warn: #8a5c00;
-  --warn-light: #fdf6e3;
-  --info: #1a4a7a;
-  --info-light: #e8f0fa;
-  --danger: #7a1a1a;
-  --danger-light: #fae8e8;
-  --radius: 10px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.8;
-}
-header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
-header .site-name { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
-header .site-name a { color: #fff; text-decoration: none; }
-header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
-.container { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
-.breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
-.breadcrumb a { color: var(--text3); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; }
 .updated { font-size: 12px; color: var(--text3); margin-bottom: 24px; display: block; }
-
 .article-body h2 {
   font-size: 17px; font-weight: 700; color: var(--accent);
   border-left: 4px solid var(--accent); padding-left: 12px;
@@ -66,7 +35,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   font-size: 14px; padding-left: 24px; margin-bottom: 16px;
 }
 .article-body li { margin-bottom: 6px; line-height: 1.8; }
-
 /* 計算式ボックス */
 .formula-box {
   background: var(--surface); border: 2px solid var(--accent);
@@ -103,7 +71,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   font-size: 12px; color: var(--text2); margin-top: 12px;
   text-align: left; line-height: 1.7;
 }
-
 /* 計算例ボックス */
 .example-box {
   background: var(--accent-light); border: 1px solid var(--accent);
@@ -118,7 +85,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   font-size: 15px; font-weight: 700; color: var(--accent);
   margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--accent);
 }
-
 /* 注意ボックス */
 .note-box {
   border-radius: var(--radius); padding: 16px 18px; margin: 20px 0;
@@ -131,7 +97,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .note-box.warn .note-title { color: var(--warn); }
 .note-box.info .note-title { color: var(--info); }
 .note-box.danger .note-title { color: var(--danger); }
-
 /* テーブル */
 .data-table {
   width: 100%; border-collapse: collapse; margin: 16px 0;
@@ -149,7 +114,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table .highlight { background: var(--accent-light); font-weight: 600; }
-
 /* ツールCTA */
 .tool-cta {
   background: var(--accent-light); border: 2px solid var(--accent);
@@ -163,7 +127,6 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
   border-radius: 6px; text-decoration: none;
 }
 .tool-cta a:hover { opacity: 0.85; }
-
 /* 関連記事 */
 .related-section { margin-top: 36px; }
 .related-section .section-title {
@@ -181,30 +144,9 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .related-card .related-desc {
   font-size: 12px; color: var(--text2); line-height: 1.6;
 }
-
 /* フッター */
-.footer {
-  text-align: center; padding: 28px 16px; margin-top: 40px;
-  border-top: 1px solid var(--border);
-}
-.footer a { color: var(--accent); text-decoration: none; font-size: 13px; }
-.footer a:hover { text-decoration: underline; }
 .footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
-.global-nav {
-  background: var(--surface); border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
-}
-.nav-container {
-  max-width: 640px; margin: 0 auto;
-  display: flex; gap: 12px; padding: 12px 16px;
-  overflow-x: auto; white-space: nowrap;
-}
-.nav-container a {
-  color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
-  padding: 6px 14px; border-radius: 20px; background: var(--surface2);
-  transition: background 0.15s, color 0.15s;
-}
-.nav-container a:hover { background: var(--accent-light); color: var(--accent); }</style>
+</style>
 </head>
 <body>
 <nav class="global-nav">
