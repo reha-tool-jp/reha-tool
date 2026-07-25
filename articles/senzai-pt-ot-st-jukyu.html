@@ -1,0 +1,837 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>潜在PT・OT・STはなぜ数えられないのか｜養成は細り、離脱は測れないリハ職の需給 | リハビリ評価・計算ツール集</title>
+  <meta name="description" content="リハ職の養成課程は縮小が続く一方、現場を離れる人も戻る人も公式に数える仕組みがありません。養成・離脱・復職の3層構造を一次資料から読み解きます。">
+  <meta property="og:title" content="潜在PT・OT・STはなぜ数えられないのか｜養成は細り、離脱は測れないリハ職の需給">
+  <meta property="og:description" content="養成は縮小、離脱・復職は測れない。リハ職の需給を推計する土台データが存在しない構造を一次資料から解説。">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://reha-tool.jp/articles/senzai-pt-ot-st-jukyu.html">
+  <style>
+    :root {
+      --primary: #1a5f7a;
+      --primary-light: #2d8fb3;
+      --accent: #e8a020;
+      --accent-light: #f5c76a;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --bg: #fff;
+      --bg-light: #f8f9fa;
+      --bg-note: #f0f7fb;
+      --border: #e0e0e0;
+      --border-accent: #1a5f7a;
+      --tag-bg: #e8f4f8;
+      --tag-text: #1a5f7a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--primary);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .site-header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .site-header a:hover { text-decoration: underline; }
+
+    /* パンくず */
+    .breadcrumb {
+      max-width: 860px;
+      margin: 16px auto 0;
+      padding: 0 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* 記事コンテナ */
+    .article-container {
+      max-width: 860px;
+      margin: 24px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* タグ */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* 記事タイトル */
+    .article-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 32px;
+    }
+
+    /* 導入文 */
+    .article-lead {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #2a2a2a;
+      margin-bottom: 40px;
+      padding: 24px 28px;
+      background: var(--bg-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* 目次 */
+    .toc {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+    .toc-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+    .toc ol {
+      padding-left: 20px;
+    }
+    .toc li {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+    .toc a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+
+    /* 章見出し */
+    .chapter-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--primary-light);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: clamp(18px, 3vw, 23px);
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+      margin: 56px 0 24px;
+      line-height: 1.45;
+      scroll-margin-top: 70px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 32px 0 14px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 24px 0 10px;
+    }
+
+    /* 本文 */
+    p {
+      margin-bottom: 20px;
+      font-size: 15.5px;
+    }
+
+    /* 引用 */
+    blockquote {
+      background: var(--bg-note);
+      border-left: 4px solid var(--primary-light);
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2a2a2a;
+    }
+    blockquote cite {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: normal;
+    }
+
+    /* 強調ボックス */
+    .highlight-box {
+      background: #fff8e8;
+      border: 1px solid var(--accent-light);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .highlight-box-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #b07a10;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* 人物紹介カード */
+    .person-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .person-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+    .person-card-role {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--primary-light);
+      margin-bottom: 4px;
+    }
+    .person-card-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .person-card-position {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .person-card-body {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .person-card-key {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* 構成図 */
+    .structure-box {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 24px;
+      margin: 28px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 2;
+    }
+    .structure-box .role-line {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .role-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-family: sans-serif;
+    }
+    .role-badge.head { background: var(--primary); color: #fff; }
+    .role-badge.deputy { background: var(--primary-light); color: #fff; }
+    .role-desc {
+      font-family: sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* 注記ボックス */
+    .note-box {
+      background: #f9f9f9;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .note-box-label {
+      font-weight: 700;
+      color: var(--text);
+      margin-right: 6px;
+    }
+
+    /* 警告ボックス */
+    .caution-box {
+      background: #fff5f5;
+      border-left: 4px solid #c0392b;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 14.5px;
+      line-height: 1.8;
+    }
+    .caution-box-title {
+      font-weight: 700;
+      color: #c0392b;
+      margin-bottom: 6px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* 温度計（法改正進捗） */
+    .progress-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 24px 0;
+    }
+    .progress-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-left: 3px solid var(--border);
+      margin-left: 16px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .progress-step::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .progress-step.done::before { background: var(--primary); }
+    .progress-step.current::before { background: var(--accent); }
+    .progress-step-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      min-width: 80px;
+      padding-top: 2px;
+    }
+    .progress-step-text {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .progress-step.done .progress-step-text { color: var(--text); }
+    .progress-step.current .progress-step-text { color: var(--accent); font-weight: 700; }
+    .progress-step.future .progress-step-text { color: var(--text-muted); }
+
+    /* 関連記事 */
+    .related-articles {
+      border-top: 2px solid var(--border);
+      margin-top: 60px;
+      padding-top: 32px;
+    }
+    .related-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .related-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+    .related-card:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 2px 8px rgba(26,95,122,0.1);
+    }
+    .related-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .related-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* フッター */
+    .site-footer {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      margin-top: 80px;
+    }
+    .site-footer a { color: #ccc; text-decoration: none; }
+
+    /* スマホ対応 */
+    @media (max-width: 600px) {
+      .article-container { padding: 0 16px; }
+      .article-lead { padding: 18px 16px; font-size: 15.5px; }
+      .person-card { padding: 16px 18px; }
+      h2 { font-size: 19px; }
+    }
+
+    /* 印刷非表示 */
+    .closing-statement {
+      border-top: 2px solid var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding: 24px 8px; margin: 40px 0; text-align: center;
+    }
+    .closing-statement p {
+      font-size: 16.5px; line-height: 2.2; color: var(--text);
+      font-weight: 400; margin-bottom: 0;
+    }
+
+    @media print {
+      .site-header, .site-footer, .related-articles { display: none; }
+    }
+
+    /* コラム：寄り道ボックス */
+    .column-aside {
+      background: #f0f7fa;
+      border-left: 4px solid #2d8fb3;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text);
+    }
+    .column-aside p {
+      margin-bottom: 8px;
+    }
+    .column-aside p:last-child {
+      margin-bottom: 0;
+    }
+  .global-nav {
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 640px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 16px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light); color: var(--accent); }</style>
+</head>
+<body>
+<nav class="global-nav">
+  <div class="nav-container">
+    <a href="/">トップ</a>
+    <a href="/#articles">解説記事</a>
+    <a href="/#tools">評価ツール</a>
+    <a href="/about.html">このサイトについて</a>
+  </div>
+</nav>
+
+<header class="site-header">
+  <a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a>
+</header>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <a href="https://reha-tool.jp/">ホーム</a>
+  <span>›</span>
+  <a href="https://reha-tool.jp/articles/">解説記事</a>
+  <span>›</span>
+  潜在PT・OT・STはなぜ数えられないのか
+</nav>
+<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
+</div>
+
+<main class="article-container">
+
+  <div class="article-tags">
+    <span class="tag">人材需給</span>
+    <span class="tag">養成校</span>
+    <span class="tag">潜在PT・OT・ST</span>
+    <span class="tag">厚生労働省</span>
+    <span class="tag">2026年</span>
+  </div>
+
+  <h1 class="article-title">潜在PT・OT・STはなぜ数えられないのか<br>──養成は細り、離脱は測れないリハ職の需給</h1>
+  <p class="article-subtitle">養成数は分かる。国家試験合格者数も分かる。でも、離れた人も戻った人も、誰も数えていない。</p>
+
+  <div class="article-meta">
+    <span>📅 2026年7月公開</span>
+    <span>✍️ reha-tool編集部</span>
+    <span>🔗 一次資料：厚生労働省社会保障審議会医療部会・医療関係職種の安定的な養成・確保に関する検討会・財政制度等審議会</span>
+  </div>
+
+  <div class="article-lead">
+    理学療法士・作業療法士・言語聴覚士（PT・OT・ST）の人材需給が、政策文書でたびたび語られるようになっています。ただ、その議論を一次資料から追っていくと、見落とされがちな問題があります。需給を語るための土台となるデータそのものが、実は存在していないという問題です。
+  </div>
+
+  <nav class="toc">
+    <div class="toc-title">目次</div>
+    <ol>
+      <li><a href="#chapter1">養成課程は縮小している──ここまでは分かる</a></li>
+      <li><a href="#chapter2">一方で、離れた人も、戻った人も、誰も数えていない</a></li>
+      <li><a href="#chapter3">需給を推計する材料そのものがない</a></li>
+      <li><a href="#chapter4">そこに、資格統合という提言</a></li>
+      <li><a href="#chapter5">現場感覚</a></li>
+      <li><a href="#chapter6">観察</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <!-- ==============================
+       第1章
+  =============================== -->
+  <div class="chapter-label">Chapter 1</div>
+  <h2 id="chapter1">養成課程は縮小している──ここまでは分かる</h2>
+
+  <p>厚生労働省が2025年10月27日の社会保障審議会医療部会に提出した資料によると、PT・OT・ST養成施設の定員充足率は、平成27年度（H27）から令和6年度（R6）にかけて、いずれも低下しています。</p>
+
+  <ul style="margin:16px 0 16px 20px; line-height:1.9;">
+    <li>理学療法士養成施設：88.8%→78.0%（施設数145→138）</li>
+    <li>作業療法士養成施設：77.2%→52.6%（施設数108→98）</li>
+    <li>言語聴覚士養成所：75.5%→63.1%（養成所47→41）</li>
+  </ul>
+
+  <div class="note-box">
+    <span class="note-box-label">補足：</span>言語聴覚士のみ「養成所」という区分名が一次資料で使われています。PT・OTの「養成施設」とは呼び方が異なりますが、同じ専門学校系の区分を指しています。
+  </div>
+
+  <p>3職種の中でもOTの低下幅が最も大きく、半数近くの定員が埋まらない状態になっています。STはさらに、養成所そのものが47都道府県中35都道府県にしか存在しません。</p>
+
+  <p>この縮小は充足率だけの話ではありません。「医療関係職種の安定的な養成・確保に関する検討会」（2026年7月6日、第3回）の資料には、養成課程そのものの廃止数の推移が示されています。</p>
+
+  <ul style="margin:16px 0 16px 20px; line-height:1.9;">
+    <li>PTの課程廃止数：8→8→2→4→6（2020〜2024年度）</li>
+    <li>OTの課程廃止数：7→2→1→4→6</li>
+    <li>STの課程廃止数：5→3→2→2→5</li>
+  </ul>
+
+  <p>令和6年度の定員充足率（専修学校等・大学等を合算した数字）で見ると、看護師89.6%・PT87.8%・OT66.5%・ST72.9%です。充足率だけを見るとPTに大きな課題はなさそうですが、課程の廃止自体は他の職種と同じく増えつつあります。これはリハ職だけの問題でもありません。同じ資料で、看護師の養成課程も今後6年間で94校が廃止予定とされています。</p>
+
+  <p>背景にあるのは、リハ職だけの事情ではなく、日本全体の人口動態です。18歳人口は1992年をピークに減少を続けており、大学進学率自体は上昇傾向にあるものの、2026年をピークに大学進学者数自体が減少局面に入ると推計されています。このまま大学の定員規模が維持された場合、2040年には大学全体の定員充足率が70%台（72.75%〜76.76%）にまで落ち込むという、文部科学省・中央教育審議会の推計もあります（厚労省の医療部会資料にも引用されています）。</p>
+
+  <p>これは、いわゆる「2040年問題」の一部でもあります。厚労省の推計では、2040年に必要となる医療・福祉分野の就業者数は1,070万人程度である一方、確保できる見込みは974万人にとどまるとされています。この差を埋めるため、厚労省は「より少ない人手でも回る医療・福祉の現場」を掲げ、2040年までに単位時間あたりのサービス提供を5%（医師は7%）以上改善するという目標を打ち出しています。養成課程の縮小は、この大きな流れの中で起きている現象の一つです。</p>
+
+  <p>養成校の経営構造にも課題があります。同検討会の資料によれば、養成所の収入は学生納付金への依存度が高い一方、支出の大半は人件費が占めるため、学生数の減少がそのまま経営を直撃する構造です。この打開策として、遠隔授業やサテライト化（複数校の一体運営）が検討されています。ある試算例では、3校がそれぞれ専任教員を配置していた体制を、1つの本校と2つのサテライト校に再編することで、専任教員数を18名から6名まで効率化できるとされています。</p>
+
+  <p>厚労省が示している対応の方向性は、個々の養成校を維持することだけではありません。遠隔授業・サテライト化に加え、高卒者中心だった学生募集を、大学進学からの進路転換者や既卒者、社会人にも広げる方向が検討会で議論されています。週末・夜間コースや託児サービスの整備といった、社会人が学び直しやすい環境づくりも論点に挙がっています。</p>
+
+  <p>つまり、養成課程がどれだけ縮小しているかは、データとしてはっきり示されています。</p>
+
+  <!-- ==============================
+       第2章
+  =============================== -->
+  <div class="chapter-label">Chapter 2</div>
+  <h2 id="chapter2">一方で、離れた人も、戻った人も、誰も数えていない</h2>
+
+  <p>現場を離れるリハ職が増えているという体感は、SNS上でもたびたび話題になります。ただ、この体感を裏付ける公的な統計は、実は存在しません。</p>
+
+  <p>実は看護師には、こうした推計があります。「潜在看護師」です。2018年度・65歳未満の免許保持者数から就業者数を差し引く形で、約70万人という数字が厚生労働科学研究費補助金の分担研究報告書で示されています。</p>
+
+  <p>一方、PT・OT・STには、この種の推計を行うための土台自体がありません。理由は、免許保持者を把握する制度の違いにあります。</p>
+
+  <p style="font-weight:700; margin:24px 0 8px; font-size:15px;">表1　医療職種ごとの届出制度の違い</p>
+  <div style="overflow-x:auto; margin:0 0 24px;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px; min-width:640px;">
+      <thead>
+        <tr style="background:var(--primary); color:#fff;">
+          <th style="padding:10px 12px; text-align:left; border:1px solid var(--border);">比較</th>
+          <th style="padding:10px 12px; text-align:left; border:1px solid var(--border);">対象職種（例）</th>
+          <th style="padding:10px 12px; text-align:left; border:1px solid var(--border);">把握の仕組み</th>
+          <th style="padding:10px 12px; text-align:left; border:1px solid var(--border);">頻度</th>
+          <th style="padding:10px 12px; text-align:left; border:1px solid var(--border);">特徴</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px; border:1px solid var(--border); font-weight:700;">①</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">医師・歯科医師・薬剤師</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">法律に基づく個人の届出（医師法・歯科医師法・薬剤師法）</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">2年に1回</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">個人単位で届出義務があり、潜在数の推計が可能</td>
+        </tr>
+        <tr style="background:var(--bg-light);">
+          <td style="padding:10px 12px; border:1px solid var(--border); font-weight:700;">②</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">看護師・准看護師・保健師・助産師・歯科衛生士・歯科技工士・あん摩マッサージ指圧師・はり師・きゅう師・柔道整復師</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">都道府県への届出（衛生行政報告例）</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">2年に1回</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">都道府県単位で集計され、潜在数の推計が可能</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px; border:1px solid var(--border); font-weight:700; color:#c0392b;">③</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">PT・OT・ST、診療放射線技師、臨床検査技師、臨床工学技士、視能訓練士、義肢装具士等</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">施設・事業所への統計調査のみ（個人への届出義務なし）</td>
+          <td style="padding:10px 12px; border:1px solid var(--border);">必要に応じて実施（定期ではない）</td>
+          <td style="padding:10px 12px; border:1px solid var(--border); color:#c0392b;">施設の従事者数のみ把握。個人単位のデータがなく、免許保持者全体と比較できないため潜在数の推計が困難</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <span class="note-box-label">まとめ：</span>医師・歯科医師・薬剤師、看護師等は「個人または都道府県単位」で定期的に把握する仕組みがある。一方、PT・OT・STなどリハビリテーション専門職等は「施設側からの断面調査のみ」。そのため、有資格者全体に対する就業割合や潜在数を正確に推計することが難しい。
+  </div>
+
+  <p>つまりPT・OT・STについては、「今、何人働いているか」の一部は分かっても、「免許を持つ人のうち、何人が現場を離れているか」を計算する基準となる母数自体が存在しません。</p>
+
+  <p>さらに言えば、離脱者数が分からないだけでなく、一度現場を離れた人がどれくらい復帰しているかも、同じ理由で分かりません。入り口（離脱）も出口（復帰）も、どちらも測る手段がない状態です。</p>
+
+  <!-- ==============================
+       第3章
+  =============================== -->
+  <div class="chapter-label">Chapter 3</div>
+  <h2 id="chapter3">需給を推計する材料そのものがない</h2>
+
+  <p>ここまでを整理すると、次のようになります。</p>
+
+  <ul style="margin:16px 0 16px 20px; line-height:1.9;">
+    <li>養成数は分かる</li>
+    <li>国家試験合格者数も分かる</li>
+    <li>しかし、現場を離れた人数は分からない</li>
+    <li>現場に戻ってきた人数も分からない</li>
+  </ul>
+
+  <p>養成という「入口」のデータは整っている一方で、離脱と復帰という「その後」のデータが丸ごと欠けています。「人が足りない」と言う人も、「増えすぎた」と言う人もいます。しかし、そのどちらを裏付けるにも欠かせない「離脱・復帰」のデータが存在していません。将来不足するとも、余るとも断言できる材料は、現時点では十分にそろっていないのです。</p>
+
+  <p>財政審建議が根拠とする「従事者数は一貫して増加している」という事実と、第1章で見た養成課程の縮小は、矛盾しているように見えるかもしれません。ですが両立は可能です。現在働いている総数（ストック）が増え続けていることと、新規に入ってくる人数（フロー）が細っていることは別の指標で、この2つをつなぐ変数こそが「離脱・復帰」です。その変数が測れない以上、ストックの増加がいつまで続くのかも、実は誰にも見通せません。</p>
+
+  <p>2040年に向けて養成数が減っていくこと自体は、人口動態から予測できます。しかし、その影響が現場にどこまで及ぶかは、離脱・復帰の実態が分からない以上、正確には見通せません。「2040年問題」として語られる需給ギャップの実像は、この欠落したデータの上に乗っているのです。</p>
+
+  <div class="doc-image-box">
+    <div class="doc-image-label">
+      養成から就業までの、把握できる区間・できない区間
+    </div>
+    <svg viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#fafafa;" role="img">
+      <title>リハ職の資格取得から就業までの追跡可能性を示す流れ図</title>
+      <desc>養成校、国家試験、免許取得、就業までは把握できるが、離職・復職は追跡する制度がないことを示す図</desc>
+      <defs>
+        <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <g>
+        <rect x="200" y="30" width="280" height="56" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="1"/>
+        <text x="340" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">養成校</text>
+        <text x="340" y="70" text-anchor="middle" font-size="12" fill="#555">入学者数は把握できる</text>
+      </g>
+      <line x1="340" y1="86" x2="340" y2="122" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+      <g>
+        <rect x="200" y="126" width="280" height="56" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="1"/>
+        <text x="340" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">国家試験</text>
+        <text x="340" y="166" text-anchor="middle" font-size="12" fill="#555">合格者数は把握できる</text>
+      </g>
+      <line x1="340" y1="182" x2="340" y2="218" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+      <g>
+        <rect x="200" y="222" width="280" height="56" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="1"/>
+        <text x="340" y="242" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">免許取得</text>
+        <text x="340" y="262" text-anchor="middle" font-size="12" fill="#555">登録者数は把握できる</text>
+      </g>
+      <line x1="340" y1="278" x2="340" y2="314" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+      <g>
+        <rect x="200" y="318" width="280" height="56" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="1"/>
+        <text x="340" y="338" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">就業</text>
+        <text x="340" y="358" text-anchor="middle" font-size="12" fill="#555">施設側の断面調査のみ</text>
+      </g>
+      <line x1="340" y1="374" x2="340" y2="410" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow2)"/>
+      <text x="500" y="392" text-anchor="middle" font-size="16" fill="#c0392b">？</text>
+
+      <g>
+        <rect x="200" y="414" width="280" height="56" rx="8" fill="#fdecea" stroke="#c0392b" stroke-width="1"/>
+        <text x="340" y="434" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">離職・復職</text>
+        <text x="340" y="454" text-anchor="middle" font-size="12" fill="#c0392b">追跡する制度がない</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ==============================
+       第4章
+  =============================== -->
+  <div class="chapter-label">Chapter 4</div>
+  <h2 id="chapter4">そこに、資格統合という提言</h2>
+
+  <p>こうした状況の中で進んでいるのが、資格統合の議論です。</p>
+
+  <p>この状態のまま、財政制度等審議会は2026年6月26日の建議で、リハビリテーション専門職について「医療専門資格の統合も視野に入れるべきではないか」と提言しています。従事者数が一貫して増加していること、18歳人口に占める医療関係職種の割合が今後大きく上昇することを根拠に挙げています。</p>
+
+  <p>需給を測るための土台が曖昧なまま、資格の壁を越えた効率化の議論だけが、一歩先に進み始めています。</p>
+
+  <!-- ==============================
+       現場感覚
+  =============================== -->
+  <div class="chapter-label">Chapter 5</div>
+  <h2 id="chapter5">現場感覚</h2>
+
+  <div class="highlight-box" style="margin-bottom:32px;">
+    <div class="highlight-box-title">現場感覚</div>
+    <p style="margin:0; font-size:15px; line-height:2;">
+      リハ部門の管理業務では、採用や退職は日々の数字として見えてきます。以前と比べて、他職種へ転向していく方を見かける機会が増えたようには肌感で感じています。<br><br>
+      ただ、その数字が全国的な流れなのか、自分の施設や地域だけの話なのかを判断できる材料はありません。現場で感じる変化と、政策で使われるデータの間にあるギャップは、思っている以上に大きいと感じます。
+    </p>
+  </div>
+
+  <!-- ==============================
+       観察
+  =============================== -->
+  <div class="chapter-label">Chapter 6</div>
+  <h2 id="chapter6">観察</h2>
+
+  <div class="closing-statement">
+    <p>今後、資格統合が議論されるかどうかとは別に、まず必要になるのは「今、何人が現場で働き、何人が離れ、何人が戻ってきているのか」を把握できる仕組みかもしれません。</p>
+    <p>需給を議論するためには、その土台となるデータ整備も同時に進める必要があります。</p>
+    <p>データがなければ、政策は現場ではなく、測れる数字を頼りに進んでしまいます。</p>
+  </div>
+
+  <div class="note-box">
+    <span class="note-box-label">出典・参考資料：</span>第120回社会保障審議会医療部会 資料１「医療機関の業務効率化・職場環境改善の推進に関する論点」（令和7年10月27日）／医療関係職種の安定的な養成・確保に関する検討会（第3回）資料２「学校養成所の運営・養成課程について」（令和8年7月6日）／令和6年衛生行政報告例（就業医療関係者）の概況／令和6年医師・歯科医師・薬剤師統計の概況／厚生労働科学研究費補助金（地域医療基盤開発推進研究事業）「新たな看護職員の働き方等に対応した看護職員需給推計への影響要因とエビデンスの検証」（令和2年度）／医療従事者の需給に関する検討会 第3回理学療法士・作業療法士需給分科会 資料１／財政制度等審議会「人口減少と不確実性の時代における国力の強化と財政運営」（令和8年6月26日）資料Ⅱ－２－９
+  </div>
+
+  <!-- ==============================
+       よくある質問
+  =============================== -->
+  <h2 id="faq" style="margin-top:40px;">よくある質問</h2>
+
+  <div style="margin:20px 0;">
+    <p style="font-weight:700; margin-bottom:6px;">Q. 潜在PTとは？</p>
+    <p style="margin:0 0 20px; line-height:1.9;">免許は持っているものの、現在その職種として働いていない人を指す一般的な言葉です。看護師には「潜在看護師」という公式な推計（約70万人、2018年度・65歳未満）がありますが、PTについて同様の公式推計は存在しません。</p>
+
+    <p style="font-weight:700; margin-bottom:6px;">Q. PT・OT・STに潜在人数の統計はある？</p>
+    <p style="margin:0 0 20px; line-height:1.9;">ありません。PT・OT・STは、施設・事業所側からの断面調査のみで把握されており、個人の免許保持者全体を追跡する届出制度がないため、就業者数と免許保持者総数を突き合わせることができず、潜在数を算出する土台自体がありません。</p>
+
+    <p style="font-weight:700; margin-bottom:6px;">Q. 資格統合とは？</p>
+    <p style="margin:0 0 20px; line-height:1.9;">財政制度等審議会が2026年6月26日の建議で示した「医療専門資格の統合も視野に入れるべきではないか」という提言を指します。決定事項ではなく、財政審としての提言の段階です。</p>
+
+    <p style="font-weight:700; margin-bottom:6px;">Q. PT不足は本当に起きている？</p>
+    <p style="margin:0; line-height:1.9;">この記事で見てきた通り、養成課程の縮小は事実として確認できますが、離脱者数・復帰者数を把握する仕組みがないため、「不足している」「不足していない」のどちらも一次資料から断言できるものではありません。</p>
+  </div>
+
+  <!-- 関連記事 -->
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="toukatsu-chosei-shitsu.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🏛️</span>
+        <span class="tool-name">リハビリテーション統括調整室とは何か</span>
+      </div>
+      <div class="tool-desc">診療報酬・法制度・介護予防の担当者が初めて同じテーブルについた日を一次資料から解説。</div>
+    </a>
+    <a class="tool-card" href="giren.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">🏛️</span>
+        <span class="tool-name">リハビリテーションを考える議員連盟とは</span>
+      </div>
+      <div class="tool-desc">2013年設立・2026年247名。リハビリ政策の背景にある議連の13年史を一次資料から解説。</div>
+    </a>
+    <a class="tool-card" href="semegata-yobou-iryo.html">
+      <div class="tool-card-head">
+        <span class="tool-icon">📋</span>
+        <span class="tool-name">攻めの予防医療とは何か｜骨太2026でリハビリテーションが重視される理由</span>
+      </div>
+      <div class="tool-desc">骨太2026「攻めの予防医療」6本柱にリハビリが明記された理由と現場への影響を解説。</div>
+    </a>
+  </div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
+この記事は、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修しています。<br>
+経歴の詳細はこちら → <a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について</a>
+</div>
+</main>
+
+<footer class="site-footer">
+  <p><a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a> | PT・OT・ST・機能訓練指導員向け 無料ツール＆解説記事</p>
+  <p style="margin-top:8px;">※本記事は公表されている一次資料に基づいて作成していますが、制度の解釈や判断は必ず原文をご確認ください。</p>
+</footer>
+
+</body>
+</html>
