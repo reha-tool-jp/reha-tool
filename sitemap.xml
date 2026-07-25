@@ -134,4 +134,46 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://reha-tool.jp/terms.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/ai-riyou-guide.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/dementia-recovery.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/fim-rida.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/fim-scoring-tips.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/giren.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/houmon-reha-shogu-kaizen.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/houmon-reha-station.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/kyujitsu-reha-kazan.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/semegata-yobou-iryo.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/senzai-pt-ot-st-jukyu.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/souki-reha-kazan.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/tosho-reha-keikakusho-mokuhyo.html</loc>
+  </url>
+  <url>
+    <loc>https://reha-tool.jp/articles/toukatsu-chosei-shitsu.html</loc>
+  </url>
 </urlset>
