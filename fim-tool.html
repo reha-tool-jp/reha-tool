@@ -882,15 +882,6 @@ document.getElementById('eval-date').value = new Date().toISOString().split('T')
 document.getElementById('admission-fim').addEventListener('input', updateScores);
 
 function copyToExcel() {
-  const patientName = document.getElementById('patient-name').value || '';
-  const evalDate = document.getElementById('eval-date').value || '';
-  const admissionFimVal = document.getElementById('admission-fim').value || '';
-
-  const allItems = fimData.flatMap(c => c.items);
-  const motorTotal = motorItems.reduce((s, id) => s + scores[id], 0);
-  const cogTotal = allItems.filter(i => !motorItems.includes(i.id)).reduce((s, item) => s + scores[item.id], 0);
-  const total = motorTotal + cogTotal;
-
   // Excelシートのプルダウン表記（点数-ラベル）に合わせた短縮ラベル
   const excelLabel = {
     7: '完全自立', 6: '修正自立', 5: '監視', 4: '最小介助',
@@ -898,36 +889,20 @@ function copyToExcel() {
   };
   const fmt = (score) => `${score}-${excelLabel[score]}`;
 
-  const rows = [];
-  rows.push(['患者名', patientName]);
-  rows.push(['評価日', evalDate]);
-  rows.push(['入院時FIM合計', admissionFimVal]);
-  rows.push(['', '']);
-  rows.push(['項目', '点数']);
-
+  // Excelシート側の並び順（歩行・車椅子は2行に分かれているため複製）に合わせて出力
+  const values = [];
   fimData.forEach(cat => {
     cat.items.forEach(item => {
       if (item.id === 'L') {
-        // Excelシート側は「歩行」「車椅子」の2行に分かれているため、同じ値を両方に出力
-        rows.push(['歩行', fmt(scores[item.id])]);
-        rows.push(['車椅子', fmt(scores[item.id])]);
+        values.push(fmt(scores[item.id])); // 歩行
+        values.push(fmt(scores[item.id])); // 車椅子
       } else {
-        rows.push([`${item.id}. ${item.name}`, fmt(scores[item.id])]);
+        values.push(fmt(scores[item.id]));
       }
     });
   });
 
-  rows.push(['', '']);
-  rows.push(['運動項目合計（13項目）', motorTotal]);
-  rows.push(['認知項目合計（5項目）', cogTotal]);
-  rows.push(['合計', total]);
-
-  const admissionFim = parseInt(admissionFimVal);
-  if (!isNaN(admissionFim) && admissionFim >= 18 && admissionFim <= 126) {
-    rows.push(['FIM利得', total - admissionFim]);
-  }
-
-  const text = rows.map(r => r.join('\t')).join('\n');
+  const text = values.join('\n');
 
   const btn = document.getElementById('copy-excel-btn');
   const showCopied = () => {
