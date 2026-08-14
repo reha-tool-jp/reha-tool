@@ -85,6 +85,7 @@
 }
 .fc-yes { background: var(--accent-light); border: 1px solid var(--accent); color: var(--accent); }
 .fc-no { background: var(--danger-light); border: 1px solid var(--danger); color: var(--danger); }
+.fc-branch { flex: 1; border-radius: 6px; padding: 8px 10px; font-size: 12px; text-align: center; background: var(--info-light); border: 1px solid var(--info); color: var(--info); }
 .fc-label { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
 .fc-arrow { text-align: center; color: var(--text3); font-size: 18px; margin: 2px 0; }
 .fc-end-ok {
@@ -205,37 +206,42 @@
 
     <div class="flowchart">
       <div class="fc-title">休日リハ加算 算定判定フロー</div>
-      <div class="fc-question">① 施設基準の届出は済んでいるか？</div>
+      <div class="fc-question">① 土曜・日曜・祝日のいずれかに実施したか？</div>
       <div class="fc-row">
-        <div class="fc-no"><div class="fc-label">NO</div>算定不可（まず届出を）</div>
-        <div class="fc-yes"><div class="fc-label">YES</div>次へ</div>
+        <div class="fc-no"><div class="fc-label">NO（平日のみ）</div>加算の対象外</div>
+        <div class="fc-yes"><div class="fc-label">YES</div>次へ（3日全てに対応する必要はなし）</div>
       </div>
       <div class="fc-arrow">↓</div>
-      <div class="fc-question">② 土曜・日曜・祝日のリハビリか？</div>
-      <div class="fc-row">
-        <div class="fc-no"><div class="fc-label">NO（平日）</div>加算の対象外</div>
-        <div class="fc-yes"><div class="fc-label">YES</div>次へ</div>
-      </div>
-      <div class="fc-arrow">↓</div>
-      <div class="fc-question">③ 入院患者か（または対象退院患者か）？</div>
+      <div class="fc-question">② 入院患者か（または対象退院患者か）？</div>
       <div class="fc-row">
         <div class="fc-no"><div class="fc-label">NO（通常の外来）</div>算定不可</div>
         <div class="fc-yes"><div class="fc-label">YES</div>次へ</div>
       </div>
       <div class="fc-arrow">↓</div>
-      <div class="fc-question">④ 慢性疾患（急性増悪なし）の運動器・呼吸器患者か？</div>
+      <div class="fc-question">③ 慢性疾患（急性増悪なし）の運動器・呼吸器患者か？</div>
       <div class="fc-row">
         <div class="fc-no"><div class="fc-label">NO</div>次へ</div>
         <div class="fc-yes"><div class="fc-label">YES</div>算定不可</div>
       </div>
       <div class="fc-arrow">↓</div>
-      <div class="fc-question">⑤ 起算日から30日以内か？</div>
+      <div class="fc-question">④ 心大血管疾患・呼吸器リハビリ料の患者か？</div>
+      <div class="fc-row">
+        <div class="fc-branch"><div class="fc-label">YES（心大血管・呼吸器）</div>起算日＝発症等から7日目、または治療開始日の早い方</div>
+        <div class="fc-branch"><div class="fc-label">NO（脳血管・運動器・廃用症候群）</div>起算日＝発症・手術・急性増悪の日</div>
+      </div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-question">⑤ その起算日から30日以内か？</div>
       <div class="fc-row">
         <div class="fc-no"><div class="fc-label">NO（31日以降）</div>算定不可</div>
         <div class="fc-yes"><div class="fc-label">YES</div>次へ</div>
       </div>
       <div class="fc-arrow">↓</div>
       <div class="fc-end-ok">✅ 算定可能</div>
+    </div>
+
+    <div class="note-box info">
+      <div class="note-title">💡 現場でよく聞かれる質問</div>
+      当院でも「土曜だけ、日曜だけしか対応できないが算定できるか」という質問を受けたことがあります。答えは「できる」です。休日リハ加算は日単位で判定するため、土曜・日曜・祝日のうち対応できた日だけを算定すればよく、3日すべてに体制を組む必要はありません。
     </div>
 
     <h2>対象患者と外来患者の扱い</h2>
@@ -301,16 +307,16 @@
     </div>
 
     <h2>施設基準の届出について</h2>
-    <p>休日リハビリテーション加算を算定するには、地方厚生局への施設基準の届出が必要です。ただし、この加算のために特別な「休日専用の専従スタッフ」を新たに用意する必要はありません。</p>
+    <p>休日リハビリテーション加算そのものに、独自の施設基準届出はありません。疾患別リハビリテーション料（心大血管・脳血管疾患等・運動器・呼吸器等）の施設基準を届け出ていれば、そのまま算定対象になります。この加算のために特別な「休日専用の専従スタッフ」を新たに用意する必要もありません。</p>
 
     <div class="note-box info">
       <div class="note-title">💡 施設基準のポイント</div>
       <ul>
-        <li><strong>疾患別リハビリテーション料の施設基準がベース</strong>：休日リハ加算は各疾患別リハビリ料への加算のため、まず疾患別リハ料（Ⅰ〜Ⅲ等）の届出と専従配置が前提となります</li>
+        <li><strong>休日リハ加算に独自の届出様式はない</strong>：各疾患別リハビリ料（Ⅰ〜Ⅲ等）の届出と専従配置がそのまま前提になります</li>
         <li><strong>休日加算独自の専従要件はない</strong>：既存の専従スタッフが週108単位の範囲内で休日にリハビリを提供できる体制が実質的な基準</li>
         <li><strong>365日体制は必須ではない</strong>：土曜日のみ対応する場合でも、その日に算定要件を満たす患者に算定できる</li>
         <li><strong>回復期リハ病棟・地域包括医療病棟は別途要件あり</strong>：病棟の施設基準として休日の提供体制（回復期は1日平均3単位以上等）が求められる場合があります</li>
-        <li>届出を行わずに算定すると返戻・指導の対象となるため注意</li>
+        <li>疾患別リハビリテーション料の届出自体を行わずに算定すると返戻・指導の対象となるため注意</li>
       </ul>
     </div>
 
@@ -330,7 +336,7 @@
 
     <div class="note-box info">
       <div class="note-title">💡 現場の感覚として</div>
-      回復期リハ病棟はもともと土曜・休日を含めた全日のリハビリ提供体制を前提としています。仮に休日リハ加算の対象になり得るとしても、起算日から30日以内・急性増悪を伴う患者といった要件に実際に当てはまる休日自体が少なく、算定可否がどちらに転んでも現場への影響は限定的だと感じています（理学療法士としての臨床経験に基づく所感であり、算定可否そのものの結論ではありません）。
+      回復期に転棟してくる患者の多くは、すでに起算日から30日を超えているか、あるいは急性期でも急性増悪の局面を過ぎた「回復期リハを要する状態」で入ってくることがほとんどです。当院の感覚でも、起算日から30日以内・かつ急性増悪を伴う患者が回復期の病棟にいる場面自体、そう多くはありません。仮に休日リハ加算の対象になり得るとしても、対象となる休日そのものが限られるため、算定可否がどちらに転んでも現場への影響は限定的だと感じています。1患者あたりの加算点数の小ささと、算定根拠が断定できないリスクを天秤にかけ、当院では無理に算定しない判断をしています。他院での算定実績が、審査支払機関の査定・返戻や地方厚生局の適時調査でどう扱われるかを見極めてから、改めて判断する予定です（いずれも理学療法士としての臨床経験に基づく所感であり、算定可否そのものの結論ではありません）。
     </div>
 
     <h3>📌 参考：入院料本体の施設基準（加算とは別の制度）</h3>
@@ -358,13 +364,16 @@
     <div class="accent-box">
       休日リハビリテーション加算、算定要件を満たすことより先に考えることがあるかもしれません。<br><br>
       休日出勤が常態化すれば、家庭を持つスタッフへの負担は確実に上がります。<br><br>
+      当院でもこの加算を算定していますが、休日出勤のための増員やシフトの強制は行っていません。出勤できるスタッフが対応できた範囲で算定すればよい、という考え方です。<br><br>
+      理由はいくつかあります。まずスタッフの多くが子育て世代であり、休日出勤を前提にした運用は働きやすさの面でマイナスに働きます。次に、25点/単位という点数は土日祝日限定である以上、増員のコストを回収できる見込みが立ちにくいという収益面の現実もあります。さらに、休日出勤の負担が大きい職場は採用の場面で選ばれにくくなりますし、休日リハに人を割く分だけ外来対応のスタッフが手薄になり、その影響も無視できません。<br><br>
+      実務では、休日出勤当番のシフトを組む段階ではなく、その日出勤できたスタッフの受け持ち患者の中に、このフローチャートに当てはまる人がいるかを確認する運用が現実的です。起算日と残日数を患者ごとに一覧化しておくと、当日の判断がスムーズになります。<br><br>
       加算を算定するかどうかは、点数の話だけでなく、チームの状況や採用への影響も含めて判断する必要があると思います。<br><br>
       制度を「使えるから使う」ではなく、「チームとして持続できるか」を軸に。
     </div>
 
     <h2>まとめ：実務上の確認ポイント</h2>
     <ul>
-      <li>疾患別リハビリテーション料と休日リハビリテーション加算、両方の施設基準届出が必要——未届けのまま算定すると返戻リスクがある</li>
+      <li>休日リハ加算に独自の施設基準届出はない——疾患別リハビリテーション料の届出があればそのまま算定できる</li>
       <li>起算日は疾患によって異なる——廃用症候群は脳血管・運動器と同じ「発症の日グループ」</li>
       <li>慢性疾患患者（運動器・呼吸器）は算定不可——急性増悪の有無で判断</li>
       <li>外来患者は原則算定不可——一部の退院患者のみ例外あり</li>
