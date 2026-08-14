@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-YJLTBSGZ21');
+
+</script>
+
+
+
+<link rel="icon" type="image/png" href="/images/icon.png">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>生活機�EチェチE��シート（別紙様弁E-2�E�| リハビリ評価・計算ツール</title>
+
+<meta name="description" content="無料で使える生活機�EチェチE��シート（別紙様弁E-2�E�。個別機�E訓練加箁EⅡ)・LIFE提�E対応、EDL・IADL・起屁E��佁E8頁E��をスマ�Eで入力しA4一枚で印刷。登録不要、E>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
+
+<style>
+
+  :root {
+
+    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0efe9;
+
+    --border: #e0ddd4; --border2: #ccc9be; --text: #1a1916; --text2: #6b6860;
+
+    --text3: #a09d96; --accent: #2a5c45; --accent-light: #e8f2ed;
+
+    --danger: #b83030; --danger-light: #fdf0f0; --warn: #8a5c00; --warn-light: #fdf6e3;
+
+    --info: #1a4a7a; --info-light: #e8f0fa; --radius: 10px;
+
+    --mono: 'SF Mono', 'Courier New', Courier, monospace;
+
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 60px; }
+
+  header { background: var(--accent); color: #fff; padding: 20px 20px 18px; }
+
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+
+  header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  .info-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+
+  .info-row label { font-size: 13px; color: var(--text2); white-space: nowrap; min-width: 90px; }
+
+  .info-input { flex: 1; font-size: 15px; font-weight: 700; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; }
+
+  .info-input::placeholder { color: var(--text3); font-weight: 400; }
+
+  .info-select { flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px; }
+
+  .info-block { margin-bottom: 16px; }
+
+  .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+  .summary-stat { text-align: center; }
+
+  .summary-num { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--accent); line-height: 1; }
+
+  .summary-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+  .summary-sep { width: 1px; height: 36px; background: var(--border); }
+
+  .summary-issue { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--danger); line-height: 1; }
+
+  .section-label { font-size: 13px; font-weight: 700; color: var(--accent); padding: 8px 0 6px; border-bottom: 2px solid var(--accent); margin-bottom: 10px; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
+
+  .section-label:first-of-type { margin-top: 0; }
+
+  .section-bi-note { font-size: 11px; color: var(--text3); font-weight: 400; }
+
+  .item-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+
+  .item-card.has-issue { border-left: 3px solid var(--danger); }
+
+  .item-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; user-select: none; gap: 8px; }
+
+  .item-header:hover { background: var(--surface2); }
+
+  .item-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
+
+  .item-num { font-size: 11px; font-family: var(--mono); color: var(--text3); min-width: 18px; }
+
+  .item-name { font-size: 15px; font-weight: 700; }
+
+  .item-right { display: flex; align-items: center; gap: 8px; }
+
+  .item-badge { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+
+  .badge-none { background: var(--surface2); color: var(--text3); }
+
+  .badge-self { background: var(--accent-light); color: var(--accent); }
+
+  .badge-watch { background: var(--info-light); color: var(--info); }
+
+  .badge-partial { background: var(--warn-light); color: var(--warn); }
+
+  .badge-full { background: var(--danger-light); color: var(--danger); }
+
+  .item-bi-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 28px; text-align: right; }
+
+  .item-chevron { font-size: 11px; color: var(--text3); transition: transform 0.2s; display: inline-block; }
+
+  .item-chevron.open { transform: rotate(180deg); }
+
+  .item-body { border-top: 1px solid var(--border); padding: 12px 16px; display: none; }
+
+  .item-body.open { display: block; }
+
+  .level-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+
+  .level-btn { padding: 9px 4px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); cursor: pointer; text-align: center; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text2); transition: border-color 0.15s, background 0.15s; }
+
+  .level-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+
+  .level-btn.sel-self { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+
+  .level-btn.sel-watch { border-color: var(--info); background: var(--info-light); color: var(--info); }
+
+  .level-btn.sel-partial { border-color: var(--warn); background: var(--warn-light); color: var(--warn); }
+
+  .level-btn.sel-full { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
+
+  .bi-options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+
+  .bi-btn { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); cursor: pointer; text-align: left; font-family: inherit; transition: border-color 0.15s, background 0.15s; width: 100%; }
+
+  .bi-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+
+  .bi-btn.selected { border-color: var(--accent); background: var(--accent-light); }
+
+  .bi-score { font-size: 13px; font-weight: 700; font-family: var(--mono); color: var(--accent); min-width: 30px; padding-top: 1px; }
+
+  .bi-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  .issue-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+  .issue-label { font-size: 13px; color: var(--text2); }
+
+  .issue-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+  .issue-opt { padding: 6px 16px; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--bg); color: var(--text3); border: none; font-family: inherit; transition: background 0.15s, color 0.15s; }
+
+  .issue-opt:first-child { border-right: 1px solid var(--border); }
+
+  .issue-opt.active-yes { background: var(--danger-light); color: var(--danger); }
+
+  .issue-opt.active-no { background: var(--accent-light); color: var(--accent); }
+
+  .memo-toggle { font-size: 12px; color: var(--accent); cursor: pointer; background: none; border: none; font-family: inherit; font-weight: 600; padding: 4px 0; margin-bottom: 6px; }
+
+  .memo-area { width: 100%; min-height: 52px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); resize: vertical; outline: none; line-height: 1.6; display: none; }
+
+  .memo-area.open { display: block; }
+
+  .memo-area:focus { border-color: var(--accent); }
+
+  .section-memo-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; margin-bottom: 8px; margin-top: 4px; }
+
+  .section-memo-label { font-size: 12px; font-weight: 700; color: var(--accent); display: block; margin-bottom: 6px; }
+
+  .section-memo-area { width: 100%; min-height: 60px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); resize: vertical; outline: none; line-height: 1.6; }
+
+  .section-memo-area:focus { border-color: var(--accent); }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+
+  .btn { flex: 1; padding: 11px; font-size: 14px; font-family: inherit; border-radius: var(--radius); cursor: pointer; font-weight: 600; transition: opacity 0.1s, background 0.1s; }
+
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-secondary { background: var(--surface); color: var(--text2); border: 1px solid var(--border2); }
+
+  .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
+
+  .footer a { color: var(--text3); }
+
+  .pwa-hint { text-align: center; font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.6; }
+
+  .print-header { display: none; }
+
+
+
+  @media print {
+
+    @page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }
+
+    body > * { display: none !important; }
+
+    #print-overlay { display: block !important; }
+
+  }
+
+  #print-overlay { display: none; }
+
+@media print {
+
+  .adsbygoogle,
+
+  ins.adsbygoogle {
+
+    display: none !important;
+
+  }
+
+}
+
+.global-nav {
+  background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 680px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 20px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text, #1a1916); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }
+</style>
+
+</head>
+
+<body>
+<nav class="global-nav">
+  <div class="nav-container">
+    <a href="/">トッチE/a>
+    <a href="/#articles">解説記亁E/a>
+    <a href="/#tools">評価チE�Eル</a>
+  </div>
+</nav>
+
+
+
+<header>
+
+  <h1>生活機�EチェチE��シーチE/h1>
+
+  <p>PT・OT・ST・機�E訓練持E��員向け 無料評価・計算ツール雁E/p>
+
+</header>
+
+
+
+<div class="container">
+
+
+
+  <div class="print-header">
+
+    <div>
+
+      <div class="print-title">生活機�EチェチE��シート（別紙様弁E-2�E�E/div>
+
+      <div class="print-subtitle">個別機�E訓練加箁E/ LIFE提�E対忁E/div>
+
+    </div>
+
+    <div class="print-subtitle" id="print-date"></div>
+
+  </div>
+
+
+
+  <!-- 基本惁E�� -->
+
+  <div class="info-block">
+
+    <div class="info-row">
+
+      <label>利用老E��名</label>
+
+      <input class="info-input" type="text" id="user-name" placeholder="�E�任意！E>
+
+    </div>
+
+    <div class="info-row">
+
+      <label>生年月日</label>
+
+      <input class="info-input" type="date" id="user-birth">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>性別</label>
+
+      <select class="info-select" id="user-sex">
+
+        <option value="">選択してください</option>
+
+        <option>男</option><option>女</option>
+
+      </select>
+
+    </div>
+
+    <div class="info-row">
+
+      <label>評価日</label>
+
+      <input class="info-input" type="date" id="eval-date">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>開始時閁E/label>
+
+      <input class="info-input" type="time" id="eval-time-start">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>終亁E��閁E/label>
+
+      <input class="info-input" type="time" id="eval-time-end">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>評価スタチE��</label>
+
+      <input class="info-input" type="text" id="eval-staff" placeholder="例：佐藤 一郁E>
+
+    </div>
+
+    <div class="info-row">
+
+      <label>職種</label>
+
+      <input class="info-input" type="text" id="eval-shoku" placeholder="例：PT">
+
+    </div>
+
+    <div class="info-row">
+
+      <label>要介護度</label>
+
+      <select class="info-select" id="care-level">
+
+        <option value="">選択してください</option>
+
+        <option>要支援�E�E/option><option>要支援�E�E/option>
+
+        <option>要介護�E�E/option><option>要介護�E�E/option><option>要介護�E�E/option>
+
+        <option>要介護�E�E/option><option>要介護�E�E/option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- サマリー -->
+
+  <div class="summary-bar">
+
+    <div class="summary-stat">
+
+      <div class="summary-num" id="bi-total">0</div>
+
+      <div class="summary-label">BI合訁E/ 100</div>
+
+    </div>
+
+    <div class="summary-sep"></div>
+
+    <div class="summary-stat">
+
+      <div class="summary-num" id="eval-count">0<span style="font-size:18px;color:var(--text3)"> / 18</span></div>
+
+      <div class="summary-label">入力済み</div>
+
+    </div>
+
+    <div class="summary-sep"></div>
+
+    <div class="summary-stat">
+
+      <div class="summary-issue" id="issue-count">0</div>
+
+      <div class="summary-label">課題あめE/div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- 頁E�� -->
+
+  <div id="items-container"></div>
+
+
+
+  <div class="btn-row">
+
+    <button class="btn btn-primary" onclick="printPage()">🖨�E�E印刷 / PDF保孁E/button>
+
+    <button class="btn btn-secondary" onclick="resetAll()">リセチE��</button>
+
+  </div>
+
+  <p class="pwa-hint">📲 次回もすぐ開くには ↁEブラウザのメニューから「�Eーム画面に追加、E/p>
+
+
+
+  <!-- 説明セクション -->
+
+    <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">こ�EチE�EルにつぁE��</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様弁E-2�E�生活機�EチェチE��シート）」に準拠した入力�E印刷チE�Eルです。通所介護�E�デイサービス�E��E個別機�E訓練加算�E算定に忁E��な屁E��E��問時の評価を、スマ�EトフォンめE��ブレチE��で入力し、そのまま印刷・PDF保存できます、E/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">生活機�EチェチE��シート�E、E��所介護・地域寁E��型通所介護で個別機�E訓練加算を算定する際に、利用老E�E屁E��E��の生活状況を把握するために活用する様式です（別紙様式３－２）、EDL�E�食事�E排況E�E入浴・更衣など�E�、IADL�E�調琁E�E洗濯・買ぁE��など�E�、起屁E��作につぁE��、屁E��E��訪問した上で自立レベルと課題を確認します、E/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">ぁE��使ぁE��</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機�E訓練計画の作�E前、およ�E計画の見直し時�E�Eか月ごとに1回以上）�E屁E��E��問で使用します。生活機�EチェチE��シート�E、目標設定�E個別機�E訓練計画の作�Eの前に行うも�EとされてぁE��す、E/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">確認する�E容</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">ADL・IADL・起屁E��作�E吁E��E��を「�E立」「見守り」「一部介助」「�E介助」�E4段階で評価し、それぞれに課題�E有無を記載します。あわせて、実施場所めE��用してぁE��福祉用具などの「環墁E��、生活環墁E�E問題点めE��題があれば「状況�E生活課題」�E欁E��記載します、E/p>
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">興味・関忁E��ェチE��シートとの関俁E/h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">生活機�EチェチE��シート�E、�E味・関忁E��ェチE��シート（別紙様式３－１）とセチE��で使ぁE��とが想定されてぁE��す。生活機�EチェチE��シートが「できること・できなぁE��と」を把握するのに対し、�E味・関忁E��ェチE��シート�E「本人がしたいこと・興味があること」を把握するも�Eで、両方の惁E��を合わせることで個別機�E訓練計画の目標がより具体的になります、E/p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">個別機�E訓練加箁EⅡ)とLIFE提�E</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機�E訓練加箁EⅡ)を算定する場合、LIFEへのチE�Eタ提�Eとして「生活機�EチェチE��シート」と「個別機�E訓練計画書」�E2点が忁E��です。屁E��E��問�E3か月ごとに1回以上行い、生活機�EチェチE��シートも同様�E頻度で作�Eします、E/p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">現場での使ぁE���E��E床�E視点から�E�E/h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">琁E��療法士として25年以上、E��所・在宁E��含む幁E��E��現場に携わってきた立場から繰り返し実感してきたのは、E��所めE�E院中の様子だけで判断すると、�E宁E��の実際の姿とズレが生じやすいとぁE��ことです、E/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">施設の中では車椁E��で過ごしてぁE��方でも、�E宁E��は手すりを使ってつたい歩きで移動できてぁE��り、なんとか�E刁E��トイレまで行けてぁE��りすることがあります。施設冁E�E場面だけで「�E浴」「排況E��「更衣」を課題と決めつけてしまぁE��、本人が�E宁E��発揮できてぁE��力を見落としたまま計画を立てることになりかねません、E/p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">生活機�EチェチE��シートを使った屁E��E��問�E、この「施設で見えてぁE��姿」と「�E宁E��の実際の姿」�EギャチE�Eを埋めるための重要な機会だと捉えてぁE��す。環墁E�E課題�E欁E��は、単なるチェチE��だけでなく、その場で気づぁE��具体的な工夫めE��題も書き添えるようにしてぁE��す、E/p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">よくある質啁E/h2>
+      <div style="margin-bottom:16px;">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 入力したデータはどこかに送信されますか�E�E/p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. すべての入力�Eブラウザ冁E��完結しており、外部に送信されることはありません、E/p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+
+    <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:10px;">参老E��献・出典</h2>
+
+    <ul style="font-size:13px;color:var(--text2);line-height:1.8;padding-left:1.5em;">
+
+      <li>厚生労働省「リハビリチE�Eション・個別機�E訓練、栁E��、口腔�E実施及�E一体的取絁E��つぁE��」（介護保険最新惁E��vol.1217 令咁E年3朁E5日�E�E/li>
+
+      <li>厚生労働省 別紙様弁E-2�E�生活機�EチェチE��シート！E/li>
+
+      <li>Mahoney FI, Barthel DW: Functional Evaluation: The Barthel Index. Maryland State Medical Journal 14:61-65, 1965.</li>
+
+    </ul>
+
+  </div>
+
+
+  <div class="related-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;margin-bottom:40px;">
+  <h2 style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:16px;">関連チE�Eル・記亁E/h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+    <a href="kyoumi-tool.html" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;text-decoration:none;">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">チE�Eル</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);line-height:1.5;">興味・関忁E��ェチE��シート（様弁E-1�E�E/div>
+    </a>
+
+    <a href="articles/seikatsu-chouhyo.html" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;text-decoration:none;">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">記亁E/div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);line-height:1.5;">生活機�EチェチE��シート�E書き方</div>
+    </a>
+
+    <a href="articles/r8-kaitei-matome.html" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;text-decoration:none;">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">記亁E/div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);line-height:1.5;">令咁E年度介護報酬改定まとめE/div>
+    </a>
+
+    <a href="index.html" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;text-decoration:none;">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">一覧</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);line-height:1.5;">チE�Eル一覧トップへ</div>
+    </a>
+
+  </div>
+</div>
+
+  <div class="footer" style="margin-top:32px;">
+
+    <a href="index.html">ↁEチE�Eル一覧</a> �E�E
+
+    <a href="santei-tool.html">算定日数</a> �E�E
+
+    <a href="fim-tool.html">FIM</a> �E�E
+
+    <a href="bi-tool.html">BI</a> �E�E
+
+    <a href="hdsr-tool.html">HDS-R</a> �E�E
+
+    <a href="walk-tool.html">歩行評価</a> �E�E
+
+    <a href="balance-tool.html">バランス評価</a> �E�E
+
+    <a href="seikatsu-tool.html">生活機�EチェチE��</a> �E�E
+
+    <a href="kyoumi-tool.html">興味・関忁E��ェチE��</a> �E�E
+
+    <a href="/contact.html">お問ぁE��わせ</a> �E�E
+
+    <a href="terms.html">利用規紁E/a> �E�E
+
+    <a href="privacy.html">プライバシーポリシー</a>
+
+  </div>
+
+
+
+</div>
+
+
+
+<script>
+
+const SECTIONS = [
+
+  { title: 'ADL', note: 'Barthel Indexに基づく評価', type: 'bi', items: [
+
+    { name: '食亁E, options: [
+
+      { score: 10, label: '自竁E, text: '自立。�E助具使用可。適刁E��時間冁E��完亁E��E },
+
+      { score: 5,  label: '一部介助', text: '一部介助�E�例：食物を�Eるなど�E�、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '椁E��とベッド間の移乁E, options: [
+
+      { score: 15, label: '自竁E, text: '自立。ブレーキ・フットレスト操作含め�Eて自立、E },
+
+      { score: 10, label: '監視丁E, text: 'どこかの段階で部刁E��助また�E監視が忁E��、E },
+
+      { score: 5,  label: '座れるが移れなぁE, text: '座ることはできるが、移乗そのも�Eは全介助に近い、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '整容', options: [
+
+      { score: 5, label: '自竁E, text: '自立。洗面・歯磨き�E整髪・ひげそりができる、E },
+
+      { score: 0, label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: 'トイレ動佁E, options: [
+
+      { score: 10, label: '自竁E, text: '自立。衣服�E操作と後始末を含む、E },
+
+      { score: 5,  label: '一部介助', text: '部刁E��助�E�体を支える、�Eーパ�E操作など�E�、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '入浴', options: [
+
+      { score: 5, label: '自竁E, text: '自立。浴槽また�Eシャワーを使える、E },
+
+      { score: 0, label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '平地歩衁E, options: [
+
+      { score: 15, label: '自竁E, text: '自立、E5m以上。補裁E�E可、車椁E���E歩行器不可、E },
+
+      { score: 10, label: '歩行器筁E, text: '介助/監視あれ�E45m以上歩ける。歩行器使用含む、E },
+
+      { score: 5,  label: '車椁E��操作可能', text: '歩行不�Eでも車椁E��を自力で45m以上操作可能、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '階段昁E��', options: [
+
+      { score: 10, label: '自竁E, text: '自立。手すり・杖�E使用は問わなぁE��E },
+
+      { score: 5,  label: '一部介助', text: '介助また�E監視が忁E��、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '更衣', options: [
+
+      { score: 10, label: '自竁E, text: '自立。靴・ファスナ�E・裁E�Eの着脱を含む、E },
+
+      { score: 5,  label: '一部介助', text: '半�E以上�E自刁E��できる。適刁E��時間冁E��完亁E��E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '排便コントロール', options: [
+
+      { score: 10, label: '自竁E, text: '失禁なし。浣腸・坐薬の取り扱ぁE��可能、E },
+
+      { score: 5,  label: '一部介助', text: '時に失禁あり、また�E浣腸・坐薬に介助を要する、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+    { name: '排尿コントロール', options: [
+
+      { score: 10, label: '自竁E, text: '失禁なし、E },
+
+      { score: 5,  label: '一部介助', text: '時に失禁あり、また�E収尿器に介助を要する、E },
+
+      { score: 0,  label: '全介助', text: '全介助、E },
+
+    ]},
+
+  ]},
+
+  { title: 'IADL', note: '4段階評価', type: 'level', items: [
+
+    { name: '調琁E }, { name: '洗濯' }, { name: '掁E��' },
+
+  ]},
+
+  { title: '起屁E��佁E, note: '4段階評価', type: 'level', items: [
+
+    { name: '寝返り' }, { name: '起き上がめE }, { name: '座佁E }, { name: '立ち上がめE }, { name: '立佁E },
+
+  ]},
+
+];
+
+
+
+const LEVELS = ['自竁E, '見守り', '一部介助', '全介助'];
+
+const LEVEL_CLS = ['sel-self', 'sel-watch', 'sel-partial', 'sel-full'];
+
+const BADGE_CLS = ['badge-self', 'badge-watch', 'badge-partial', 'badge-full'];
+
+
+
+let allItems = [];
+
+let globalIdx = 0;
+
+SECTIONS.forEach(sec => {
+
+  sec.items.forEach(item => {
+
+    allItems.push({ ...item, sectionType: sec.type, idx: globalIdx });
+
+    globalIdx++;
+
+  });
+
+});
+
+
+
+let state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
+
+
+
+function updateSummary() {
+
+  let biTotal = 0, evalCount = 0, issueCount = 0;
+
+  state.forEach((s, i) => {
+
+    const item = allItems[i];
+
+    const evaluated = item.sectionType === 'bi' ? s.biScore !== null : s.level !== null;
+
+    if (evaluated) evalCount++;
+
+    if (s.issue === true) issueCount++;
+
+    if (item.sectionType === 'bi' && s.biScore !== null) biTotal += s.biScore;
+
+  });
+
+  document.getElementById('bi-total').textContent = biTotal;
+
+  document.getElementById('eval-count').innerHTML = evalCount + '<span style="font-size:18px;color:var(--text3)"> / 18</span>';
+
+  document.getElementById('issue-count').textContent = issueCount;
+
+}
+
+
+
+function getLevelBadge(s, item) {
+
+  if (item.sectionType === 'bi') {
+
+    if (s.biScore === null) return '<span class="item-badge badge-none">未入劁E/span>';
+
+    const opt = item.options.find(o => o.score === s.biScore);
+
+    const lbl = opt ? opt.label : '';
+
+    let cls = 'badge-self';
+
+    if (lbl === '全介助') cls = 'badge-full';
+
+    else if (lbl.includes('一部') || lbl.includes('座れる')) cls = 'badge-partial';
+
+    else if (lbl.includes('監要E) || lbl.includes('歩行器') || lbl.includes('車椁E��E)) cls = 'badge-watch';
+
+    return '<span class="item-badge ' + cls + '">' + lbl + '</span>';
+
+  } else {
+
+    if (s.level === null) return '<span class="item-badge badge-none">未入劁E/span>';
+
+    return '<span class="item-badge ' + BADGE_CLS[s.level] + '">' + LEVELS[s.level] + '</span>';
+
+  }
+
+}
+
+
+
+function selectBI(idx, score) {
+
+  state[idx].biScore = score;
+
+  document.querySelectorAll('.bi-btn[data-idx="' + idx + '"]').forEach(btn => {
+
+    btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
+
+  });
+
+  document.getElementById('badge-' + idx).innerHTML = getLevelBadge(state[idx], allItems[idx]);
+
+  const biEl = document.getElementById('biscore-' + idx);
+
+  if (biEl) biEl.textContent = score + '点';
+
+  updateSummary();
+
+}
+
+
+
+function selectLevel(idx, level) {
+
+  state[idx].level = level;
+
+  document.querySelectorAll('.level-btn[data-idx="' + idx + '"]').forEach((btn, bi) => {
+
+    btn.className = 'level-btn' + (bi === level ? ' ' + LEVEL_CLS[level] : '');
+
+  });
+
+  document.getElementById('badge-' + idx).innerHTML = getLevelBadge(state[idx], allItems[idx]);
+
+  updateSummary();
+
+}
+
+
+
+function setIssue(idx, val) {
+
+  state[idx].issue = val;
+
+  const card = document.getElementById('card-' + idx);
+
+  card.classList.toggle('has-issue', val);
+
+  document.querySelectorAll('.issue-opt[data-idx="' + idx + '"]').forEach(btn => {
+
+    const isYes = btn.dataset.val === 'yes';
+
+    btn.className = 'issue-opt' + (isYes && val ? ' active-yes' : '') + (!isYes && !val ? ' active-no' : '');
+
+  });
+
+  updateSummary();
+
+}
+
+
+
+function toggleMemo(idx) {
+
+  state[idx].memoOpen = !state[idx].memoOpen;
+
+  document.getElementById('memo-' + idx).classList.toggle('open', state[idx].memoOpen);
+
+}
+
+
+
+function toggleBody(idx) {
+
+  state[idx].bodyOpen = !state[idx].bodyOpen;
+
+  document.getElementById('body-' + idx).classList.toggle('open', state[idx].bodyOpen);
+
+  document.getElementById('chevron-' + idx).classList.toggle('open', state[idx].bodyOpen);
+
+}
+
+
+
+function resetAll() {
+
+  if (!confirm('すべての入力をリセチE��しますか�E�E)) return;
+
+  state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
+
+  ['user-name','user-birth','user-sex','eval-date','eval-time-start','eval-time-end','eval-staff','eval-shoku','care-level'].forEach(id => {
+
+    const el = document.getElementById(id);
+
+    if (el) el.value = '';
+
+  });
+
+  const adlMemoEl = document.getElementById('adl-memo');
+
+  const iadlMemoEl = document.getElementById('iadl-memo');
+
+  const kikyoMemoEl = document.getElementById('kikyo-memo');
+
+  if (adlMemoEl) adlMemoEl.value = '';
+
+  if (iadlMemoEl) iadlMemoEl.value = '';
+
+  if (kikyoMemoEl) kikyoMemoEl.value = '';
+
+  render();
+
+  updateSummary();
+
+}
+
+
+
+function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
+
+  const getName      = () => document.getElementById('user-name').value || '\u3000';
+
+  const getSex       = () => document.getElementById('user-sex').value || '\u3000';
+
+  const getCareLevel = () => document.getElementById('care-level').value || '\u3000';
+
+  const getStaff     = () => document.getElementById('eval-staff').value || '\u3000';
+
+  const getShoku     = () => document.getElementById('eval-shoku')?.value || '\u3000';
+
+
+
+  const getBirth = () => {
+
+    const v = document.getElementById('user-birth').value;
+
+    if (!v) return '\u3000';
+
+    const d = new Date(v);
+
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '朁E + d.getDate() + '日';
+
+  };
+
+
+
+  const getEvalDateStr = () => {
+
+    const v  = document.getElementById('eval-date').value;
+
+    const ts = document.getElementById('eval-time-start')?.value || '';
+
+    const te = document.getElementById('eval-time-end')?.value   || '';
+
+    const YOUBI = ['日','朁E,'火','水','木','釁E,'圁E];
+
+    let dateStr = '令和　年　月　日';
+
+    let youbi = '�E�　�E�E;
+
+    if (v) {
+
+      const d = new Date(v);
+
+      const reiwa = d.getFullYear() - 2018;
+
+      dateStr = '令咁E + reiwa + '年' + (d.getMonth()+1) + '朁E + d.getDate() + '日';
+
+      youbi = '�E�E + YOUBI[d.getDay()] + '�E�E;
+
+    }
+
+    const timeStr = (ts || '--:--') + '�E�E + (te || '--:--');
+
+    return dateStr + youbi + '　' + timeStr;
+
+  };
+
+
+
+  state.forEach((s, i) => {
+
+    const el = document.getElementById('memo-' + i);
+
+    if (el) s.memo = el.value;
+
+  });
+
+
+
+  const css = `<style>
+
+    #print-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    #print-overlay {
+
+      font-family: 'Yu Mincho','YuMincho','游明朝','Hiragino Mincho ProN','HiraMinProN-W3',serif;
+
+      font-size: 9pt; color: #000; background: #fff; width: 100%;
+
+    }
+
+    .pt-title-block { text-align: center; margin-bottom: 5px; position: relative; }
+
+    .pt-shoshiki { position: absolute; right: 0; top: 0; font-size: 7pt; }
+
+    .pt-title { font-size: 14pt; font-weight: 700; letter-spacing: 0.1em; }
+
+    .pt-subtitle { font-size: 7.5pt; color: #333; margin-top: 2px; }
+
+    .pt-info-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; border: 2px solid #000; }
+
+    .pt-info-table td { border: 1px solid #000; padding: 12px 8px; font-size: 9pt; }
+
+    .pt-info-label { background: #efefef; font-weight: 700; font-size: 8pt; white-space: nowrap; }
+
+    .pt-info-value { font-weight: 700; font-size: 9.5pt; }
+
+    .pt-section-title { font-size: 8.5pt; font-weight: 700; background: #dce8e2; border: 2px solid #000; border-bottom: none; padding: 3px 6px; margin-top: 6px; }
+
+    .pt-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
+
+    .pt-table th { border: 1.5px solid #000; padding: 3px 3px; font-size: 8pt; font-weight: 700; background: #efefef; text-align: center; }
+
+    .pt-table td { border: 1px solid #000; padding: 5px 5px; font-size: 9pt; vertical-align: middle; }
+
+    .pt-item-name { font-weight: 700; text-align: center; }
+
+    .pt-issue { text-align: center; font-weight: 700; }
+
+    .pt-issue-ari { color: #b83030; }
+
+    .pt-issue-nasi { color: #2a5c45; }
+
+    .pt-memo-cell { font-size: 8.5pt; vertical-align: top !important; }
+
+    .pt-section-memo { font-size: 9pt; vertical-align: top !important; }
+
+  .global-nav {
+  background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-container {
+  max-width: 680px; margin: 0 auto;
+  display: flex; gap: 12px; padding: 12px 20px;
+  overflow-x: auto; white-space: nowrap;
+}
+.nav-container a {
+  color: var(--text, #1a1916); text-decoration: none; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; background: var(--surface2, #e8e6e0);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-container a:hover { background: var(--accent-light, #d4ede3); color: var(--accent, #2a5c45); }</style>`;
+
+
+
+  function adlRows() {
+
+    return SECTIONS[0].items.map((item, li) => {
+
+      const s = state[li];
+
+      const levelText = s.biScore !== null
+
+        ? (item.options.find(o => o.score === s.biScore)?.label || '') + '�E�E + s.biScore + '点�E�E : '';
+
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+
+        : s.issue === false ? '<span class="pt-issue-nasi">なぁE/span>' : '';
+
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+
+      let row = `<tr>
+
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+
+      if (li === 0) {
+
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="10">${(adlMemo||'').replace(/\n/g,'<br>')}</td>`;
+
+      }
+
+      row += '</tr>';
+
+      return row;
+
+    }).join('');
+
+  }
+
+
+
+  function iadlRows() {
+
+    return SECTIONS[1].items.map((item, li) => {
+
+      const s = state[li+10];
+
+      const levelText = s.level !== null ? LEVELS[s.level] : '';
+
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+
+        : s.issue === false ? '<span class="pt-issue-nasi">なぁE/span>' : '';
+
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+
+      let row = `<tr>
+
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+
+      if (li === 0) {
+
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="3">${(iadlMemo||'').replace(/\n/g,'<br>')}</td>`;
+
+      }
+
+      row += '</tr>';
+
+      return row;
+
+    }).join('');
+
+  }
+
+
+
+  function kikyoRows() {
+
+    return SECTIONS[2].items.map((item, li) => {
+
+      const s = state[li+13];
+
+      const levelText = s.level !== null ? LEVELS[s.level] : '';
+
+      const issueHtml = s.issue === true ? '<span class="pt-issue-ari">あり</span>'
+
+        : s.issue === false ? '<span class="pt-issue-nasi">なぁE/span>' : '';
+
+      const env = (s.memo || '').replace(/\n/g, '<br>');
+
+      let row = `<tr>
+
+        <td class="pt-item-name" style="width:13%;padding:5px 4px;">${item.name}</td>
+
+        <td style="width:20%;padding:5px 4px;">${levelText}</td>
+
+        <td class="pt-issue" style="width:8%;padding:5px 4px;">${issueHtml}</td>
+
+        <td class="pt-memo-cell" style="width:33%;padding:5px 4px;">${env}</td>`;
+
+      if (li === 0) {
+
+        row += `<td class="pt-section-memo" style="width:26%;padding:5px 6px;" rowspan="5">${(kikyoMemo||'').replace(/\n/g,'<br>')}</td>`;
+
+      }
+
+      row += '</tr>';
+
+      return row;
+
+    }).join('');
+
+  }
+
+
+
+  return `<div id="print-overlay">
+
+    ${css}
+
+    <div class="pt-title-block">
+
+      <span class="pt-shoshiki">別紙様式３－！E/span>
+
+      <div class="pt-title">生活機�EチェチE��シーチE/div>
+
+      <div class="pt-subtitle">個別機�E訓練加算／LIFE提�E対忁E/div>
+
+    </div>
+
+    <table class="pt-info-table">
+
+      <tr>
+
+        <td class="pt-info-label" style="width:13%;padding:12px 8px;">利用老E��名</td>
+
+        <td class="pt-info-value" style="width:22%;padding:12px 8px;">${getName()}</td>
+
+        <td class="pt-info-label" style="width:10%;padding:12px 8px;">生年月日</td>
+
+        <td class="pt-info-value" style="width:20%;padding:12px 8px;">${getBirth()}</td>
+
+        <td class="pt-info-label" style="width:6%;padding:12px 8px;">性別</td>
+
+        <td class="pt-info-value" style="padding:12px 8px;">${getSex()}</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="pt-info-label" style="padding:12px 8px;">評価日晁E/td>
+
+        <td class="pt-info-value" colspan="5" style="padding:12px 8px;">${getEvalDateStr()}</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="pt-info-label" style="padding:12px 8px;">要介護度</td>
+
+        <td class="pt-info-value" style="padding:12px 8px;">${getCareLevel()}</td>
+
+        <td class="pt-info-label" style="padding:12px 8px;">評価スタチE��</td>
+
+        <td class="pt-info-value" style="padding:12px 8px;">${getStaff()}</td>
+
+        <td class="pt-info-label" style="padding:12px 8px;">職種</td>
+
+        <td class="pt-info-value" style="padding:12px 8px;">${getShoku()}</td>
+
+      </tr>
+
+    </table>
+
+    <div class="pt-section-title">�E��E��E�　―　Barthel Index に基づく評価</div>
+
+    <table class="pt-table">
+
+      <thead><tr>
+
+        <th style="width:13%">頁E��</th>
+
+        <th style="width:20%">レベル</th>
+
+        <th style="width:8%">課顁E/th>
+
+        <th style="width:33%">環墁E��実施場所・補助具等！E/th>
+
+        <th style="width:26%">状況�E生活課顁E/th>
+
+      </tr></thead>
+
+      <tbody>${adlRows()}</tbody>
+
+    </table>
+
+    <div class="pt-section-title">�E��E��E��E�　―　自立�E見守り・一部介助・全介助の�E�段階評価</div>
+
+    <table class="pt-table">
+
+      <thead><tr>
+
+        <th style="width:13%">頁E��</th>
+
+        <th style="width:20%">レベル</th>
+
+        <th style="width:8%">課顁E/th>
+
+        <th style="width:33%">環墁E��実施場所・補助具等！E/th>
+
+        <th style="width:26%">状況�E生活課顁E/th>
+
+      </tr></thead>
+
+      <tbody>${iadlRows()}</tbody>
+
+    </table>
+
+    <div class="pt-section-title" style="margin-top:4px;">起屁E��作　―　自立�E見守り・一部介助・全介助の�E�段階評価</div>
+
+    <table class="pt-table">
+
+      <thead><tr>
+
+        <th style="width:13%">頁E��</th>
+
+        <th style="width:20%">レベル</th>
+
+        <th style="width:8%">課顁E/th>
+
+        <th style="width:33%">環墁E��実施場所・補助具等！E/th>
+
+        <th style="width:26%">状況�E生活課顁E/th>
+
+      </tr></thead>
+
+      <tbody>${kikyoRows()}</tbody>
+
+    </table>
+
+  </div>`;
+
+}
+
+
+
+function printPage() {
+
+  state.forEach((s, i) => {
+
+    const el = document.getElementById('memo-' + i);
+
+    if (el) s.memo = el.value;
+
+  });
+
+  const adlMemo   = document.getElementById('adl-memo')?.value   || '';
+
+  const iadlMemo  = document.getElementById('iadl-memo')?.value  || '';
+
+  const kikyoMemo = document.getElementById('kikyo-memo')?.value || '';
+
+  const old = document.getElementById('print-overlay');
+
+  if (old) old.remove();
+
+  const div = document.createElement('div');
+
+  div.innerHTML = buildPrintDOM(adlMemo, iadlMemo, kikyoMemo);
+
+  document.body.appendChild(div.firstElementChild);
+
+  window.print();
+
+  setTimeout(() => {
+
+    const overlay = document.getElementById('print-overlay');
+
+    if (overlay) overlay.remove();
+
+  }, 1500);
+
+}
+
+
+
+function renderItems(items, type, flatIdxStart) {
+
+  let html = '';
+
+  items.forEach((item, localI) => {
+
+    const i = flatIdxStart + localI;
+
+    const s = state[i];
+
+    const isBI = type === 'bi';
+
+    const issueClass = s.issue ? ' has-issue' : '';
+
+    html += '<div class="item-card' + issueClass + '" id="card-' + i + '">';
+
+    html += '<div class="item-header" onclick="toggleBody(' + i + ')">';
+
+    html += '<div class="item-title-wrap">';
+
+    html += '<span class="item-num">' + (i + 1) + '</span>';
+
+    html += '<span class="item-name">' + item.name + '</span>';
+
+    html += '</div>';
+
+    html += '<div class="item-right">';
+
+    html += '<span id="badge-' + i + '">' + getLevelBadge(s, allItems[i]) + '</span>';
+
+    if (isBI) html += '<span class="item-bi-score" id="biscore-' + i + '">' + (s.biScore !== null ? s.biScore + '点' : '') + '</span>';
+
+    html += '<span class="item-chevron' + (s.bodyOpen ? ' open' : '') + '" id="chevron-' + i + '">▲</span>';
+
+    html += '</div></div>';
+
+    html += '<div class="item-body' + (s.bodyOpen ? ' open' : '') + '" id="body-' + i + '">';
+
+    if (isBI) {
+
+      html += '<div class="bi-options">';
+
+      item.options.forEach(opt => {
+
+        const sel = s.biScore === opt.score ? ' selected' : '';
+
+        html += '<button class="bi-btn' + sel + '" data-idx="' + i + '" data-score="' + opt.score + '" onclick="selectBI(' + i + ',' + opt.score + ')">';
+
+        html += '<span class="bi-score">' + opt.score + '点</span>';
+
+        html += '<span class="bi-label-print" style="display:none">' + opt.label + '</span>';
+
+        html += '<span class="bi-text">' + opt.text + '</span>';
+
+        html += '</button>';
+
+      });
+
+      html += '</div>';
+
+    } else {
+
+      html += '<div class="level-grid">';
+
+      LEVELS.forEach((lv, li) => {
+
+        const selCls = s.level === li ? ' ' + LEVEL_CLS[li] : '';
+
+        html += '<button class="level-btn' + selCls + '" data-idx="' + i + '" onclick="selectLevel(' + i + ',' + li + ')">' + lv + '</button>';
+
+      });
+
+      html += '</div>';
+
+    }
+
+    html += '<div class="issue-row">';
+
+    html += '<span class="issue-label">課題！E/span>';
+
+    html += '<div class="issue-toggle">';
+
+    html += '<button class="issue-opt' + (s.issue === true ? ' active-yes' : '') + '" data-idx="' + i + '" data-val="yes" onclick="setIssue(' + i + ',true)">あり</button>';
+
+    html += '<button class="issue-opt' + (s.issue === false ? ' active-no' : '') + '" data-idx="' + i + '" data-val="no" onclick="setIssue(' + i + ',false)">なぁE/button>';
+
+    html += '</div></div>';
+
+    html += '<button class="memo-toggle" onclick="toggleMemo(' + i + ')">▼ 環墁E��記�E</button>';
+
+    html += '<textarea class="memo-area' + (s.memoOpen ? ' open' : '') + '" id="memo-' + i + '" placeholder="実施場所・補助具など">' + (s.memo || '') + '</textarea>';
+
+    html += '</div></div>';
+
+  });
+
+  return html;
+
+}
+
+
+
+function render() {
+
+  const c = document.getElementById('items-container');
+
+  let html = '';
+
+
+
+  html += '<div class="print-section-grid">';
+
+  html += '<div class="section-label" style="grid-column:1/-1">ADL<span class="section-bi-note"> Barthel Indexに基づく評価</span></div>';
+
+  html += renderItems(SECTIONS[0].items, 'bi', 0);
+
+  html += '</div>';
+
+  html += '<div class="section-memo-wrap">';
+
+  html += '<label class="section-memo-label">ADL 状況�E生活課顁E/label>';
+
+  html += '<textarea class="section-memo-area" id="adl-memo" placeholder="ADL全体�E状況�E生活課題を記�E"></textarea>';
+
+  html += '</div>';
+
+
+
+  html += '<div class="print-section-grid">';
+
+  html += '<div class="section-label" style="grid-column:1/-1">IADL<span class="section-bi-note"> 4段階評価</span></div>';
+
+  html += renderItems(SECTIONS[1].items, 'level', 10);
+
+  html += '</div>';
+
+  html += '<div class="section-memo-wrap">';
+
+  html += '<label class="section-memo-label">IADL 状況�E生活課顁E/label>';
+
+  html += '<textarea class="section-memo-area" id="iadl-memo" placeholder="IADL全体�E状況�E生活課題を記�E"></textarea>';
+
+  html += '</div>';
+
+
+
+  html += '<div class="print-section-grid">';
+
+  html += '<div class="section-label" style="grid-column:1/-1">起屁E��佁Espan class="section-bi-note"> 4段階評価</span></div>';
+
+  html += renderItems(SECTIONS[2].items, 'level', 13);
+
+  html += '</div>';
+
+  html += '<div class="section-memo-wrap">';
+
+  html += '<label class="section-memo-label">起屁E��佁E状況�E生活課顁E/label>';
+
+  html += '<textarea class="section-memo-area" id="kikyo-memo" placeholder="起屁E��作�E体�E状況�E生活課題を記�E"></textarea>';
+
+  html += '</div>';
+
+
+
+  c.innerHTML = html;
+
+}
+
+
+
+render();
+
+updateSummary();
+
+
+
+(function() {
+
+  const d = new Date();
+
+  d.setFullYear(d.getFullYear() - 80);
+
+  const yyyy = d.getFullYear();
+
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+
+  const dd = String(d.getDate()).padStart(2, '0');
+
+  document.getElementById('user-birth').value = yyyy + '-' + mm + '-' + dd;
+
+})();
+
+</script>
+
+</body>
+
+</html>
+
