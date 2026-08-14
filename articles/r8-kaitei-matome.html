@@ -95,6 +95,14 @@
   padding: 14px 16px; margin: 16px 0 24px; font-size: 14px;
 }
 .info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 6px; font-size: 13px; }
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 13px; background: var(--surface);
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
+}
+.data-table th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 13px; }
+.data-table tr:last-child td { border-bottom: none; }
 .accent-box {
   background: var(--accent-light); border-left: 4px solid var(--accent);
   border-radius: 0 var(--radius) var(--radius) 0;
@@ -299,6 +307,23 @@
 
       今改定では、早期リハ加算・初期加算とは別に<strong>急性期リハビリテーション加算（50点/単位）</strong>が新設されました。重症の患者等を対象に、入院から14日を限度として算定できます。施設基準の届出が必要です。
 
+    </div>
+
+    <h3>早期・初期・急性期の違い</h3>
+    <p>この3つは名前が似ていますが、対象患者の広さが大きく違います。</p>
+
+    <table class="data-table">
+      <tr><th></th><th>早期リハビリテーション加算</th><th>初期加算</th><th>急性期リハビリテーション加算</th></tr>
+      <tr><td>点数</td><td>入院1〜3日目60点／4〜14日目25点</td><td>45点/単位</td><td>50点/単位</td></tr>
+      <tr><td>起算日</td><td>入院した日</td><td>発症・手術・急性増悪の日</td><td>発症・手術・急性増悪の日</td></tr>
+      <tr><td>算定期間</td><td>入院した日から14日目まで</td><td>起算日から14日を限度</td><td>起算日から14日を限度</td></tr>
+      <tr><td>対象患者</td><td>疾患別リハ料の対象患者全般</td><td>同左（一部退院患者も例外的に対象）</td><td>重症患者に限定（BI10点以下・認知症ランクM以上・特別な処置・感染対策要の感染症のいずれか）</td></tr>
+      <tr><td>施設基準届出</td><td>不要</td><td>必要</td><td>必要（常勤医師配置が要件の一つ）</td></tr>
+    </table>
+
+    <div class="info-box">
+      <div class="info-title">💡 一番の違い</div>
+      早期リハ加算・初期加算は疾患別リハビリ料の対象患者であれば基本的に算定対象になりますが、急性期リハビリテーション加算だけは対象が重症患者に限定されています。
     </div>
 
     <a class="change-link" href="souki-reha-kazan.html">→ 早期リハビリテーション加算の詳細・転院時の起算日・疑義解釈その6はこちら</a>
