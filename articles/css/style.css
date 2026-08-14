@@ -14,6 +14,8 @@
   --warn-light: #fdf6e3;
   --info: #1a4a7a;
   --info-light: #e8f0fa;
+  --danger: #b83030;
+  --danger-light: #fdf0f0;
   --radius: 10px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
