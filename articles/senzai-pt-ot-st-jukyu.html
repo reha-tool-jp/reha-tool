@@ -504,7 +504,13 @@
   padding: 6px 14px; border-radius: 20px; background: var(--surface2);
   transition: background 0.15s, color 0.15s;
 }
-.nav-container a:hover { background: var(--accent-light); color: var(--accent); }</style>
+.nav-container a:hover { background: var(--accent-light); color: var(--accent); }
+.tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: block; margin-bottom: 10px; transition: border-color 0.15s; }
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }</style>
 </head>
 <body>
 <nav class="global-nav">
