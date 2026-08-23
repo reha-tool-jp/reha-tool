@@ -52,7 +52,7 @@ header h1 { font-size: 17px; font-weight: 700; line-height: 1.5; }
 .footer a:hover { color: var(--accent); }
 .footer-sep { margin: 0 6px; }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .container { max-width: 900px; }
   .nav-container { max-width: 900px; }
 }
