@@ -238,6 +238,12 @@
 
   .btn-secondary:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
 
+  .btn-copy { background: var(--accent); color: #fff; opacity: 0.9; }
+
+  .btn-copy:hover { opacity: 1; }
+
+  .btn-copy.copied { background: #27ae60; opacity: 1; }
+
 
 
   .footer { text-align: center; font-size: 12px; color: var(--text3); margin-top: 40px; }
@@ -663,9 +669,13 @@
 
     <button class="btn btn-primary" onclick="printPage()">🖨️ 印刷 / PDF保存</button>
 
+    <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
+
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
 
   </div>
+
+  <p class="pwa-hint">「📋 スコアをコピー」は10項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。</p>
 
   <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
 
@@ -1242,6 +1252,112 @@ function resetAll() {
 }
 
 
+
+function copyToExcel() {
+
+  // e21.xlsx(別紙様式21)のBI欄の並び順:食事,整容,清拭入浴,更衣,トイレ動作,排尿,排便,移乗,歩行,階段
+
+  const order = [0, 2, 4, 7, 3, 9, 8, 1, 5, 6];
+
+
+
+  if (order.some(i => scores[i] === null)) {
+
+    if (!confirm('未入力の項目があります。空欄のままコピーしますか？')) return;
+
+  }
+
+
+
+  const values = order.map(i => scores[i] !== null ? scores[i] : '');
+
+  const text = values.join('\n');
+
+
+
+  const btn = document.getElementById('copy-excel-btn');
+
+  const showCopied = () => {
+
+    if (!btn) return;
+
+    const original = '📋 スコアをコピー';
+
+    btn.textContent = '✓ コピーしました';
+
+    btn.classList.add('copied');
+
+    setTimeout(() => {
+
+      btn.textContent = original;
+
+      btn.classList.remove('copied');
+
+    }, 1800);
+
+  };
+
+
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+
+    navigator.clipboard.writeText(text).then(showCopied).catch(() => {
+
+      fallbackCopy(text, showCopied);
+
+    });
+
+  } else {
+
+    fallbackCopy(text, showCopied);
+
+  }
+
+}
+
+
+
+function fallbackCopy(text, onSuccess) {
+
+  const textarea = document.createElement('textarea');
+
+  textarea.value = text;
+
+  textarea.style.position = 'fixed';
+
+  textarea.style.opacity = '0';
+
+  document.body.appendChild(textarea);
+
+  textarea.focus();
+
+  textarea.select();
+
+  let ok = false;
+
+  try {
+
+    ok = document.execCommand('copy');
+
+  } catch (e) {
+
+    ok = false;
+
+  }
+
+  document.body.removeChild(textarea);
+
+  if (ok) {
+
+    onSuccess();
+
+  } else {
+
+    alert('コピーに失敗しました。お手数ですが手動でコピーしてください。');
+
+  }
+
+}
 
 function printPage() {
 
