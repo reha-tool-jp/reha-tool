@@ -11,7 +11,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>回復期リハビリテーション病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点を解説 | リハビリ評価・計算ツール</title>
+<title>回復期リハビリテーション病棟の実績指数とは？計算式・基準値・令和8年度改定の変更点を解説</title>
 <meta name="description" content="回復期リハビリテーション病棟の実績指数の計算式をわかりやすく解説。FIM運動項目利得と在院日数÷入棟上限日数の関係、令和8年度改定での加点ルール・除外要件の変更点、入院料別の基準値まで、PT・OT・STが押さえるべきポイントをまとめました。">
 <link rel="icon" href="../images/icon.png" type="image/png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
@@ -182,6 +182,116 @@
 }
 /* フッター */
 .footer .copyright { font-size: 11px; color: var(--text3); margin-top: 8px; }
+.jisseki-tool-wrap {
+  max-width: 100%; margin: 24px 0; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
+}
+.jt-title {
+  font-size: 16px; font-weight: 700; color: var(--accent);
+  border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px;
+}
+.jt-lead { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 20px; }
+.jt-basic-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  background: var(--surface2); border-radius: var(--radius); padding: 16px; margin-bottom: 20px;
+}
+.jt-basic-item label {
+  font-size: 12px; color: var(--text2); display: block; margin-bottom: 4px; font-weight: 600;
+}
+.jt-basic-item input, .jt-basic-item select {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 10px;
+  font-size: 14px; background: var(--surface); color: var(--text); box-sizing: border-box;
+}
+.jt-basic-item-wide { grid-column: 1 / -1; }
+.jt-date-row { display: flex; align-items: center; gap: 8px; }
+.jt-date-row input { flex: 1; }
+.jt-date-sep { font-size: 13px; color: var(--text2); flex: 0 0 auto; }
+.jt-date-hint { font-size: 11px; color: var(--text3); margin-top: 6px; line-height: 1.6; }
+.jt-section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px; margin: 20px 0 10px;
+}
+.jt-section-head h3 { font-size: 14px; font-weight: 700; color: var(--text); margin: 0; }
+.jt-paste-btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.jt-paste-btn {
+  font-size: 12px; font-weight: 700; color: #fff; background: var(--accent);
+  border: none; border-radius: 8px; padding: 7px 12px; cursor: pointer;
+}
+.jt-paste-btn:hover { opacity: 0.9; }
+.jt-paste-btn.pasted { background: #27ae60; }
+.jt-fim-link-hint {
+  font-size: 12px; color: var(--text2); background: var(--accent-light);
+  border-radius: 8px; padding: 8px 12px; margin: 0 0 10px; line-height: 1.7;
+}
+.jt-fim-link-hint a { color: var(--accent); font-weight: 700; text-decoration: none; }
+.jt-fim-link-hint a:hover { text-decoration: underline; }
+.jt-inline-link { color: var(--accent); text-decoration: underline; }
+.jt-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 8px; }
+.jt-table th {
+  background: var(--accent); color: #fff; padding: 6px 8px; font-size: 11px; font-weight: 600;
+  text-align: center;
+}
+.jt-table th.jt-th-name { text-align: left; }
+.jt-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: center; }
+.jt-table td.jt-name { text-align: left; font-size: 12px; color: var(--text); }
+.jt-table select {
+  width: 52px; padding: 4px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 13px; text-align: center; background: var(--surface); color: var(--text);
+}
+.jt-diff { font-weight: 700; color: var(--text2); font-size: 13px; }
+.jt-diff.jt-diff-plus { color: var(--accent); }
+.jt-diff.jt-diff-minus { color: var(--danger); }
+.jt-diff.jt-bonus { color: var(--warn); background: #fff3d6; padding: 2px 6px; border-radius: 4px; }
+.jt-hint {
+  font-size: 11px; color: var(--text3); margin: 4px 0 16px; line-height: 1.6;
+}
+.jt-summary {
+  background: var(--surface2); border-radius: var(--radius); padding: 16px; margin-top: 20px;
+}
+.jt-summary.jt-summary-sub { background: var(--surface); border: 1px dashed var(--border); }
+.jt-summary h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.jt-summary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.jt-summary-table td {
+  padding: 6px 4px; border-bottom: 1px solid var(--border); color: var(--text);
+}
+.jt-summary-table td:last-child { text-align: right; font-weight: 700; color: var(--accent); }
+.jt-summary-table tr.jt-highlight td { font-size: 15px; }
+.jt-summary-table tr.jt-highlight td:last-child { font-size: 20px; }
+.jt-judge-box {
+  border-radius: var(--radius); padding: 14px 16px; margin-top: 14px; font-size: 13px; line-height: 1.8;
+}
+.jt-judge-box.jt-ok { background: var(--accent-light); border-left: 4px solid var(--accent); }
+.jt-judge-box.jt-ng { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.jt-judge-box.jt-exclude { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.jt-judge-box.jt-noexclude { background: var(--accent-light); border-left: 4px solid var(--accent); }
+.jt-judge-title { font-weight: 700; margin-bottom: 4px; font-size: 14px; }
+.jt-judge-icon { font-size: 16px; margin-right: 4px; }
+.jt-big-number {
+  display: inline-block; font-size: 24px; font-weight: 800; margin: 0 3px;
+}
+.jt-big-number.jt-bad { color: var(--danger); }
+.jt-big-number.jt-good { color: var(--accent); }
+.jt-num-bad { color: var(--danger); font-weight: 800; }
+.jt-num-good { color: var(--accent); font-weight: 700; }
+.jt-reason-list { margin: 6px 0 0; padding-left: 20px; }
+.jt-reason-list li { color: var(--danger); font-weight: 700; margin-bottom: 2px; }
+.jt-trend-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+.jt-trend-table th { background: var(--surface); border: 1px solid var(--border); padding: 6px; font-size: 12px; }
+.jt-trend-table td { border: 1px solid var(--border); padding: 6px; text-align: center; }
+.jt-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.jt-btn {
+  flex: 1; min-width: 120px; padding: 10px 16px; border: none; border-radius: 8px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.jt-btn-print { background: var(--accent); color: #fff; }
+.jt-btn-reset { background: var(--surface2); color: var(--text2); border: 1.5px solid var(--border); }
+.jt-note {
+  font-size: 11px; color: var(--text3); line-height: 1.7; margin-top: 16px;
+  border-top: 1px solid var(--border); padding-top: 12px;
+}
+@media print {
+  .jt-paste-btn, .jt-actions { display: none !important; }
+}
 @media screen and (min-width: 768px) {
   .updated { font-size: 14px; }
   .article-body h2 { font-size: 20px; }
@@ -210,6 +320,10 @@
   .related-card .related-name { font-size: 16px; }
   .related-card .related-desc { font-size: 14px; }
   .footer .copyright { font-size: 13px; }
+
+  .jt-table { font-size: 14px; }
+  .jt-table select { width: 60px; font-size: 14px; }
+  .jt-summary-table { font-size: 14px; }
 }
 </style>
 <link rel="canonical" href="https://reha-tool.jp/articles/jisseki-shisu.html">
@@ -236,13 +350,13 @@
 <div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
-  <span class="updated">最終更新：2026年5月17日</span>
+  <span class="updated">最終更新：2026年8月29日</span>
 
   <div class="article-body">
 
     <p>回復期リハビリテーション病棟では、リハビリの効果を測る指標として「リハビリテーション実績指数」が用いられています。入院料の施設基準にも組み込まれており、この数値が基準を下回ると算定できる単位数が制限されるなど、病棟運営に直結する重要な指標です。</p>
 
-    <p>この記事では、実績指数の正確な計算式と、令和8年度（2026年度）診療報酬改定で変更された点をまとめます。</p>
+    <p>この記事では、実績指数の正確な計算式と、令和8年度（2026年度）診療報酬改定で変更された点をまとめます。計算式と改定内容に加えて、後半ではリハ科長として現在値をどう見るか、現場での確認の仕方も整理します。</p>
 
     <!-- ========== 計算式 ========== -->
     <h2>実績指数の計算式</h2>
@@ -321,6 +435,127 @@
         実績指数 ＝ 1,450 ÷ 42 ＝ 約 34.5
       </div>
     </div>
+
+    <!-- ========== 実績指数計算ツール ========== -->
+    <h2>個人単位で試算する：実績指数計算ツール</h2>
+
+    <p>実績指数の計算に必要なFIMや在棟日数を入力すると、令和8年度改定の加点ルールを反映して個人単位の実績指数を自動計算します。除外候補や目標値との差も確認できるため、現在値の確認や退棟前の見込み値を検討するときにお使いください。</p>
+
+    <ul>
+      <li>FIM13項目＋認知5項目を入力（<a href="../fim-tool.html" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;">FIM評価ツール</a>からの貼り付けにも対応）</li>
+      <li>歩行・車椅子、トイレ動作の加点を自動判定</li>
+      <li>除外候補を表示</li>
+      <li>目標実績指数との差を確認</li>
+      <li>算定上限日数を疾患区分から選択</li>
+      <li>在棟日数を日付から自動計算</li>
+      <li>参考指標としてFIM効率も表示</li>
+    </ul>
+
+    <p style="font-size:12px;color:var(--text2);">※このツールは実績指数を上げる方法を示すものではなく、現在値の確認・計算の補助を目的としています。</p>
+
+    <div class="jisseki-tool-wrap">
+
+  <div class="jt-basic-grid">
+    <div class="jt-basic-item jt-basic-item-wide">
+      <label>在棟日数の自動計算（任意）</label>
+      <div class="jt-date-row">
+        <input type="date" id="jt-date-admission" onchange="jtCalcDaysFromDate()">
+        <span class="jt-date-sep">〜</span>
+        <input type="date" id="jt-date-base" onchange="jtCalcDaysFromDate()">
+      </div>
+      <p class="jt-date-hint">入棟日と基準日（今日 or 退院予定日）を入れると、下の「在棟日数」に自動反映されます。手入力でも上書きできます。</p>
+    </div>
+    <div class="jt-basic-item">
+      <label>在棟日数（現在まで／退院見込み日数）</label>
+      <input type="number" id="jt-days" value="90" min="1" oninput="jtCalcAll()">
+    </div>
+    <div class="jt-basic-item">
+      <label>算定上限日数（入棟上限日数）</label>
+      <select id="jt-limit-days" onchange="jtCalcAll()">
+        <option value="60">60日（大腿骨・骨盤・脊椎・股関節・膝関節の神経・筋・靱帯損傷後）</option>
+        <option value="90">90日（大腿骨等骨折／廃用症候群／股関節・膝関節置換術後／心大血管疾患等）</option>
+        <option value="150" selected>150日（脳血管疾患・脊髄損傷・頭部外傷等）</option>
+        <option value="180">180日（高次脳機能障害を伴う重症脳血管障害・重度頸髄損傷・頭部外傷含む多部位外傷）</option>
+      </select>
+    </div>
+    <div class="jt-basic-item">
+      <label>1日平均リハ実施単位数</label>
+      <input type="number" id="jt-units" value="6" min="0" step="0.1" oninput="jtCalcAll()">
+    </div>
+    <div class="jt-basic-item">
+      <label>目標実績指数</label>
+      <input type="number" id="jt-target" value="42" min="0" step="0.1" oninput="jtCalcAll()">
+    </div>
+  </div>
+
+  <div class="jt-section-head">
+    <h3>FIM運動項目（13項目）</h3>
+    <div class="jt-paste-btn-group">
+      <button class="jt-paste-btn" id="jt-paste-admission" onclick="jtPasteFim('admission')">📋 入棟時を貼り付け</button>
+      <button class="jt-paste-btn" id="jt-paste-discharge" onclick="jtPasteFim('discharge')">📋 退棟時見込みを貼り付け</button>
+    </div>
+  </div>
+  <p class="jt-fim-link-hint">
+    👉 <a href="../fim-tool.html" target="_blank" rel="noopener">FIM評価ツールを別タブで開く</a>
+    ｜ 採点後、ツール内の「📋 スコアをコピー」ボタンでコピーしてから、上のボタンで貼り付けてください
+  </p>
+  <table class="jt-table">
+    <thead>
+      <tr><th class="jt-th-name">項目</th><th>入棟時</th><th>退棟時見込み</th><th>差</th></tr>
+    </thead>
+    <tbody id="jt-motor-body"></tbody>
+  </table>
+  <p class="jt-hint">
+    ※ FIM評価ツールの「スコアをコピー」ボタンは18項目（運動13＋認知5）をまとめてコピーします。
+    このツールでは入棟時・退棟時見込みをそれぞれ別のタイミングで貼り付けてください（貼り付けた18項目は自動で運動・認知に振り分けられます）。
+    お使いのブラウザによっては、貼り付け時にクリップボードへのアクセス許可を確認するポップアップが表示される場合があります。
+  </p>
+
+  <div class="jt-section-head">
+    <h3>FIM認知項目（5項目）</h3>
+  </div>
+  <table class="jt-table">
+    <thead>
+      <tr><th class="jt-th-name">項目</th><th>入棟時</th><th>退棟時見込み</th><th>差</th></tr>
+    </thead>
+    <tbody id="jt-cog-body"></tbody>
+  </table>
+
+  <div class="jt-summary">
+    <h3>計算結果サマリー</h3>
+    <table class="jt-summary-table" id="jt-summary-table"></table>
+  </div>
+
+  <div class="jt-summary jt-summary-sub">
+    <h3>参考指標：FIM効率</h3>
+    <table class="jt-summary-table" id="jt-fim-efficiency"></table>
+    <p class="jt-hint">※ FIM効率（運動＋認知合計の利得÷在棟日数）は臨床上よく使われる参考指標です。実績指数の計算には使用しません（実績指数の分子は運動項目の利得＋加点のみで、認知項目は含みません）。</p>
+  </div>
+
+  <div id="jt-target-judge"></div>
+  <div id="jt-exclude-judge"></div>
+
+  <div class="jt-summary" style="margin-top:16px;">
+    <h3>30日ごとの実績指数目安</h3>
+    <table class="jt-trend-table">
+      <thead><tr><th>経過日数</th><th>30日</th><th>60日</th><th>90日</th><th>120日</th><th>150日</th></tr></thead>
+      <tbody><tr><td>目安実績指数</td><td id="jt-trend-30"></td><td id="jt-trend-60"></td><td id="jt-trend-90"></td><td id="jt-trend-120"></td><td id="jt-trend-150"></td></tr></tbody>
+    </table>
+    <p class="jt-hint">※ 現在入力されているFIM利得・加点をそのまま維持した場合の、経過日数別の実績指数の目安です（実際の改善ペースを予測するものではありません）。</p>
+  </div>
+
+  <div class="jt-actions">
+    <button class="jt-btn jt-btn-print" onclick="window.print()">🖨 印刷・PDF保存</button>
+    <button class="jt-btn jt-btn-reset" onclick="jtReset()">↺ リセット</button>
+  </div>
+
+  <div class="jt-note">
+    ※ 本ツールは簡易試算用です。実際の届出・施設基準確認では、厚生労働省通知・疑義解釈・各地方厚生局の確認を必ず行ってください。<br>
+    ※ 除外候補に該当しても、最終的に除外できるかどうかは施設全体の除外割合（2割以内）や運用により異なります。<br>
+    ※ 個人情報は入力しないでください。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。
+  </div>
+
+</div>
 
     <!-- ========== 加点ルール ========== -->
     <h2>令和8年度改定：加点ルール（最大2点）</h2>
@@ -485,6 +720,87 @@
 
     <p>基準が27から30に引き上げられたことで、より多くの病棟が制限対象になる可能性があります。</p>
 
+    <!-- ========== リハ科長パート ========== -->
+    <h2>リハ科長として、実績指数の「現在値」をどう見るか</h2>
+
+    <p>ここからは制度の解説ではなく、病院リハビリテーション科長としての現場運営の話です。実績指数は入院料の施設基準やリハビリテーションの運用に関わる重要な指標です。実績指数の基準は令和8年度改定で40から42へ引き上げられ、現場の負荷感は年々増しています。だからこそ、数字の扱い方を間違えると、患者と担当者の両方を追い込みます。</p>
+
+    <p>リハ科長として、実績指数の現在値を把握することは病院運営に直結します。しかし、数字ばかり追いすぎると、患者へ無理な能力向上を求めたり、担当セラピストへ負担やプレッシャーをかけたりします。私は帳票を見るだけでなく、担当セラピストに状況を聞き、必要なら一緒に患者の動作を確認します。今の点が無理のない設定になっているかを、病棟の実態で判断するためです。このひと手間が、実態の伴った回復期運営と、職場の雰囲気を守ることにつながると感じています。</p>
+
+    <h3>先に決めておくこと</h3>
+
+    <p>FIMは訓練室で一度できた最大能力ではなく、病棟でしているADLを見る指標です。したがって科長が見る順番は、次でよいと思っています。</p>
+
+    <ol>
+      <li>病棟でその動作は、その点数に見合う介助量か</li>
+      <li>目標は無理のない設定か</li>
+      <li>その結果として、実績指数の現在値はどうなっているか</li>
+    </ol>
+
+    <p>追うのは指数です。操作するのは点ではありません。根拠は、病棟の動作確認に置きます。</p>
+
+    <h3>「現在値」は2本持つ</h3>
+
+    <p>現場感覚と届出値を混ぜないことが、いちばん大事です。</p>
+
+    <ul>
+      <li><strong>確定値</strong>：直近の算出対象期間（原則、算出月の前月までの6か月）に退棟した患者で、施設基準と同じ式で出した値</li>
+      <li><strong>先行値</strong>：いま在棟している人の、見込み退棟時運動FIM、見込み在棟日数、歩行・トイレの加点可否、除外見込み</li>
+    </ul>
+
+    <p>確定値は遅れます。先行値は予測です。どちらも、採点根拠が病棟実態と一致していて初めて使います。在棟中の人の平均伸びを「いまの実績指数」と呼ぶと、届出と必ずずれます。</p>
+
+    <p>計算の中身は本文の計算式と同じです。分子は運動FIM利得に歩行・車椅子とトイレ動作の加点を足したもの、分母は患者ごとの「在棟日数÷入棟上限日数」の合計、認知FIMは分子に入れません。</p>
+
+    <p>（実際に個人単位で試算したい場合は、本ページ内の実績指数計算ツールもあわせてご活用ください。）</p>
+
+    <h3>数字の前に、点の意味を見る</h3>
+
+    <p>点数が動く前に、点が病棟の介助量を表しているかを見ます。</p>
+
+    <ul>
+      <li>入棟時・退棟時とも、しているADLで採点しているか</li>
+      <li>日中の最良場面だけでなく、夜間・週末の介助量も反映しているか</li>
+      <li>歩行と車椅子のどちらが主な移動手段か。退棟時だけ歩行に切り替えていないか</li>
+      <li>トイレ動作、歩行・車椅子の項目点が残してあるか（加点判定に必要）</li>
+      <li>担当者が「上げたい点」と、病棟で実際に必要な介助が一致しているか</li>
+    </ul>
+
+    <p>ここにずれがあるなら、指数の議論より先に採点を戻します。点が低いこと自体より、点が実態と違うことの方が危険です。</p>
+
+    <h3>除外と分母も、理由で見る</h3>
+
+    <p>除外は指数を大きく動かします。だからこそ、数字合わせに使いません。除外するときは「指数が落ちるから」ではなく、基準に当たるか、その人を対象に残す意味があるかを見ます。80歳以上という理由だけでは除外できません。除外枠の20％は、使い切る前提ではなく、誰を対象に残すかの判断枠です。</p>
+
+    <p>指数が下がった月は、利得不足だけを見ません。在棟延長、疾患区分と上限日数の取り違え、待機退院でも分母は膨らみます。誰かの努力不足に見える変化が、実は在棟日数の問題であることはよくあります。</p>
+
+    <h3>科長の確認の仕方</h3>
+
+    <p>報告を受け取ったら、先に担当へ状況を聞きます。必要なら、食事、トイレ、移乗、歩行など、指数に効く動作を一緒に見ます。見る観点は「もっと上げられるか」ではなく、次です。</p>
+
+    <ul>
+      <li>今の点は、病棟の介助量として妥当か</li>
+      <li>6点は、見守りなしで生活が回る状態か</li>
+      <li>目標時期は、合併症・疲労・環境を踏まえて無理がないか</li>
+      <li>担当が一人で抱え込んでいないか</li>
+    </ul>
+
+    <p>歩行・トイレの5点から6点は加点対象です。ただし、加点のために見守りを外す判断はしません。外せる状態になってから点を動かします。</p>
+
+    <h3>事務・看護と定義を揃える</h3>
+
+    <p>リハ科の表と届出値が違うと、現場だけが焦ります。月1回でよいので、退棟者名簿、入棟日と退棟日、疾患区分と入棟上限日数、入棟時・退棟時の運動FIM13項目、歩行・車椅子とトイレ動作の項目点、除外理由と除外人数、運動FIM20点以下の人の平均単位数を突合します。ずれがあれば、まず定義と記録を直します。担当者の努力不足として返さないようにします。</p>
+
+    <h3>科内に共有している原則</h3>
+
+    <p>実績指数は追う。操作しない。根拠は病棟の動作確認にある。</p>
+
+    <p>この原則があれば、現在値は経営指標であると同時に、患者への無理とスタッフへの過圧を防ぐための指標にもなります。回復期の質は、指数の高さだけでなく、その指数が現場の実態と職場の空気を壊していないかで決まる、というのがいまの考えです。</p>
+
+    <div class="note-box info">
+      <p style="margin-bottom:0;">※この項は運営上の助言であり、施設基準の適否を判断するものではありません。届出と算定は、最新の通知・疑義解釈と自院の事務部門の判断を優先してください。</p>
+    </div>
+
     <!-- ========== 重症患者 ========== -->
     <h2>あわせて知っておきたい：重症患者の定義変更</h2>
 
@@ -513,6 +829,8 @@
     <p>実績指数はFIM運動項目の利得を在院日数÷入棟上限日数で割っただけのシンプルな計算式ですが、令和8年度改定で加点ルールの新設、除外要件の厳格化、基準値の引き上げと、複数の変更が入りました。</p>
 
     <p>特に80歳以上の除外廃止、FIM認知項目の除外基準厳格化（24点以下→14点以下）、除外割合の縮小（3割→2割）、そして入院料2・4への基準値新設は、多くの回復期リハ病棟に影響する変更です。自院の実績指数を新しい計算方法で再計算し、改定後の基準値をクリアできるか確認しておくことをお勧めします。</p>
+
+    <p>数字の確認と同時に、その点が病棟でしているADLと一致しているかを見る。これが、実績指数を運営指標として使うときの最低条件だと考えています。</p>
 
     <!-- ========== 参考文献 ========== -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
@@ -578,6 +896,220 @@
     <a href="../santei-tool.html">算定日数ツール</a><span class="footer-sep">|</span>
     <a href="/contact.html">お問い合わせ</a><span class="footer-sep">|</span><a href="../terms.html">利用規約</a><span class="footer-sep">|</span><a href="../privacy.html">プライバシーポリシー</a>
   </div>
+
+<script>
+/* ===== FIM項目定義（fim-tool.htmlのA〜R順序と完全一致させる） ===== */
+const jtMotorNames = ["食事","整容","清拭","更衣（上半身）","更衣（下半身）","トイレ動作","排尿管理","排便管理","ベッド・椅子・車椅子移乗","トイレ移乗","浴槽・シャワー移乗","歩行・車椅子","階段"];
+const jtCogNames   = ["理解","表出","社会的交流","問題解決","記憶"];
+const JT_WALK_IDX = 11;   // 歩行・車椅子（motor配列内インデックス）
+const JT_TOILET_IDX = 5;  // トイレ動作（motor配列内インデックス）
+
+let jtMotorAdm = new Array(13).fill(1);
+let jtMotorDis = new Array(13).fill(1);
+let jtCogAdm = new Array(5).fill(1);
+let jtCogDis = new Array(5).fill(1);
+
+function jtRenderTables() {
+  const motorBody = document.getElementById('jt-motor-body');
+  motorBody.innerHTML = jtMotorNames.map((name, i) => `
+    <tr>
+      <td class="jt-name">${name}</td>
+      <td>${jtSelectHtml('motor','adm',i,jtMotorAdm[i])}</td>
+      <td>${jtSelectHtml('motor','dis',i,jtMotorDis[i])}</td>
+      <td class="jt-diff${jtIsBonusItem(i) ? ' jt-bonus':''}" id="jt-motor-diff-${i}"></td>
+    </tr>`).join('');
+
+  const cogBody = document.getElementById('jt-cog-body');
+  cogBody.innerHTML = jtCogNames.map((name, i) => `
+    <tr>
+      <td class="jt-name">${name}</td>
+      <td>${jtSelectHtml('cog','adm',i,jtCogAdm[i])}</td>
+      <td>${jtSelectHtml('cog','dis',i,jtCogDis[i])}</td>
+      <td class="jt-diff" id="jt-cog-diff-${i}"></td>
+    </tr>`).join('');
+}
+
+function jtIsBonusItem(i) { return i === JT_WALK_IDX || i === JT_TOILET_IDX; }
+
+function jtSelectHtml(group, phase, idx, val) {
+  let opts = '';
+  for (let s = 1; s <= 7; s++) opts += `<option value="${s}"${s===val?' selected':''}>${s}</option>`;
+  return `<select onchange="jtSetScore('${group}','${phase}',${idx},this.value)">${opts}</select>`;
+}
+
+function jtSetScore(group, phase, idx, val) {
+  val = parseInt(val, 10);
+  if (group === 'motor') { (phase === 'adm' ? jtMotorAdm : jtMotorDis)[idx] = val; }
+  else { (phase === 'adm' ? jtCogAdm : jtCogDis)[idx] = val; }
+  jtCalcAll();
+}
+
+/* ===== クリップボード貼り付け（fim-tool.htmlの「スコアをコピー」と対応） ===== */
+async function jtPasteFim(phase) {
+  const btnId = phase === 'admission' ? 'jt-paste-admission' : 'jt-paste-discharge';
+  const btn = document.getElementById(btnId);
+  let text;
+  try {
+    text = await navigator.clipboard.readText();
+  } catch (e) {
+    alert('クリップボードの読み取りができませんでした。FIM評価ツールで「📋 スコアをコピー」を押した直後に、もう一度お試しください。');
+    return;
+  }
+  const values = text.trim().split(/\r?\n/).map(v => parseInt(v.trim(), 10));
+  if (values.length !== 18 || values.some(v => isNaN(v) || v < 1 || v > 7)) {
+    alert('FIM評価ツールの「📋 スコアをコピー」ボタンでコピーした内容（18項目分）を貼り付けてください。');
+    return;
+  }
+  const motor = values.slice(0, 13);
+  const cog = values.slice(13, 18);
+  if (phase === 'admission') { jtMotorAdm = motor; jtCogAdm = cog; }
+  else { jtMotorDis = motor; jtCogDis = cog; }
+  jtRenderTables();
+  jtCalcAll();
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = '✓ 貼り付けました';
+    btn.classList.add('pasted');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('pasted'); }, 1600);
+  }
+}
+
+/* ===== 日付からの在棟日数自動計算（計算補助・手動入力は常に上書き可能） ===== */
+function jtCalcDaysFromDate() {
+  const admStr = document.getElementById('jt-date-admission').value;
+  const baseStr = document.getElementById('jt-date-base').value;
+  if (!admStr || !baseStr) return; // どちらか未入力なら何もしない（手動入力欄はそのまま）
+  const admDate = new Date(admStr);
+  const baseDate = new Date(baseStr);
+  const diffDays = Math.round((baseDate - admDate) / (1000 * 60 * 60 * 24));
+  if (isNaN(diffDays) || diffDays < 0) {
+    alert('基準日は入棟日より後の日付にしてください。');
+    return;
+  }
+  document.getElementById('jt-days').value = diffDays;
+  jtCalcAll();
+}
+
+/* ===== 計算ロジック ===== */
+function jtCalcAll() {
+  const days = parseFloat(document.getElementById('jt-days').value) || 0;
+  const limitDays = parseFloat(document.getElementById('jt-limit-days').value) || 1;
+  const units = parseFloat(document.getElementById('jt-units').value) || 0;
+  const target = parseFloat(document.getElementById('jt-target').value) || 0;
+
+  const motorAdmSum = jtMotorAdm.reduce((a,b)=>a+b,0);
+  const motorDisSum = jtMotorDis.reduce((a,b)=>a+b,0);
+  const cogAdmSum = jtCogAdm.reduce((a,b)=>a+b,0);
+  const cogDisSum = jtCogDis.reduce((a,b)=>a+b,0);
+  const rawGain = motorDisSum - motorAdmSum;
+
+  // 差分表示 + 加点対象のハイライト
+  jtMotorNames.forEach((_, i) => {
+    const diff = jtMotorDis[i] - jtMotorAdm[i];
+    const el = document.getElementById(`jt-motor-diff-${i}`);
+    let bonusMark = '';
+    const isBonus = jtIsBonusItem(i) && jtMotorAdm[i] <= 5 && jtMotorDis[i] >= 6;
+    if (isBonus) bonusMark = ' 🎯+1加点';
+    el.className = 'jt-diff' + (isBonus ? ' jt-bonus' : (diff > 0 ? ' jt-diff-plus' : diff < 0 ? ' jt-diff-minus' : ''));
+    el.textContent = (diff >= 0 ? '+' : '') + diff + bonusMark;
+  });
+  jtCogNames.forEach((_, i) => {
+    const diff = jtCogDis[i] - jtCogAdm[i];
+    const el = document.getElementById(`jt-cog-diff-${i}`);
+    el.className = 'jt-diff' + (diff > 0 ? ' jt-diff-plus' : diff < 0 ? ' jt-diff-minus' : '');
+    el.textContent = (diff >= 0 ? '+' : '') + diff;
+  });
+
+  // 令和8年度改定：歩行・車椅子／トイレ動作の加点（各項目独立、両方該当なら+2）
+  let bonus = 0;
+  const bonusDetails = [];
+  if (jtMotorAdm[JT_WALK_IDX] <= 5 && jtMotorDis[JT_WALK_IDX] >= 6) { bonus += 1; bonusDetails.push('歩行・車椅子＋1'); }
+  if (jtMotorAdm[JT_TOILET_IDX] <= 5 && jtMotorDis[JT_TOILET_IDX] >= 6) { bonus += 1; bonusDetails.push('トイレ動作＋1'); }
+  const adjustedGain = rawGain + bonus;
+
+  const dayFactor = limitDays > 0 ? (days / limitDays) : 0;
+  const personalIndex = dayFactor > 0 ? (adjustedGain / dayFactor) : 0;
+
+  // サマリー表示（マイナス利得は赤字で警告）
+  const rawGainDisplay = rawGain < 0 ? `<span class="jt-num-bad">${rawGain} 点</span>` : rawGain + ' 点';
+  const adjustedGainDisplay = adjustedGain < 0 ? `<span class="jt-num-bad">${adjustedGain} 点</span>` : adjustedGain + ' 点';
+  const summaryRows = [
+    ['入棟時FIM運動合計', motorAdmSum + ' 点'],
+    ['退棟時見込みFIM運動合計', motorDisSum + ' 点'],
+    ['FIM運動利得（加点前）', rawGainDisplay],
+    ['入棟時FIM認知合計', cogAdmSum + ' 点'],
+    ['退棟時見込みFIM認知合計', cogDisSum + ' 点'],
+    ['令和8年度改定加点', bonus + ' 点'],
+    ['加点内訳', bonusDetails.length ? bonusDetails.join('／') : 'なし'],
+    ['補正後FIM運動利得', adjustedGainDisplay],
+    ['在棟日数係数（在棟日数÷算定上限日数）', dayFactor.toFixed(3)],
+  ];
+  let html = summaryRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+  html += `<tr class="jt-highlight"><td>個人予測実績指数</td><td>${personalIndex.toFixed(1)}</td></tr>`;
+  document.getElementById('jt-summary-table').innerHTML = html;
+
+  // 参考指標：FIM効率（実績指数の計算には使用しない）
+  const totalGain = (motorDisSum + cogDisSum) - (motorAdmSum + cogAdmSum);
+  const fimEfficiency = days > 0 ? (totalGain / days) : 0;
+  document.getElementById('jt-fim-efficiency').innerHTML = `
+    <tr><td>FIM利得（運動＋認知合計）</td><td>${totalGain >= 0 ? '+' : ''}${totalGain} 点</td></tr>
+    <tr><td>FIM効率（FIM利得÷在棟日数）</td><td>${fimEfficiency.toFixed(2)} 点／日</td></tr>`;
+
+  // 目標指数の判定（現在の加点は維持する前提で、通常利得の必要増分を逆算）
+  const requiredAdjustedGain = Math.ceil(target * dayFactor);
+  const requiredNormalGain = requiredAdjustedGain - bonus;
+  const requiredMotorDis = motorAdmSum + requiredNormalGain;
+  const diffToTarget = requiredMotorDis - motorDisSum;
+  const targetJudgeEl = document.getElementById('jt-target-judge');
+  if (diffToTarget <= 0) {
+    targetJudgeEl.innerHTML = `<div class="jt-judge-box jt-ok"><div class="jt-judge-title"><span class="jt-judge-icon">✅</span>目標指数の判定：達成見込み</div>
+      目標実績指数 ${target} に必要な退院時FIM運動合計は ${requiredMotorDis} 点です。現在の見込み（<span class="jt-num-good">${motorDisSum}点</span>）で目標を達成しています。</div>`;
+  } else {
+    targetJudgeEl.innerHTML = `<div class="jt-judge-box jt-ng"><div class="jt-judge-title"><span class="jt-judge-icon">⚠️</span>目標指数の判定：未達成</div>
+      目標実績指数 ${target} に必要な退院時FIM運動合計は ${requiredMotorDis} 点です。現在の見込みとの差は<span class="jt-big-number jt-bad">あと${diffToTarget}点</span>必要です。</div>`;
+  }
+
+  // 除外候補の判定（令和8年度改定基準：80歳以上は削除済みのため対象外）
+  const excludeReasons = [];
+  if (motorAdmSum <= 20 && units <= 6) excludeReasons.push('入棟時FIM運動20点以下（1日平均6単位以下）');
+  if (cogAdmSum <= 14) excludeReasons.push('入棟時FIM認知14点以下');
+  const excludeEl = document.getElementById('jt-exclude-judge');
+  if (excludeReasons.length) {
+    excludeEl.innerHTML = `<div class="jt-judge-box jt-exclude"><div class="jt-judge-title"><span class="jt-judge-icon">⚠️</span>実績指数除外候補の判定：該当</div>
+      <ul class="jt-reason-list">${excludeReasons.map(r => `<li>${r}</li>`).join('')}</ul>
+      <p style="margin-top:6px;">※ 除外できる患者は、入棟患者数の2割を超えない範囲です。1日平均リハ単位数が6単位を超える場合、FIM運動20点以下でも除外対象になりません。最終判断は最新の通知・疑義解釈・施設運用を確認してください。</p></div>`;
+  } else {
+    excludeEl.innerHTML = `<div class="jt-judge-box jt-noexclude"><div class="jt-judge-title"><span class="jt-judge-icon">✅</span>実績指数除外候補の判定：非該当</div>
+      現在の入力内容では除外候補に該当しません。</div>`;
+  }
+
+  // 30日ごとの目安（現在の利得・加点を維持した場合の試算）
+  [30,60,90,120,150].forEach(d => {
+    const f = limitDays > 0 ? (d / limitDays) : 0;
+    const idx = f > 0 ? (adjustedGain / f) : 0;
+    document.getElementById(`jt-trend-${d}`).textContent = idx.toFixed(1);
+  });
+}
+
+function jtReset() {
+  if (!confirm('入力内容をすべてリセットしますか？')) return;
+  jtMotorAdm = new Array(13).fill(1);
+  jtMotorDis = new Array(13).fill(1);
+  jtCogAdm = new Array(5).fill(1);
+  jtCogDis = new Array(5).fill(1);
+  document.getElementById('jt-days').value = 90;
+  document.getElementById('jt-limit-days').value = 150;
+  document.getElementById('jt-units').value = 6;
+  document.getElementById('jt-target').value = 42;
+  document.getElementById('jt-date-admission').value = '';
+  document.getElementById('jt-date-base').value = '';
+  jtRenderTables();
+  jtCalcAll();
+}
+
+jtRenderTables();
+jtCalcAll();
+</script>
 
 </body>
 </html>
