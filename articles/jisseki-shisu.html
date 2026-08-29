@@ -1140,13 +1140,16 @@ function jtCalcAll() {
 
   // 除外候補の判定（令和8年度改定基準：80歳以上は削除済みのため対象外）
   const excludeReasons = [];
-  if (motorAdmSum <= 20 && units <= 6) excludeReasons.push('入棟時FIM運動20点以下（1日平均6単位以下）');
+  if (motorAdmSum <= 20 && units <= 6) excludeReasons.push(`入棟時FIM運動20点以下（1日平均6単位以下・入力値：${units}単位）`);
   if (cogAdmSum <= 14) excludeReasons.push('入棟時FIM認知14点以下');
   const excludeEl = document.getElementById('jt-exclude-judge');
   if (excludeReasons.length) {
     excludeEl.innerHTML = `<div class="jt-judge-box jt-exclude"><div class="jt-judge-title"><span class="jt-judge-icon">⚠️</span>実績指数除外候補の判定：該当</div>
       <ul class="jt-reason-list">${excludeReasons.map(r => `<li>${r}</li>`).join('')}</ul>
-      <p style="margin-top:6px;">※ 除外できる患者は、入棟患者数の2割を超えない範囲です。1日平均リハ単位数が6単位を超える場合、FIM運動20点以下でも除外対象になりません。最終判断は最新の通知・疑義解釈・施設運用を確認してください。</p></div>`;
+      <p style="margin-top:6px;">※ 除外できる患者は、入棟患者数の2割を超えない範囲です。最終判断は最新の通知・疑義解釈・施設運用を確認してください。</p></div>`;
+  } else if (motorAdmSum <= 20 && units > 6) {
+    excludeEl.innerHTML = `<div class="jt-judge-box jt-noexclude"><div class="jt-judge-title"><span class="jt-judge-icon">✅</span>実績指数除外候補の判定：非該当</div>
+      入棟時FIM運動は20点以下ですが、1日平均リハ単位数が6単位を超えているため（入力値：${units}単位）、除外対象にはなりません。</div>`;
   } else {
     excludeEl.innerHTML = `<div class="jt-judge-box jt-noexclude"><div class="jt-judge-title"><span class="jt-judge-icon">✅</span>実績指数除外候補の判定：非該当</div>
       現在の入力内容では除外候補に該当しません。</div>`;
