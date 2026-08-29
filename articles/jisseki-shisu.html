@@ -289,8 +289,41 @@
   font-size: 11px; color: var(--text3); line-height: 1.7; margin-top: 16px;
   border-top: 1px solid var(--border); padding-top: 12px;
 }
+.jt-print-title { display: none; }
 @media print {
+  @page { size: A4 portrait; margin: 8mm 10mm; }
   .jt-paste-btn, .jt-actions { display: none !important; }
+  body.jt-printing .global-nav,
+  body.jt-printing header,
+  body.jt-printing .footer { display: none !important; }
+  body.jt-printing .container > *:not(.article-body) { display: none !important; }
+  body.jt-printing .article-body > *:not(#jt-print-area) { display: none !important; }
+  body.jt-printing #jt-print-area > h2:not(.jt-print-title),
+  body.jt-printing #jt-print-area > p,
+  body.jt-printing #jt-print-area > ul { display: none !important; }
+  body.jt-printing .jt-print-title { display: block !important; margin: 0 0 10px !important; font-size: 17px !important; }
+  body.jt-printing .jt-basic-item-wide { display: none !important; }
+  body.jt-printing .jt-date-row, body.jt-printing .jt-date-hint,
+  body.jt-printing .jt-fim-link-hint { display: none !important; }
+  body.jt-printing .jt-section-head,
+  body.jt-printing .jt-table,
+  body.jt-printing .jt-hint,
+  body.jt-printing .jt-note { display: none !important; }
+  body.jt-printing .jisseki-tool-wrap { padding: 6px !important; margin: 0 !important; border: none !important; }
+  body.jt-printing .jt-basic-grid { padding: 6px !important; margin-bottom: 10px !important; gap: 6px 12px !important; }
+  body.jt-printing .jt-basic-item label { margin-bottom: 1px !important; font-size: 12px !important; }
+  body.jt-printing .jt-basic-item input, body.jt-printing .jt-basic-item select { padding: 1px 0 !important; border: none !important; font-size: 13px !important; }
+  body.jt-printing .jt-summary { padding: 6px 10px !important; margin-top: 8px !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+  body.jt-printing .jt-summary h3 { margin: 0 0 4px !important; font-size: 12px !important; }
+  body.jt-printing .jt-summary-table td { padding: 2px 4px !important; line-height: 1.5 !important; }
+  body.jt-printing .jt-summary-table tr.jt-highlight td { font-size: 13px !important; }
+  body.jt-printing .jt-summary-table tr.jt-highlight td:last-child { font-size: 16px !important; }
+  body.jt-printing .jt-judge-box { padding: 6px 10px !important; margin-top: 8px !important; line-height: 1.6 !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+  body.jt-printing .jt-judge-title { margin-bottom: 2px !important; font-size: 13px !important; }
+  body.jt-printing .jt-judge-box p, body.jt-printing .jt-reason-list { margin: 2px 0 !important; }
+  body.jt-printing .jt-big-number { font-size: 18px !important; }
+  body.jt-printing .jt-trend-table { margin-top: 4px !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+  body.jt-printing .jt-trend-table th, body.jt-printing .jt-trend-table td { padding: 3px 6px !important; line-height: 1.5 !important; }
 }
 @media screen and (min-width: 768px) {
   .updated { font-size: 14px; }
@@ -454,6 +487,8 @@
     </div>
 
     <!-- ========== 実績指数計算ツール ========== -->
+    <div id="jt-print-area">
+    <h2 class="jt-print-title">実績指数計算</h2>
     <h2>個人単位で試算する：実績指数計算ツール</h2>
 
     <p>実績指数の計算に必要なFIMや在棟日数を入力すると、令和8年度改定の加点ルールを反映して個人単位の実績指数を自動計算します。除外候補や目標値との差も確認できるため、現在値の確認や退棟前の見込み値を検討するときにお使いください。</p>
@@ -562,17 +597,18 @@
   </div>
 
   <div class="jt-actions">
-    <button class="jt-btn jt-btn-print" onclick="window.print()">🖨 印刷・PDF保存</button>
+    <button class="jt-btn jt-btn-print" onclick="jtPrint()">🖨 印刷・PDF保存</button>
     <button class="jt-btn jt-btn-reset" onclick="jtReset()">↺ リセット</button>
   </div>
 
   <div class="jt-note">
     ※ 本ツールは簡易試算用です。実際の届出・施設基準確認では、厚生労働省通知・疑義解釈・各地方厚生局の確認を必ず行ってください。<br>
     ※ 除外候補に該当しても、最終的に除外できるかどうかは施設全体の除外割合（2割以内）や運用により異なります。<br>
-    ※ 個人情報は入力しないでください。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。
+    ※ 入力データはすべてブラウザ内で処理され、外部に送信されることはありません。
   </div>
 
 </div>
+    </div><!-- #jt-print-area -->
 
     <!-- ========== 加点ルール ========== -->
     <h2>令和8年度改定：加点ルール（最大2点）</h2>
@@ -1123,6 +1159,14 @@ function jtReset() {
   jtRenderTables();
   jtCalcAll();
 }
+
+function jtPrint() {
+  document.body.classList.add('jt-printing');
+  window.print();
+}
+window.addEventListener('afterprint', () => {
+  document.body.classList.remove('jt-printing');
+});
 
 jtRenderTables();
 jtCalcAll();
