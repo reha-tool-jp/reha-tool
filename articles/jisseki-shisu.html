@@ -186,6 +186,11 @@
   max-width: 100%; margin: 24px 0; background: var(--surface2);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
 }
+#jt-print-area {
+  background: var(--surface2); border: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 20px; margin: 24px 0;
+}
+#jt-print-area .jisseki-tool-wrap { margin: 16px 0 0; }
 .jt-title {
   font-size: 16px; font-weight: 700; color: var(--accent);
   border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px;
@@ -293,6 +298,7 @@
 @media print {
   @page { size: A4 portrait; margin: 8mm 10mm; }
   .jt-paste-btn, .jt-actions { display: none !important; }
+  body.jt-printing #jt-print-area { border: none !important; padding: 0 !important; margin: 0 !important; background: none !important; }
   body.jt-printing .global-nav,
   body.jt-printing header,
   body.jt-printing .footer { display: none !important; }
@@ -407,6 +413,15 @@
     <p>回復期リハビリテーション病棟では、リハビリの効果を測る指標として「リハビリテーション実績指数」が用いられています。入院料の施設基準にも組み込まれており、この数値が基準を下回ると算定できる単位数が制限されるなど、病棟運営に直結する重要な指標です。</p>
 
     <p>この記事では、実績指数の正確な計算式と、令和8年度（2026年度）診療報酬改定で変更された点をまとめます。計算式と改定内容に加えて、後半ではリハ科長として現在値をどう見るか、現場での確認の仕方も整理します。</p>
+
+    <div class="note-box info">
+      <div class="note-title">この記事で分かること</div>
+      <ul style="margin-bottom:0;">
+        <li>実績指数の正確な計算式</li>
+        <li>令和8年度改定での加点・除外要件・基準値の変更点</li>
+        <li>リハ科長としての現在値の見方</li>
+      </ul>
+    </div>
 
     <!-- ========== 計算式 ========== -->
     <h2>実績指数の計算式</h2>
