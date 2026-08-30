@@ -551,7 +551,7 @@
       <input type="number" id="jt-units" value="6" min="0" step="0.1" oninput="jtCalcAll()">
     </div>
     <div class="jt-basic-item">
-      <label>目標実績指数</label>
+      <label>目標実績指数（個人の参考値）</label>
       <input type="number" id="jt-target" value="42" min="0" step="0.1" oninput="jtCalcAll()">
     </div>
   </div>
@@ -1062,7 +1062,25 @@ function jtCalcDaysFromDate() {
 }
 
 /* ===== 計算ロジック ===== */
+function jtIsUnfilled() {
+  return jtMotorAdm.every(v => v === 1) && jtMotorDis.every(v => v === 1) &&
+         jtCogAdm.every(v => v === 1) && jtCogDis.every(v => v === 1);
+}
+
 function jtCalcAll() {
+  if (jtIsUnfilled()) {
+    document.getElementById('jt-summary-table').innerHTML =
+      '<tr><td colspan="2" style="text-align:center;color:var(--text3);padding:12px 4px;">FIMを入力すると、ここに試算結果が表示されます</td></tr>';
+    document.getElementById('jt-fim-efficiency').innerHTML = '';
+    document.getElementById('jt-target-judge').innerHTML = '';
+    document.getElementById('jt-exclude-judge').innerHTML = '';
+    [30,60,90,120,150].forEach(d => {
+      const el = document.getElementById(`jt-trend-${d}`);
+      if (el) el.textContent = '－';
+    });
+    return;
+  }
+
   const days = parseFloat(document.getElementById('jt-days').value) || 0;
   const limitDays = parseFloat(document.getElementById('jt-limit-days').value) || 1;
   const units = parseFloat(document.getElementById('jt-units').value) || 0;
@@ -1117,6 +1135,7 @@ function jtCalcAll() {
   ];
   let html = summaryRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
   html += `<tr class="jt-highlight"><td>個人予測実績指数</td><td>${personalIndex.toFixed(1)}</td></tr>`;
+  html += `<tr><td colspan="2" style="font-size:11px;color:var(--warn);font-weight:700;line-height:1.6;padding-top:8px;">※ この値は個人単位の参考試算であり、施設全体の実績指数ではありません。施設基準の達成可否はこの値だけでは判断できません。</td></tr>`;
   document.getElementById('jt-summary-table').innerHTML = html;
 
   // 参考指標：FIM効率（実績指数の計算には使用しない）
