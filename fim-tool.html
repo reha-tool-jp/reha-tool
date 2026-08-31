@@ -247,12 +247,11 @@ animation: fadeIn 0.15s ease;
 
 /* ===== プレビューモード（SS用・印刷CSSと同じ見た目を画面上に表示） ===== */
 #preview-back-bar {
-  display: none; position: sticky; top: 0; z-index: 200;
-  background: #6b5b95; padding: 10px 16px; text-align: center;
+  display: none; padding: 12px 16px; text-align: center;
 }
 #preview-back-bar button {
-  background: #fff; color: #6b5b95; border: none; border-radius: 8px;
-  padding: 8px 20px; font-size: 14px; font-weight: 700; cursor: pointer;
+  background: #6b5b95; color: #fff; border: none; border-radius: 8px;
+  padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
 }
 body.preview-mode #preview-back-bar { display: block; }
 body.preview-mode .author-block-top, body.preview-mode .author-block-bottom { display: none !important; }
@@ -284,23 +283,37 @@ body.preview-mode .patient-card input {
   border-radius: 0; background: transparent;
   font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif;
 }
-body.preview-mode #fim-categories { display: block; margin-bottom: 6px; }
+body.preview-mode #fim-categories { margin-bottom: 6px; }
 body.preview-mode .category {
   box-shadow: none; border: 1px solid #888; margin-bottom: 4px; overflow: hidden; border-radius: 0;
 }
-body.preview-mode .category-header { padding: 4px 8px; border-radius: 0; }
-body.preview-mode .category-header .cat-name { font-size: 0.85rem; font-weight: 700; }
-body.preview-mode .category-header .cat-score { font-size: 0.82rem; padding: 1px 6px; border-radius: 0; }
-body.preview-mode .fim-item { padding: 3px 6px; gap: 4px; flex-wrap: nowrap; border-bottom: 1px solid #ddd; }
+body.preview-mode .category-header { padding: 3px 6px; border-radius: 0; }
+body.preview-mode .category-header .cat-name { font-size: 0.72rem; font-weight: 700; }
+body.preview-mode .category-header .cat-score { font-size: 0.68rem; padding: 1px 4px; border-radius: 0; }
+body.preview-mode .fim-item { padding: 2px 6px; gap: 4px; flex-wrap: nowrap; border-bottom: 1px solid #ddd; align-items: center; justify-content: space-between; }
 body.preview-mode .fim-item:last-child { border-bottom: none; }
-body.preview-mode .item-name { flex: 0 0 90px; font-size: 0.8rem; font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif; }
-body.preview-mode .btn-group { gap: 3px; }
-body.preview-mode .score-btn {
-  height: 24px; font-size: 0.78rem; border-radius: 0 !important;
-  border: 1px solid #999 !important; min-width: 0; font-family: 'DM Mono', monospace;
-  pointer-events: none;
+body.preview-mode .item-name {
+  flex: 1 1 auto; font-size: 0.68rem; font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif;
+  white-space: normal; line-height: 1.3; min-width: 0;
 }
-body.preview-mode .score-btn.selected { transform: none !important; box-shadow: none !important; }
+body.preview-mode .btn-group { display: none !important; }
+.preview-score { display: none; }
+body.preview-mode .preview-score {
+  display: block; font-size: 0.8rem; font-weight: 700; font-family: 'DM Mono', monospace;
+  color: #1a4a6b; flex: 0 0 auto;
+}
+body.preview-mode .patient-card input { pointer-events: none; }
+.fim-group-title { display: none; }
+body.preview-mode #fim-categories { display: block; }
+body.preview-mode .fim-section { margin-bottom: 6px; }
+body.preview-mode .fim-section-row {
+  display: flex; flex-direction: row; gap: 6px; align-items: flex-start;
+}
+body.preview-mode .fim-col { flex: 1; min-width: 0; }
+body.preview-mode .fim-group-title {
+  display: block; font-size: 0.8rem; font-weight: 700; text-align: center;
+  padding: 3px; background: #e0e0e0; margin-bottom: 3px;
+}
 body.preview-mode .summary {
   box-shadow: none; border: 1px solid #888; margin-top: 5px; padding: 8px 12px; border-radius: 0;
 }
@@ -426,9 +439,6 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 </head>
 
 <body>
-<div id="preview-back-bar">
-  <button onclick="togglePreview()">← 戻る（入力画面へ）</button>
-</div>
 <nav class="global-nav">
   <div class="nav-container">
     <a href="/">トップ</a>
@@ -743,6 +753,10 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 
 </div>
 
+<div id="preview-back-bar">
+  <button onclick="togglePreview()">← 戻る（入力画面へ）</button>
+</div>
+
 <script>
 const criteria = {
 "食事": {
@@ -925,47 +939,79 @@ fimData.forEach(cat => cat.items.forEach(item => scores[item.id] = 1));
 function renderFIM() {
 const container = document.getElementById('fim-categories');
 container.innerHTML = '';
-fimData.forEach(cat => {
-const catDiv = document.createElement('div');
-catDiv.className = 'category';
-const catScore = cat.items.reduce((s, item) => s + scores[item.id], 0);
-const header = document.createElement('div');
-header.className = 'category-header';
-header.innerHTML = `<span class="cat-name">${cat.category}</span><span class="cat-score">${catScore} / ${cat.items.length * 7}</span>`;
-catDiv.appendChild(header);
-cat.items.forEach(item => {
-const itemDiv = document.createElement('div');
-itemDiv.className = 'fim-item';
-const nameDiv = document.createElement('div');
-nameDiv.className = 'item-name';
-nameDiv.textContent = `${item.id}. ${item.name}`;
-itemDiv.appendChild(nameDiv);
-const btnGroup = document.createElement('div');
-btnGroup.className = 'btn-group';
-for (let i = 1; i <= 7; i++) {
-const wrap = document.createElement('div');
-wrap.className = 'btn-wrap';
-const btn = document.createElement('button');
-btn.className = 'score-btn' + (scores[item.id] === i ? ' selected' : '');
-btn.dataset.score = i;
-btn.textContent = i;
-btn.onclick = () => setScore(item.id, i, item.name);
-const tip = document.createElement('div');
-tip.className = 'tooltip';
-const c = criteria[item.name] && criteria[item.name][i];
-if (c) tip.innerHTML = `<div class="t-score">${i}点</div><div class="t-label">${c.label}</div><div class="t-desc">${c.desc}</div>`;
-wrap.appendChild(btn);
-wrap.appendChild(tip);
-btnGroup.appendChild(wrap);
+
+function buildCatDiv(cat) {
+  const catDiv = document.createElement('div');
+  catDiv.className = 'category';
+  const catScore = cat.items.reduce((s, item) => s + scores[item.id], 0);
+  const header = document.createElement('div');
+  header.className = 'category-header';
+  header.innerHTML = `<span class="cat-name">${cat.category}</span><span class="cat-score">${catScore} / ${cat.items.length * 7}</span>`;
+  catDiv.appendChild(header);
+  cat.items.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'fim-item';
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'item-name';
+    nameDiv.textContent = `${item.id}. ${item.name}`;
+    itemDiv.appendChild(nameDiv);
+    const btnGroup = document.createElement('div');
+    btnGroup.className = 'btn-group';
+    for (let i = 1; i <= 7; i++) {
+      const wrap = document.createElement('div');
+      wrap.className = 'btn-wrap';
+      const btn = document.createElement('button');
+      btn.className = 'score-btn' + (scores[item.id] === i ? ' selected' : '');
+      btn.dataset.score = i;
+      btn.textContent = i;
+      btn.onclick = () => setScore(item.id, i, item.name);
+      const tip = document.createElement('div');
+      tip.className = 'tooltip';
+      const c = criteria[item.name] && criteria[item.name][i];
+      if (c) tip.innerHTML = `<div class="t-score">${i}点</div><div class="t-label">${c.label}</div><div class="t-desc">${c.desc}</div>`;
+      wrap.appendChild(btn);
+      wrap.appendChild(tip);
+      btnGroup.appendChild(wrap);
+    }
+    itemDiv.appendChild(btnGroup);
+    const previewScore = document.createElement('div');
+    previewScore.className = 'preview-score';
+    previewScore.textContent = `${scores[item.id]}点`;
+    itemDiv.appendChild(previewScore);
+    const mobilePanel = document.createElement('div');
+    mobilePanel.className = 'mobile-criteria';
+    mobilePanel.id = `mc-${item.id}`;
+    itemDiv.appendChild(mobilePanel);
+    catDiv.appendChild(itemDiv);
+  });
+  return catDiv;
 }
-itemDiv.appendChild(btnGroup);
-const mobilePanel = document.createElement('div');
-mobilePanel.className = 'mobile-criteria';
-mobilePanel.id = `mc-${item.id}`;
-itemDiv.appendChild(mobilePanel);
-catDiv.appendChild(itemDiv);
-});
-container.appendChild(catDiv);
+
+// 案B：運動＝左(セルフケア+排泄コントロール)／右(移乗+移動)、認知＝左(コミュニケーション)／右(社会的認知)
+const groupDefs = [
+  { title: '運動項目', className: 'fim-motor-section', left: [0, 1], right: [2, 3] },
+  { title: '認知項目', className: 'fim-cognitive-section', left: [4], right: [5] }
+];
+
+groupDefs.forEach(def => {
+  const section = document.createElement('div');
+  section.className = 'fim-section ' + def.className;
+  const title = document.createElement('div');
+  title.className = 'fim-group-title';
+  title.textContent = def.title;
+  section.appendChild(title);
+  const row = document.createElement('div');
+  row.className = 'fim-section-row';
+  const leftCol = document.createElement('div');
+  leftCol.className = 'fim-col';
+  def.left.forEach(idx => leftCol.appendChild(buildCatDiv(fimData[idx])));
+  const rightCol = document.createElement('div');
+  rightCol.className = 'fim-col';
+  def.right.forEach(idx => rightCol.appendChild(buildCatDiv(fimData[idx])));
+  row.appendChild(leftCol);
+  row.appendChild(rightCol);
+  section.appendChild(row);
+  container.appendChild(section);
 });
 }
 
