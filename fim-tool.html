@@ -124,6 +124,8 @@ animation: fadeIn 0.15s ease;
 .btn { flex: 1; min-width: 120px; padding: 12px 20px; border: none; border-radius: 10px; font-size: 0.9rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.2s; }
 .btn-print { background: var(--primary); color: white; }
 .btn-print:hover { background: #163d5a; }
+.btn-preview { background: #6b5b95; color: white; }
+.btn-preview:hover { background: #564a78; }
 .btn-reset { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border); }
 .btn-reset:hover { background: #ebe8e1; }
 .btn-copy { background: #2a5c45; color: white; }
@@ -243,6 +245,89 @@ animation: fadeIn 0.15s ease;
   .summary-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
+/* ===== プレビューモード（SS用・印刷CSSと同じ見た目を画面上に表示） ===== */
+#preview-back-bar {
+  display: none; position: sticky; top: 0; z-index: 200;
+  background: #6b5b95; padding: 10px 16px; text-align: center;
+}
+#preview-back-bar button {
+  background: #fff; color: #6b5b95; border: none; border-radius: 8px;
+  padding: 8px 20px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+body.preview-mode #preview-back-bar { display: block; }
+body.preview-mode .author-block-top, body.preview-mode .author-block-bottom { display: none !important; }
+body.preview-mode {
+  background: white !important;
+  font-family: '游明朝', 'Yu Mincho', 'YuMincho', 'Meiryo', serif !important;
+  font-size: 13px;
+}
+body.preview-mode .global-nav { display: none !important; }
+body.preview-mode header {
+  position: static;
+  padding: 6px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-radius: 0;
+}
+body.preview-mode header h1 { font-size: 0; }
+body.preview-mode header h1::before { content: 'FIM：機能的自立度評価表'; font-size: 1.1rem; display: block; }
+body.preview-mode header h1 > * { display: none; }
+body.preview-mode header .subtitle { display: none !important; }
+body.preview-mode .total-badge { font-size: 1.3rem; padding: 4px 14px; border-radius: 0; }
+body.preview-mode .total-badge .label { font-size: 0.65rem; }
+body.preview-mode .patient-card {
+  box-shadow: none; border: none; border-bottom: 1px solid #999;
+  margin-bottom: 6px; padding: 4px 8px; gap: 16px; border-radius: 0; background: #f5f5f5;
+}
+body.preview-mode .patient-card label { font-size: 0.72rem; }
+body.preview-mode .patient-card input {
+  font-size: 0.9rem; padding: 2px 4px; border: none; border-bottom: 1px solid #999;
+  border-radius: 0; background: transparent;
+  font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif;
+}
+body.preview-mode #fim-categories { display: block; margin-bottom: 6px; }
+body.preview-mode .category {
+  box-shadow: none; border: 1px solid #888; margin-bottom: 4px; overflow: hidden; border-radius: 0;
+}
+body.preview-mode .category-header { padding: 4px 8px; border-radius: 0; }
+body.preview-mode .category-header .cat-name { font-size: 0.85rem; font-weight: 700; }
+body.preview-mode .category-header .cat-score { font-size: 0.82rem; padding: 1px 6px; border-radius: 0; }
+body.preview-mode .fim-item { padding: 3px 6px; gap: 4px; flex-wrap: nowrap; border-bottom: 1px solid #ddd; }
+body.preview-mode .fim-item:last-child { border-bottom: none; }
+body.preview-mode .item-name { flex: 0 0 90px; font-size: 0.8rem; font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif; }
+body.preview-mode .btn-group { gap: 3px; }
+body.preview-mode .score-btn {
+  height: 24px; font-size: 0.78rem; border-radius: 0 !important;
+  border: 1px solid #999 !important; min-width: 0; font-family: 'DM Mono', monospace;
+  pointer-events: none;
+}
+body.preview-mode .score-btn.selected { transform: none !important; box-shadow: none !important; }
+body.preview-mode .summary {
+  box-shadow: none; border: 1px solid #888; margin-top: 5px; padding: 8px 12px; border-radius: 0;
+}
+body.preview-mode .summary h2 { font-size: 0.75rem; margin-bottom: 6px; }
+body.preview-mode .summary-grid { gap: 8px; margin-bottom: 6px; grid-template-columns: repeat(4, 1fr); }
+body.preview-mode .summary-item { padding: 6px 10px; border-radius: 0; }
+body.preview-mode .summary-item .s-label { font-size: 0.72rem; }
+body.preview-mode .summary-item .s-value { font-size: 1.8rem; font-weight: 700; }
+body.preview-mode .progress-bar { height: 7px; border-radius: 0; }
+body.preview-mode .progress-fill { border-radius: 0; }
+body.preview-mode .progress-labels { font-size: 0.68rem; }
+body.preview-mode .actions,
+body.preview-mode .tooltip,
+body.preview-mode .mobile-criteria,
+body.preview-mode .info-section,
+body.preview-mode .footer,
+body.preview-mode .pwa-hint,
+body.preview-mode #fim-info,
+body.preview-mode .section-title,
+body.preview-mode .article-list-home,
+body.preview-mode #references-block,
+body.preview-mode .detail-table-wrap,
+body.preview-mode .adsbygoogle,
+body.preview-mode ins.adsbygoogle { display: none !important; }
+body.preview-mode .container { padding: 4px 2px; max-width: 100%; }
+body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
+
 @media (max-width: 600px) {
 .item-name { flex: 0 0 80px; font-size: 0.78rem; }
 .score-btn { height: 32px; font-size: 0.8rem; }
@@ -341,6 +426,9 @@ animation: fadeIn 0.15s ease;
 </head>
 
 <body>
+<div id="preview-back-bar">
+  <button onclick="togglePreview()">← 戻る（入力画面へ）</button>
+</div>
 <nav class="global-nav">
   <div class="nav-container">
     <a href="/">トップ</a>
@@ -427,9 +515,11 @@ animation: fadeIn 0.15s ease;
 
 <div class="actions">
 <button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
+<button class="btn btn-preview" id="preview-toggle-btn" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
+<p class="pwa-hint" style="margin-top:6px;">「👁 プレビュー」は結果だけをA4印刷レイアウトのまま画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
 <p class="pwa-hint" style="margin-top:6px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
 
 <div class="detail-table-wrap">
@@ -926,6 +1016,13 @@ document.getElementById('eval-date').value = new Date().toISOString().split('T')
 document.getElementById('admission-fim').value = '';
 updateScores();
 renderFIM();
+}
+
+function togglePreview() {
+  document.body.classList.toggle('preview-mode');
+  if (document.body.classList.contains('preview-mode')) {
+    window.scrollTo(0, 0);
+  }
 }
 
 document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
