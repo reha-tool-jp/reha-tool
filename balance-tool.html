@@ -196,7 +196,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 12px;
 
@@ -610,6 +610,10 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
 .btn-reset:hover { background: #dde5e8; }
 
+.btn-preview { background: #6b5b95; color: #fff; }
+
+.btn-preview:hover { background: #574a7c; }
+
 
 
 /* ── Static Balance: Sub Tabs ── */
@@ -956,7 +960,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
   header h1 { font-size: 0.9rem; }
 
-  header .subtitle { font-size: 0.6rem; }
+  header .subtitle { display: none !important; }
 
   .total-badge { font-size: 1rem; padding: 3px 10px; }
 
@@ -1126,6 +1130,82 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
 }
 
+/* ===== プレビューモード（SS用・印刷CSSと同じ見た目を画面上に表示） ===== */
+#preview-back-bar {
+  display: none; padding: 12px 16px; text-align: center;
+}
+#preview-back-bar button {
+  background: #6b5b95; color: #fff; border: none; border-radius: 8px;
+  padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+body.preview-mode #preview-back-bar { display: block; }
+body.preview-mode .author-block-top, body.preview-mode .author-block-bottom { display: none !important; }
+body.preview-mode {
+  background: white !important;
+  font-family: '游明朝', 'Yu Mincho', 'YuMincho', 'Meiryo', serif !important;
+  font-size: 13px;
+}
+body.preview-mode .global-nav { display: none !important; }
+body.preview-mode header {
+  position: static;
+  padding: 6px 12px;
+  border-radius: 0;
+}
+body.preview-mode header .subtitle { display: none !important; }
+body.preview-mode .total-badge { font-size: 1.3rem; padding: 4px 14px; border-radius: 0; }
+body.preview-mode .total-badge .label { font-size: 0.65rem; }
+body.preview-mode .patient-card {
+  box-shadow: none; border: none; border-bottom: 1px solid #999;
+  margin-bottom: 6px; padding: 4px 8px; gap: 8px; border-radius: 0; background: #f5f5f5;
+}
+body.preview-mode .patient-card label { font-size: 0.58rem; }
+body.preview-mode .patient-card input {
+  font-size: 0.68rem; padding: 2px 4px; border: none; border-bottom: 1px solid #999;
+  border-radius: 0; background: transparent; pointer-events: none;
+  font-family: '游明朝', 'Yu Mincho', 'Meiryo', serif;
+}
+body.preview-mode .no-print,
+body.preview-mode .actions,
+body.preview-mode .pwa-hint,
+body.preview-mode .adsbygoogle,
+body.preview-mode ins.adsbygoogle,
+body.preview-mode .main-tabs,
+body.preview-mode .sub-tabs { display: none !important; }
+body.preview-mode .container { padding: 4px 2px; max-width: 100%; }
+
+/* BBS：プレビューも印刷と同じ2カラム・選択済みのみ表示 */
+body.preview-mode #bbs-items-container { display: none !important; }
+body.preview-mode #bbs-print-cols { display: grid !important; grid-template-columns: 1fr 1fr; gap: 4px; }
+body.preview-mode .bbs-print-col { display: block; }
+body.preview-mode .bbs-item { box-shadow: none; border: none; border-bottom: 1px solid #e0e0e0; margin-bottom: 0; }
+body.preview-mode .bbs-item-header { padding: 3px 6px; cursor: default; }
+body.preview-mode .bbs-item-num { font-size: 0.65rem; min-width: 18px; }
+body.preview-mode .bbs-item-name { font-size: 0.75rem; }
+body.preview-mode .bbs-score-badge { font-size: 0.7rem; padding: 1px 5px; }
+body.preview-mode .bbs-chevron { display: none !important; }
+body.preview-mode .bbs-item-body { display: block !important; padding: 2px 6px 4px 28px; background: white; border-top: none; }
+body.preview-mode .bbs-instruction { display: none !important; }
+body.preview-mode .bbs-opt-btn { display: none !important; }
+body.preview-mode .bbs-opt-btn.selected { display: flex !important; padding: 2px 6px; border: 1px solid #ccc; background: #f0f6f8 !important; }
+body.preview-mode .bbs-opt-score { font-size: 0.75rem; min-width: 14px; }
+body.preview-mode .bbs-opt-text { font-size: 0.73rem; }
+body.preview-mode .bbs-summary { box-shadow: none; border: 1px solid #ccc; margin-top: 5px; padding: 6px 10px; }
+body.preview-mode .bbs-summary-label { font-size: 0.62rem; }
+body.preview-mode .bbs-total-display { font-size: 1.6rem; }
+body.preview-mode .bbs-judgment { font-size: 0.72rem; padding: 2px 8px; }
+body.preview-mode .progress-bar { height: 5px; margin: 6px 0 3px; }
+body.preview-mode .progress-labels { font-size: 0.58rem; }
+
+/* 静的バランス：プレビューは全サブテストを1画面にまとめて表示 */
+body.preview-mode .sw-empty { display: none !important; }
+body.preview-mode .sub-panel { display: block !important; }
+body.preview-mode .sw-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; padding: 6px 10px; }
+body.preview-mode .sw-card-title { font-size: 0.68rem; margin-bottom: 4px; }
+body.preview-mode .sw-display { font-size: 1.4rem; padding: 2px 0; }
+body.preview-mode .sw-btns { display: none !important; }
+body.preview-mode .sw-record-row { padding: 2px 6px; font-size: 0.72rem; }
+body.preview-mode .sw-record-del { display: none !important; }
+
 .global-nav {
   background: var(--surface, #f5f4f0); border-bottom: 1px solid var(--border, #ddd);
   position: sticky; top: 0; z-index: 100;
@@ -1236,6 +1316,14 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
     </div>
 
+    <div>
+
+      <label>評価者名</label>
+
+      <input type="text" id="evaluator-name" placeholder="例）鈴木 花子">
+
+    </div>
+
   </div>
 
 
@@ -1297,6 +1385,8 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
     <div class="actions">
 
       <button class="btn btn-print" onclick="printBBS()">🖨️ 印刷 / PDF保存</button>
+
+      <button class="btn btn-preview" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 
       <button class="btn btn-reset" onclick="resetBBS()">リセット</button>
 
@@ -1438,7 +1528,9 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
     <div class="actions">
 
-      <button class="btn btn-print" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+      <button class="btn btn-print" onclick="printStatic()">🖨️ 印刷 / PDF保存</button>
+
+      <button class="btn btn-preview" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 
       <button class="btn btn-reset" onclick="resetStatic()">リセット</button>
 
@@ -1730,6 +1822,10 @@ header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; margin
 
 
 </main><!-- /container -->
+
+<div id="preview-back-bar">
+  <button onclick="togglePreview()">← 戻る（入力画面へ）</button>
+</div>
 
 
 
@@ -2277,7 +2373,7 @@ function updateBBSTotal() {
 
 
 
-function printBBS() {
+function buildBBSPrintCols() {
 
   // 2カラム用DOM構築
 
@@ -2309,7 +2405,79 @@ function printBBS() {
 
   cols.appendChild(col2);
 
+}
+
+
+
+function getTestTitle() {
+
+  return document.getElementById('panel-static').classList.contains('active')
+
+    ? '静的バランス評価（片脚立位／タンデム立位／ロンベルグテスト）'
+
+    : 'Berg Balance Scale（BBS）バランス評価';
+
+}
+
+
+
+function printBBS() {
+
+  buildBBSPrintCols();
+
+  const h1 = document.querySelector('header h1');
+
+  const orig = h1.textContent;
+
+  h1.textContent = 'Berg Balance Scale（BBS）バランス評価';
+
   window.print();
+
+  h1.textContent = orig;
+
+}
+
+
+
+function printStatic() {
+
+  const h1 = document.querySelector('header h1');
+
+  const orig = h1.textContent;
+
+  h1.textContent = '静的バランス評価（片脚立位／タンデム立位／ロンベルグテスト）';
+
+  window.print();
+
+  h1.textContent = orig;
+
+}
+
+
+
+let previewOriginalTitle = null;
+
+function togglePreview() {
+
+  document.body.classList.toggle('preview-mode');
+
+  const h1 = document.querySelector('header h1');
+
+  if (document.body.classList.contains('preview-mode')) {
+
+    previewOriginalTitle = h1.textContent;
+
+    h1.textContent = getTestTitle();
+
+    if (document.getElementById('panel-bbs').classList.contains('active')) buildBBSPrintCols();
+
+    window.scrollTo(0, 0);
+
+  } else {
+
+    h1.textContent = previewOriginalTitle;
+
+  }
 
 }
 
@@ -2554,6 +2722,14 @@ function switchMainTab(tab) {
   document.getElementById('bbs-badge').style.display   = tab === 'bbs' ? 'block' : 'none';
 
   document.getElementById('static-badge').style.display = tab === 'static' ? 'block' : 'none';
+
+  if (document.body.classList.contains('preview-mode')) {
+
+    document.querySelector('header h1').textContent = getTestTitle();
+
+    if (tab === 'bbs') buildBBSPrintCols();
+
+  }
 
 }
 
