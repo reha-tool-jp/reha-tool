@@ -4,7 +4,7 @@
 
 <head>
 
-<link rel="icon" type="image/png" href="/images/icon.png"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+<link rel="icon" type="image/png" href="/images/icon.png">
 
 <script>
 
@@ -15,6 +15,18 @@
   gtag('js', new Date());
 
   gtag('config', 'G-YJLTBSGZ21');
+
+  window.addEventListener('load', function() {
+
+    var s = document.createElement('script');
+
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21';
+
+    s.async = true;
+
+    document.head.appendChild(s);
+
+  });
 
 </script>
 
