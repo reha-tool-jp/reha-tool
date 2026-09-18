@@ -32,7 +32,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
 :root {
   --header-tool: #1a5c6b;
---bg: #f4f2ee; --surface: #ffffff; --primary: #1a4a6b; --accent: #e8753a;
+--bg: #f4f2ee; --surface: #ffffff; --primary: #1a5c6b; --accent: #e8753a;
 --text: #1c1c1e; --muted: #6e6e73; --border: #d8d5ce; --shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -143,7 +143,7 @@ animation: fadeIn 0.15s ease;
 .btn-preview:hover { background: #564a78; }
 .btn-reset { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border); }
 .btn-reset:hover { background: #ebe8e1; }
-.btn-copy { background: #2a5c45; color: white; }
+.btn-copy { background: var(--header-tool); color: white; }
 .btn-copy:hover { background: #204632; }
 .btn-copy.copied { background: #27ae60; }
 
@@ -431,7 +431,7 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
 
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2a5c45">
+<meta name="theme-color" content="#1a5c6b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
