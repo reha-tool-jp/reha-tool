@@ -545,7 +545,20 @@
 .tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
 .tool-icon { font-size: 20px; }
 .tool-name { font-size: 14px; font-weight: 700; }
-.tool-desc { font-size: 13px; color: var(--text2); }</style>
+.tool-desc { font-size: 13px; color: var(--text2); }
+  /* rt-footer */
+  .rt-footer { border-top: 1px solid var(--border, #e0ddd4); margin-top: 48px; padding: 28px 16px 40px; font-size: 13px; line-height: 1.9; }
+  .rt-footer-inner { max-width: 680px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 20px 32px; }
+  .rt-footer-title { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; color: var(--text, #1a1916); margin: 0 0 6px; }
+  .rt-footer ul { list-style: none; margin: 0; padding: 0; }
+  .rt-footer a { color: var(--text2, #6b6860); text-decoration: none; }
+  .rt-footer a:hover { color: var(--text, #1a1916); text-decoration: underline; }
+  @media screen and (min-width: 768px) { .rt-footer-inner { max-width: 900px; } }
+  @media screen and (min-width: 768px) { .rt-footer-group:first-child ul { columns: 2; column-gap: 24px; } .rt-footer-group:first-child li { break-inside: avoid; } }
+  @media (max-width: 560px) { .rt-footer-inner { grid-template-columns: 1fr; } }
+  @media print { .rt-footer { display: none !important; } }
+  body.preview-mode .rt-footer { display: none !important; }
+  </style>
 </head>
 <body>
 <nav class="global-nav">
@@ -870,9 +883,39 @@
 <p style="font-size:13px;color:var(--text3, #a09d96);line-height:1.8;margin:24px 0 0;">※本記事は公表されている一次資料に基づいて作成していますが、制度の解釈や判断は必ず原文をご確認ください。</p>
 </main>
 
-<footer class="site-footer">
-  <p><a href="https://reha-tool.jp/">リハビリ評価・計算ツール集</a> | PT・OT・ST・機能訓練指導員向け 無料ツール＆解説記事</p>
-  <p style="margin-top:8px;">※本記事は公表されている一次資料に基づいて作成していますが、制度の解釈や判断は必ず原文をご確認ください。</p>
+<footer class="rt-footer">
+  <div class="rt-footer-inner">
+    <div class="rt-footer-group">
+      <p class="rt-footer-title">評価ツール</p>
+      <ul>
+        <li><a href="/fim-tool.html">FIM評価ツール</a></li>
+        <li><a href="/bi-tool.html">BI評価ツール</a></li>
+        <li><a href="/walk-tool.html">歩行評価ツール</a></li>
+        <li><a href="/balance-tool.html">バランス評価ツール</a></li>
+        <li><a href="/hdsr-tool.html">HDS-R評価ツール</a></li>
+        <li><a href="/santei-tool.html">算定日数ツール</a></li>
+        <li><a href="/seikatsu-tool.html">生活機能チェック</a></li>
+        <li><a href="/kyoumi-tool.html">興味・関心チェック</a></li>
+        <li><a href="/kihon-checklist.html">基本チェックリスト</a></li>
+      </ul>
+    </div>
+    <div class="rt-footer-group">
+      <p class="rt-footer-title">解説</p>
+      <ul>
+        <li><a href="/articles/index.html">解説記事一覧</a></li>
+        <li><a href="/about.html">運営者について</a></li>
+      </ul>
+    </div>
+    <div class="rt-footer-group">
+      <p class="rt-footer-title">サイト情報</p>
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/contact.html">お問い合わせ</a></li>
+        <li><a href="/terms.html">利用規約</a></li>
+        <li><a href="/privacy.html">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
 
 </body>
