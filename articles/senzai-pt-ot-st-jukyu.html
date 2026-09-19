@@ -57,7 +57,7 @@
 
     /* パンくず */
     .breadcrumb {
-      max-width: 860px;
+      max-width: 680px;
       margin: 16px auto 0;
       padding: 0 20px;
       font-size: 13px;
@@ -69,7 +69,7 @@
 
     /* 記事コンテナ */
     .article-container {
-      max-width: 860px;
+      max-width: 680px;
       margin: 24px auto 60px;
       padding: 0 20px;
     }
@@ -546,6 +546,7 @@
 .tool-icon { font-size: 20px; }
 .tool-name { font-size: 14px; font-weight: 700; }
 .tool-desc { font-size: 13px; color: var(--text2); }
+  @media screen and (min-width: 768px) { .article-container, .breadcrumb { max-width: 900px; } .nav-container { max-width: 900px; } }
   /* rt-footer */
   .rt-footer { border-top: 1px solid var(--border, #e0ddd4); margin-top: 48px; padding: 28px 16px 40px; font-size: 13px; line-height: 1.9; }
   .rt-footer-inner { max-width: 680px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 20px 32px; }
