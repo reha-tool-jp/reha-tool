@@ -26,6 +26,10 @@
       --border-accent: #1F5C55;
       --tag-bg: #e8f2ed;
       --tag-text: #1F5C55;
+      --surface: #ffffff;
+      --surface2: #f0efe9;
+      --text2: #6b6860;
+      --text3: #a09d96;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,9 +46,6 @@
     .site-header {
       background: var(--primary);
       padding: 12px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .site-header a {
@@ -547,6 +548,8 @@
 .tool-name { font-size: 14px; font-weight: 700; }
 .tool-desc { font-size: 13px; color: var(--text2); }
   @media screen and (min-width: 768px) { .article-container, .breadcrumb { max-width: 900px; } .nav-container { max-width: 900px; } }
+  .author-row { max-width: 680px; }
+  @media screen and (min-width: 768px) { .author-row { max-width: 900px; } }
   /* rt-footer */
   .rt-footer { border-top: 1px solid var(--border, #e0ddd4); margin-top: 48px; padding: 28px 16px 40px; font-size: 13px; line-height: 1.9; }
   .rt-footer-inner { max-width: 680px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 20px 32px; }
@@ -581,7 +584,7 @@
   <span>›</span>
   潜在PT・OT・STはなぜ数えられないのか
 </nav>
-<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+<div class="author-row" style="margin:0 auto 16px;padding:0 20px 12px;font-size:13px;color:var(--text2);border-bottom:1px solid var(--border);">
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
