@@ -17,12 +17,12 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
     background: #f5f4f0;
     color: #1a1916;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-    line-height: 1.8;
+    margin: 0;
+    min-height: 100vh;
   }
-  h1 { font-size: 22px; border-bottom: 2px solid #1F5C55; padding-bottom: 10px; margin-bottom: 30px; }
+  header { background: #1F5C55; color: #fff; padding: 20px 20px 18px; text-align: center; }
+  header h1 { font-size: 20px; font-weight: 700; margin: 0; }
+  .container { max-width: 680px; margin: 40px auto; padding: 0 20px 40px; line-height: 1.8; }
   h2 { font-size: 17px; margin-top: 36px; color: #1F5C55; }
   p { margin: 10px 0; }
   a { color: #1F5C55; }
@@ -31,7 +31,6 @@
   .global-nav {
     background: #f5f4f0; border-bottom: 1px solid #ddd;
     position: sticky; top: 0; z-index: 100;
-    margin: -40px -20px 32px;
   }
   .nav-container {
     max-width: 680px; margin: 0 auto;
@@ -46,9 +45,9 @@
   .nav-container a:hover { background: #d4ede3; color: #1F5C55; }
 
 @media screen and (min-width: 768px) {
-  body { max-width: 900px; }
+  .container { max-width: 900px; }
   .nav-container { max-width: 900px; }
-  h1 { font-size: 24px; }
+  header h1 { font-size: 22px; }
   h2 { font-size: 19px; }
   .back { font-size: 16px; }
   .date-info { font-size: 15px; }
@@ -78,7 +77,11 @@
     <a href="/about.html">このサイトについて</a>
   </div>
 </nav>
-<h1>プライバシーポリシー</h1>
+<header>
+  <h1>プライバシーポリシー</h1>
+</header>
+
+<main class="container">
 <p class="date-info">制定日：2026年3月17日　／　最終改訂日：2026年6月22日</p>
 <p>本サイト「リハビリ評価・計算ツール」（以下、当サイト）における個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
 
@@ -117,6 +120,8 @@
 <p>本ポリシーに関するお問い合わせは、<a href="/contact.html">お問い合わせフォーム</a>よりご連絡ください。</p>
 
 <a class="back" href="/">← トップに戻る</a>
+
+</main>
 <footer class="rt-footer">
   <div class="rt-footer-inner">
     <div class="rt-footer-group">
