@@ -141,9 +141,14 @@
   header .hero-pill { font-size: 12px; font-weight: 600; color: var(--text2); display: inline-flex; align-items: center; gap: 6px; }
   header .hero-pill svg { color: var(--accent); width: 18px; height: 18px; stroke-width: 2.5; }
   .hero-content { display: flex; flex-direction: column; }
-  .hero-visual { position: relative; margin-bottom: 32px; order: -1; display: flex; justify-content: center; align-items: center; }
+  .hero-visual { position: relative; margin-bottom: 32px; order: -1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
   .hero-visual-glow { position: absolute; width: 160px; height: 160px; background: var(--accent); opacity: 0.15; filter: blur(40px); border-radius: 50%; z-index: 1; }
   .hero-visual-logo { position: relative; z-index: 2; width: 100%; max-width: 280px; height: auto; }
+  .hero-visual-badge { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 18px; border: 1.5px solid var(--accent); border-radius: 14px; background: var(--surface); }
+  .hero-visual-badge img { width: 28px; height: 28px; display: block; }
+  .hero-visual-badge-text { display: flex; flex-direction: column; }
+  .hero-visual-badge-main { font-size: 14px; font-weight: 700; color: var(--accent); }
+  .hero-visual-badge-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
   header .hero-cta { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
   header .hero-btn { display: block; text-align: center; text-decoration: none; font-size: 14px; font-weight: 700; padding: 12px; border-radius: var(--radius); }
   header .hero-btn-primary { background: var(--accent); color: #fff; }
@@ -379,10 +384,13 @@
 <header>
   <div class="hero-content">
     <div class="hero-text">
-      <p class="hero-eyebrow">PT・OT・ST向け</p>
-      <h1>点数だけでなく、<br>現場での見方まで。</h1>
-      <p class="hero-desc">FIM・BIなど9つの評価を画面上で採点・自動集計。理学療法士監修。</p>
+      <h1>その場で採点して、<br>その場で残せる。</h1>
+      <p class="hero-desc">FIM・BI・歩行など9つ。判定基準を見ながら使え、印刷までブラウザで完結。理学療法士監修。</p>
       <div class="hero-pills">
+        <span class="hero-pill">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          完全無料
+        </span>
         <span class="hero-pill">
           <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
           登録不要
@@ -404,6 +412,13 @@
     <div class="hero-visual">
       <div class="hero-visual-glow"></div>
       <img src="/img/rehatool-hero.png" alt="RehaTool" class="hero-visual-logo">
+      <div class="hero-visual-badge">
+        <img src="/img/icon-calculator.png" alt="" width="28" height="28">
+        <div class="hero-visual-badge-text">
+          <span class="hero-visual-badge-main">評価ツールと制度解説</span>
+          <span class="hero-visual-badge-sub">PT・OT・STのための実務サポート</span>
+        </div>
+      </div>
     </div>
   </div>
 </header>
