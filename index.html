@@ -11,7 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>評価ツールと制度解説 | PT・OT・ST向け無料ツール</title>
+<title>リハツール | 評価ツールと制度解説</title>
 <meta name="description" content="PT・OT・ST・機能訓練指導員向けの無料リハビリ評価・検査法メディア。デイサービス・訪問リハ・回復期病棟で使えるFIM、BI、生活機能チェックシート、興味・関心チェックシート、HDS-R、歩行評価、バランス評価など。登録不要・無料。">
 <meta name="google-site-verification" content="KWL3so-Yvycvz_JBnr2qALfBszpFqr8x_ZtKnwj6NJU">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8914761943441290" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "評価ツールと制度解説",
+  "name": "リハツール",
   "url": "https://reha-tool.jp/"
 }
 </script>
@@ -131,13 +131,18 @@
   }
 
   header {
-    background: var(--accent); color: #fff;
-    padding: 20px 20px 18px;
+    background: var(--bg); color: var(--text);
+    padding: 32px 20px 28px;
   }
-  header h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.02em; }
-  header p { font-size: 12px; opacity: 0.8; margin-top: 5px; line-height: 1.6; }
-  header .hero-diff { font-size: 13px; font-weight: 600; opacity: 0.95; margin-top: 8px; line-height: 1.6; }
-  header .hero-note { font-size: 11px; opacity: 0.7; margin-top: 6px; line-height: 1.6; }
+  header .hero-eyebrow { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+  header h1 { font-size: 24px; font-weight: 700; line-height: 1.45; letter-spacing: 0.01em; margin-top: 8px; }
+  header .hero-desc { font-size: 13px; color: var(--text2); margin-top: 10px; line-height: 1.7; }
+  header .hero-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  header .hero-pill { font-size: 11px; font-weight: 600; color: var(--text2); background: var(--surface2); border-radius: 20px; padding: 5px 12px; display: inline-block; }
+  header .hero-cta { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  header .hero-btn { display: block; text-align: center; text-decoration: none; font-size: 14px; font-weight: 700; padding: 12px; border-radius: var(--radius); }
+  header .hero-btn-primary { background: var(--accent); color: #fff; }
+  header .hero-btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
 
   .container { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
 
@@ -284,8 +289,12 @@
 @media screen and (min-width: 768px) {
   .container { max-width: 900px; }
   .nav-container { max-width: 900px; }
-  header h1 { font-size: 22px; }
-  header p { font-size: 14px; }
+  header { padding: 48px 20px 40px; }
+  header h1 { font-size: 32px; }
+  header .hero-desc { font-size: 15px; }
+  header .hero-pill { font-size: 12px; padding: 6px 14px; }
+  header .hero-cta { flex-direction: row; }
+  header .hero-btn { display: inline-block; padding: 12px 28px; }
       .rt-gnav-logo { height: 32px; }
   .rt-gnav-ja { display: inline-block; position: relative; top: 5px; font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; white-space: nowrap; }
   .nav-links { gap: 12px; }
@@ -359,10 +368,18 @@
 </nav>
 
 <header>
-  <h1>評価ツールと制度解説</h1>
-  <p>理学療法士監修 | PT・OT・ST・機能訓練指導員向け</p>
-  <p class="hero-diff">点数だけでなく、現場での見方まで伝えています</p>
-  <p class="hero-note">登録不要・アプリ不要・入力は外部に出ません</p>
+  <p class="hero-eyebrow">PT・OT・ST向け</p>
+  <h1>点数だけでなく、現場での見方まで。</h1>
+  <p class="hero-desc">評価ツールと制度解説。理学療法士監修。</p>
+  <div class="hero-pills">
+    <span class="hero-pill">登録不要</span>
+    <span class="hero-pill">アプリ不要</span>
+    <span class="hero-pill">入力は外部に出ません</span>
+  </div>
+  <div class="hero-cta">
+    <a class="hero-btn hero-btn-primary" href="/#tools">評価ツールを使う</a>
+    <a class="hero-btn hero-btn-secondary" href="/articles/index.html">解説記事を見る</a>
+  </div>
 </header>
 
 <main class="container">
