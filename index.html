@@ -152,7 +152,8 @@
     gap: 12px; padding: 10px 16px;
   }
     .rt-gnav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
-  .rt-gnav-logo { height: 22px; width: auto; display: block; }
+    .rt-gnav-logo { height: 22px; width: auto; display: block; }
+  .rt-gnav-ja { display: none; }
   .nav-links { display: flex; gap: 6px; }
   .nav-links a {
     color: var(--text); text-decoration: none; font-size: 11px; font-weight: 600;
@@ -285,7 +286,8 @@
   .nav-container { max-width: 900px; }
   header h1 { font-size: 22px; }
   header p { font-size: 14px; }
-    .rt-gnav-logo { height: 32px; }
+      .rt-gnav-logo { height: 32px; }
+  .rt-gnav-ja { display: inline-block; position: relative; top: 5px; font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; white-space: nowrap; }
   .nav-links { gap: 12px; }
   .nav-links a { font-size: 15px; padding: 6px 14px; border-radius: 20px; }
   .section-title { font-size: 15px; }
@@ -339,8 +341,9 @@
 
 <nav class="global-nav">
   <div class="nav-container">
-    <a class="rt-gnav-brand" href="/">
+        <a class="rt-gnav-brand" href="/">
       <img class="rt-gnav-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+      <span class="rt-gnav-ja">リハツール</span>
     </a>
     <div class="nav-links">
       <a href="/#tools">評価ツール</a>
