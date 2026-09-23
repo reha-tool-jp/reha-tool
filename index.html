@@ -137,8 +137,9 @@
   header .hero-eyebrow { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
   header h1 { font-size: 24px; font-weight: 700; line-height: 1.45; letter-spacing: 0.01em; margin-top: 8px; }
   header .hero-desc { font-size: 13px; color: var(--text2); margin-top: 10px; line-height: 1.7; }
-  header .hero-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-  header .hero-pill { font-size: 11px; font-weight: 600; color: var(--text2); background: var(--surface2); border-radius: 20px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 4px; }
+  header .hero-pills { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; }
+  header .hero-pill { font-size: 12px; font-weight: 600; color: var(--text2); display: inline-flex; align-items: center; gap: 6px; }
+  header .hero-pill svg { color: var(--accent); width: 18px; height: 18px; stroke-width: 2.5; }
   .hero-content { display: flex; flex-direction: column; }
   .hero-visual { position: relative; margin-bottom: 32px; order: -1; display: flex; justify-content: center; align-items: center; }
   .hero-visual-glow { position: absolute; width: 160px; height: 160px; background: var(--accent); opacity: 0.15; filter: blur(40px); border-radius: 50%; z-index: 1; }
@@ -383,15 +384,15 @@
       <p class="hero-desc">FIM・BIなど9つの評価を画面上で採点・自動集計。理学療法士監修。</p>
       <div class="hero-pills">
         <span class="hero-pill">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
           登録不要
         </span>
         <span class="hero-pill">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
           アプリ不要
         </span>
         <span class="hero-pill">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
           入力は外部に出ません
         </span>
       </div>
