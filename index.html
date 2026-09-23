@@ -321,13 +321,17 @@
   /* rt-footer */
   .rt-footer { border-top: 1px solid var(--border, #e0ddd4); margin-top: 48px; padding: 28px 16px 40px; font-size: 13px; line-height: 1.9; }
   .rt-footer-inner { max-width: 680px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 20px 32px; }
-  .rt-footer-title { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; color: var(--text, #1a1916); margin: 0 0 6px; }
+  .rt-footer-title { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; color: var(--accent, #1F5C55); margin: 0 0 6px; }
   .rt-footer ul { list-style: none; margin: 0; padding: 0; }
   .rt-footer a { color: var(--text2, #6b6860); text-decoration: none; }
   .rt-footer a:hover { color: var(--text, #1a1916); text-decoration: underline; }
+  .rt-footer-brand { max-width: 680px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid var(--border, #e0ddd4); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .rt-footer-logo { height: 20px; width: auto; display: block; }
+  .rt-footer-ja { font-size: 14px; font-weight: 700; color: var(--accent, #1F5C55); }
+  .rt-footer-tagline { font-size: 12px; color: var(--text2, #6b6860); margin-left: 4px; }
   @media screen and (min-width: 768px) { .rt-footer-inner { max-width: 900px; } }
   @media screen and (min-width: 768px) { .rt-footer-group:first-child ul { columns: 2; column-gap: 24px; } .rt-footer-group:first-child li { break-inside: avoid; } }
-  @media (max-width: 560px) { .rt-footer-inner { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .rt-footer-inner { grid-template-columns: 1fr 1fr; gap: 24px 16px; } .rt-footer-group:last-child { grid-column: 1 / -1; } }
   @media print { .rt-footer { display: none !important; } }
   body.preview-mode .rt-footer { display: none !important; }
   </style>
@@ -659,6 +663,11 @@
           <li><a href="/privacy.html">プライバシーポリシー</a></li>
         </ul>
       </div>
+    </div>
+    <div class="rt-footer-brand">
+      <img class="rt-footer-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+      <span class="rt-footer-ja">リハツール</span>
+      <p class="rt-footer-tagline">評価ツールと制度解説</p>
     </div>
   </footer>
 
