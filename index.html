@@ -138,7 +138,10 @@
   header h1 { font-size: 24px; font-weight: 700; line-height: 1.45; letter-spacing: 0.01em; margin-top: 8px; }
   header .hero-desc { font-size: 13px; color: var(--text2); margin-top: 10px; line-height: 1.7; }
   header .hero-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-  header .hero-pill { font-size: 11px; font-weight: 600; color: var(--text2); background: var(--surface2); border-radius: 20px; padding: 5px 12px; display: inline-block; }
+  header .hero-pill { font-size: 11px; font-weight: 600; color: var(--text2); background: var(--surface2); border-radius: 20px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 4px; }
+  .hero-visual { position: relative; margin-top: 32px; display: flex; justify-content: center; align-items: center; }
+  .hero-visual-glow { position: absolute; width: 160px; height: 160px; background: var(--accent); opacity: 0.15; filter: blur(40px); border-radius: 50%; z-index: 1; }
+  .hero-visual-logo { position: relative; z-index: 2; width: 100%; max-width: 280px; height: auto; }
   header .hero-cta { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
   header .hero-btn { display: block; text-align: center; text-decoration: none; font-size: 14px; font-weight: 700; padding: 12px; border-radius: var(--radius); }
   header .hero-btn-primary { background: var(--accent); color: #fff; }
@@ -289,7 +292,11 @@
 @media screen and (min-width: 768px) {
   .container { max-width: 900px; }
   .nav-container { max-width: 900px; }
-  header { max-width: 900px; padding: 48px 20px 40px; }
+  header { max-width: 1000px; padding: 64px 20px 48px; }
+  .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero-visual { margin-top: 0; }
+  .hero-visual-glow { width: 320px; height: 320px; filter: blur(60px); opacity: 0.1; }
+  .hero-visual-logo { max-width: 360px; }
   header h1 { font-size: 32px; }
   header .hero-desc { font-size: 15px; }
   header .hero-pill { font-size: 12px; padding: 6px 14px; }
@@ -368,17 +375,34 @@
 </nav>
 
 <header>
-  <p class="hero-eyebrow">PT・OT・ST向け</p>
-  <h1>点数だけでなく、現場での見方まで。</h1>
-  <p class="hero-desc">評価ツールと制度解説。理学療法士監修。</p>
-  <div class="hero-pills">
-    <span class="hero-pill">登録不要</span>
-    <span class="hero-pill">アプリ不要</span>
-    <span class="hero-pill">入力は外部に出ません</span>
-  </div>
-  <div class="hero-cta">
-    <a class="hero-btn hero-btn-primary" href="/#tools">評価ツールを使う</a>
-    <a class="hero-btn hero-btn-secondary" href="/articles/index.html">解説記事を見る</a>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow">PT・OT・ST向け</p>
+      <h1>点数だけでなく、現場での見方まで。</h1>
+      <p class="hero-desc">評価ツールと制度解説。理学療法士監修。</p>
+      <div class="hero-pills">
+        <span class="hero-pill">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          登録不要
+        </span>
+        <span class="hero-pill">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          アプリ不要
+        </span>
+        <span class="hero-pill">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          入力は外部に出ません
+        </span>
+      </div>
+      <div class="hero-cta">
+        <a class="hero-btn hero-btn-primary" href="/#tools">評価ツールを使う</a>
+        <a class="hero-btn hero-btn-secondary" href="/articles/index.html">解説記事を見る</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-glow"></div>
+      <img src="/img/rehatool-logo.png" alt="RehaTool" class="hero-visual-logo">
+    </div>
   </div>
 </header>
 
