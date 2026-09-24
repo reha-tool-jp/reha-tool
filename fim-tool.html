@@ -120,6 +120,8 @@ line-height: 1.6;
 animation: fadeIn 0.15s ease;
 }
 .mobile-criteria.show { display: block; }
+/* スマホ：判定基準パネルは項目行の下に全幅で表示（横に並んで点数ボタンが縮むのを防ぐ） */
+.mobile-criteria { flex: 0 0 100%; }
 .mobile-criteria .mc-score { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; }
 .mobile-criteria .mc-label { font-weight: 700; color: #ffd166; margin-bottom: 2px; }
 .mobile-criteria .mc-desc { opacity: 0.85; font-size: 0.69rem; }
