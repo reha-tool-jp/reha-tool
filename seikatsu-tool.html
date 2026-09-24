@@ -658,6 +658,7 @@ SECTIONS.forEach(sec => {
 });
 
 let state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
+state[0].bodyOpen = true;
 
 function updateSummary() {
   let biTotal = 0, evalCount = 0, issueCount = 0;
@@ -698,6 +699,7 @@ function selectBI(idx, score) {
   const biEl = document.getElementById('biscore-' + idx);
   if (biEl) biEl.textContent = score + '点';
   updateSummary();
+  advanceFrom(idx);
 }
 
 function selectLevel(idx, level) {
@@ -707,8 +709,18 @@ function selectLevel(idx, level) {
   });
   document.getElementById('badge-' + idx).innerHTML = getLevelBadge(state[idx], allItems[idx]);
   updateSummary();
+  advanceFrom(idx);
 }
-
+function setBodyOpen(idx, open) {
+  state[idx].bodyOpen = open;
+  const b = document.getElementById('body-' + idx), c = document.getElementById('chevron-' + idx);
+  if (b) b.classList.toggle('open', open);
+  if (c) c.classList.toggle('open', open);
+}
+// 選択したら、次の項目を開く（選んだ項目は開いたまま：課題・環境の入力を続けられる）
+function advanceFrom(idx) {
+  if (idx + 1 < allItems.length) setBodyOpen(idx + 1, true);
+}
 function setIssue(idx, val) {
   state[idx].issue = val;
   const card = document.getElementById('card-' + idx);
@@ -734,6 +746,7 @@ function toggleBody(idx) {
 function resetAll() {
   if (!confirm('すべての入力をリセットしますか？')) return;
   state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
+  state[0].bodyOpen = true;
   ['user-name','user-birth','user-sex','eval-date','eval-time-start','eval-time-end','eval-staff','eval-shoku','care-level'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
