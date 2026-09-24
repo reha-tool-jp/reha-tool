@@ -1628,7 +1628,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 
       <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:10px;">Berg Balance Scale（BBS）とは</h2>
 
-      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">Berg Balance Scale（BBS）は、1989年にKatherine Bergらによって開発されたバランス機能の評価スケールです。座位保持・立ち上がり・立位保持・移乗・片脚立位など15の動作課題を各0〜4点（計56点満点）で評価します。高齢者・脳卒中後・整形外科疾患など幅広い対象に使用されており、信頼性・妥当性ともに高いことが国際的に認められています。</p>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">Berg Balance Scale（BBS）は、1989年にKatherine Bergらによって開発されたバランス機能の評価スケールです。座位保持・立ち上がり・立位保持・移乗・片脚立位など14の動作課題を各0〜4点（計56点満点）で評価します。高齢者・脳卒中後・整形外科疾患など幅広い対象に使用されており、信頼性・妥当性ともに高いことが国際的に認められています。</p>
 
       <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;margin-top:8px;">判定の目安としては、0〜20点は重度バランス障害（車椅子依存）、21〜40点は中等度バランス障害（歩行に介助が必要）、41〜52点は軽度バランス障害（監視または独歩）、53〜56点は正常範囲とされています。ただし判定はあくまで目安であり、患者の背景・環境・目標に合わせた総合的な解釈が重要です。</p>
 
@@ -1742,7 +1742,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 
         <p style="font-size:0.875rem;font-weight:700;color:var(--text);margin-bottom:4px;">Q. BBSとTUGはどう使い分けますか？</p>
 
-        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. BBSは静的・動的バランスを15項目で包括的に評価するスケールで、能力の詳細な把握や経過観察に適しています。TUG（Timed Up and Go）は立ち上がり・歩行・方向転換・着座を一連の動作として時間計測するテストで、動的バランスと移動能力の簡便なスクリーニングに向いています。目的に応じて使い分けるか、併用することが推奨されます。</p>
+        <p style="font-size:0.875rem;color:var(--text2);line-height:1.8;">A. BBSは静的・動的バランスを14項目で包括的に評価するスケールで、能力の詳細な把握や経過観察に適しています。TUG（Timed Up and Go）は立ち上がり・歩行・方向転換・着座を一連の動作として時間計測するテストで、動的バランスと移動能力の簡便なスクリーニングに向いています。目的に応じて使い分けるか、併用することが推奨されます。</p>
 
       </div>
 
@@ -1785,6 +1785,10 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
     <ul style="font-size:13px;color:#6b6860;line-height:1.8;padding-left:1.5em;margin-bottom:0;">
 
       <li>Berg KO, et al.: Measuring balance in the elderly: preliminary development of an instrument. Physiotherapy Canada 41:304-311, 1989.</li>
+
+      <li>Berg Balance Test（14項目・56点満点の項目と採点基準）：<a href="https://www.apta.org/contentassets/8dc2763e7cfe4f97bbb9f98ccdf9d60a/bergbalancetest.pdf" target="_blank" rel="noopener" style="color:inherit;">APTA（米国理学療法協会）</a></li>
+
+      <li>Berg Balance Scale（項目ごとの指示文・採点基準）：<a href="https://www.physio-pedia.com/images/b/bd/Berg_balance_scale_with_instructions.pdf" target="_blank" rel="noopener" style="color:inherit;">Physiopedia</a></li>
 
     </ul>
 
@@ -1921,30 +1925,6 @@ const bbsData = [
 
     id: 1,
 
-    name: "座位保持",
-
-    instruction: "「背もたれなしで2分間座っていてください」",
-
-    options: [
-
-      { score: 4, text: "安全に2分間座位保持できる" },
-
-      { score: 3, text: "監視下で2分間座位保持できる" },
-
-      { score: 2, text: "30秒間座位保持できる" },
-
-      { score: 1, text: "10秒間座位保持できる" },
-
-      { score: 0, text: "支持なしでは10秒間座位保持できない" }
-
-    ]
-
-  },
-
-  {
-
-    id: 2,
-
     name: "立ち上がり",
 
     instruction: "「立ち上がってください。できるだけ手を使わないようにしてください」",
@@ -1967,7 +1947,7 @@ const bbsData = [
 
   {
 
-    id: 3,
+    id: 2,
 
     name: "立位保持（支持なし）",
 
@@ -1984,6 +1964,30 @@ const bbsData = [
       { score: 1, text: "数回試みて支持なしで30秒間立位保持できる" },
 
       { score: 0, text: "介助なしでは30秒間立位保持できない" }
+
+    ]
+
+  },
+
+  {
+
+    id: 3,
+
+    name: "座位保持",
+
+    instruction: "「背もたれなしで2分間座っていてください」",
+
+    options: [
+
+      { score: 4, text: "安全に2分間座位保持できる" },
+
+      { score: 3, text: "監視下で2分間座位保持できる" },
+
+      { score: 2, text: "30秒間座位保持できる" },
+
+      { score: 1, text: "10秒間座位保持できる" },
+
+      { score: 0, text: "支持なしでは10秒間座位保持できない" }
 
     ]
 
@@ -2065,21 +2069,21 @@ const bbsData = [
 
     id: 7,
 
-    name: "タンデム立位",
+    name: "両足を揃えた立位",
 
-    instruction: "「片方の足のつま先に、もう一方のかかとをつけて立ってください」",
+    instruction: "「両足を揃えて、何にもつかまらずに立っていてください」",
 
     options: [
 
-      { score: 4, text: "自立してタンデム位を30秒間保持できる" },
+      { score: 4, text: "自立して両足を揃え、1分間安全に立位保持できる" },
 
-      { score: 3, text: "自立して前足を出し15秒間保持できる" },
+      { score: 3, text: "監視下で1分間立位保持できる" },
 
-      { score: 2, text: "自立して小歩を踏み15秒間保持できる" },
+      { score: 2, text: "自立して両足を揃えられるが、30秒間保持できない" },
 
-      { score: 1, text: "歩を踏むのに介助が必要だが15秒間保持できる" },
+      { score: 1, text: "両足を揃える姿勢をとるのに介助が必要だが、15秒間保持できる" },
 
-      { score: 0, text: "立位・歩踏みに介助が必要で保持できない" }
+      { score: 0, text: "姿勢をとるのに介助が必要で、15秒間保持できない" }
 
     ]
 
@@ -2088,126 +2092,6 @@ const bbsData = [
   {
 
     id: 8,
-
-    name: "片脚立位",
-
-    instruction: "「できるだけ長く片足で立ってください」",
-
-    options: [
-
-      { score: 4, text: "自立して10秒以上保持できる" },
-
-      { score: 3, text: "自立して5〜9秒間保持できる" },
-
-      { score: 2, text: "自立して3秒間保持できる" },
-
-      { score: 1, text: "片脚を上げようとするが3秒間保持できない" },
-
-      { score: 0, text: "転倒防止のため介助が必要" }
-
-    ]
-
-  },
-
-  {
-
-    id: 9,
-
-    name: "立位での体幹回旋",
-
-    instruction: "「立ったまま後ろを左右それぞれ振り返ってください」",
-
-    options: [
-
-      { score: 4, text: "両方向で後方から物が見え、体重移動もよい" },
-
-      { score: 3, text: "片方のみ後方から物が見え、体重移動はよい" },
-
-      { score: 2, text: "横方向を向くことができ、バランスは保てる" },
-
-      { score: 1, text: "振り返る際に監視が必要" },
-
-      { score: 0, text: "転倒防止のため介助が必要" }
-
-    ]
-
-  },
-
-  {
-
-    id: 10,
-
-    name: "床から物を拾う",
-
-    instruction: "「足の前に置いてあるスリッパを拾ってください」",
-
-    options: [
-
-      { score: 4, text: "安全かつ容易に拾うことができる" },
-
-      { score: 3, text: "監視下で拾うことができる" },
-
-      { score: 2, text: "2〜5cmまで近づけるがバランスを保てる" },
-
-      { score: 1, text: "拾うことができず、監視が必要" },
-
-      { score: 0, text: "転倒防止のため介助が必要" }
-
-    ]
-
-  },
-
-  {
-
-    id: 11,
-
-    name: "振り返り（左右）",
-
-    instruction: "「左を向いてください（右も同様）」",
-
-    options: [
-
-      { score: 4, text: "安全に振り返ることができる" },
-
-      { score: 3, text: "監視下で安全に振り返れる" },
-
-      { score: 2, text: "横方向のみ、監視下で振り返れる" },
-
-      { score: 1, text: "振り返る際に監視が必要" },
-
-      { score: 0, text: "転倒防止のため介助が必要" }
-
-    ]
-
-  },
-
-  {
-
-    id: 12,
-
-    name: "踏み台昇降",
-
-    instruction: "「踏み台（または段差）に右足→左足の順で乗り、降りてください（4回）」",
-
-    options: [
-
-      { score: 4, text: "独立して安全に20秒以内に8回踏める" },
-
-      { score: 3, text: "独立して8回踏めるが20秒超" },
-
-      { score: 2, text: "監視下で4回踏める" },
-
-      { score: 1, text: "最小介助で2回踏める" },
-
-      { score: 0, text: "転倒防止のため介助が必要、踏めない" }
-
-    ]
-
-  },
-
-  {
-
-    id: 13,
 
     name: "前方リーチ",
 
@@ -2231,21 +2115,21 @@ const bbsData = [
 
   {
 
-    id: 14,
+    id: 9,
 
-    name: "片足交互踏み（立位）",
+    name: "床から物を拾う",
 
-    instruction: "「手すりを使わず、片足を段差に交互に乗せてください（各4回）」",
+    instruction: "「足の前に置いてあるスリッパを拾ってください」",
 
     options: [
 
-      { score: 4, text: "独立して安全に20秒以内に8回できる" },
+      { score: 4, text: "安全かつ容易に拾うことができる" },
 
-      { score: 3, text: "独立して8回できるが20秒超" },
+      { score: 3, text: "監視下で拾うことができる" },
 
-      { score: 2, text: "監視下で4回できる" },
+      { score: 2, text: "2〜5cmまで近づけるがバランスを保てる" },
 
-      { score: 1, text: "最小介助で2回できる" },
+      { score: 1, text: "拾うことができず、監視が必要" },
 
       { score: 0, text: "転倒防止のため介助が必要" }
 
@@ -2255,28 +2139,123 @@ const bbsData = [
 
   {
 
-    id: 15,
+    id: 10,
 
-    name: "立位から歩行開始",
+    name: "後ろを振り返る（左右）",
 
-    instruction: "「前を向いたまま、少し歩いてください」",
+    instruction: "「立ったまま後ろを左右それぞれ振り返ってください」",
 
     options: [
 
-      { score: 4, text: "安全に方向を変えながら歩き出せる" },
+      { score: 4, text: "両方向で後方から物が見え、体重移動もよい" },
 
-      { score: 3, text: "監視下で方向を変えながら歩き出せる" },
+      { score: 3, text: "片方のみ後方から物が見え、体重移動はよい" },
 
-      { score: 2, text: "ゆっくり歩き出せる" },
+      { score: 2, text: "横方向を向くことができ、バランスは保てる" },
 
-      { score: 1, text: "2回以上の試みで方向転換できる" },
+      { score: 1, text: "振り返る際に監視が必要" },
 
-      { score: 0, text: "方向転換時に介助が必要" }
+      { score: 0, text: "転倒防止のため介助が必要" }
+
+    ]
+
+  },
+
+  {
+
+    id: 11,
+
+    name: "360度回転",
+
+    instruction: "「完全に1周回ってください。少し止まって、反対方向にも1周回ってください」",
+
+    options: [
+
+      { score: 4, text: "左右とも4秒以内に安全に1周できる" },
+
+      { score: 3, text: "片方向のみ4秒以内に安全に1周できる" },
+
+      { score: 2, text: "安全に1周できるが、動作が遅い" },
+
+      { score: 1, text: "近くでの監視または口頭指示が必要" },
+
+      { score: 0, text: "回転中に介助が必要" }
+
+    ]
+
+  },
+
+  {
+
+    id: 12,
+
+    name: "踏み台昇降",
+
+    instruction: "「踏み台（または段差）に左右の足を交互に乗せてください。各足4回ずつ乗せるまで続けてください」",
+
+    options: [
+
+      { score: 4, text: "独立して安全に20秒以内に8回踏める" },
+
+      { score: 3, text: "独立して8回踏めるが20秒超" },
+
+      { score: 2, text: "監視下で4回踏める" },
+
+      { score: 1, text: "最小介助で2回踏める" },
+
+      { score: 0, text: "転倒防止のため介助が必要、踏めない" }
+
+    ]
+
+  },
+
+  {
+
+    id: 13,
+
+    name: "タンデム立位",
+
+    instruction: "「片方の足のつま先に、もう一方のかかとをつけて立ってください」",
+
+    options: [
+
+      { score: 4, text: "自立してタンデム位を30秒間保持できる" },
+
+      { score: 3, text: "自立して前足を出し30秒間保持できる" },
+
+      { score: 2, text: "自立して小歩を踏み30秒間保持できる" },
+
+      { score: 1, text: "歩を踏むのに介助が必要だが15秒間保持できる" },
+
+      { score: 0, text: "立位・歩踏みに介助が必要で保持できない" }
+
+    ]
+
+  },
+
+  {
+
+    id: 14,
+
+    name: "片脚立位",
+
+    instruction: "「できるだけ長く片足で立ってください」",
+
+    options: [
+
+      { score: 4, text: "自立して10秒以上保持できる" },
+
+      { score: 3, text: "自立して5〜9秒間保持できる" },
+
+      { score: 2, text: "自立して3秒間保持できる" },
+
+      { score: 1, text: "片脚を上げようとするが3秒間保持できない" },
+
+      { score: 0, text: "転倒防止のため介助が必要" }
 
     ]
 
   }
-
 ];
 
 
@@ -2479,7 +2458,7 @@ function buildBBSPrintCols() {
 
     const clone = item.cloneNode(true);
 
-    (i < 8 ? col1 : col2).appendChild(clone);
+    (i < 7 ? col1 : col2).appendChild(clone);
 
   });
 
