@@ -552,6 +552,9 @@
   .global-nav.rt-gnav .nav-links a { font-size: 15px; padding: 6px 14px; border-radius: 20px; }
 }
 @media print { .global-nav.rt-gnav { display: none !important; } }
+/* print: ツール導入文（見出し・説明）は印刷・プレビューに含めない */
+@media print { .tool-hook, .tool-intro { display: none !important; } }
+body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !important; }
 /* rt-gnav-pin: ナビ・フッターの書体と配色をTOPに固定（ページ固有の書体・色の影響を受けない） */
 .global-nav.rt-gnav { border-bottom-color: #e0ddd4; }
 .global-nav.rt-gnav .nav-container, .rt-footer-v2 { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif; }
