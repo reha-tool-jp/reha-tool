@@ -12,6 +12,7 @@
 <link rel="icon" type="image/png" href="/images/icon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a5c6b">
 <title>生活機能チェックシート（別紙様式3-2） | リハツール</title>
 <meta name="description" content="無料で使える生活機能チェックシート（別紙様式3-2）。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力しA4一枚で印刷。登録不要。">
 <script type="application/ld+json">
@@ -251,6 +252,14 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使える生活機能チェックシート（別紙様式3-2）。個別機能訓練加算(Ⅱ)・LIFE提出対応。ADL・IADL・起居動作18項目をスマホで入力しA4一枚で印刷。登録不要。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/seikatsu-tool.html">
+<style>
+/* 開いている項目のタイトル行を強調（画面のみ。印刷には一切出ない） */
+@media screen {
+  .item-card:has(> .item-body.open) > .item-header { background: var(--accent-light, #e8f2ed); border-left: 4px solid var(--accent, #2a5c45); padding-left: 12px; }
+  .item-card:has(> .item-body.open) > .item-header .item-name { color: var(--accent, #2a5c45); }
+  .item-card:has(> .item-body.open) > .item-header .item-num { color: var(--accent, #2a5c45); font-weight: 700; }
+}
+</style>
 </head>
 
 <body>

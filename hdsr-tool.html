@@ -618,6 +618,14 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使える長谷川式認知症スケール（HDS-R）採点ツール。9項目・30点満点で認知機能を評価。20点以下で認知症疑いの判定を自動表示。登録不要・印刷・PDF保存対応。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/hdsr-tool.html">
+<style>
+/* 開いている項目のタイトル行を強調（画面のみ。印刷には一切出ない） */
+@media screen {
+  .item-card:has(> .item-body.open) > .item-header { background: var(--accent-light, #e8f2ed); border-left: 4px solid var(--accent, #2a5c45); padding-left: 12px; }
+  .item-card:has(> .item-body.open) > .item-header .item-name { color: var(--accent, #2a5c45); }
+  .item-card:has(> .item-body.open) > .item-header .item-num { color: var(--accent, #2a5c45); font-weight: 700; }
+}
+</style>
 </head>
 
 <body>

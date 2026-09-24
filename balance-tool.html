@@ -25,6 +25,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a5c6b">
 
 <title>バランス評価ツール（BBS・ベルグバランススケール） | リハツール</title>
 
@@ -1301,6 +1302,14 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使えるバランス評価ツール。Berg Balance Scale（BBS）14項目・56点満点で転倒リスクを評価。片脚立位・ロンベルグテストはストップウォッチで計測。登録不要・印刷・PDF保存対応。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/balance-tool.html">
+<style>
+/* 開いている項目のタイトル行を強調（画面のみ。印刷には一切出ない） */
+@media screen {
+  .bbs-item:has(> .bbs-item-body.open) > .bbs-item-header { background: var(--accent-light); border-left: 4px solid var(--primary); padding-left: 12px; }
+  .bbs-item:has(> .bbs-item-body.open) > .bbs-item-header .bbs-item-name { font-weight: 700; color: var(--primary); }
+  .bbs-item:has(> .bbs-item-body.open) > .bbs-item-header .bbs-item-num { color: var(--primary); font-weight: 700; }
+}
+</style>
 </head>
 
 <body>
