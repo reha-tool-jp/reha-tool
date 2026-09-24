@@ -1310,6 +1310,16 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
   .bbs-item:has(> .bbs-item-body.open) > .bbs-item-header .bbs-item-num { color: var(--primary); font-weight: 700; }
 }
 </style>
+<style>
+/* 帯（ナビが隠れる位置）からトップへ戻る導線：帯の左端に小さく「←／TOP」（行は増やさない） */
+header .band-back { display: flex; flex-direction: column; align-items: center; justify-content: center; align-self: stretch; flex: 0 0 auto; margin: -8px 12px -8px -6px; padding: 0 8px; min-width: 40px; color: #fff; text-decoration: none; opacity: 0.9; line-height: 1.1; }
+header .band-back span { font-size: 1.15rem; }
+header .band-back small { font-size: 0.6rem; letter-spacing: 0.06em; }
+header .band-back:hover { opacity: 1; }
+header .band-back + div { margin-right: auto; }
+@media print { header .band-back { display: none !important; } }
+body.preview-mode header .band-back { display: none !important; }
+</style>
 </head>
 
 <body>
@@ -1330,6 +1340,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 
 
 <header>
+<a class="band-back" href="/" aria-label="リハツールのトップへ戻る"><span>←</span><small>TOP</small></a>
 
   <div class="header-left">
 
