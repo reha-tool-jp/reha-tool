@@ -716,6 +716,12 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使えるTUG（Timed Up and Go）・10m歩行テストの計測ツール。ストップウォッチ内蔵で複数回計測し平均タイムを自動算出。歩数を入力すれば歩行速度・歩幅・歩行率（ケイデンス）も同時に自動計算できます。登録不要・印刷・PDF保存対応。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/walk-tool.html">
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 
 <body>

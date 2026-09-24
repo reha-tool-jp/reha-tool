@@ -581,6 +581,12 @@
 @media screen and (min-width: 768px) { .rt-footer-v2 .rt-footer-brand { max-width: 900px; } }
 @media (max-width: 560px) { .rt-footer-v2 .rt-footer-inner { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 24px 16px; } .rt-footer-v2 .rt-footer-group:nth-child(1) { grid-row: 1 / 3; } .rt-footer-v2 .rt-footer-group:nth-child(2) { grid-column: 2; grid-row: 1; } .rt-footer-v2 .rt-footer-group:nth-child(3) { grid-column: 2; grid-row: 2; } }
   </style>
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 <body>
 <nav class="global-nav rt-gnav">

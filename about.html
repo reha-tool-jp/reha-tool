@@ -217,6 +217,12 @@ header h1 { font-size: 18px; font-weight: 700; }
 <meta property="og:description" content="リハツールの運営者紹介。臨床25年目の理学療法士が、現場で本当に使えるツールと制度解説を提供しています。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/about.html">
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 
 <body>

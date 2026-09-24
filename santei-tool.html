@@ -784,6 +784,12 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使えるリハビリ算定日数計算ツール。発症日・手術日を入力するだけで疾患別リハビリの算定上限日数と13単位制限の開始日を自動計算。脳血管・運動器・心大血管・廃用・呼吸器対応。登録不要。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/santei-tool.html">
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 
 <body>
