@@ -1292,8 +1292,7 @@ function selectOption(itemIdx, score) {
     btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
   });
   updateTotal();
-  // 選択したら、その項目を閉じて次の項目を開く
-  setBodyOpen(itemIdx, false);
+  // 選択したら、次の項目を開く（選んだ項目は開いたまま：点数を確認しながら次へ進める）
   if (itemIdx + 1 < ITEMS.length) setBodyOpen(itemIdx + 1, true);
 }
 function setBodyOpen(i, open) {
