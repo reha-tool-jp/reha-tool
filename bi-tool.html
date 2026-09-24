@@ -1236,7 +1236,8 @@ const ITEMS = [
 
 let scores = new Array(ITEMS.length).fill(null);
 
-let openStates = new Array(ITEMS.length).fill(true);
+let openStates = new Array(ITEMS.length).fill(false);
+openStates[0] = true;
 
 
 
@@ -1289,11 +1290,17 @@ function selectOption(itemIdx, score) {
   document.querySelectorAll('.option-btn[data-item="' + itemIdx + '"]').forEach(btn => {
 
     btn.classList.toggle('selected', parseInt(btn.dataset.score) === score);
-
   });
-
   updateTotal();
-
+  // 選択したら、その項目を閉じて次の項目を開く
+  setBodyOpen(itemIdx, false);
+  if (itemIdx + 1 < ITEMS.length) setBodyOpen(itemIdx + 1, true);
+}
+function setBodyOpen(i, open) {
+  openStates[i] = open;
+  const b = document.getElementById('body-' + i), c = document.getElementById('chevron-' + i);
+  if (b) b.classList.toggle('open', open);
+  if (c) c.classList.toggle('open', open);
 }
 
 
@@ -1315,9 +1322,8 @@ function resetAll() {
   scores = new Array(ITEMS.length).fill(null);
 
   document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-
   updateTotal();
-
+  ITEMS.forEach((_, i) => setBodyOpen(i, i === 0));
 }
 
 
@@ -1468,13 +1474,13 @@ function render() {
 
           <span class="item-score-badge" id="badge-${i}">—</span>
 
-          <span class="item-chevron open" id="chevron-${i}">▲</span>
+          <span class="item-chevron${openStates[i] ? ' open' : ''}" id="chevron-${i}">▲</span>
 
         </div>
 
       </div>
 
-      <div class="item-body open" id="body-${i}">
+      <div class="item-body${openStates[i] ? ' open' : ''}" id="body-${i}">
 
         <div class="options">
 
