@@ -790,11 +790,23 @@ function togglePreview() {
     div.innerHTML = buildPrintDOM(adlMemo, iadlMemo, kikyoMemo);
     document.body.appendChild(div.firstElementChild);
     document.body.classList.add('preview-mode');
+    const overlay = document.getElementById('print-overlay');
+    // 描画後の実際の幅を取得し、画面幅に収まる縮小率を計算
+    requestAnimationFrame(() => {
+      const scale = Math.min(1, (window.innerWidth * 0.96) / overlay.scrollWidth);
+      overlay.style.transformOrigin = 'top left';
+      overlay.style.transform = `scale(${scale})`;
+      overlay.style.width = `${100 / scale}%`;
+    });
     window.scrollTo(0, 0);
   } else {
     document.body.classList.remove('preview-mode');
     const overlay = document.getElementById('print-overlay');
-    if (overlay) overlay.remove();
+    if (overlay) {
+      overlay.style.transform = '';
+      overlay.style.width = '';
+      overlay.remove();
+    }
   }
 }
 
