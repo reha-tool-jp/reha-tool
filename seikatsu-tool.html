@@ -268,48 +268,14 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 .tool-disclaimer { font-size: 13px; color: var(--text3); margin-top: 12px; }
 </style>
 <style>
-/* ===== プレビューモード（SS用・印刷とは別に画面上へコンパクト表示） ===== */
+/* ===== プレビューモード（SS用・印刷用の#print-overlayをそのまま画面表示） ===== */
 .btn-preview { background: #6b5b95; color: #fff; }
 .btn-preview:hover { background: #574a7c; }
 #preview-back-bar { display: none; padding: 12px 16px; text-align: center; }
 #preview-back-bar button { background: #6b5b95; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer; }
 body.preview-mode #preview-back-bar { display: block; }
-body.preview-mode { background: white !important; font-size: 13px; }
-body.preview-mode .global-nav { display: none !important; }
-body.preview-mode .breadcrumb { display: none !important; }
-body.preview-mode .author-block-top { display: none !important; }
-body.preview-mode .blank-print-box { display: none !important; }
-body.preview-mode .info-section { display: none !important; }
-body.preview-mode .btn-row { display: none !important; }
-body.preview-mode .pwa-hint { display: none !important; }
-body.preview-mode .adsbygoogle,
-body.preview-mode ins.adsbygoogle { display: none !important; }
-body.preview-mode .container { padding: 4px 2px; max-width: 100%; }
-body.preview-mode header { padding: 6px 12px; }
-body.preview-mode header p { display: none !important; }
-body.preview-mode .info-block { margin-bottom: 6px; }
-body.preview-mode .info-row { padding: 4px 8px; margin-bottom: 3px; gap: 6px; }
-body.preview-mode .info-row label { font-size: 0.6rem; min-width: 60px; }
-body.preview-mode .info-input,
-body.preview-mode .info-select { font-size: 0.65rem; pointer-events: none; }
-body.preview-mode .summary-bar { padding: 6px 8px; margin-bottom: 6px; }
-body.preview-mode .summary-num,
-body.preview-mode .summary-issue { font-size: 20px; }
-body.preview-mode .summary-label { font-size: 0.6rem; }
-body.preview-mode .item-card { box-shadow: none; border: none; border-bottom: 1px solid #ddd; border-radius: 0; margin-bottom: 0; }
-body.preview-mode .item-header { padding: 3px 6px; cursor: default; }
-body.preview-mode .item-num { font-size: 0.6rem; }
-body.preview-mode .item-name { font-size: 0.72rem; }
-body.preview-mode .item-chevron { display: none !important; }
-body.preview-mode .item-body { display: block !important; padding: 2px 6px 4px 6px; }
-body.preview-mode .bi-options,
-body.preview-mode .level-grid { gap: 2px; }
-body.preview-mode .bi-btn:not(.selected) { display: none !important; }
-body.preview-mode .level-btn:not([class*="sel-"]) { display: none !important; }
-body.preview-mode .issue-row { margin-top: 2px; }
-body.preview-mode .issue-opt:not([class*="active-"]) { display: none !important; }
-body.preview-mode .memo-toggle { display: none !important; }
-body.preview-mode .memo-area { display: block; margin-top: 2px; font-size: 0.65rem; padding: 2px 4px; border: 1px solid #ccc; pointer-events: none; }
+body.preview-mode > *:not(#print-overlay):not(#preview-back-bar) { display: none !important; }
+body.preview-mode #print-overlay { display: block !important; }
 </style>
 </head>
 
@@ -349,7 +315,7 @@ body.preview-mode .memo-area { display: block; margin-top: 2px; font-size: 0.65r
 <h2 class="tool-hook" style="font-size:18px;font-weight:700;color:var(--heading);margin-bottom:8px;">チェックしながら、記述欄まで残せる</h2>
 <p class="tool-intro" style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:20px;">別紙様式3-2のADL・IADL・起居動作を、スマホでその場で入力・印刷できます。同じ「自立」でも、環境や状況の記述欄まで残すかどうかで見えるリスクが変わる点に気づきやすくなります。白紙のまま印刷することもできるので、居宅訪問後の書類作成や、現場での手書き記入の手間を減らせます。</p>
 
-<div class="blank-print-box" style="background:var(--accent-light);border:1px solid var(--accent);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;">
+<div style="background:var(--accent-light);border:1px solid var(--accent);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;">
   <div style="font-weight:700;font-size:15px;color:var(--accent);margin-bottom:6px;">📄 様式をそのまま印刷したい方へ</div>
   <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:10px;">何も入力しなくても、このボタンを押すだけで別紙様式3-2の白紙シートをそのまま印刷・PDF保存できます。</p>
   <button class="btn btn-primary" style="width:100%;" onclick="printPage()">🖨️ 白紙のまま印刷する</button>
@@ -810,12 +776,25 @@ function toggleBody(idx) {
 }
 
 function togglePreview() {
-  document.body.classList.toggle('preview-mode');
-  if (document.body.classList.contains('preview-mode')) {
-    document.querySelectorAll('.memo-area').forEach(el => {
-      el.style.display = el.value.trim() ? '' : 'none';
+  if (!document.body.classList.contains('preview-mode')) {
+    state.forEach((s, i) => {
+      const el = document.getElementById('memo-' + i);
+      if (el) s.memo = el.value;
     });
+    const adlMemo   = document.getElementById('adl-memo')?.value   || '';
+    const iadlMemo  = document.getElementById('iadl-memo')?.value  || '';
+    const kikyoMemo = document.getElementById('kikyo-memo')?.value || '';
+    const old = document.getElementById('print-overlay');
+    if (old) old.remove();
+    const div = document.createElement('div');
+    div.innerHTML = buildPrintDOM(adlMemo, iadlMemo, kikyoMemo);
+    document.body.appendChild(div.firstElementChild);
+    document.body.classList.add('preview-mode');
     window.scrollTo(0, 0);
+  } else {
+    document.body.classList.remove('preview-mode');
+    const overlay = document.getElementById('print-overlay');
+    if (overlay) overlay.remove();
   }
 }
 
