@@ -218,17 +218,17 @@
 
 
 
-  .sw-btns { display: flex; gap: 10px; justify-content: center; }
+  .sw-btns { display: flex; gap: 8px; justify-content: center; }
 
   .sw-btn {
 
-    padding: 12px 28px; font-size: 16px; font-weight: 700;
+    padding: 12px 8px; font-size: 16px; font-weight: 700;
 
     border-radius: var(--radius); cursor: pointer; font-family: inherit;
 
     border: none; transition: opacity 0.1s, transform 0.1s;
 
-    min-width: 120px;
+    flex: 1 1 0; min-width: 0; max-width: 140px; white-space: nowrap;
 
   }
 
