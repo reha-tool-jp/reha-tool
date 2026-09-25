@@ -1320,6 +1320,12 @@ header .band-back + div { margin-right: auto; }
 @media print { header .band-back { display: none !important; } }
 body.preview-mode header .band-back { display: none !important; }
 </style>
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 
 <body>

@@ -226,6 +226,12 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:description" content="無料で使える基本チェックリスト（総合事業）。25項目をタップで入力し、7つのドメインのリスク判定を自動表示。BMI自動計算対応。登録不要・印刷対応。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/kihon-checklist.html">
+<style>
+/* 帯の中身（タイトル・点数バッジ）を、ナビ・本文と同じ900pxの範囲にそろえる（PC幅のみ・帯の背景は全幅のまま） */
+@media screen and (min-width: 768px) {
+  body:not(.preview-mode) > header { padding-left: max(20px, calc(50% - 430px)); padding-right: max(20px, calc(50% - 430px)); }
+}
+</style>
 </head>
 
 <body>

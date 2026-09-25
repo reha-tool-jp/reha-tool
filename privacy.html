@@ -99,6 +99,14 @@
 @media (max-width: 560px) { .rt-footer-v2 .rt-footer-inner { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 24px 16px; } .rt-footer-v2 .rt-footer-group:nth-child(1) { grid-row: 1 / 3; } .rt-footer-v2 .rt-footer-group:nth-child(2) { grid-column: 2; grid-row: 1; } .rt-footer-v2 .rt-footer-group:nth-child(3) { grid-column: 2; grid-row: 2; } }
   </style>
 <link rel="canonical" href="https://reha-tool.jp/privacy.html">
+<style>
+/* 幅の統一：他ページ(terms等)と同じ border-box にそろえる（ナビ900px／本文は余白込みで900px） */
+.container, .nav-container { box-sizing: border-box; }
+</style>
+<style>
+/* グロナビの背景を他ページと同じ白に（このページは色変数が未定義のため） */
+.global-nav.rt-gnav { background: #fff; }
+</style>
 </head>
 <body>
 <nav class="global-nav rt-gnav">
