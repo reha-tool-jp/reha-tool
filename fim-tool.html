@@ -149,6 +149,19 @@ animation: fadeIn 0.15s ease;
 .btn-copy { background: var(--header-tool); color: white; }
 .btn-copy:hover { background: #204632; }
 .btn-copy.copied { background: #27ae60; }
+.btn-save { background: var(--primary); color: white; }
+.btn-save:hover { background: #163d5a; }
+.btn-load { background: var(--surface); color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-load:hover { background: #f0f4f8; }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px);
+  background: var(--primary); color: #fff; padding: 12px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 1000; max-width: 90%; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media print { .toast { display: none !important; } }
+body.preview-mode .toast { display: none !important; }
 
 @media print { .author-block-top, .author-block-bottom { display: none !important; }
   @page { size: A4 portrait; margin: 8mm 10mm; }
@@ -623,6 +636,12 @@ body.preview-mode header .band-back { display: none !important; }
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
+<div class="actions" style="margin-top:10px;">
+<button class="btn btn-save" onclick="saveData()">💾 保存（ファイルに書き出す）</button>
+<button class="btn btn-load" onclick="document.getElementById('load-file-input').click()">📂 前回のデータを読み込む</button>
+<input type="file" id="load-file-input" accept=".json" style="display:none;" onchange="loadData(event)">
+</div>
+<div id="toast" class="toast"></div>
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
 
     <div style="margin-bottom:28px;">
@@ -634,6 +653,15 @@ body.preview-mode header .band-back { display: none !important; }
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">「👁 プレビュー」は全ての結果を画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「入院時FIM合計」を入力すると、<strong>FIM利得（退院時FIM−入院時FIM）</strong>を自動計算します。FIM利得は回復期リハビリテーション病棟における実績指数の算出や、リハビリテーションの効果判定に用いられます。入院時の合計点のみ入力すれば算出できるため、退院時評価の記録としてそのままご活用いただけます。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">前回のデータを引き継いで使う方法</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">1. 今回の入力が終わったら「💾 保存（ファイルに書き出す）」を押してファイルを保存してください。保存すると「山田太郎_20260926.json」のような名前で保存されますが、ファイル名は自由にリネームしていただいて構いません。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">2. 保存先は端末によって異なります。パソコンの場合は、患者さんごとにフォルダを作り、そのファイルを入れておいてください。スマホ・タブレットの場合は、多くの場合「ダウンロード」フォルダに自動で入ります。ファイル名に患者さんの名前が入っているので、次回はファイル一覧から名前で探してください（後から「ファイル」アプリでフォルダに移動していただいても構いません）。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">3. 次回は、入力を始める前に「📂 前回のデータを読み込む」からそのファイルを選んでください。前回の点数や基本情報がすべて復元されるので、変化があった項目だけ直せば完了です（FIMの経時的な変化を比較・更新するのに便利です）。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">保存したデータはお使いの端末のファイルとしてのみ保存され、サーバーに送信されることは一切ありません。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">ファイル名には入力した氏名がそのまま使われます。個人情報が気になる場合は、保存後にファイル名をイニシャルや、施設内で使っている管理番号（例：患者001_20260926.json）などに変更していただくことをおすすめします。</p>
     </div>
 
     <div style="margin-bottom:28px;">
@@ -1169,6 +1197,77 @@ if (!isNaN(admissionFim) && admissionFim >= 18 && admissionFim <= 126) {
 }
 
 document.getElementById('progress-fill').style.width = ((total - 18) / 108 * 100) + '%';
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function saveData() {
+  const patientName = document.getElementById('patient-name').value;
+  const evalDate = document.getElementById('eval-date').value;
+  const admissionFim = document.getElementById('admission-fim').value;
+  const evaluatorName = document.getElementById('evaluator-name').value;
+  
+  const data = {
+    patientName,
+    evalDate,
+    admissionFim,
+    evaluatorName,
+    scores
+  };
+  
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  
+  let baseName = patientName.trim();
+  if (!baseName) baseName = '無題';
+  const dateStr = evalDate ? evalDate.replace(/-/g, '') : new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const fileName = `${baseName}_${dateStr}.json`;
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('保存しました');
+}
+
+function loadData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.patientName !== undefined) document.getElementById('patient-name').value = data.patientName;
+      if (data.evalDate !== undefined) document.getElementById('eval-date').value = data.evalDate;
+      if (data.admissionFim !== undefined) document.getElementById('admission-fim').value = data.admissionFim;
+      if (data.evaluatorName !== undefined) document.getElementById('evaluator-name').value = data.evaluatorName;
+      
+      if (data.scores) {
+        for (const [key, value] of Object.entries(data.scores)) {
+          scores[key] = value;
+        }
+      }
+      
+      updateScores();
+      renderFIM();
+      showToast('データを読み込みました');
+    } catch (err) {
+      alert('ファイルの読み込みに失敗しました。');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
 }
 
 function resetAll() {
