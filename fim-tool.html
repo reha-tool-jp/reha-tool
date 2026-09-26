@@ -623,15 +623,6 @@ body.preview-mode header .band-back { display: none !important; }
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
-<div class="detail-table-wrap">
-  <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
-  <div id="fim-detail-accordion"></div>
-</div>
-
-<p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
-
-<div id="fim-info" style="display:none;"></div>
-
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
 
     <div style="margin-bottom:28px;">
@@ -752,6 +743,14 @@ body.preview-mode header .band-back { display: none !important; }
     </div>
 
   </div>
+<div class="detail-table-wrap">
+  <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
+  <div id="fim-detail-accordion"></div>
+</div>
+
+<p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+
+<div id="fim-info" style="display:none;"></div>
 
   <div id="references-block" style="margin-top:40px;border-top:1px solid #e0ddd4;padding-top:32px;">
     <h2 style="font-size:15px;font-weight:700;color:#2a5c45;margin-bottom:10px;">参考文献・出典</h2>
@@ -1071,7 +1070,7 @@ function buildCatDiv(cat) {
     itemDiv.className = 'fim-item';
     const nameDiv = document.createElement('div');
     nameDiv.className = 'item-name';
-    nameDiv.innerHTML = `${item.id}. ${item.name}` + (judgmentNotes[item.name] ? ` <a href="#fim-note-${item.id}" class="item-note-link" title="判断のポイントを見る">💡</a>` : '');
+    nameDiv.innerHTML = `${item.id}. ${item.name}` + (judgmentNotes[item.name] ? ` <a href="#fim-note-${item.id}" class="item-note-link" title="判断のポイントを見る" onclick="return jumpToNote('${item.id}')">💡</a>` : '');
     itemDiv.appendChild(nameDiv);
     const btnGroup = document.createElement('div');
     btnGroup.className = 'btn-group';
@@ -1258,6 +1257,16 @@ const judgmentNotes = {
 "問題解決": "社会的交流と同様、複雑な課題（7〜5点）と日常的な課題（5〜1点）で評価軸が分かれます。「解決できるか」ではなく「問題を認識し、判断し、行動できるか」を評価します。的外れな行動・危険な行動・行動しないことは減点対象です。",
 "記憶": "評価するのは3つに限定されます。①よく会う人を認識している（名前が言えなくてもよい）②日課を覚えている③人から頼まれたことに対応できる、の3点です。子供の頃の記憶や歴史の年号などは対象外です。"
 };
+
+function jumpToNote(itemId) {
+  const target = document.getElementById(`fim-note-${itemId}`);
+  if (!target) return true;
+  const details = target.closest('details');
+  if (details) details.open = true;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.pushState(null, '', `#fim-note-${itemId}`);
+  return false;
+}
 
 function renderDetailAccordion() {
   const container = document.getElementById('fim-detail-accordion');
