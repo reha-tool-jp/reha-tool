@@ -57,6 +57,8 @@
   .info-input::placeholder { color: var(--text3); font-weight: 400; }
   .info-select { flex: 1; font-size: 14px; font-weight: 600; border: none; outline: none; color: var(--text); font-family: inherit; background: transparent; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09d96' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px; }
   .info-block { margin-bottom: 16px; }
+  .birth-select-group { flex: 1; display: flex; gap: 6px; min-width: 0; }
+  .birth-select-group .info-select { flex: 1; min-width: 0; padding-right: 16px; background-position: right 2px center; }
   .summary-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .summary-stat { text-align: center; }
   .summary-num { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--accent); line-height: 1; }
@@ -353,7 +355,12 @@ body.preview-mode .toast { display: none !important; }
     </div>
     <div class="info-row">
       <label>生年月日</label>
-      <input class="info-input" type="date" id="user-birth">
+      <div class="birth-select-group">
+        <select class="info-select" id="user-birth-year" onchange="updateBirthValue()"></select>
+        <select class="info-select" id="user-birth-month" onchange="updateBirthValue()"></select>
+        <select class="info-select" id="user-birth-day" onchange="updateBirthValue()"></select>
+      </div>
+      <input type="hidden" id="user-birth">
     </div>
     <div class="info-row">
       <label>性別</label>
@@ -434,19 +441,21 @@ body.preview-mode .toast { display: none !important; }
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">生活機能チェックシートは、通所介護・地域密着型通所介護で個別機能訓練加算を算定する際に、利用者の居宅での生活状況を把握するために活用する様式です（別紙様式３－２）。ADL（食事・排泄・入浴・更衣など）、IADL（調理・洗濯・買い物など）、起居動作について、居宅を訪問した上で自立レベルと課題を確認します。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">画面下部の「🖨️ 印刷 / PDF保存」「👁 プレビュー（SS用）」ボタンで、入力内容をそのまま印刷・確認できます。何も入力せず様式のみを印刷したい場合は、ページ上部の「📄 白紙のまま印刷する」ボタンをご利用ください。「リセット」を押すと入力内容がすべて消去されます。</p>
-      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">いつ使うか</h3>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">前回のデータを引き継いで使う方法</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">1. 今回の入力が終わったら「保存」を押してファイルを保存してください。保存すると「山田太郎_20260926.json」のような名前で保存されますが、ファイル名は自由にリネームしていただいて構いません。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">2. 利用者さんごとにフォルダを作り、そのファイルを入れておいてください。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">3. 次回は、入力を始める前に「前回のデータを読み込む」からそのファイルを選んでください。前回の内容が全部入った状態になるので、変化があった項目だけ直せば完了です。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">保存したデータはお使いの端末のファイルとしてのみ保存され、サーバーに送信されることは一切ありません。</p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:0;margin-bottom:6px;">いつ使うか</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機能訓練計画の作成前、および計画の見直し時（3か月ごとに1回以上）の居宅訪問で使用します。生活機能チェックシートは、目標設定・個別機能訓練計画の作成の前に行うものとされています。</p>
       <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">確認する内容</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">ADL・IADL・起居動作の各項目を「自立」「見守り」「一部介助」「全介助」の4段階で評価し、それぞれに課題の有無を記載します。あわせて、実施場所や使用している福祉用具などの「環境」、生活環境の問題点や課題があれば「状況・生活課題」の欄に記載します。</p>
       <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">興味・関心チェックシートとの関係</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">生活機能チェックシートは、興味・関心チェックシート（別紙様式３－１）とセットで使うことが想定されています。生活機能チェックシートが「できること・できないこと」を把握するのに対し、興味・関心チェックシートは「本人がしたいこと・興味があること」を把握するもので、両方の情報を合わせることで個別機能訓練計画の目標がより具体的になります。</p>
-    </div>
-    <div style="margin-bottom:28px;">
-      <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">前回のデータを引き継いで使う方法</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">1. 今回の入力が終わったら「保存」を押してファイルを保存してください。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">2. 利用者さんごとにフォルダを作り、そのファイルを入れておいてください。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">3. 次回は、入力を始める前に「前回のデータを読み込む」からそのファイルを選んでください。前回の内容が全部入った状態になるので、変化があった項目だけ直せば完了です。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">保存したデータはお使いの端末のファイルとしてのみ保存され、サーバーに送信されることは一切ありません。</p>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">個別機能訓練加算(Ⅱ)とLIFE提出</h2>
@@ -722,6 +731,37 @@ SECTIONS.forEach(sec => {
 let state = allItems.map(() => ({ level: null, biScore: null, issue: null, memo: '', memoOpen: false, bodyOpen: false }));
 state[0].bodyOpen = true;
 
+// 生年月日：カレンダーではなく年/月/日のプルダウンで選ぶ（隠しinput#user-birthに YYYY-MM-DD 形式で保持）
+function populateBirthSelects() {
+  const yearSel = document.getElementById('user-birth-year');
+  const monthSel = document.getElementById('user-birth-month');
+  const daySel = document.getElementById('user-birth-day');
+  const nowYear = new Date().getFullYear();
+  let yearHtml = '<option value="">年</option>';
+  for (let y = nowYear; y >= nowYear - 120; y--) yearHtml += `<option value="${y}">${y}</option>`;
+  yearSel.innerHTML = yearHtml;
+  let monthHtml = '<option value="">月</option>';
+  for (let m = 1; m <= 12; m++) monthHtml += `<option value="${m}">${m}</option>`;
+  monthSel.innerHTML = monthHtml;
+  let dayHtml = '<option value="">日</option>';
+  for (let d = 1; d <= 31; d++) dayHtml += `<option value="${d}">${d}</option>`;
+  daySel.innerHTML = dayHtml;
+}
+
+function updateBirthValue() {
+  const y = document.getElementById('user-birth-year').value;
+  const m = document.getElementById('user-birth-month').value;
+  const d = document.getElementById('user-birth-day').value;
+  document.getElementById('user-birth').value = (y && m && d) ? `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}` : '';
+}
+
+function setBirthSelectsFromValue(v) {
+  const [y, m, d] = v ? v.split('-') : ['', '', ''];
+  document.getElementById('user-birth-year').value = y;
+  document.getElementById('user-birth-month').value = m ? String(Number(m)) : '';
+  document.getElementById('user-birth-day').value = d ? String(Number(d)) : '';
+}
+
 function updateSummary() {
   let biTotal = 0, evalCount = 0, issueCount = 0;
   state.forEach((s, i) => {
@@ -848,6 +888,7 @@ function resetAll() {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
+  setBirthSelectsFromValue('');
   const adlMemoEl = document.getElementById('adl-memo');
   const iadlMemoEl = document.getElementById('iadl-memo');
   const kikyoMemoEl = document.getElementById('kikyo-memo');
@@ -933,6 +974,7 @@ function loadData(event) {
       const el = document.getElementById(id);
       if (el && info[id] !== undefined) el.value = info[id];
     });
+    setBirthSelectsFromValue(document.getElementById('user-birth').value);
 
     if (Array.isArray(data.items)) {
       data.items.forEach((item, i) => {
@@ -977,10 +1019,8 @@ function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
     return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
   };
 
-  const getEvalDateStr = () => {
-    const v  = document.getElementById('eval-date').value;
-    const ts = document.getElementById('eval-time-start')?.value || '';
-    const te = document.getElementById('eval-time-end')?.value   || '';
+  const getEvalDateOnlyStr = () => {
+    const v = document.getElementById('eval-date').value;
     const YOUBI = ['日','月','火','水','木','金','土'];
     let dateStr = '令和　年　月　日';
     let youbi = '（　）';
@@ -990,8 +1030,13 @@ function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
       dateStr = '令和' + reiwa + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
       youbi = '（' + YOUBI[d.getDay()] + '）';
     }
-    const timeStr = (ts || '--:--') + '～' + (te || '--:--');
-    return dateStr + youbi + '　' + timeStr;
+    return dateStr + youbi;
+  };
+
+  const getEvalTimeStr = () => {
+    const ts = document.getElementById('eval-time-start')?.value || '';
+    const te = document.getElementById('eval-time-end')?.value   || '';
+    return (ts || '--:--') + '　～　' + (te || '--:--');
   };
 
   state.forEach((s, i) => {
@@ -1118,7 +1163,9 @@ function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
       </tr>
       <tr>
         <td class="pt-info-label" style="padding:12px 8px;">評価日時</td>
-        <td class="pt-info-value" colspan="5" style="padding:12px 8px;">${getEvalDateStr()}</td>
+        <td class="pt-info-value" colspan="3" style="padding:12px 8px;">${getEvalDateOnlyStr()}</td>
+        <td class="pt-info-label" style="padding:12px 8px;">時間</td>
+        <td class="pt-info-value" style="padding:22px 8px;letter-spacing:0.05em;">${getEvalTimeStr()}</td>
       </tr>
       <tr>
         <td class="pt-info-label" style="padding:12px 8px;">要介護度</td>
@@ -1270,6 +1317,7 @@ function render() {
   c.innerHTML = html;
 }
 
+populateBirthSelects();
 render();
 updateSummary();
 </script>
