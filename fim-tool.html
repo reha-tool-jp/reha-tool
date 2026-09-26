@@ -406,7 +406,7 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 .detail-table-wrap { background: var(--surface); border-radius: 12px; padding: 16px; margin-top: 16px; box-shadow: var(--shadow); }
 .detail-table-header { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
 .detail-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
-.detail-item summary { cursor: pointer; padding: 10px 12px; font-size: 13px; font-weight: 700; color: var(--text); background: var(--bg); list-style: none; }
+.detail-item summary { cursor: pointer; padding: 10px 12px; font-size: 13px; font-weight: 700; color: var(--text); background: var(--bg); list-style: none; scroll-margin-top: 100px; }
 .detail-item summary::-webkit-details-marker { display: none; }
 .detail-item table { width: 100%; border-collapse: collapse; font-size: 12px; }
 .detail-item td { padding: 6px 10px; border-top: 1px solid var(--border); color: var(--muted); }
@@ -1070,7 +1070,7 @@ function buildCatDiv(cat) {
     itemDiv.className = 'fim-item';
     const nameDiv = document.createElement('div');
     nameDiv.className = 'item-name';
-    nameDiv.innerHTML = `${item.id}. ${item.name}` + (judgmentNotes[item.name] ? ` <a href="#fim-note-${item.id}" class="item-note-link" title="判断のポイントを見る" onclick="return jumpToNote('${item.id}')">💡</a>` : '');
+    nameDiv.innerHTML = `${item.id}. ${item.name}` + (judgmentNotes[item.name] ? ` <a href="#section-${item.id}" class="item-note-link" title="判断のポイントを見る" onclick="return jumpToNote('${item.id}')">💡</a>` : '');
     itemDiv.appendChild(nameDiv);
     const btnGroup = document.createElement('div');
     btnGroup.className = 'btn-group';
@@ -1259,12 +1259,15 @@ const judgmentNotes = {
 };
 
 function jumpToNote(itemId) {
-  const target = document.getElementById(`fim-note-${itemId}`);
+  const target = document.getElementById(`section-${itemId}`);
   if (!target) return true;
   const details = target.closest('details');
   if (details) details.open = true;
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  history.pushState(null, '', `#fim-note-${itemId}`);
+  // .detail-item に overflow:hidden があるため scrollIntoView の scroll-margin-top が効かない。手動でオフセット分ずらしてスクロールする。
+  const headerOffset = 100;
+  const y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+  history.pushState(null, '', `#section-${itemId}`);
   return false;
 }
 
@@ -1282,7 +1285,7 @@ function renderDetailAccordion() {
       const note = judgmentNotes[item.name];
       const noteHtml = note ? `<div class="judgment-note" id="fim-note-${item.id}">💡 判断のポイント：${note}<br><a href="javascript:void(0)" class="judgment-note-back" onclick="history.back()">← 元の位置に戻る</a></div>` : '';
       html += `<details class="detail-item"${isFirst ? ' open' : ''}>
-<summary>${item.id}. ${item.name}</summary>
+<summary id="section-${item.id}">${item.id}. ${item.name}</summary>
 <table><tbody>${rows}</tbody></table>
 ${noteHtml}
 </details>`;
