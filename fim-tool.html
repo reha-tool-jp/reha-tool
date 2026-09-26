@@ -413,6 +413,10 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 .detail-item td.score-cell { font-weight: 700; color: var(--primary); width: 28px; }
 .detail-item td.label-cell { font-weight: 700; color: var(--text); width: 90px; }
 .judgment-note { font-size: 12px; color: var(--text); line-height: 1.7; padding: 10px 12px; background: #fff8e6; border-top: 1px solid var(--border); }
+.judgment-note-back { display: inline-block; margin-top: 6px; font-size: 11px; color: var(--primary); text-decoration: none; }
+.judgment-note-back:hover { text-decoration: underline; }
+.item-note-link { font-size: 11px; color: var(--primary); text-decoration: none; margin-left: 4px; font-weight: 400; }
+.item-note-link:hover { text-decoration: underline; }
 @media print { .detail-table-wrap { display: none !important; } }
 
 .tool-card {
@@ -619,9 +623,6 @@ body.preview-mode header .band-back { display: none !important; }
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
-<p class="pwa-hint" style="margin-top:6px;">「👁 プレビュー」は全ての結果を画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
-<p class="pwa-hint" style="margin-top:6px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
-
 <div class="detail-table-wrap">
   <div class="detail-table-header">📋 全18項目 判定基準（詳細）</div>
   <div id="fim-detail-accordion"></div>
@@ -635,7 +636,12 @@ body.preview-mode header .band-back { display: none !important; }
 
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">このツールについて</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">FIM評価ツールは、機能的自立度評価法（FIM）の18項目をブラウザ上で採点・集計できる無料ツールです。運動項目13項目・認知項目5項目のスコアを自動集計し、印刷・PDF保存に対応しています。回復期リハビリテーション病棟をはじめ、急性期・維持期など幅広い場面でご利用いただけます。入力データはすべてブラウザ内で処理され、外部に送信されることはありません。</p>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">点数はコピーで、確認はプレビューで</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">「👁 プレビュー」は全ての結果を画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「入院時FIM合計」を入力すると、<strong>FIM利得（退院時FIM−入院時FIM）</strong>を自動計算します。FIM利得は回復期リハビリテーション病棟における実績指数の算出や、リハビリテーションの効果判定に用いられます。入院時の合計点のみ入力すれば算出できるため、退院時評価の記録としてそのままご活用いただけます。</p>
     </div>
 
@@ -1065,7 +1071,7 @@ function buildCatDiv(cat) {
     itemDiv.className = 'fim-item';
     const nameDiv = document.createElement('div');
     nameDiv.className = 'item-name';
-    nameDiv.textContent = `${item.id}. ${item.name}`;
+    nameDiv.innerHTML = `${item.id}. ${item.name}` + (judgmentNotes[item.name] ? ` <a href="#fim-note-${item.id}" class="item-note-link" title="判断のポイントを見る">💡</a>` : '');
     itemDiv.appendChild(nameDiv);
     const btnGroup = document.createElement('div');
     btnGroup.className = 'btn-group';
@@ -1265,7 +1271,7 @@ function renderDetailAccordion() {
         rows += `<tr><td class="score-cell">${score}</td><td class="label-cell">${c.label}</td><td>${c.desc}</td></tr>`;
       });
       const note = judgmentNotes[item.name];
-      const noteHtml = note ? `<div class="judgment-note">💡 判断のポイント：${note}</div>` : '';
+      const noteHtml = note ? `<div class="judgment-note" id="fim-note-${item.id}">💡 判断のポイント：${note}<br><a href="javascript:void(0)" class="judgment-note-back" onclick="history.back()">← 元の位置に戻る</a></div>` : '';
       html += `<details class="detail-item"${isFirst ? ' open' : ''}>
 <summary>${item.id}. ${item.name}</summary>
 <table><tbody>${rows}</tbody></table>
