@@ -277,6 +277,22 @@ body.preview-mode #preview-back-bar { display: block; }
 body.preview-mode > *:not(#print-overlay):not(#preview-back-bar) { display: none !important; }
 body.preview-mode #print-overlay { display: block !important; }
 </style>
+<style>
+/* ===== 保存/読み込みボタン・トースト ===== */
+.btn-save { background: var(--accent); color: #fff; border: none; }
+.btn-save:hover { opacity: 0.88; }
+.btn-load { background: var(--surface); color: var(--accent); border: 1px solid var(--accent); }
+.btn-load:hover { background: var(--accent-light); }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px);
+  background: var(--heading); color: #fff; padding: 12px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 1000; max-width: 90%; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media print { .toast { display: none !important; } }
+body.preview-mode .toast { display: none !important; }
+</style>
 </head>
 
 <body>
@@ -403,7 +419,13 @@ body.preview-mode #print-overlay { display: block !important; }
     <button class="btn btn-preview" onclick="togglePreview()">👁 プレビュー（SS用）</button>
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
   </div>
+  <div class="btn-row" style="margin-top:10px;">
+    <button class="btn btn-save" onclick="saveData()">💾 保存（ファイルに書き出す）</button>
+    <button class="btn btn-load" onclick="document.getElementById('load-file-input').click()">📂 前回のデータを読み込む</button>
+    <input type="file" id="load-file-input" accept=".json" style="display:none;" onchange="loadData(event)">
+  </div>
   <p class="pwa-hint">📲 次回もすぐ開くには → ブラウザのメニューから「ホーム画面に追加」</p>
+  <div id="toast" class="toast"></div>
 
   <!-- 説明セクション -->
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
@@ -411,12 +433,20 @@ body.preview-mode #print-overlay { display: block !important; }
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">このツールについて</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">生活機能チェックシートは、通所介護・地域密着型通所介護で個別機能訓練加算を算定する際に、利用者の居宅での生活状況を把握するために活用する様式です（別紙様式３－２）。ADL（食事・排泄・入浴・更衣など）、IADL（調理・洗濯・買い物など）、起居動作について、居宅を訪問した上で自立レベルと課題を確認します。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">画面下部の「🖨️ 印刷 / PDF保存」「👁 プレビュー（SS用）」ボタンで、入力内容をそのまま印刷・確認できます。何も入力せず様式のみを印刷したい場合は、ページ上部の「📄 白紙のまま印刷する」ボタンをご利用ください。「リセット」を押すと入力内容がすべて消去されます。</p>
       <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">いつ使うか</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">個別機能訓練計画の作成前、および計画の見直し時（3か月ごとに1回以上）の居宅訪問で使用します。生活機能チェックシートは、目標設定・個別機能訓練計画の作成の前に行うものとされています。</p>
       <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">確認する内容</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">ADL・IADL・起居動作の各項目を「自立」「見守り」「一部介助」「全介助」の4段階で評価し、それぞれに課題の有無を記載します。あわせて、実施場所や使用している福祉用具などの「環境」、生活環境の問題点や課題があれば「状況・生活課題」の欄に記載します。</p>
       <h3 style="font-size:14px;font-weight:700;color:var(--text);margin-top:16px;margin-bottom:6px;">興味・関心チェックシートとの関係</h3>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">生活機能チェックシートは、興味・関心チェックシート（別紙様式３－１）とセットで使うことが想定されています。生活機能チェックシートが「できること・できないこと」を把握するのに対し、興味・関心チェックシートは「本人がしたいこと・興味があること」を把握するもので、両方の情報を合わせることで個別機能訓練計画の目標がより具体的になります。</p>
+    </div>
+    <div style="margin-bottom:28px;">
+      <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">前回のデータを引き継いで使う方法</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">1. 今回の入力が終わったら「保存」を押してファイルを保存してください。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">2. 利用者さんごとにフォルダを作り、そのファイルを入れておいてください。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">3. 次回は、入力を始める前に「前回のデータを読み込む」からそのファイルを選んでください。前回の内容が全部入った状態になるので、変化があった項目だけ直せば完了です。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">保存したデータはお使いの端末のファイルとしてのみ保存され、サーバーに送信されることは一切ありません。</p>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">個別機能訓練加算(Ⅱ)とLIFE提出</h2>
@@ -826,6 +856,111 @@ function resetAll() {
   if (kikyoMemoEl) kikyoMemoEl.value = '';
   render();
   updateSummary();
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+const INFO_FIELD_IDS = ['user-name','user-birth','user-sex','eval-date','eval-time-start','eval-time-end','eval-staff','eval-shoku','care-level'];
+
+function saveData() {
+  // メモ欄（環境）の入力中の値を state に反映してから書き出す
+  state.forEach((s, i) => {
+    const el = document.getElementById('memo-' + i);
+    if (el) s.memo = el.value;
+  });
+
+  const info = {};
+  INFO_FIELD_IDS.forEach(id => {
+    info[id] = document.getElementById(id)?.value || '';
+  });
+
+  const data = {
+    version: 1,
+    info: info,
+    items: state.map(s => ({ level: s.level, biScore: s.biScore, issue: s.issue, memo: s.memo })),
+    sectionMemo: {
+      adl: document.getElementById('adl-memo')?.value || '',
+      iadl: document.getElementById('iadl-memo')?.value || '',
+      kikyo: document.getElementById('kikyo-memo')?.value || '',
+    },
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const name = (document.getElementById('user-name')?.value || '').trim();
+  const safeName = (name || '無題').replace(/[\\/:*?"<>|]/g, '_');
+  const dateVal = document.getElementById('eval-date')?.value;
+  const d = dateVal ? new Date(dateVal) : new Date();
+  const dateStr = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+  const filename = `${safeName}_${dateStr}.json`;
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+
+  showToast('💾 保存しました：' + filename);
+}
+
+function loadData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    let data;
+    try {
+      data = JSON.parse(reader.result);
+    } catch (e) {
+      alert('ファイルの読み込みに失敗しました。生活機能チェックシートの保存データ（.json）を選択してください。');
+      event.target.value = '';
+      return;
+    }
+
+    const info = data.info || {};
+    INFO_FIELD_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && info[id] !== undefined) el.value = info[id];
+    });
+
+    if (Array.isArray(data.items)) {
+      data.items.forEach((item, i) => {
+        if (!state[i] || !item) return;
+        state[i].level = item.level ?? null;
+        state[i].biScore = item.biScore ?? null;
+        state[i].issue = item.issue ?? null;
+        state[i].memo = item.memo || '';
+      });
+    }
+
+    // render() はセクション状況・生活課題欄を空の状態で作り直すため、
+    // render() の後に値を流し込む
+    render();
+    updateSummary();
+
+    const sm = data.sectionMemo || {};
+    const adlMemoEl = document.getElementById('adl-memo');
+    const iadlMemoEl = document.getElementById('iadl-memo');
+    const kikyoMemoEl = document.getElementById('kikyo-memo');
+    if (adlMemoEl) adlMemoEl.value = sm.adl || '';
+    if (iadlMemoEl) iadlMemoEl.value = sm.iadl || '';
+    if (kikyoMemoEl) kikyoMemoEl.value = sm.kikyo || '';
+
+    showToast('前回の内容を表示しました。変わった部分だけ直してください');
+    event.target.value = '';
+  };
+  reader.readAsText(file);
 }
 
 function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
