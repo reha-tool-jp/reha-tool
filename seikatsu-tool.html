@@ -441,10 +441,14 @@ body.preview-mode .toast { display: none !important; }
   <div class="info-section" style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">このツールについて</h2>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。通所介護（デイサービス）の個別機能訓練加算の算定に必要な居宅訪問時の評価を、スマートフォンやタブレットで入力し、そのまま印刷・PDF保存できます。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">生活機能チェックシートは、通所介護・地域密着型通所介護で個別機能訓練加算を算定する際に、利用者の居宅での生活状況を把握するために活用する様式です（別紙様式３－２）。ADL（食事・排泄・入浴・更衣など）、IADL（調理・洗濯・買い物など）、起居動作について、居宅を訪問した上で自立レベルと課題を確認します。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">厚生労働省「別紙様式3-2（生活機能チェックシート）」に準拠した入力・印刷ツールです。個別機能訓練加算の算定に必要な居宅訪問時の評価を、その場で入力してそのまま印刷・PDF保存できます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">様式の各項目の意味や評価基準など、詳しい説明は<a href="https://reha-tool.jp/articles/seikatsu-chouhyo.html" style="color:var(--accent);font-weight:700;">こちらの記事</a>をご覧ください。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">画面下部の「🖨️ 印刷 / PDF保存」「👁 プレビュー（SS用）」ボタンで、入力内容をそのまま印刷・確認できます。何も入力せず様式のみを印刷したい場合は、ページ上部の「📄 白紙のまま印刷する」ボタンをご利用ください。「リセット」を押すと入力内容がすべて消去されます。</p>
+      <ul style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;padding-left:1.4em;">
+        <li>🖨️ 印刷/PDF保存：入力内容をそのまま印刷・PDF保存できます</li>
+        <li>👁 プレビュー（SS用）：入力内容を画面で確認できます</li>
+        <li>📄 白紙のまま印刷する：何も入力せず様式のみ印刷できます</li>
+        <li>リセット：入力内容をすべて消去します</li>
+      </ul>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">前回のデータを引き継いで使う方法</h2>
@@ -452,6 +456,9 @@ body.preview-mode .toast { display: none !important; }
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">2. 利用者さんごとにフォルダを作り、そのファイルを入れておいてください。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">3. 次回は、入力を始める前に「前回のデータを読み込む」からそのファイルを選んでください。前回の内容が全部入った状態になるので、変化があった項目だけ直せば完了です。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">保存したデータはお使いの端末のファイルとしてのみ保存され、サーバーに送信されることは一切ありません。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:16px;"><strong style="color:var(--text);">【パソコンの場合】</strong><br>保存時に「利用者さんごとのフォルダ」を指定して保存できます。次回はそのフォルダから前回のファイルを選んで読み込んでください。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:12px;"><strong style="color:var(--text);">【スマホ・タブレットの場合】</strong><br>保存すると、多くの場合「ダウンロード」フォルダに自動で入ります。ファイル名に利用者さんの名前が入っているので、次回読み込む際はファイル一覧から名前で探してください（お使いの端末の「ファイル」アプリで、後からフォルダに移動していただいても構いません）。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:16px;">ファイル名には入力した氏名がそのまま使われます。個人情報が気になる場合は、保存後にファイル名をイニシャルや、施設内で使っている管理番号（例：利用者001_20260926.json）などに変更していただくことをおすすめします。</p>
     </div>
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">個別機能訓練加算(Ⅱ)とLIFE提出</h2>
