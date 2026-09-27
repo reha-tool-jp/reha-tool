@@ -46,6 +46,9 @@
   header { background: var(--header-tool); color: #fff; padding: 20px 20px 18px; }
   header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
   header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+  header p.header-byline { font-family: inherit; opacity: 0.92; margin-top: 8px; line-height: 1.6; }
+  header p.header-byline .nw { white-space: nowrap; }
+  header p.header-byline a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
   .container { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
   .breadcrumb { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
   .breadcrumb a { color: var(--text3); text-decoration: none; }
@@ -328,6 +331,7 @@ body.preview-mode .toast { display: none !important; }
 <header>
   <h1>生活機能チェックシート</h1>
   <p>PT・OT・ST・機能訓練指導員向け</p>
+  <p class="header-byline">執筆・監修：<span class="nw">理学療法士（臨床25年目）</span>・<span class="nw">認知症ケア専門士</span>・<span class="nw">病院リハ科長</span>　|　<a href="about.html">運営者について →</a></p>
 </header>
 
 <main class="container">
@@ -338,9 +342,6 @@ body.preview-mode .toast { display: none !important; }
   <a href="./index.html#tools">評価ツール</a>
   <span>›</span>
   生活機能チェックシート
-</div>
-<div class="author-block-top" style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="about.html" style="color:var(--heading);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
 <h2 class="tool-hook" style="font-size:18px;font-weight:700;color:var(--heading);margin-bottom:8px;">チェックしながら、記述欄まで残せる</h2>
