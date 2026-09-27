@@ -119,6 +119,13 @@
   header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
 
   header p { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: var(--mono); }
+  header p.header-byline { font-family: inherit; opacity: 0.92; margin-top: 8px; line-height: 1.6; }
+  header p.header-byline .nw { white-space: nowrap; }
+  header p.header-byline a { color: #fff; font-weight: 400; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.45); text-underline-offset: 3px; }
+  @media screen and (min-width: 768px) {
+    header p, header p.header-byline { display: inline-block; vertical-align: baseline; margin-top: 4px; }
+    header p.header-byline { margin-left: 20px; }
+  }
 
 
 
@@ -750,6 +757,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
   <h1>歩行評価ツール</h1>
 
   <p>PT・OT・ST・機能訓練指導員向け</p>
+  <p class="header-byline"><a href="about.html">監修：<span class="nw">理学療法士（臨床25年目）</span>・<span class="nw">認知症ケア専門士</span></a></p>
 
 </header>
 
@@ -763,9 +771,6 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
   <a href="./index.html#tools">評価ツール</a>
   <span>›</span>
   歩行評価(TUG・10m歩行)
-</div>
-<div class="author-block-top" style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="about.html" style="color:var(--heading);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
 <h2 class="tool-hook" style="font-size:18px;font-weight:700;color:var(--heading);margin-bottom:8px;">測ったタイムから、歩行の数値まで</h2>
