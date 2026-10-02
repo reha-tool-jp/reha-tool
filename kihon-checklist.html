@@ -910,7 +910,7 @@ function buildPrintDOM() {
         const [key, rule] = domainEntries[idx];
         const result = rule.check();
         const cls = result === 'risk' ? 'pt-result-risk' : result === 'ok' ? 'pt-result-ok' : 'pt-result-inc';
-        const text = result === 'risk' ? '⚠️ 該当' : result === 'ok' ? '非該当' : '未入力';
+        const text = result === 'risk' ? '⚠️ 該当' : result === 'ok' ? '非該当' : '';
         resultRows2col += `<td>${rule.label}</td><td class="${cls}">${text}</td>`;
       } else {
         resultRows2col += '<td></td><td></td>';
