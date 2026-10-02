@@ -1044,7 +1044,8 @@ function buildPrintDOM(adlMemo, iadlMemo, kikyoMemo) {
   const getEvalTimeStr = () => {
     const ts = document.getElementById('eval-time-start')?.value || '';
     const te = document.getElementById('eval-time-end')?.value   || '';
-    return (ts || '--:--') + '　～　' + (te || '--:--');
+    if (!ts && !te) return '　';
+    return (ts || '　') + '　～　' + (te || '　');
   };
 
   state.forEach((s, i) => {
