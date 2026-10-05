@@ -592,8 +592,8 @@ body.preview-mode header .band-back { display: none !important; }
 <input type="date" id="eval-date">
 </div>
 <div>
-<label>入院時FIM合計</label>
-<input type="number" id="admission-fim" placeholder="例）36" min="18" max="126">
+<label>入院時FIM運動合計</label>
+<input type="number" id="admission-fim" placeholder="例）25" min="13" max="91">
 </div>
 <div>
 <label>評価者名</label>
@@ -619,7 +619,7 @@ body.preview-mode header .band-back { display: none !important; }
 <div class="s-value" id="total-score">18</div>
 </div>
 <div class="summary-item" id="gain-item" style="display:none;">
-<div class="s-label">FIM利得</div>
+<div class="s-label">FIM利得（運動）</div>
 <div class="s-value" id="gain-score">—</div>
 </div>
 </div>
@@ -655,7 +655,7 @@ body.preview-mode header .band-back { display: none !important; }
       <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">点数はコピーで、確認はプレビューで</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">「👁 プレビュー」は全ての結果を画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。実施計画書ツールへの貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「入院時FIM合計」を入力すると、<strong>FIM利得（退院時FIM−入院時FIM）</strong>を自動計算します。FIM利得は回復期リハビリテーション病棟における実績指数の算出や、リハビリテーションの効果判定に用いられます。入院時の合計点のみ入力すれば算出できるため、退院時評価の記録としてそのままご活用いただけます。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「入院時FIM運動合計」を入力すると、<strong>FIM利得（退院時FIM運動合計−入院時FIM運動合計）</strong>を自動計算します。回復期リハビリテーション病棟の実績指数は運動項目の利得をもとに算出されるため、本ツールのFIM利得も運動項目（13項目）のみで計算しています。入院時の運動合計点のみ入力すれば算出できるため、退院時評価の記録としてそのままご活用いただけます。</p>
     </div>
 
     <div style="margin-bottom:28px;">
@@ -761,7 +761,7 @@ body.preview-mode header .band-back { display: none !important; }
       </div>
       <div style="margin-bottom:16px;">
         <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. FIM利得・FIM効率とは何ですか？</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. FIM利得は退院時FIMと入院時FIMの差（退院FIM−入院FIM）で、入院中の機能改善量を示します。FIM効率はFIM利得を在院日数で割った値で、単位時間あたりの改善量を表します。回復期リハビリテーション病棟の実績指数算出にも使用されます。</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.8;">A. FIM利得は退院時FIMと入院時FIMの差（退院FIM−入院FIM）で、入院中の機能改善量を示します。FIM効率はFIM利得を在院日数で割った値で、単位時間あたりの改善量を表します。回復期リハビリテーション病棟の実績指数の算出には、このうち運動項目の利得のみが使われます（認知項目は含みません）。</p>
       </div>
       <div style="margin-bottom:16px;">
         <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">Q. 採点は「できる」能力と「している」能力のどちらですか？</p>
@@ -1192,8 +1192,8 @@ document.getElementById('total-display').textContent = total;
 const admissionFim = parseInt(document.getElementById('admission-fim').value);
 const gainItem = document.getElementById('gain-item');
 const gainScore = document.getElementById('gain-score');
-if (!isNaN(admissionFim) && admissionFim >= 18 && admissionFim <= 126) {
-  gainScore.textContent = total - admissionFim;
+if (!isNaN(admissionFim) && admissionFim >= 13 && admissionFim <= 91) {
+  gainScore.textContent = motorTotal - admissionFim;
   gainItem.style.display = '';
 } else {
   gainItem.style.display = 'none';
