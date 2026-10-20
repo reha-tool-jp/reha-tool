@@ -146,6 +146,23 @@
   .article-body li.lb-src { font-size: 15px; }
 }
 
+/* --- スマホ幅の表（要望の対応表はカード化、会議ログは1行目に回・日付・資料） --- */
+@media screen and (max-width: 767px) {
+  .stack-table thead, .log-table thead { display: none; }
+  .stack-table, .stack-table tbody, .stack-table tr, .stack-table td { display: block; width: 100%; }
+  .stack-table tr { border-bottom: 1px solid var(--border); padding: 12px 14px; }
+  .stack-table tr:last-child { border-bottom: none; }
+  .stack-table td { border-bottom: none; padding: 3px 0; }
+  .stack-table td:first-child { font-weight: 700; color: var(--heading, #1F5C55); padding-bottom: 6px; }
+  .stack-table td:not(:first-child)::before { content: attr(data-label); display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 9px; border-radius: 4px; margin-right: 8px; background: var(--surface2); color: var(--text2); line-height: 1.6; }
+  .log-table, .log-table tbody { display: block; width: 100%; }
+  .log-table tr { display: grid; grid-template-columns: auto auto 1fr; column-gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .log-table tr:last-child { border-bottom: none; }
+  .log-table td { display: block; border-bottom: none; padding: 0; white-space: nowrap; }
+  .log-table td:nth-child(1) { font-weight: 700; }
+  .log-table td:nth-child(3) { grid-column: 1 / -1; grid-row: 2; white-space: normal; margin-top: 4px; }
+  .log-table td:nth-child(4) { grid-column: 3; grid-row: 1; text-align: right; }
+}
 </style>
 <link rel="canonical" href="https://reha-tool.jp/articles/r9-kaigo-kaitei-matome.html">
 <meta property="og:title" content="令和9年度介護報酬改定まとめ｜通所リハ・訪問リハ・訪問看護（随時更新） | リハツール">
@@ -560,17 +577,17 @@
 </div>
 <h3>要望と案、同じテーマが並んだところ</h3>
 <p>9月の要望項目と、10月の厚労省の案が、同じテーマで並んでいる箇所です。※項目名の対応を見たもので、中身がどこまで一致しているかは別です。</p>
-<div class="table-wrap"><table class="data-table">
+<div class="table-wrap"><table class="data-table stack-table">
 <thead><tr><th>テーマ</th><th>9月の要望（全リハ協）</th><th>10月の案</th></tr></thead>
 <tbody>
-<tr><td>退院時共同指導加算</td><td>3 要件の拡大</td><td>老健・介護医療院の退所者を対象に加える（第270回・第271回）</td></tr>
-<tr><td>生活行為向上リハ</td><td>5 算定要件の柔軟化</td><td>別の計画書をやめ、通所リハ計画に統合する（第270回）</td></tr>
-<tr><td>訪問リハの診察・診療未実施減算</td><td>9 診療未実施減算について／リハ専協 5 診察要件の緩和</td><td>事業所医師の診療を基本とし、猶予期間中は併算定不可（第271回）</td></tr>
-<tr><td>送迎</td><td>4 長時間の移動や広域送迎の評価</td><td>送迎減算の例外、共同送迎の拡大（第270回）</td></tr>
-<tr><td>処遇改善</td><td>リハ専協 1 3療法士の配分対象の明確化</td><td>（サービス別の案としては、まだ出ていません）</td></tr>
+<tr><td data-label="テーマ">退院時共同指導加算</td><td data-label="9月の要望（全リハ協）">3 要件の拡大</td><td data-label="10月の案">老健・介護医療院の退所者を対象に加える（第270回・第271回）</td></tr>
+<tr><td data-label="テーマ">生活行為向上リハ</td><td data-label="9月の要望（全リハ協）">5 算定要件の柔軟化</td><td data-label="10月の案">別の計画書をやめ、通所リハ計画に統合する（第270回）</td></tr>
+<tr><td data-label="テーマ">訪問リハの診察・診療未実施減算</td><td data-label="9月の要望（全リハ協）">9 診療未実施減算について／リハ専協 5 診察要件の緩和</td><td data-label="10月の案">事業所医師の診療を基本とし、猶予期間中は併算定不可（第271回）</td></tr>
+<tr><td data-label="テーマ">送迎</td><td data-label="9月の要望（全リハ協）">4 長時間の移動や広域送迎の評価</td><td data-label="10月の案">送迎減算の例外、共同送迎の拡大（第270回）</td></tr>
+<tr><td data-label="テーマ">処遇改善</td><td data-label="9月の要望（全リハ協）">リハ専協 1 3療法士の配分対象の明確化</td><td data-label="10月の案">（サービス別の案としては、まだ出ていません）</td></tr>
 </tbody></table></div>
 <h2 id="sec7">会議ログ（新しい順）</h2>
-<div class="table-wrap"><table class="data-table">
+<div class="table-wrap"><table class="data-table log-table">
 <thead><tr><th>回</th><th>日付</th><th>主な議題</th><th>資料</th></tr></thead>
 <tbody>
 <tr><td>第271回</td><td>10/19</td><td>訪問介護、訪問入浴、訪問看護、訪問リハ、居宅療養管理指導、居宅介護支援</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76626.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
