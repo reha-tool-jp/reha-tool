@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/images/icon.png">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJLTBSGZ21');
+  window.addEventListener('load', function() {
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21';
+    s.async = true;
+    document.head.appendChild(s);
+  });
+</script>
+<title>令和9年度介護報酬改定、いま何が話されている？リハ職向けまとめ（随時更新） | リハツール</title>
+<meta name="description" content="令和9年度介護報酬改定の議論を、PT・OT・STの目線で随時更新。通所リハ・訪問リハ・訪問看護・デイの最新案、改定までのスケジュール、リハ団体の要望と厚労省の案の対応を、一次資料へのリンク付きでまとめています。">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.article-tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--accent-light); color: var(--accent);
+  font-weight: 700; margin-bottom: 10px;
+}
+.update-badge {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; background: var(--warn-light); color: var(--warn);
+  font-weight: 700; margin-left: 8px;
+}
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); margin-bottom: 28px; }
+.article-body { color: var(--text); line-height: 1.9; }
+.article-body p { font-size: 15px; margin-bottom: 14px; }
+.article-body p.update-note { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+.article-body p.subhead { margin: 22px 0 8px; }
+.article-body h2 {
+  font-size: 1.05rem; font-weight: 700; color: var(--heading, #1F5C55);
+  margin: 40px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+  scroll-margin-top: 70px;
+}
+.article-body h3 {
+  font-size: 1rem; font-weight: 700; color: var(--text);
+  margin: 28px 0 10px; padding-left: 10px;
+  border-left: 4px solid var(--accent);
+}
+.article-body ul, .article-body ol { font-size: 15px; margin: 0 0 14px 1.4em; }
+.article-body li { margin-bottom: 6px; }
+.article-body li > ul, .article-body li > ol { margin: 6px 0 6px 1.2em; }
+.article-body a { color: #2E6F62; word-break: break-word; overflow-wrap: anywhere; }
+.toc {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin: 16px 0 28px;
+}
+.toc-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 6px; }
+.article-body .toc ol { font-size: 14px; margin: 0 0 0 1.3em; }
+.article-body .toc li { margin-bottom: 2px; }
+.table-wrap { overflow-x: auto; margin: 16px 0; -webkit-overflow-scrolling: touch; }
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 0;
+  font-size: 13px; background: var(--surface);
+  border: 1px solid var(--border);
+}
+.data-table th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; white-space: nowrap; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 13px; line-height: 1.7; }
+.data-table tr:last-child td { border-bottom: none; }
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-decoration: none; color: inherit; display: block;
+  margin-bottom: 10px; transition: border-color 0.15s;
+}
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+
+@media screen and (min-width: 768px) {
+  .article-tag { font-size: 13px; }
+  .update-badge { font-size: 13px; }
+  .article-title { font-size: 1.4rem; }
+  .article-meta { font-size: 14px; }
+  .article-body p { font-size: 17px; }
+  .article-body p.update-note { font-size: 14px; }
+  .article-body ul, .article-body ol { font-size: 17px; }
+  .article-body h2 { font-size: 1.15rem; }
+  .article-body h3 { font-size: 1.05rem; }
+  .toc-title { font-size: 14px; }
+  .article-body .toc ol { font-size: 15px; }
+  .data-table { font-size: 15px; }
+  .data-table th { font-size: 14px; }
+  .data-table td { font-size: 15px; }
+  .related-title { font-size: 15px; }
+  .tool-icon { font-size: 22px; }
+  .tool-name { font-size: 16px; }
+  .tool-desc { font-size: 15px; }
+}
+@media print {
+  .toc { display: none; }
+}
+
+</style>
+<link rel="canonical" href="https://reha-tool.jp/articles/r9-kaigo-kaitei-matome.html">
+<meta property="og:title" content="令和9年度介護報酬改定、いま何が話されている？リハ職向けまとめ（随時更新） | リハツール">
+<meta property="og:description" content="令和9年度介護報酬改定の議論を、PT・OT・STの目線で随時更新。通所リハ・訪問リハ・訪問看護・デイの最新案、改定までのスケジュール、リハ団体の要望と厚労省の案の対応を、一次資料へのリンク付きでまとめています。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reha-tool.jp/articles/r9-kaigo-kaitei-matome.html">
+<meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://reha-tool.jp/img/og-image.png">
+</head>
+<body>
+<nav class="global-nav rt-gnav">
+  <div class="nav-container">
+    <a class="rt-gnav-brand" href="/">
+      <img class="rt-gnav-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+      <span class="rt-gnav-ja">リハツール</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#tools">評価ツール</a>
+      <a href="/articles/index.html">解説記事</a>
+      <a href="/about.html">サイトについて</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="site-name">リハツール｜解説記事</div>
+  <h1>令和9年度介護報酬改定、いま何が話されている？リハ職向けまとめ（随時更新）</h1>
+</header>
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    令和9年度介護報酬改定まとめ
+  </div>
+<div style="font-size:13px;color:var(--text2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
+</div>
+
+  <div class="article-header">
+    <span class="article-tag">制度・算定</span>
+    <span class="update-badge">随時更新</span>
+    <h1 class="article-title">令和9年度介護報酬改定、いま何が話されている？リハ職向けまとめ（随時更新）</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け制度解説（介護保険）</div>
+  </div>
+
+  <div class="article-body">
+<p class="update-note">最終更新：2026年10月20日（第271回・10月19日の分科会まで反映）</p>
+<p class="update-note">※新しい会議が出るたびに、この記事の上から追記していきます。</p>
+
+<div class="toc"><div class="toc-title">この記事の目次</div><ol><li><a href="#sec1">最新の動き</a></li><li><a href="#sec2">この記事の読み方</a></li><li><a href="#sec3">まだ決まっていないこと</a></li><li><a href="#sec4">基本的な視点（案）：9/30 第268回（資料1・資料2）</a></li><li><a href="#sec5">テーマ別：いまの現在地</a></li><li><a href="#sec6">9月のリハ団体の要望と、10月の案</a></li><li><a href="#sec7">会議ログ（新しい順）</a></li><li><a href="#sec8">現場で今からできること（提案です。公式の方針ではありません）</a></li><li><a href="#sec9">参考</a></li></ol></div>
+<h2 id="sec1">最新の動き</h2>
+<p class="subhead"><strong>10/19（<a href="https://www.mhlw.go.jp/stf/newpage_76626.html" target="_blank" rel="noopener">第271回</a>）訪問系サービス</strong></p>
+<ul>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760334.pdf" target="_blank" rel="noopener">訪問リハ</a></strong>：事業所の医師が診る、を基本にする方向。診療が入っていない場合の減算を取っている間は、リハマネ加算が取れなくなる案も。→ 医師の診察を、事業所の側で確保する流れになりそうです。
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">訪問看護</a></strong>：ICTを使った情報連携や、オンライン診療の補助に評価をつける案。<strong>訪問看護ステーションのPT・OT・STによる訪問の評価の見直し</strong>も論点に上がりました。→ ステーションで働くリハ職は、今後の案の続きを注視したいところです。
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760338.pdf" target="_blank" rel="noopener">訪問介護</a></strong>：同一建物の減算をやめて、移動コストに着目した報酬区分にする案。
+</li></ul>
+<p class="subhead"><strong>10/14（<a href="https://www.mhlw.go.jp/stf/newpage_76633.html" target="_blank" rel="noopener">第270回</a>）通所系・ショートステイ</strong></p>
+<ul>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">通所リハ</a></strong>：リハマネ加算の要件を明確化。生活行為向上リハは、別の計画書をやめて通所リハ計画に統合する案。→ 会議で「自宅での様子」を共有する場面が増えそうです。計画書の書き方も問われます。
+</li>
+<li><strong>デイ（<a href="https://www.mhlw.go.jp/content/12300000/001759344.pdf" target="_blank" rel="noopener">通所介護</a>）</strong>：入浴介助加算の単価見直し、突発的な送迎キャンセルを減算の対象外に、延長加算ニ・ホの廃止案。→ 送迎のキャンセル電話があっても、減算されない場面が出てきそうです。
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001758862.pdf" target="_blank" rel="noopener">ショートステイ</a></strong>：送迎加算の見直しと、長期利用減算（31日以上）を61日超並みに強める案。
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001758863.pdf" target="_blank" rel="noopener">短期入所療養介護</a>（老健など）</strong>：総合医学管理加算を区分支給限度基準額の適用外にする案。
+</li></ul>
+<p><strong>10/9（<a href="https://www.mhlw.go.jp/stf/newpage_76456.html" target="_blank" rel="noopener">第269回</a>）</strong> <a href="https://www.mhlw.go.jp/content/12300000/001758849.pdf" target="_blank" rel="noopener">定期巡回</a>、<a href="https://www.mhlw.go.jp/content/12300000/001758850.pdf" target="_blank" rel="noopener">小規模多機能</a>、<a href="https://www.mhlw.go.jp/content/12300000/001758325.pdf" target="_blank" rel="noopener">看護小規模多機能</a>、<a href="https://www.mhlw.go.jp/content/12300000/001758851.pdf" target="_blank" rel="noopener">グループホーム</a></p>
+<h2 id="sec2">この記事の読み方</h2>
+<p>これは<strong>介護保険のサービス</strong>（通所リハ、訪問リハ、訪問看護、通所介護＝デイ、老健など）の話です。病院の入院・外来リハ（診療報酬）とは別の話なので、混同しないでください。</p>
+<p>自分の職場に関係するところだけ拾えるよう、タグを付けています。<br>
+<strong>[通所リハ] [訪問リハ] [訪問看護] [デイ] [老健・施設] [処遇改善] [その他]</strong></p>
+<h3>用語メモ</h3>
+<ul>
+<li><strong>リハマネ</strong>：リハビリテーションマネジメント加算。多職種でリハの質を管理していることを評価する加算
+</li>
+<li><strong>診療未実施減算</strong>：訪問リハで、事業所の医師が診療をしていない場合にかかる減算
+</li>
+<li><strong>D to P with N</strong>：患者のそばに看護師等が付いて、医師がオンラインで診察すること
+</li>
+<li><strong>LIFE</strong>：科学的介護情報システム。利用者の状態などのデータを提出して、フィードバックを受ける仕組み
+</li>
+<li><strong>同一建物減算</strong>：同じ建物に住んでいる人へサービスを提供する場合にかかる減算
+</li>
+<li><strong>区分支給限度基準額</strong>：要介護度ごとに決まっている、1か月に使える介護サービスの上限
+</li></ul>
+<h2 id="sec3">まだ決まっていないこと</h2>
+<p>今回読んだ厚労省の資料は、どれも「〜してはどうか」「〜を検討する」という書き方です。<strong>新しい加算の単位数は、まだ示されていません。</strong></p>
+<ul>
+<li>各加算の単位数、基本報酬
+</li>
+<li>改定率
+</li>
+<li>各加算の算定要件の細部
+</li></ul>
+<h3>改定までのスケジュール（厚労省の「検討の進め方」より）</h3>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>時期</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>令和8年4月〜夏頃</td><td>主な論点について議論、事業者団体等からヒアリング</td></tr>
+<tr><td><strong>令和8年10〜12月頃</strong></td><td><strong>具体的な方向性について議論（いまここ）</strong></td></tr>
+<tr><td>令和8年12月中</td><td>報酬・基準に関する基本的な考え方を整理・とりまとめ（基準は、自治体の条例改正に必要な期間を考慮して先行してとりまとめ）</td></tr>
+<tr><td>令和9年1月頃</td><td>介護報酬改定案の諮問・答申</td></tr>
+</tbody></table></div>
+<p>出典：<a href="https://www.mhlw.go.jp/content/12300000/001695747.pdf" target="_blank" rel="noopener">第256回（4/27）資料4 p.2（スケジュール案）</a></p>
+<p>単位数や改定率は、このスケジュールのうち「12月中のとりまとめ」から「1月頃の諮問・答申」にかけて、はっきりしてくる流れです（資料に「単位数はここで決める」と書かれているわけではなく、順番からそう読める、という意味です）。</p>
+<h2 id="sec4">基本的な視点（案）：9/30 <a href="https://www.mhlw.go.jp/stf/newpage_76281.html" target="_blank" rel="noopener">第268回</a>（<a href="https://www.mhlw.go.jp/content/12300000/001753962.pdf" target="_blank" rel="noopener">資料1</a>・<a href="https://www.mhlw.go.jp/content/12300000/001753963.pdf" target="_blank" rel="noopener">資料2</a>）</h2>
+<ol>
+<li>物価・賃金の上昇等への対応と処遇改善
+</li>
+<li>人口減少・サービス需要に応じたサービス提供体制の構築（中山間地域の加算の見直しを含む）
+</li>
+<li><strong>地域包括ケアシステムの深化</strong>（医療・介護連携、生活期リハビリテーションの推進、LIFE など）
+</li>
+<li>職場環境の改善と生産性の向上（AI等の介護テクノロジー、タスクシフト／シェア）
+</li>
+<li>制度の安定性・持続可能性（評価の適正化・重点化、報酬体系の整理・簡素化）
+</li></ol>
+<p>リハは3番目の柱に「生活期のリハビリテーションを推進する」として入っています。</p>
+<h2 id="sec5">テーマ別：いまの現在地</h2>
+<h3>[通所リハ]（<a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">第270回 資料3</a>）</h3>
+<p class="subhead"><strong>① リハマネ加算：計画書の主役が「筋トレ」から「暮らしの場面」へ寄っていく</strong></p>
+<ul>
+<li>出た案：リハビリテーション会議で、居宅での活動・参加の状態を共有し、ADL・IADL訓練を含む計画を設定すること。会議で目標の達成状況を報告し、必要に応じて計画を見直すこと。これらを算定要件として明確化する。
+</li>
+<li>背景の数字：通所リハの計画・実施内容は、加算の有無にかかわらず筋力増強訓練や歩行訓練が多く、ADL・IADL訓練は一部にとどまっている。算定率は事業所ベースで（イ）14.6%、（ロ）39.0%、（ハ）10.5%。
+</li>
+<li>現場で起きそうなこと（例）：リハ会議で「自宅のトイレはどうか」「買い物には行けているか」を話す時間が増えそう。計画書の書き方も問われます。
+</li>
+<li>まだ決まっていないこと：単位数、要件の細部。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">第270回 資料3（通所リハ）p.16〜17</a>
+</li></ul>
+<p class="subhead"><strong>② 生活行為向上リハ：算定率1.6%の加算の、計画書をなくす案</strong></p>
+<ul>
+<li>出た案：生活行為向上リハ計画を別に作らず、通所リハ計画の中に生活行為の内容を記載する。
+</li>
+<li>背景：算定率は1.6%。算定が難しい理由は、実施計画を作る時間がとれないこと。
+</li>
+<li>分科会での声（報道ベース）：全国老人保健施設協会の東憲太郎委員が、「独立して存続させる合理性は乏しい」として、リハマネへの統合を提案した趣旨。日本医師会の江澤和彦委員は、計画作成の負担軽減に賛同しつつ、感染症等によるADLの急激な悪化への集中的なリハの仕組みとしての意義を指摘した趣旨。議事録は未公開。（議事録が公開されたら確認し直します）
+<ul>
+<li>報道：<a href="https://www.pt-ot-st.net/index.php/topics/detail/2021" target="_blank" rel="noopener">PT-OT-ST.NET</a>、<a href="http://chuikyo.news/20261018-rehabilitation/" target="_blank" rel="noopener">中医協ニュース</a>
+</li></ul>
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">第270回 資料3（通所リハ）p.16〜17</a>
+</li></ul>
+<p class="subhead"><strong>③ 退院時共同指導加算：老健・介護医療院の退所者にも</strong></p>
+<ul>
+<li>出た案：対象に、介護老人保健施設・介護医療院の退所者を加える。
+</li>
+<li>背景：退院前カンファへの参加は医療機関で25.8%、老健で40.8%。参加している利用者のほうが、利用開始までの期間が短い。加算は600単位/回（R6新設）。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">第270回 資料3（通所リハ）p.19〜21</a>
+</li></ul>
+<p class="subhead"><strong>おまけ：経営の数字</strong></p>
+<p>通所リハの収支差率は2.0%（R6年度決算、税引前、物価高対策補助金を含まない）。訪問リハは10.8%、通所介護は6.2%。<br>
+出典：<a href="https://www.mhlw.go.jp/stf/newpage_73633.html" target="_blank" rel="noopener">第258回（6/15）資料3 p.32</a>（会議ページ。資料3に掲載）</p>
+<h3>[訪問リハ]（<a href="https://www.mhlw.go.jp/content/12300000/001760334.pdf" target="_blank" rel="noopener">第271回 資料4</a>）</h3>
+<p class="subhead"><strong>① 診療未実施減算：医師の診察を、事業所の側で確保する方向へ</strong></p>
+<ul>
+<li>出た案：事業所医師による診療を基本とする。適用猶予期間を設ける。猶予期間中は、診療未実施減算を算定する場合のリハマネ加算の併算定を不可にする。外来や訪問での対面診療が難しい場合のオンライン診療を明確化する。
+</li>
+<li>背景の数字：診療未実施減算（50単位/回）の算定率は、創設時の20.8%から11.0%に低下。算定している利用者の27.7%で、リハマネ加算が併算定されている。事業所医師の診療方法は、外来が約8割、訪問診療が約6割。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001760334.pdf" target="_blank" rel="noopener">第271回 資料4（訪問リハ）p.19〜26</a>
+</li></ul>
+<p class="subhead"><strong>② リハマネ加算：通所リハと同じ方向</strong></p>
+<ul>
+<li>活動・参加の共有とADL・IADL訓練を含む計画を、算定要件として明確化。訪問リハの計画・実施内容も、筋力増強や歩行訓練が中心でADL・IADL訓練は一部。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001760334.pdf" target="_blank" rel="noopener">第271回 資料4（訪問リハ）p.13</a>
+</li></ul>
+<p class="subhead"><strong>③ 退院時共同指導加算：老健・介護医療院の退所者にも</strong></p>
+<ul>
+<li>通所リハと同じ案。退院前カンファへの参加は医療機関で29.2%、老健で27.6%。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001760334.pdf" target="_blank" rel="noopener">第271回 資料4（訪問リハ）p.17</a>
+</li></ul>
+<p class="subhead"><strong>④ 住まいの形態に合わせた報酬</strong></p>
+<ul>
+<li>同一建物減算（▲10%／▲15%）。具体案はなく、高齢者住まいを扱う別の会議で議論予定。
+</li></ul>
+<h3>[訪問看護]（<a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">第271回 資料3</a>）</h3>
+<p>第271回では、次の7つの論点が出ています（<a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">資料3 p.32〜33</a>）。リハ職が働くステーションに広く関わりそうなもの（医療安全研修、服薬管理）は太字にしています。</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>論点</th><th>出た案</th></tr></thead>
+<tbody>
+<tr><td><strong>医療安全研修</strong></td><td>診療報酬の運営基準と同様に、受講が望ましい旨を運営基準に追加</td></tr>
+<tr><td>緊急時訪問看護加算</td><td>月の初回の夜間・早朝の訪問でも、緊急時訪問看護加算を算定していれば、早朝・夜間加算と深夜加算を算定可能に</td></tr>
+<tr><td>サテライトの一体的運営</td><td>自治体に対し、要件の具体的な目安を示す</td></tr>
+<tr><td>専門性の高い看護師の評価</td><td>専門管理加算（250単位/月）の対象を拡充</td></tr>
+<tr><td>看護体制強化加算のターミナルケア</td><td>事業所の実態に応じて評価</td></tr>
+<tr><td><strong>服薬管理</strong></td><td>残薬の確認、医師・薬剤師等への報告を運営基準上の要件に</td></tr>
+<tr><td>難治性皮膚疾患</td><td>特別管理加算Ⅱ・長時間訪問看護加算の対象に追加</td></tr>
+</tbody></table></div>
+<p class="subhead"><strong>ICT活用の推進（論点②、<a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">p.35〜40前後</a>）</strong></p>
+<ul>
+<li>論点：看護師等が同席するオンライン診療の補助（D to P with N）は、看護師等の所属や定期的な訪問の有無などによる違いがあり、医療保険との整理に留意が必要。令和8年度の診療報酬改定では、他機関がICTで記録した診療情報を活用した計画的管理の評価が新設された。介護の訪問看護でのICT活用をどう進めるか。
+</li>
+<li>出た案：
+<ul>
+<li>D to P with Nによるオンライン診療の補助を行った場合の評価を新設してはどうか。次期改定までの間の暫定的な取扱い（月1回、20分未満の単位など）の記載あり。
+</li>
+<li>ICTを用いて情報連携した場合の評価を設けてはどうか。資料には「（新）訪問看護医療情報連携加算 1,000円（月1回）」の記載あり。令和8年度診療報酬改定で新設された評価を参照した記載で、介護報酬の単位数が示されたものではありません。過去90日以内の他機関のICT記録を活用するなどの要件案も。
+</li>
+<li>ICTを用いた関係機関との連携を推進する。
+</li></ul>
+</li>
+<li>データ：ICTを他事業所との連携に使っている訪問看護ステーションは、2018年の41.5%から2023年は87.8%に増加。効果は「時間の短縮」75.6%、「連絡もれの防止」64.4%。（p.40、出典は全国訪問看護事業協会 2024年調査）
+</li>
+<li>関連報道：<a href="https://www.cbnews.jp/news/entry/20260511164958" target="_blank" rel="noopener">介護の訪問看護、オンライン診療補助は月1回算定可（CBnews 5/11）</a>
+</li></ul>
+<p class="subhead"><strong>リハ職に関わる論点③（期待される役割を踏まえた評価の見直し、<a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">p.43以降</a>）</strong></p>
+<ul>
+<li><strong>訪問看護ステーションの理学療法士等による訪問看護について、サービスの提供体制や実績等を踏まえた評価の見直しをどう考えるか。</strong>（具体的な案の中身はここでは示されていません）
+</li>
+<li>介護予防訪問看護の初回加算（Ⅰ）：算定率が低いので簡素化。
+</li>
+<li>看護体制強化加算：附則に設けられた経過措置を終了。
+</li></ul>
+<p><strong>論点④（住まいの形態、<a href="https://www.mhlw.go.jp/content/12300000/001760335.pdf" target="_blank" rel="noopener">p.58以降</a>）</strong>：同一建物減算。具体案はなく、高齢者住まいを扱う別の会議で議論予定。</p>
+<h3>[デイ]（通所介護・地域密着型通所介護）（<a href="https://www.mhlw.go.jp/content/12300000/001759344.pdf" target="_blank" rel="noopener">第270回 資料1</a>）</h3>
+<p class="subhead"><strong>送迎まわり</strong></p>
+<ul>
+<li><strong>送迎減算</strong>：現行は片道47単位減算。利用者・家族都合のキャンセルも対象。突発的なキャンセルは、例外的に減算の対象外にする案（通所リハも同様）。
+</li>
+<li><strong>共同送迎</strong>：同乗できる範囲に、児童の通園・通学や地域の買い物支援なども加える案（通所リハも同様）。
+</li>
+<li>背景：送迎時に居宅内で介護・支援をしている事業所は約7割、1回あたり30分未満が約9割。
+</li></ul>
+<p class="subhead"><strong>入浴まわり</strong></p>
+<ul>
+<li><strong>入浴介助加算</strong>：水道光熱費の高騰を踏まえ、単価設定の見直しを検討。加算（Ⅱ）は、医師等の居宅訪問の要件を見直し、介護職員が訪問して情報通信機器で浴室環境を把握する方法を、訪問が困難な場合に限らず認める案。
+</li>
+<li><strong>入浴目的の短時間利用</strong>：入浴の事業所がない中山間地域等で、例外的に認める案。
+</li></ul>
+<p class="subhead"><strong>そのほか</strong></p>
+<ul>
+<li><strong>延長加算ニ・ホ</strong>：算定率がほぼ0%。廃止を検討（通所リハも同様）。
+</li>
+<li><strong>中重度者ケア体制加算</strong>：地域密着型通所介護で、算定要件の見直しを検討（平均利用者数が通所介護の半分程度なのに、配置要件は同等）。
+</li>
+<li><strong>認知症対応型通所介護</strong>：請求事業所数・受給者数が減少傾向で、機能分化を明確に。
+</li>
+<li>出典：<a href="https://www.mhlw.go.jp/content/12300000/001759344.pdf" target="_blank" rel="noopener">第270回 資料1（通所介護）p.14〜16、p.30〜32、p.41</a>
+</li></ul>
+<h3>[老健・施設]</h3>
+<ul>
+<li><strong>短期入所療養介護</strong>：医療ニーズのある利用者への医学管理を進めるため、総合医学管理加算を区分支給限度基準額の適用外にする案。長期利用の減算は、利用日数のデータを精査したうえで、ショートステイの対応を踏まえて検討する案。（<a href="https://www.mhlw.go.jp/content/12300000/001758863.pdf" target="_blank" rel="noopener">第270回 資料5 p.9、p.11</a>）
+</li>
+<li><strong>退院時共同指導加算</strong>：老健・介護医療院の退所者にも対象を広げる案（通所リハ・訪問リハの項を参照）。
+</li>
+<li><strong>9月の要望から</strong>：特養・居住系サービスでの医療ニーズへの対応、特養併設ショートの利用後の状態悪化予防、施設入所者の車椅子、老健の報酬引き上げ（リハ団体の要望の項を参照）。
+</li></ul>
+<h3>[処遇改善]</h3>
+<ul>
+<li>9/30の基本的な視点（案）の1番目の柱に、「他職種と遜色のない処遇改善」が入っています。
+</li>
+<li>9月に、PT・OT・STを処遇改善加算の配分対象として明確に位置づける要望が出ています（リハ専門職団体協議会）。
+</li>
+<li>今回読んだ範囲では、サービス別の案として処遇改善の具体案は<strong>まだ出ていません</strong>。出たらここに追記します。
+</li></ul>
+<h3>[その他]（タイトル程度）</h3>
+<ul>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001758862.pdf" target="_blank" rel="noopener">ショートステイ</a></strong>：送迎加算（片道184単位）の見直し、長期利用減算（31〜60日の30単位減算）を61日超並みに
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760338.pdf" target="_blank" rel="noopener">訪問介護</a></strong>：サ責の初回加算、同一建物減算に代わる報酬区分
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760337.pdf" target="_blank" rel="noopener">居宅介護支援</a></strong>：特定事業所加算（A）の廃止案、主任ケアマネの管理者要件の見直し
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001760336.pdf" target="_blank" rel="noopener">居宅療養管理指導</a></strong>：薬剤師の算定間隔「6日以上」の見直し、管理栄養士の30分未満の指導の評価
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/content/12300000/001758849.pdf" target="_blank" rel="noopener">定期巡回</a>・<a href="https://www.mhlw.go.jp/content/12300000/001758850.pdf" target="_blank" rel="noopener">小多機</a>・<a href="https://www.mhlw.go.jp/content/12300000/001758325.pdf" target="_blank" rel="noopener">看多機</a>・<a href="https://www.mhlw.go.jp/content/12300000/001758851.pdf" target="_blank" rel="noopener">グループホーム</a></strong>：日中の随時訪問への評価、配置基準、3ユニット夜勤2人体制など
+</li>
+<li><strong><a href="https://www.mhlw.go.jp/stf/newpage_75593.html" target="_blank" rel="noopener">9/3の横断テーマ</a></strong>：認知症対応力、医療・介護連携、LIFE、口腔・栄養、多床室の室料負担（この記事では中身を未確認）
+</li></ul>
+<h2 id="sec6">9月のリハ団体の要望と、10月の案</h2>
+<p>9月の関係団体との意見交換会で、リハ関連の団体は次の要望を出しています（資料の原文確認済み）。</p>
+<p><strong>9/14（<a href="https://www.mhlw.go.jp/stf/newpage_75980.html" target="_blank" rel="noopener">第266回</a>）リハビリテーション専門職団体協議会</strong>（PT・OT・ST 3協会）</p>
+<ol>
+<li>特養・居住系サービスでの医療ニーズへの対応の推進（協力医療機関等のリハ専門職と連携する支援体制の評価）
+</li>
+<li>特養併設の短期入所生活介護の利用後の状態悪化予防（機能訓練体制加算・個別機能訓練加算の増点・基準緩和など）
+</li>
+<li>施設入所者の身体の状態にあった車椅子の提供体制の評価
+</li>
+<li>生活機能向上連携の普及拡充（加算（Ⅱ）の個別機能訓練加算による減算の削除など）
+</li>
+<li>資料：<a href="https://www.mhlw.go.jp/content/12300000/001748711.pdf" target="_blank" rel="noopener">リハ専協の要望資料（9/14）</a>
+</li></ol>
+<p class="subhead"><strong>9/16（<a href="https://www.mhlw.go.jp/stf/newpage_76071.html" target="_blank" rel="noopener">第267回</a>）リハビリテーション専門職団体協議会</strong></p>
+<ol>
+<li>PT・OT・STの処遇改善
+<ul>
+<li>「3療法士を配分対象として制度上で明確に位置付け、配分対象外とされることのない仕組みとする」
+</li>
+<li>物価上昇を上回る賃上げ原資の確保、加算の恒久化、加算による収益を基本給の昇給に反映
+</li></ul>
+</li>
+<li>経済・物価動向を踏まえたリハの報酬の引き上げ（2-1、2-2）
+</li>
+<li>自助具の採型・採寸、試作・試行に関する技術の評価
+</li>
+<li>退院後のリハ提供確保のため、医療機関から介護資源への転換
+</li>
+<li>訪問リハの推進に向けた診察要件の緩和
+</li>
+<li>中山間・人口減少地域での訪問PT・OT・STの提供体制の拡充
+</li>
+<li>資料：<a href="https://www.mhlw.go.jp/content/12300000/001749894.pdf" target="_blank" rel="noopener">リハ専協の要望資料（9/16）</a>
+</li></ol>
+<p><strong>9/16（第267回）全国リハビリテーション医療関連団体協議会</strong>（17項目。主なもの）</p>
+<ul>
+<li>1-1 通所リハ・訪問リハの報酬引き上げ（訪問リハ費の増減率1.0%に対し、消費者物価指数14.8%との記載あり）、1-2 老健の報酬引き上げ
+</li>
+<li>2 適時適切な評価・指導に対する報酬の新設
+</li>
+<li>3 退院時共同指導加算における要件の拡大
+</li>
+<li>4 長時間の移動や広域送迎に対する適正評価
+</li>
+<li>5 生活行為向上リハ実施加算の普及に向けた算定要件の柔軟化
+</li>
+<li>6 通所リハ費における運営基準の見直し
+</li>
+<li>7 介護予防通所リハと総合事業（通所型サービス）の併用可能の明文化
+</li>
+<li>8 訪問リハのサービス提供体制強化加算の見直し
+</li>
+<li>9 訪問リハの診療未実施減算について
+</li>
+<li>10 退院・退所日の訪問リハの提供の評価
+</li>
+<li>「リハビリテーション前置主義の徹底を」との記載あり
+</li>
+<li>資料：<a href="https://www.mhlw.go.jp/content/12300000/001749785.pdf" target="_blank" rel="noopener">全リハ協の要望資料（9/16）</a>
+</li>
+<li>関連報道：<a href="https://www.cbnews.jp/news/entry/20260916130748" target="_blank" rel="noopener">リハ職の処遇改善、報酬引き上げ要望（CBnews 9/16）</a>
+</li></ul>
+<h3>要望と案、同じテーマが並んだところ</h3>
+<p>9月の要望項目と、10月の厚労省の案が、同じテーマで並んでいる箇所です。※項目名の対応を見たもので、中身がどこまで一致しているかは別です。</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>テーマ</th><th>9月の要望（全リハ協）</th><th>10月の案</th></tr></thead>
+<tbody>
+<tr><td>退院時共同指導加算</td><td>3 要件の拡大</td><td>老健・介護医療院の退所者を対象に加える（第270回・第271回）</td></tr>
+<tr><td>生活行為向上リハ</td><td>5 算定要件の柔軟化</td><td>別の計画書をやめ、通所リハ計画に統合する（第270回）</td></tr>
+<tr><td>訪問リハの診察・診療未実施減算</td><td>9 診療未実施減算について／リハ専協 5 診察要件の緩和</td><td>事業所医師の診療を基本とし、猶予期間中は併算定不可（第271回）</td></tr>
+<tr><td>送迎</td><td>4 長時間の移動や広域送迎の評価</td><td>送迎減算の例外、共同送迎の拡大（第270回）</td></tr>
+<tr><td>処遇改善</td><td>リハ専協 1 3療法士の配分対象の明確化</td><td>（サービス別の案としては、まだ出ていません）</td></tr>
+</tbody></table></div>
+<h2 id="sec7">会議ログ（新しい順）</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>回</th><th>日付</th><th>主な議題</th><th>資料</th></tr></thead>
+<tbody>
+<tr><td>第271回</td><td>10/19</td><td>訪問介護、訪問入浴、訪問看護、訪問リハ、居宅療養管理指導、居宅介護支援</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76626.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第270回</td><td>10/14</td><td>通所介護、療養通所、通所リハ、短期入所生活介護、短期入所療養介護</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76633.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第269回</td><td>10/9</td><td>定期巡回・夜間対応、小多機、看多機、グループホーム</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76456.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第268回</td><td>9/30</td><td>基本的な視点（案）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76281.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第267回</td><td>9/16</td><td>関係団体との意見交換（リハ団体、島根県ほか）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_76071.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第266回</td><td>9/14</td><td>関係団体との意見交換（高齢者住まい、リハ専門職団体協議会ほか）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_75980.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第265回</td><td>9/10</td><td>関係団体との意見交換（訪問介護、定期巡回、小多機ほか）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_75988.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第264回</td><td>9/3</td><td>横断テーマ（認知症、医療介護連携、LIFE、口腔・栄養、多床室）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_75593.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第259回</td><td>6/29</td><td>訪問リハ等の現状・経営・論点整理（中身は未確認）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_74005.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第258回</td><td>6/15</td><td>通所リハ、ショート等の現状・経営状況（通所リハの収支差率2.0%）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_73633.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+<tr><td>第256回</td><td>4/27</td><td>令和9年度改定に向けた検討の進め方（スケジュール案）</td><td><a href="https://www.mhlw.go.jp/stf/newpage_72489.html" target="_blank" rel="noopener">会議ページ</a></td></tr>
+</tbody></table></div>
+<h2 id="sec8">現場で今からできること（提案です。公式の方針ではありません）</h2>
+<ul>
+<li>自分の事業所のリハマネの計画書に、「活動・参加」「ADL・IADL」がどのくらい入っているか、見直してみる
+</li>
+<li>退院・退所前カンファに参加できているか、参加の記録を確認する
+</li>
+<li>デイでは、送迎キャンセルの扱いと、入浴介助加算（Ⅱ）の居宅訪問の運用を確認する
+</li></ul>
+<h2 id="sec9">参考</h2>
+<ul>
+<li>厚生労働省 社会保障審議会 介護給付費分科会：<a href="https://www.mhlw.go.jp/stf/shingi/shingi-hosho_126698_00022.html" target="_blank" rel="noopener">https://www.mhlw.go.jp/stf/shingi/shingi-hosho_126698_00022.html</a>
+</li>
+<li>CBnewsマネジメント（各回の関連報道）
+</li></ul>
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="tosho-reha-keikakusho-mokuhyo.html">
+      <div class="tool-card-head"><span class="tool-icon">📄</span><span class="tool-name">通所リハ計画書の目標、約70%が身体機能の向上</span></div>
+      <div class="tool-desc">令和9年度改定の焦点を、計画書の目標の中身から読む。</div>
+    </a>
+    <a class="tool-card" href="houmon-reha-station.html">
+      <div class="tool-card-head"><span class="tool-icon">📄</span><span class="tool-name">訪問リハビリステーション構想とは</span></div>
+      <div class="tool-desc">約25年越しに再び動き出した制度議論。</div>
+    </a>
+    <a class="tool-card" href="houmon-reha-shogu-kaizen.html">
+      <div class="tool-card-head"><span class="tool-icon">📄</span><span class="tool-name">訪問リハビリテーション 処遇改善加算</span></div>
+      <div class="tool-desc">2026年6月から対象に。PT・OT・STの給料はいつ上がるか。</div>
+    </a>
+    <a class="tool-card" href="../seikatsu-tool.html">
+      <div class="tool-card-head"><span class="tool-icon">📋</span><span class="tool-name">生活機能チェックシート（別紙様式3-2）</span></div>
+      <div class="tool-desc">個別機能訓練加算（Ⅱ）のLIFE提出に使う様式を、入力して保存できます。</div>
+    </a>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.8;">
+この記事は、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修しています。<br>
+経歴の詳細はこちら → <a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について</a>
+</div>
+
+  <footer class="rt-footer rt-footer-v2">
+    <div class="rt-footer-inner">
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">評価ツール</p>
+        <ul>
+          <li><a href="/fim-tool.html">FIM評価ツール</a></li>
+          <li><a href="/bi-tool.html">BI評価ツール</a></li>
+          <li><a href="/walk-tool.html">歩行評価ツール</a></li>
+          <li><a href="/balance-tool.html">バランス評価ツール</a></li>
+          <li><a href="/hdsr-tool.html">HDS-R評価ツール</a></li>
+          <li><a href="/santei-tool.html">算定日数ツール</a></li>
+          <li><a href="/seikatsu-tool.html">生活機能チェック</a></li>
+          <li><a href="/kyoumi-tool.html">興味・関心チェック</a></li>
+          <li><a href="/kihon-checklist.html">基本チェックリスト</a></li>
+        </ul>
+      </div>
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">解説</p>
+        <ul>
+          <li><a href="/articles/index.html">解説記事一覧</a></li>
+          <li><a href="/about.html">運営者について</a></li>
+        </ul>
+      </div>
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">サイト情報</p>
+        <ul>
+          <li><a href="/">トップ</a></li>
+          <li><a href="/contact.html">お問い合わせ</a></li>
+          <li><a href="/terms.html">利用規約</a></li>
+          <li><a href="/privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rt-footer-brand">
+      <a class="rt-footer-brand-link" href="/">
+        <img class="rt-footer-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+        <span class="rt-footer-ja">リハツール</span>
+      </a>
+      <p class="rt-footer-tagline">評価ツールと制度解説</p>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
