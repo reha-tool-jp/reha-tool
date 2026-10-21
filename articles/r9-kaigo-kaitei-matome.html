@@ -666,6 +666,18 @@
 </li></ul>
   </div>
 
+  <div id="ad-slot" style="margin:24px auto;text-align:center;">
+    <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+    <script>
+    (function(){
+      var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+      var src = pc ? 'https://adm.shinobi.jp/s/32592fb8a1f49bdab7a36193600c735f' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+      document.getElementById('ad-slot').style.minHeight = pc ? '90px' : '250px';
+      document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+    })();
+    </script>
+  </div>
+
   <div class="related-tools">
     <div class="related-title">関連ツール・記事</div>
     <a class="tool-card" href="tosho-reha-keikakusho-mokuhyo.html">
