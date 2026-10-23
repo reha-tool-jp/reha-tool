@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>リハビリテーション総合実施計画書（別紙様式21）作成ツール | リハツール</title>
-<meta name="description" content="リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）を、入力フォームからExcelに書き込んで作成できる無料ツール。回復期リハ病棟の書類作成に。入力内容は端末内で処理され、外部に送信されません。">
+<meta name="description" content="リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）を入力フォームからExcelに書き込める無料ツール。入力内容はブラウザ内で処理され外部に送信されません。FIM・BIの貼り付け、白紙の様式の出力、保存したExcelの続き入力に対応。">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -303,7 +303,7 @@ body.summary-preview-mode #summary-preview-overlay {
 <meta name="theme-color" content="#1a5c6b">
 <link rel="canonical" href="https://reha-tool.jp/keikakusho-tool.html">
 <meta property="og:title" content="リハビリテーション総合実施計画書（別紙様式21）作成ツール | リハツール">
-<meta property="og:description" content="リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）を、入力フォームからExcelに書き込んで作成できる無料ツール。回復期リハ病棟の書類作成に。入力内容は端末内で処理され、外部に送信されません。">
+<meta property="og:description" content="リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）を入力フォームからExcelに書き込める無料ツール。入力内容はブラウザ内で処理され外部に送信されません。FIM・BIの貼り付け、白紙の様式の出力、保存したExcelの続き入力に対応。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reha-tool.jp/keikakusho-tool.html">
 <meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
@@ -471,7 +471,7 @@ body.summary-preview-mode #summary-preview-overlay {
     </div>
     <div class="section-body" id="body-fim">
       <div class="caveat">※BIまたはFIMのいずれかを必ず記載すること（両方入力する必要はありません）</div>
-      <p style="font-size:12.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;">各項目に直接点数（1〜7）を入力してください。FIMツールをお使いの場合は「コピー」ボタンでコピーした値をここに貼り付けることもできます</p>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;">各項目に直接点数（1〜7）を入力してください。<a href="/fim-tool.html" target="_blank" rel="noopener">FIM評価ツール</a>（判定基準を見ながら採点できます）で「📋 スコアをコピー」した値を、ここに貼り付けることもできます。FIM評価ツールは別のタブで開くので、入力中の内容は消えません</p>
       <div class="btn-row" style="margin-top:0;margin-bottom:14px;">
         <button class="btn btn-secondary" onclick="pasteFim('start')">📋 開始時の値を貼り付け</button>
         <button class="btn btn-secondary" onclick="pasteFim('current')">📋 現在の値を貼り付け</button>
@@ -491,7 +491,7 @@ body.summary-preview-mode #summary-preview-overlay {
     </div>
     <div class="section-body" id="body-bi">
       <div class="caveat">※BIまたはFIMのいずれかを必ず記載すること（両方入力する必要はありません）</div>
-      <p style="font-size:12.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;">各項目に直接点数を入力してください。BIツールをお使いの場合は「コピー」ボタンでコピーした値をここに貼り付けることもできます</p>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;">各項目に直接点数を入力してください。<a href="/bi-tool.html" target="_blank" rel="noopener">BI評価ツール</a>で「📋 スコアをコピー」した値を、ここに貼り付けることもできます。BI評価ツールは別のタブで開くので、入力中の内容は消えません</p>
       <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text2);margin-bottom:10px;">
         <input type="checkbox" id="bi-keep-guide" checked style="width:16px;height:16px;">
         未入力の項目は様式の点数ガイド（例：10・5・0）を残す（オフにすると空欄にします）
@@ -745,7 +745,8 @@ body.summary-preview-mode #summary-preview-overlay {
     <p>総合実施計画書を書く頻度は意外と多く、業務の中で書く時間もかなりを占めます。時間に追われる中で、書く負担や時間を少しでも減らせれば、同じ状況の方の助けになればと考えました。</p>
     <p>そこで、1項目ずつ入力しやすい形で見せ、上から順に入れていけば計画書ができるツールにしました。一度きりでなく続けて使えるよう、保存したExcelを読み込んで続きを入力できる形にしています。</p>
     <h3>様式について</h3>
-    <p>厚生労働省が示した別紙様式21（リハビリテーション総合実施計画書）の書式を、そのまま再現しています。項目や配置には手を加えていません。ただし、チェックボックスだけは「□／☑」の文字で表示されます。</p>
+    <p>令和8年度の診療報酬改定で、リハビリテーション実施計画書と総合実施計画書が統合・簡素化されました。別紙様式21は、その改定後の様式です（改定の内容は<a href="/articles/r8-kaitei-matome.html">令和8年度診療報酬改定まとめ</a>をご覧ください）。</p>
+    <p>厚生労働省が示した書式を、そのまま再現しています。項目や配置には手を加えていません。ただし、チェックボックスだけは「□／☑」の文字で表示されます。</p>
     <h3>ダウンロードしたExcelを調整するとき</h3>
     <p>シート名は自由に変更できます。名前を変えても、続きの入力に使えます。</p>
     <p>文字サイズ・行の高さ・列幅などを直した場合、そのシートには調整が残ります。続きを入力して保存すると、日付の名前（例：20261023_p1）で新しいシートが追加されますが、新しいシートは元の書式で作られます。前のシートは消えず、調整した状態のまま残ります。毎回同じ調整をしたい場合は、保存後に新しいシートで調整し直してください。</p>
@@ -1983,6 +1984,7 @@ async function exportXlsx() {
   a.href = url;
   a.download = '実施計画書_' + (document.getElementById('f-name').value || '記入済み') + '.xlsx';
   a.click();
+  try { if (typeof gtag === 'function') gtag('event', 'keikakusho_export'); } catch (e) {}
   URL.revokeObjectURL(url);
 }
 
