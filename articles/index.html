@@ -150,6 +150,18 @@ header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
 .rt-footer-v2 .rt-footer-tagline { font-size: 12px; color: var(--text2, #6b6860); margin-left: 4px; }
 @media screen and (min-width: 768px) { .rt-footer-v2 .rt-footer-brand { max-width: 900px; } }
 @media (max-width: 560px) { .rt-footer-v2 .rt-footer-inner { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 24px 16px; } .rt-footer-v2 .rt-footer-group:nth-child(1) { grid-row: 1 / 3; } .rt-footer-v2 .rt-footer-group:nth-child(2) { grid-column: 2; grid-row: 1; } .rt-footer-v2 .rt-footer-group:nth-child(3) { grid-column: 2; grid-row: 2; } }
+/* カテゴリ分け：見出しを画面上部に残す・色分け・ジャンプ */
+.cat { --cat: #6b6860; margin-top: 28px; scroll-margin-top: 56px; }
+.cat-iryo, .cat-jump a.cat-iryo { --cat: #1a4a7a; }
+.cat-kaigo, .cat-jump a.cat-kaigo { --cat: #1F5C55; }
+.cat-other, .cat-jump a.cat-other { --cat: #6b6860; }
+.cat .section-title { position: sticky; top: 46px; z-index: 50; margin: 0 0 12px; padding: 9px 12px; background: var(--bg); border-left: 6px solid var(--cat); border-bottom: 1px solid var(--border); font-size: 15px; color: var(--cat); letter-spacing: 0; text-transform: none; display: flex; justify-content: space-between; align-items: center; }
+.cat-count { font-size: 12px; font-weight: 600; color: var(--text2); }
+.cat .article-card { border-left: 4px solid var(--cat); }
+.cat-jump { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 8px; }
+.cat-jump a { display: block; text-decoration: none; padding: 10px 6px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--cat, #6b6860); color: var(--text); font-size: 13px; font-weight: 700; line-height: 1.4; text-align: center; }
+.cat-jump small { display: block; font-size: 11px; font-weight: 500; color: var(--text2); }
+@media screen and (min-width: 768px) { .cat { scroll-margin-top: 66px; } .cat .section-title { top: 53px; font-size: 17px; } .cat-count { font-size: 13px; } .cat-jump a { font-size: 15px; padding: 12px; } .cat-jump small { font-size: 13px; } }
   </style>
 <link rel="canonical" href="https://reha-tool.jp/articles/index.html">
 <meta property="og:title" content="解説記事一覧 | リハツール">
@@ -199,7 +211,10 @@ header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
 執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士　|　<a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について →</a>
 </div>
 
-    <div class="section-title">診療報酬改定(医療保険)</div>
+<nav class="cat-jump" aria-label="カテゴリ"><a class="cat-iryo" href="#cat-iryo">診療報酬改定<small>医療保険・10件</small></a><a class="cat-kaigo" href="#cat-kaigo">介護報酬改定<small>介護保険・9件</small></a><a class="cat-other" href="#cat-other">その他<small>10件</small></a></nav>
+
+<section class="cat cat-iryo" id="cat-iryo">
+  <div class="section-title">診療報酬改定(医療保険)<span class="cat-count">10件</span></div>
 
 <a class="article-card" href="r8-kaitei-matome.html">
     <div class="article-card-head">
@@ -280,8 +295,10 @@ header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
     <div class="article-title">FIM利得とは何か｜計算方法・実績指数との関係・FIM効率の違い</div>
     <div class="article-desc">FIM利得の計算方法・FIM効率との違い・実績指数への影響・入院時評価の注意点を整理。回復期リハ病棟のPT・OT・ST向け。</div>
   </a>
+</section>
 
-  <div class="section-title">介護報酬改定(介護保険)</div>
+<section class="cat cat-kaigo" id="cat-kaigo">
+  <div class="section-title">介護報酬改定(介護保険)<span class="cat-count">9件</span></div>
 
 <a class="article-card" href="r9-kaigo-kaitei-matome.html">
     <div class="article-card-head">
@@ -354,8 +371,10 @@ header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
     <div class="article-title">興味・関心チェックシート（別紙様式3-1）の書き方と活用法</div>
     <div class="article-desc">44項目の記入のコツと目標設定への活用方法。スマホで入力してそのまま印刷できる無料ツールも紹介。</div>
   </a>
+</section>
 
-  <div class="section-title">その他</div>
+<section class="cat cat-other" id="cat-other">
+  <div class="section-title">その他<span class="cat-count">10件</span></div>
 
 <a class="article-card" href="senzai-pt-ot-st-jukyu.html">
     <div class="article-card-head">
@@ -441,6 +460,7 @@ header p { font-size: 12px; opacity: 0.75; margin-top: 4px; }
 このページは、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修している解説記事の一覧です。<br>
 経歴の詳細はこちら → <a href="../about.html" style="color:var(--accent);font-weight:700;text-decoration:none;">運営者について</a>
 </div>
+</section>
 
 <footer class="rt-footer rt-footer-v2">
   <div class="rt-footer-inner">
