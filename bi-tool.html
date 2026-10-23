@@ -653,6 +653,13 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 <meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://reha-tool.jp/img/og-image.png">
+<style>
+.copy-hint { font-size: 12.5px; color: var(--text2); line-height: 1.7; margin-top: 8px; }
+.copy-hint a { color: var(--heading, var(--accent)); }
+@media screen and (min-width: 768px) { .copy-hint { font-size: 14px; } }
+@media print { .copy-hint { display: none !important; } }
+body.preview-mode .copy-hint { display: none !important; }
+</style>
 </head>
 
 <body>
@@ -775,6 +782,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
     <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
     <button class="btn btn-secondary" onclick="resetAll()">リセット</button>
   </div>
+  <p class="copy-hint">コピーした点数は、<a href="/keikakusho-tool.html">リハビリテーション総合実施計画書 作成ツール</a>に貼り付けられます。</p>
   <div class="btn-row" style="margin-top:10px;">
     <button class="btn btn-save" onclick="saveData()">💾 保存（ファイルに書き出す）</button>
     <button class="btn btn-load" onclick="document.getElementById('load-file-input').click()">📂 前回のデータを読み込む</button>
@@ -795,7 +803,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--heading);margin-bottom:10px;">各ボタンの機能</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;"><strong>・🖨️ 印刷/PDF保存</strong>：入力内容をそのまま印刷・PDF保存できます。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;"><strong>・📋 スコアをコピー</strong>：10項目の点数をテキストとしてコピーします。<a href="/keikakusho-tool.html">リハビリテーション総合実施計画書 作成ツール</a>への貼り付けにも対応しています。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;"><strong>・📋 スコアをコピー</strong>：10項目の点数をテキストとしてコピーします。<a href="/keikakusho-tool.html" style="color:var(--heading,var(--accent));">リハビリテーション総合実施計画書 作成ツール</a>への貼り付けにも対応しています。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;"><strong>・↺ リセット</strong>：入力内容をすべて消去します。</p>
     </div>
 

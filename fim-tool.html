@@ -537,6 +537,13 @@ body.preview-mode header .band-back { display: none !important; }
 <meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://reha-tool.jp/img/og-image.png">
+<style>
+.copy-hint { font-size: 12.5px; color: var(--text2); line-height: 1.7; margin-top: 8px; }
+.copy-hint a { color: var(--heading, var(--accent)); }
+@media screen and (min-width: 768px) { .copy-hint { font-size: 14px; } }
+@media print { .copy-hint { display: none !important; } }
+body.preview-mode .copy-hint { display: none !important; }
+</style>
 </head>
 
 <body>
@@ -635,10 +642,11 @@ body.preview-mode header .band-back { display: none !important; }
 
 <div class="actions">
 <button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
-<button class="btn btn-preview" id="preview-toggle-btn" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
+<button class="btn btn-preview" id="preview-toggle-btn" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
 </div>
+<p class="copy-hint">コピーした点数は、<a href="/keikakusho-tool.html">リハビリテーション総合実施計画書 作成ツール</a>に貼り付けられます。</p>
 <div class="actions" style="margin-top:10px;">
 <button class="btn btn-save" onclick="saveData()">💾 保存（ファイルに書き出す）</button>
 <button class="btn btn-load" onclick="document.getElementById('load-file-input').click()">📂 前回のデータを読み込む</button>
@@ -654,7 +662,7 @@ body.preview-mode header .band-back { display: none !important; }
     <div style="margin-bottom:28px;">
       <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">点数はコピーで、確認はプレビューで</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">「👁 プレビュー」は全ての結果を画面に表示します。スクリーンショットを撮って保存したい場合にご利用ください（データはページ内に留まり、外部には送信されません）。</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。<a href="/keikakusho-tool.html">リハビリテーション総合実施計画書 作成ツール</a>への貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「📋 スコアをコピー」は18項目の点数をテキストとしてコピーします。<a href="/keikakusho-tool.html" style="color:var(--heading,var(--accent));">リハビリテーション総合実施計画書 作成ツール</a>への貼り付けにも対応。Excelに限らず、メモ帳・Word・メールなど貼り付け可能な場所であればどこでもご利用いただけます。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">「入院時FIM運動合計」を入力すると、<strong>FIM利得（退院時FIM運動合計−入院時FIM運動合計）</strong>を自動計算します。回復期リハビリテーション病棟の実績指数は運動項目の利得をもとに算出されるため、本ツールのFIM利得も運動項目（13項目）のみで計算しています。入院時の運動合計点のみ入力すれば算出できるため、退院時評価の記録としてそのままご活用いただけます。</p>
     </div>
 
