@@ -155,6 +155,11 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 .upload-fold[open] summary { margin-bottom: 10px; }
 .intro-howto { margin-top: 4px; }
 .intro-howto[open] summary { margin-bottom: 6px; }
+.about-tool { margin-top: 28px; padding: 18px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.about-tool h2 { font-size: 16px; font-weight: 700; color: var(--heading); margin-bottom: 12px; }
+.about-tool h3 { font-size: 14px; font-weight: 700; color: var(--heading); margin: 14px 0 6px; }
+.about-tool p { font-size: 14px; color: var(--text2); line-height: 1.9; margin-bottom: 10px; }
+.about-tool p:last-child { margin-bottom: 0; }
 .tool-disclaimer { font-size: 13px; color: var(--text3); line-height: 1.7; margin-top: 12px; }
 
 .notice {
@@ -236,6 +241,9 @@ textarea { min-height: 50px; resize: vertical; field-sizing: content; }
    コンテナ幅：720px→900px、本文+2px、見出し+3px を基準に既存の大小関係を維持。
    一部はJSで動的生成されインラインstyleを持つため、それらは!importantで上書きする。 */
 @media screen and (min-width: 768px) {
+  .about-tool h2 { font-size: 18px; }
+  .about-tool h3 { font-size: 16px; }
+  .about-tool p { font-size: 16px; }
   .upload-card p { font-size: 15px; }
   .upload-card input[type=file] { font-size: 15px; }
   .upload-status { font-size: 15px; }
@@ -729,6 +737,16 @@ body.summary-preview-mode #summary-preview-overlay {
   </div>
 
   <div class="log" id="log"></div>
+
+  <section class="about-tool no-print">
+    <h2>このツールについて</h2>
+    <h3>作った理由</h3>
+    <p>リハビリテーション総合実施計画書（別紙様式21）は情報量が多く、字も小さいため、見るのも書くのも大変です。年齢とともに小さい字がつらくなってきたこともあり、紙に書く場合も、Excelに打ち込む場合も、入力する場所を探しては書き込む操作が煩わしく感じていました。</p>
+    <p>総合実施計画書を書く頻度は意外と多く、業務の中で書く時間もかなりを占めます。時間に追われる中で、書く負担や時間を少しでも減らせれば、同じ状況の方の助けになればと考えました。</p>
+    <p>そこで、1項目ずつ入力しやすい形で見せ、上から順に入れていけば計画書ができるツールにしました。一度きりでなく続けて使えるよう、保存したExcelを読み込んで続きを入力できる形にしています。</p>
+    <h3>仕組み</h3>
+    <p>入力内容はお使いのブラウザ内だけで処理します。Excelの読み書きには、オープンソースのExcelJSを使用しています。</p>
+  </section>
 
   <p class="tool-disclaimer">様式：厚生労働省「別紙様式21」（リハビリテーション総合実施計画書）をもとにしています。算定要件や様式は改定されることがあるため、最新の通知・疑義解釈で確認してください。本ツールは書類作成の補助であり、算定の可否を保証するものではありません。</p>
 
