@@ -151,6 +151,11 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
 .upload-card input[type=file] { font-size: 13px; }
 .upload-status { font-size: 13px; font-weight: 700; margin-top: 8px; }
 .upload-status.ok { color: var(--accent); }
+.upload-fold summary, .intro-howto summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--accent); }
+.upload-fold[open] summary { margin-bottom: 10px; }
+.intro-howto { margin-top: 4px; }
+.intro-howto[open] summary { margin-bottom: 6px; }
+.tool-disclaimer { font-size: 13px; color: var(--text3); line-height: 1.7; margin-top: 12px; }
 
 .notice {
   background: var(--warn-light); border: 1px solid var(--warn); color: var(--warn);
@@ -234,6 +239,7 @@ textarea { min-height: 50px; resize: vertical; field-sizing: content; }
   .upload-card p { font-size: 15px; }
   .upload-card input[type=file] { font-size: 15px; }
   .upload-status { font-size: 15px; }
+  .upload-fold summary, .intro-howto summary { font-size: 15px; }
 
   .section-header { font-size: 17px; }
   .field-label { font-size: 15px; }
@@ -327,19 +333,23 @@ body.summary-preview-mode #summary-preview-overlay {
 
   <div class="intro-guide">
     <p class="intro-guide-title">はじめにお読みください</p>
-    <p>項目を選択・入力していくと、リハビリテーション総合実施計画書（別紙様式21）がExcel形式で自動的に作成されます。1枚目に加えて、リハビリテーション総合計画評価料を算定する場合に作成する2枚目にも対応しています。</p>
-    <ol>
-      <li>下の「① 基本情報」から順に入力していく
-        <p class="intro-guide-subnote">様式（別紙様式21）はツールにあらかじめ組み込まれているため、初めて作成する場合はアップロード不要で、そのまま入力できます</p>
-      </li>
-      <li>「様式に書き込んでダウンロード」ボタンをクリックし、「保存」で任意の場所に保存
-        <p class="intro-guide-subnote">ブラウザの設定によっては自動保存されます</p>
-      </li>
-      <li>Excelを開き、『使用用具及び介助内容等』『前月と比較した当月の患者の状態』など様式内の大きな空白欄があれば直接書き込んで印刷</li>
-      <li>内容に誤りがないか確認して完成です</li>
-    </ol>
-    <p>保存するたびに同じExcelファイルに新しいシートが追加されます。次回は、そのExcelを「様式ファイルをアップロード」で読み込むと、直近の内容がフォームに復元されます（シート名は自由に変更できます）。</p>
-    <p class="intro-guide-note"><strong>入力内容の扱い：</strong>入力した内容は、お使いの端末のブラウザ内だけで処理されます。サーバーへ送信・保存されることはありません。ダウンロードしたExcelには患者さんの情報が含まれますので、保管・持ち出しは各施設の規程に従ってください。</p>
+    <p>項目を入力すると、リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）がExcelで作成されます。入力した内容は、お使いの端末のブラウザ内だけで処理され、サーバーへ送信・保存されることはありません。</p>
+    <p>何も入力せずに「様式に書き込んでダウンロード」を押すと、空白の実施計画書（1枚目・2枚目）が出力されます。白紙の様式として印刷して使うこともできます。</p>
+    <details class="intro-howto">
+      <summary>使い方を見る</summary>
+      <ol>
+        <li>下の「① 基本情報」から順に入力していく
+          <p class="intro-guide-subnote">様式（別紙様式21）はあらかじめ組み込まれているため、そのまま入力できます</p>
+        </li>
+        <li>「様式に書き込んでダウンロード」ボタンをクリックし、「保存」で任意の場所に保存
+          <p class="intro-guide-subnote">ブラウザの設定によっては自動保存されます</p>
+        </li>
+        <li>内容に誤りがないか確認して完成です
+          <p class="intro-guide-subnote">※ ファイル名には患者名が入ります。保管は各施設の規程に従ってください</p>
+        </li>
+      </ol>
+      <p>保存したExcelは、下の「前回のExcelから続きを入力する」で読み込むと、新しいシートが追加され、直近の内容がフォームに復元されます（シート名は自由に変更できます）。</p>
+    </details>
   </div>
 
   <div class="legend-row">
@@ -349,8 +359,11 @@ body.summary-preview-mode #summary-preview-overlay {
   </div>
 
   <div class="upload-card" id="upload-card">
-    <p>様式ファイルをアップロード（続きを使う場合のみ）</p>
-    <input type="file" id="file-input" accept=".xlsx">
+    <details class="upload-fold">
+      <summary>前回のExcelから続きを入力する</summary>
+      <p>以前このツールで保存したExcelを選ぶと、直近の内容がフォームに復元されます。初めての方は不要です。</p>
+      <input type="file" id="file-input" accept=".xlsx">
+    </details>
     <div class="upload-status" id="upload-status"></div>
   </div>
 
@@ -717,6 +730,8 @@ body.summary-preview-mode #summary-preview-overlay {
 
   <div class="log" id="log"></div>
 
+  <p class="tool-disclaimer">様式：厚生労働省「別紙様式21」（リハビリテーション総合実施計画書）をもとにしています。算定要件や様式は改定されることがあるため、最新の通知・疑義解釈で確認してください。本ツールは書類作成の補助であり、算定の可否を保証するものではありません。</p>
+
   <footer class="rt-footer rt-footer-v2">
     <div class="rt-footer-inner">
       <div class="rt-footer-group">
@@ -814,7 +829,7 @@ async function loadEmbeddedTemplate() {
   originalFileBuf = base64ToArrayBuffer(EMBEDDED_E21_XLSX_BASE64);
   workbook = new ExcelJS.Workbook();
   await workbook.xlsx.load(originalFileBuf);
-  document.getElementById('upload-status').textContent = '✓ 内蔵の様式を読み込み済み（e21.xlsx）';
+  document.getElementById('upload-status').textContent = '✓ 様式を読み込み済み';
   document.getElementById('upload-status').classList.add('ok');
   document.getElementById('upload-card').classList.add('loaded');
   document.getElementById('btn-export').disabled = false;
