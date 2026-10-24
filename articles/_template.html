@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--
+=====================================================================
+リハツール 解説記事 雛形（articles/_template.html）  作成: 2026-10-23
+このファイルは公開しない（noindex・sitemap/一覧に載せない）。新記事はこれをコピーして作る。
+---------------------------------------------------------------------
+■ 新記事の手順
+ 1. 「【】」で囲んだ箇所と、下のチェックリストの項目を、すべて自分の記事用に置き換える
+ 2. 一次資料のURLは原本PDFで確認してから書く（孫引きしない）
+ 3. 公開時の5点セット（_SITE_RULES.md）
+    ① トップ（index.html）評価ツールセクション直下の「更新1行」を書き換える
+    ② トップの解説記事セクションに追加（9件固定・最古を削除）
+    ③ articles/index.html に追加
+    ④ sitemap.xml に <loc> と <lastmod> を追記
+    ⑤ canonical を自分のURLにする（この雛形に組み込み済み。置き換え忘れに注意）
+ 4. 更新したら「最終更新」「dateModified」「sitemapのlastmod」の3か所を同じ日付にそろえる
+■ 本文の標準値（変えない。基本CSSは触らず、PC用は @media screen and (min-width:768px) 内だけ）
+    本文 15px（PC 17px）／行間 1.9／段落の下 14px／h2 上40px 下12px／コンテナ 680px（PC 900px）
+■ 色の決まり（色コードを直接書かず、変数を使う。出典：decisions-log 9/18・9/19・9/27・10/23）
+    サイト主色 var(--accent)=#1F5C55（タグ・表の見出し行・囲みの線）
+    見出し・FAQの質問 var(--heading, #1F5C55)（記事では --heading は未定義で #1F5C55 に落ちる。既存記事は var(--accent) だが同じ値）
+    本文中のリンク #2E6F62（.article-body a で指定済み）
+    囲み：要点=accent／補足・現場の声=info(#1a4a7a)／注意・未確定=warn(#8a5c00)／赤=danger(#b83030)は注意喚起だけ
+    使わない：旧緑 #2a5c45（記事・トップでは決別済み。ツールページには残っているが記事では使わない）／#3ab8c8（バランス評価のバッジ色）
+    ツール帯の #1a5c6b、FIMのオレンジ、記事一覧の青#1565c0・オレンジ#b45309 は記事本文には使わない
+■ 注意
+ - 記事ごとの独自 :root は作らない（共通 css/style.css の変数を使う）
+ - 広告は記事末尾（参考資料の下・関連記事の上）。評価ツールの入力画面やFIMには置かない
+ - 運営者は匿名。実名・勤務先が分かる表現は入れない
+ - 文体は「です・ます」。断定を避け、事実→背景→意味→観察の順
+=====================================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow"><!-- 【雛形のみ。実記事ではこの1行を削除】 -->
+<link rel="icon" type="image/png" href="/images/icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJLTBSGZ21"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJLTBSGZ21');
+</script>
+<title>【記事タイトル（検索で拾われたい言葉を前に）】 | リハツール</title><!-- 【タイトル末尾は「 | リハツール」で統一】 -->
+<meta name="description" content="【120字前後。何を・誰向けに・どの一次資料で解説するか】">
+<link rel="stylesheet" href="css/style.css">
+<link rel="canonical" href="https://reha-tool.jp/articles/【ファイル名】.html">
+<meta property="og:title" content="【titleと同じ】">
+<meta property="og:description" content="【descriptionと同じ】">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reha-tool.jp/articles/【ファイル名】.html">
+<meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://reha-tool.jp/img/og-image.png">
+<style>
+.article-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--accent-light); color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+.article-badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--info-light); color: var(--info); font-weight: 700; margin-left: 8px; }
+.article-title { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.article-meta { font-size: 12px; color: var(--text3); margin-bottom: 28px; }
+.article-body { color: var(--text); line-height: 1.9; }
+.article-body p { font-size: 15px; margin-bottom: 14px; }
+.article-body p.update-note { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+.article-body h2 { font-size: 1.05rem; font-weight: 700; color: var(--heading, #1F5C55); margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent-light); scroll-margin-top: 70px; }
+.article-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 28px 0 10px; padding-left: 10px; border-left: 4px solid var(--accent); }
+.article-body ul, .article-body ol { font-size: 15px; margin: 0 0 14px 1.4em; }
+.article-body li { margin-bottom: 6px; }
+.article-body li > ul, .article-body li > ol { margin: 6px 0 6px 1.2em; }
+.article-body a { color: #2E6F62; word-break: break-word; overflow-wrap: anywhere; }
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin: 16px 0 28px; }
+.toc-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 6px; }
+.article-body .toc ol { font-size: 14px; margin: 0 0 0 1.3em; }
+.article-body .toc li { margin-bottom: 2px; }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.info-box { background: var(--info-light); border-left: 4px solid var(--info); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.info-box .info-title { font-weight: 700; color: var(--info); margin-bottom: 6px; font-size: 13px; }
+.accent-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.warn-box { background: var(--warn-light); border-left: 4px solid var(--warn); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; margin: 16px 0 24px; font-size: 14px; }
+.warn-box .warn-title { font-weight: 700; color: var(--warn); margin-bottom: 6px; font-size: 13px; }
+.table-wrap { overflow-x: auto; margin: 16px 0 24px; -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 13px; background: var(--surface); border: 1px solid var(--border); }
+.data-table th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; white-space: nowrap; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 13px; line-height: 1.7; }
+.data-table tr:last-child td { border-bottom: none; }
+.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; }
+.faq-q { font-weight: 700; color: var(--heading, #1F5C55); margin-bottom: 6px; font-size: 14px; }
+.faq-a { font-size: 14px; color: var(--text); }
+.source-box { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin: 24px 0; font-size: 13px; }
+.source-box .source-title { font-weight: 700; color: var(--text2); margin-bottom: 8px; }
+.source-box ul { font-size: 13px; padding-left: 1.4em; margin: 0; }
+.source-box li { margin-bottom: 4px; color: var(--text2); }
+.related-tools { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.related-title { font-size: 13px; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; margin-bottom: 12px; }
+.tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: block; margin-bottom: 10px; transition: border-color 0.15s; }
+.tool-card:hover { border-color: var(--accent); }
+.tool-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tool-icon { font-size: 20px; }
+.tool-name { font-size: 14px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--text2); }
+.byline { font-size: 13px; color: var(--text2); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.byline a { color: var(--accent); font-weight: 700; text-decoration: none; }
+.author-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 24px 0; font-size: 14px; color: var(--text2); line-height: 1.8; }
+.author-box a { color: var(--accent); font-weight: 700; text-decoration: none; }
+
+/* PC幅：基本CSS（上）は触らず、拡大はここだけに書く */
+@media screen and (min-width: 768px) {
+  .article-tag { font-size: 13px; }
+  .article-badge { font-size: 13px; }
+  .article-title { font-size: 1.4rem; }
+  .article-meta { font-size: 14px; }
+  .article-body p { font-size: 17px; }
+  .article-body p.update-note { font-size: 14px; }
+  .article-body ul, .article-body ol { font-size: 17px; }
+  .article-body h2 { font-size: 1.15rem; }
+  .article-body h3 { font-size: 1.05rem; }
+  .toc-title { font-size: 14px; }
+  .article-body .toc ol { font-size: 15px; }
+  .info-box, .accent-box, .warn-box { font-size: 16px; }
+  .info-box .info-title, .warn-box .warn-title { font-size: 15px; }
+  .data-table { font-size: 15px; }
+  .data-table th { font-size: 14px; }
+  .data-table td { font-size: 15px; }
+  .faq-q, .faq-a { font-size: 16px; }
+  .source-box, .source-box ul { font-size: 15px; }
+  .related-title { font-size: 15px; }
+  .tool-icon { font-size: 22px; }
+  .tool-name { font-size: 16px; }
+  .tool-desc { font-size: 15px; }
+  .byline, .author-box { font-size: 14px; }
+}
+@media print { .toc { display: none; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "【記事タイトル】",
+  "description": "【descriptionと同じ】",
+  "image": "https://reha-tool.jp/img/og-image.png",
+  "datePublished": "【YYYY-MM-DD】",
+  "dateModified": "【YYYY-MM-DD（更新のたびに書き換える）】",
+  "publisher": { "@type": "Organization", "name": "リハツール", "url": "https://reha-tool.jp" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://reha-tool.jp/articles/【ファイル名】.html" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://reha-tool.jp/" },
+    { "@type": "ListItem", "position": 2, "name": "解説記事一覧", "item": "https://reha-tool.jp/articles/index.html" },
+    { "@type": "ListItem", "position": 3, "name": "【パンくず用の短い名前】", "item": "https://reha-tool.jp/articles/【ファイル名】.html" }
+  ]
+}
+</script>
+</head>
+<body>
+<nav class="global-nav rt-gnav">
+  <div class="nav-container">
+    <a class="rt-gnav-brand" href="/">
+      <img class="rt-gnav-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+      <span class="rt-gnav-ja">リハツール</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#tools">評価ツール</a>
+      <a href="/articles/index.html">解説記事</a>
+      <a href="/about.html">サイトについて</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="site-name">リハツール｜解説記事</div>
+  <h1>【記事タイトル（改行したい所に &lt;br&gt;）】</h1>
+</header>
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html">解説記事一覧</a>
+    <span>›</span>
+    【パンくず用の短い名前】
+  </div>
+
+  <div class="byline">
+    執筆・監修：理学療法士（臨床25年目）・認知症ケア専門士・病院リハ科長　|　<a href="../about.html">運営者について →</a>
+  </div>
+
+  <div class="article-header">
+    <span class="article-tag">【制度・政策 / 診療報酬 / 介護報酬 / 臨床 など】</span>
+    <span class="article-badge">【2026年○月公開】</span>
+    <h1 class="article-title">【記事タイトル（ヘッダーと同じ）】</h1>
+    <div class="article-meta">理学療法士・作業療法士・言語聴覚士向け解説</div>
+  </div>
+
+  <div class="article-body">
+
+    <!-- 更新型の記事だけ使う（普通の解説記事は削除）
+    <p class="update-note">最終更新：【YYYY年M月D日】（【どの会議・資料まで反映したか】）</p>
+    -->
+
+    <p>【導入：誰の、何の話か。結論を先に1〜2文】</p>
+
+    <div class="accent-box">
+      【要点を1つだけ。囲みの使いすぎに注意（accent=要点／info=現場の声・補足／warn=注意・未確定）】
+    </div>
+
+    <nav class="toc">
+      <p class="toc-title">目次</p>
+      <ol>
+        <li><a href="#sec1">【見出し1】</a></li>
+        <li><a href="#sec2">【見出し2】</a></li>
+        <li><a href="#matome">まとめ</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="sec1">【見出し1：事実】</h2>
+    <p>【一次資料の事実。資料名・回・日付を本文に入れる】</p>
+
+    <h2 id="sec2">【見出し2：背景・意味】</h2>
+    <p>【なぜその資料が出たか。解釈は「と読めます」「ようにも見えます」など断定を避ける】</p>
+
+    <div class="info-box">
+      <div class="info-title">💡 現場から見ると</div>
+      【SHINさんの実体験がある場合だけ書く。無ければこのブロックごと削除（体験の捏造はしない）】
+    </div>
+
+    <h3>【小見出し（必要なときだけ）】</h3>
+    <p>【本文】</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>【項目】</td><td>【内容・数字（出典を本文かsource-boxに）】</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ この記事の情報について</div>
+      【未確定の部分・執筆時点（YYYY年M月）・確認が必要な点】
+    </div>
+
+    <h2 id="matome">まとめ</h2>
+    <p>【事実→意味→観察の順で3文ほど。「〜すべき」とは書かない】</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <div class="faq-item">
+      <div class="faq-q">Q. 【検索されそうな疑問】</div>
+      <div class="faq-a">【短い答え。本文と矛盾させない】</div>
+    </div>
+
+    <div class="source-box">
+      <p class="source-title">参考・一次ソース</p>
+      <ul>
+        <li>【資料名（回・日付）】：<a href="【原本PDFのURL】" target="_blank" rel="noopener">mhlw.go.jp</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上でPC版728x90、未満でスマホ版300x250 -->
+  <div id="ad-slot" style="margin:24px auto;text-align:center;">
+    <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+    <script>
+    (function(){
+      var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+      var src = pc ? 'https://adm.shinobi.jp/s/32592fb8a1f49bdab7a36193600c735f' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+      document.getElementById('ad-slot').style.minHeight = pc ? '90px' : '250px';
+      document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+    })();
+    </script>
+  </div>
+
+  <div class="related-tools">
+    <div class="related-title">関連ツール・記事</div>
+    <a class="tool-card" href="【関連記事.html】">
+      <div class="tool-card-head"><span class="tool-icon">📄</span><span class="tool-name">【関連記事のタイトル】</span></div>
+      <div class="tool-desc">【1文の説明】</div>
+    </a>
+  </div>
+
+  <div class="author-box">
+    この記事は、理学療法士（臨床25年目・認知症ケア専門士、病院リハビリテーション科長として勤務）が、臨床経験と厚生労働省等の一次資料をもとに執筆・監修しています。<br>
+    経歴の詳細はこちら → <a href="../about.html">運営者について</a>
+  </div>
+
+  <footer class="rt-footer rt-footer-v2">
+    <div class="rt-footer-inner">
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">評価ツール</p>
+        <ul>
+          <li><a href="/fim-tool.html">FIM評価ツール</a></li>
+          <li><a href="/bi-tool.html">BI評価ツール</a></li>
+          <li><a href="/walk-tool.html">歩行評価ツール</a></li>
+          <li><a href="/balance-tool.html">バランス評価ツール</a></li>
+          <li><a href="/hdsr-tool.html">HDS-R評価ツール</a></li>
+          <li><a href="/santei-tool.html">算定日数ツール</a></li>
+          <li><a href="/seikatsu-tool.html">生活機能チェック</a></li>
+          <li><a href="/kyoumi-tool.html">興味・関心チェック</a></li>
+          <li><a href="/kihon-checklist.html">基本チェックリスト</a></li>
+          <li><a href="/keikakusho-tool.html">リハ総合実施計画書</a></li>
+        </ul>
+      </div>
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">解説</p>
+        <ul>
+          <li><a href="/articles/index.html#cat-iryo">医療（診療報酬）</a></li>
+          <li><a href="/articles/index.html#cat-kaigo">介護（介護報酬）</a></li>
+          <li><a href="/articles/index.html#cat-other">その他</a></li>
+          <li><a href="/about.html">運営者について</a></li>
+        </ul>
+      </div>
+      <div class="rt-footer-group">
+        <p class="rt-footer-title">サイト情報</p>
+        <ul>
+          <li><a href="/">トップ</a></li>
+          <li><a href="/contact.html">お問い合わせ</a></li>
+          <li><a href="/terms.html">利用規約</a></li>
+          <li><a href="/privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rt-footer-brand">
+      <a class="rt-footer-brand-link" href="/">
+        <img class="rt-footer-logo" src="/img/rehatool-logo.png" alt="RehaTool">
+        <span class="rt-footer-ja">リハツール</span>
+      </a>
+      <p class="rt-footer-tagline">評価ツールと制度解説</p>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
