@@ -625,7 +625,9 @@
 
   .adsbygoogle,
 
-  ins.adsbygoogle {
+  ins.adsbygoogle,
+
+  .ad-no-print {
 
     display: none !important;
 
@@ -1104,6 +1106,22 @@ li a[href^="http"] {
   </div>
 
 
+
+  <div class="ad-no-print" style="margin:24px auto;text-align:center;">
+    <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+    <script>
+    (function(){
+      var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+      var id = pc ? 'im-7f152ab422a3467ab5f9f42eda49edc0' : 'im-cc6a8c3d983f4df2b0e9ee6bc576cb10';
+      var mid = pc ? 597415 : 597416;
+      var asid = pc ? 1949899 : 1949900;
+      document.write('<div id="' + id + '">'
+        + '<scr' + 'ipt async src="https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104"></scr' + 'ipt>'
+        + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:' + mid + ',asid:' + asid + ',type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
+        + '</div>');
+    })();
+    </script>
+  </div>
 
   <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
 
