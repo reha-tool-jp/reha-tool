@@ -822,3 +822,4 @@ thunder-monetize.com, 3905806597, RESELLER
 outbrain.com, 0073fa86cff719c752763d2c3ee52c8f00, RESELLER
 rtbhouse.com, cXHPxJw8qyEGcQ2Md2z4, DIRECT
 #-- adstir ads.txt end --#
+i-mobile.co.jp, 85604, DIRECT
