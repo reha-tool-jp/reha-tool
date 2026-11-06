@@ -430,6 +430,7 @@ body.preview-mode .patient-card { grid-template-columns: repeat(4, 1fr); }
 .judgment-note-back:hover { text-decoration: underline; }
 .item-note-link { font-size: 11px; color: var(--primary); text-decoration: none; margin-left: 4px; font-weight: 400; }
 .item-note-link:hover { text-decoration: underline; }
+@media print { .item-note-link { display: none !important; } }
 @media print { .detail-table-wrap { display: none !important; } }
 
 .tool-card {
