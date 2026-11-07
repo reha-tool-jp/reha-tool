@@ -506,14 +506,14 @@
     </div>
   </div>
 
-  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上でPC版728x90、未満でスマホ版300x250 -->
+  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。PC・スマホとも300x250 -->
   <div id="ad-slot" style="margin:24px auto;text-align:center;">
     <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
     <script>
     (function(){
-      var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
-      var src = pc ? 'https://adm.shinobi.jp/s/32592fb8a1f49bdab7a36193600c735f' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
-      document.getElementById('ad-slot').style.minHeight = pc ? '90px' : '250px';
+      // この記事は、PCもスマホも300x250（縦に高い枠）を使う（2026-11-07、PCの728x90との比較テスト）
+      var src = 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+      document.getElementById('ad-slot').style.minHeight = '250px';
       document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
     })();
     </script>
