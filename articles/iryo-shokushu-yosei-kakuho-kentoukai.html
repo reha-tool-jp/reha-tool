@@ -114,6 +114,10 @@
 .lbl-voice { background: #f1e9f5; color: #7a3d8a; }
 .lbl-src { background: var(--surface2); color: var(--text2); }
 .tbl14 td:first-child { white-space: nowrap; }
+@media screen and (min-width: 768px) {
+  .stack-table th { white-space: normal; vertical-align: bottom; }
+  .stack-table td:first-child { white-space: nowrap; }
+}
 .bars { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px 10px; margin: 16px 0 8px; }
 .bars-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
 .bar-row { display: grid; grid-template-columns: 6.5em 1fr 4em; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
