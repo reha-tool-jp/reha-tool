@@ -545,6 +545,9 @@ body.preview-mode header .band-back { display: none !important; }
 @media print { .copy-hint { display: none !important; } }
 body.preview-mode .copy-hint { display: none !important; }
 </style>
+<style>
+@media print { .ad-no-print { display: none !important; } }
+</style>
 </head>
 
 <body>
@@ -689,6 +692,34 @@ body.preview-mode .copy-hint { display: none !important; }
     </div>
 
     <div style="margin-bottom:28px;">
+  <!-- 広告：記事中。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：i-mobile）、スマホは忍者AdMaxのみ1つ -->
+  <div class="ad-no-print" style="margin:24px auto;text-align:center;">
+    <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+    <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        if (!(pc || true)) return;
+        var src = pc ? 'https://adm.shinobi.jp/s/a744071ba10526f6f08808ab8d2c6db5' : 'https://adm.shinobi.jp/s/512dfa58e797dd0773a44f74567a7f2c';
+        document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+      })();
+      </script>
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        if (!(pc || false)) return;
+        var id = pc ? 'im-7f13897f93704ba99d40b648e9fd4103' : 'im-ac148f21d5d248f08ebcfd468cea00dc';
+        var mid = pc ? 597415 : 597416;
+        var asid = pc ? 1951724 : 1951725;
+        document.write('<div style="min-width:300px;min-height:250px;"><div id="' + id + '">'
+          + '<scr' + 'ipt async src="https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104"></scr' + 'ipt>'
+          + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:' + mid + ',asid:' + asid + ',type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
+          + '</div></div>');
+      })();
+      </script>
+    </div>
+  </div>
+
       <h2 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:10px;">現場で一番割れるのは、5点と6点の境界線</h2>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;">FIM採点で最もブレやすいのが、5点（監視・準備）と6点（修正自立）の境界です。FIMの原則は「しているADL」で採点することです。訓練室でできる能力（できるADL）ではなく、日常的に実際にやっている状況を評価します。</p>
       <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:8px;">判断の軸になるのは、「介助者がその場を離れられるかどうか」です。6点（修正自立）は、時間がかかる・自助具や装具を使う・安全性への配慮が必要、といった条件があっても、介助者が完全にその場を離れて安全に行える状態です。5点（監視・準備）は、スタッフがその場を離れられず、監視・準備・指示・促しのいずれかが必要な状態を指します（体に触れているかどうかは、この判断の一部にすぎません）。</p>
@@ -800,6 +831,34 @@ body.preview-mode .copy-hint { display: none !important; }
     </ul>
     <p class="tool-disclaimer">本ツールの結果は参考情報です。実際の評価・判断は、所属施設のルールと専門職の臨床判断に従ってください。</p>
     <p class="tool-disclaimer">FIMは、UDSMRが権利を持つ評価法です。本ページは入力と集計の補助であり、公式のマニュアル・用紙・認定研修に代わるものではありません。正式な運用は公式資料と施設の契約に従ってください。</p>
+  </div>
+
+  <!-- 広告：記事末尾。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：i-mobile）、スマホは縦に2つ（上：忍者AdMax、下：i-mobile） -->
+  <div class="ad-no-print" style="margin:24px auto;text-align:center;">
+    <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+    <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        if (!(pc || true)) return;
+        var src = pc ? 'https://adm.shinobi.jp/s/7979f3abb149cdd6510d2ff42a1c26f1' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+        document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+      })();
+      </script>
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        if (!(pc || true)) return;
+        var id = pc ? 'im-33da1cebb763412a9befcaff69d7e630' : 'im-cc6a8c3d983f4df2b0e9ee6bc576cb10';
+        var mid = pc ? 597415 : 597416;
+        var asid = pc ? 1951720 : 1949900;
+        document.write('<div style="min-width:300px;min-height:250px;"><div id="' + id + '">'
+          + '<scr' + 'ipt async src="https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104"></scr' + 'ipt>'
+          + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:' + mid + ',asid:' + asid + ',type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
+          + '</div></div>');
+      })();
+      </script>
+    </div>
   </div>
 
   <div class="section-title" style="margin-top: 40px;">関連する解説記事</div>
