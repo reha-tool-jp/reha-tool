@@ -506,7 +506,7 @@
     </div>
   </div>
 
-  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上はPC用300x250を2つ横並び（左：忍者AdMax 記事下_PC_300x250、右：i-mobile 記事下_PC_300x250）、未満はスマホ用300x250（忍者AdMax）を1つ -->
+  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上はPC用300x250を2つ横並び（左：忍者AdMax 記事下_PC_300x250、右：i-mobile 記事下_PC_300x250）、未満はスマホ用300x250を縦に2つ（上：忍者AdMax、下：i-mobile 記事下スマホ asid 1949900） -->
   <div id="ad-slot" style="margin:24px auto;text-align:center;">
     <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
     <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
@@ -521,11 +521,13 @@
       </div>
       <script>
       (function(){
-        if (!(window.matchMedia && window.matchMedia('(min-width: 900px)').matches)) return;
-        var id = 'im-33da1cebb763412a9befcaff69d7e630';
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        var id = pc ? 'im-33da1cebb763412a9befcaff69d7e630' : 'im-cc6a8c3d983f4df2b0e9ee6bc576cb10';
+        var mid = pc ? 597415 : 597416;
+        var asid = pc ? 1951720 : 1949900;
         document.write('<div style="min-width:300px;min-height:250px;"><div id="' + id + '">'
           + '<scr' + 'ipt async src="https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104"></scr' + 'ipt>'
-          + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:597415,asid:1951720,type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
+          + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:' + mid + ',asid:' + asid + ',type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
           + '</div></div>');
       })();
       </script>
