@@ -506,17 +506,30 @@
     </div>
   </div>
 
-  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上でPC版300x250（記事下_PC_300x250）、未満でスマホ版300x250 -->
+  <!-- 広告：記事末尾（参考資料の下・関連記事の上）。幅900px以上はPC用300x250を2つ横並び（左：忍者AdMax 記事下_PC_300x250、右：i-mobile 記事下_PC_300x250）、未満はスマホ用300x250（忍者AdMax）を1つ -->
   <div id="ad-slot" style="margin:24px auto;text-align:center;">
     <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
-    <script>
-    (function(){
-      var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
-      var src = pc ? 'https://adm.shinobi.jp/s/7979f3abb149cdd6510d2ff42a1c26f1' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
-      document.getElementById('ad-slot').style.minHeight = '250px';
-      document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-    })();
-    </script>
+    <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div style="min-width:300px;min-height:250px;">
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          var src = pc ? 'https://adm.shinobi.jp/s/7979f3abb149cdd6510d2ff42a1c26f1' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+          document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        })();
+        </script>
+      </div>
+      <script>
+      (function(){
+        if (!(window.matchMedia && window.matchMedia('(min-width: 900px)').matches)) return;
+        var id = 'im-33da1cebb763412a9befcaff69d7e630';
+        document.write('<div style="min-width:300px;min-height:250px;"><div id="' + id + '">'
+          + '<scr' + 'ipt async src="https://imp-adedge.i-mobile.co.jp/script/v1/spot.js?20220104"></scr' + 'ipt>'
+          + '<scr' + 'ipt>(window.adsbyimobile=window.adsbyimobile||[]).push({pid:85604,mid:597415,asid:1951720,type:"banner",display:"inline",elementid:"' + id + '"})</scr' + 'ipt>'
+          + '</div></div>');
+      })();
+      </script>
+    </div>
   </div>
 
   <div class="related-tools">
