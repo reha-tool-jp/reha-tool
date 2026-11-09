@@ -963,6 +963,7 @@ document.getElementById('file-input').addEventListener('change', async (e) => {
   document.getElementById('upload-status').classList.add('ok');
   document.getElementById('upload-card').classList.add('loaded');
   document.getElementById('btn-export').disabled = false;
+  trackKeikaku('keikakusho_upload');
 });
 
 // 隠しセル(A200=日付, A201='p1')を持つシートのうち、一番新しい日付のものを探す
@@ -980,6 +981,18 @@ function findLatestDatedSheet(workbook, pageTag) {
   }
   return latest;
 }
+
+// 利用状況の計測（GA4のイベント）。患者名・点数・入力内容は送らない。
+function trackKeikaku(name) {
+  try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {}
+}
+// 最初に入力欄（チップ・入力・選択）を操作したとき、1訪問に1回だけ記録
+document.addEventListener('click', function onFirstInput(e) {
+  if (e.target.closest && e.target.closest('.chip, input, select, textarea')) {
+    trackKeikaku('keikakusho_first_input');
+    document.removeEventListener('click', onFirstInput);
+  }
+});
 
 function toggleSection(headerEl) {
   const body = headerEl.nextElementSibling;
@@ -1369,6 +1382,7 @@ async function pasteFim(timing) {
     return;
   }
   setScoreValues(FIM_ITEMS, 'fim-items', timing, result.values);
+  trackKeikaku('keikakusho_paste_fim');
   statusEl.textContent = `✓ FIM（${timing === 'start' ? '開始時' : '現在'}）を入力欄に反映しました`;
   statusEl.style.color = 'var(--accent)';
 }
@@ -1383,6 +1397,7 @@ async function pasteBi(timing) {
     return;
   }
   setScoreValues(BI_ITEMS, 'bi-items', timing, result.values);
+  trackKeikaku('keikakusho_paste_bi');
   statusEl.textContent = `✓ BI（${timing === 'start' ? '開始時' : '現在'}）を入力欄に反映しました`;
   statusEl.style.color = 'var(--accent)';
 }
@@ -2338,6 +2353,7 @@ function sumScores(items, containerId, timing) {
 }
 
 function showSummaryPreview() {
+  trackKeikaku('keikakusho_summary_preview');
   const patientName = document.getElementById('f-name').value || '';
   const facility = document.getElementById('sk-kikan').value || '';
   const tantou = document.getElementById('sk-pt').value || '';
@@ -2386,7 +2402,7 @@ function showSummaryPreview() {
       ${escHtml(facility)}<br>担当：${escHtml(tantou)}
     </div>
     <div class="sp-actions no-print">
-      <button class="btn btn-primary" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+      <button class="btn btn-primary" onclick="trackKeikaku('keikakusho_print'); window.print()">🖨️ 印刷 / PDF保存</button>
       <button class="btn btn-secondary" onclick="closeSummaryPreview()">閉じる</button>
     </div>
   `;

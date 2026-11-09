@@ -645,7 +645,7 @@ body.preview-mode .copy-hint { display: none !important; }
 </div>
 
 <div class="actions">
-<button class="btn btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
+<button class="btn btn-print" onclick="trackFim('fim_print'); window.print()">🖨 印刷 / PDF保存</button>
 <button class="btn btn-copy" id="copy-excel-btn" onclick="copyToExcel()">📋 スコアをコピー</button>
 <button class="btn btn-preview" id="preview-toggle-btn" onclick="togglePreview()">👁 プレビュー（SS用）</button>
 <button class="btn btn-reset" onclick="resetAll()">↺ リセット</button>
@@ -1235,6 +1235,7 @@ groupDefs.forEach(def => {
 }
 
 function setScore(id, value, itemName) {
+if (!trackFim.scored) { trackFim.scored = true; trackFim('fim_score_first'); }
 scores[id] = value;
 updateScores();
 renderFIM();
@@ -1281,7 +1282,13 @@ function showToast(message) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
+// 利用状況の計測（GA4のイベント）。患者名・点数などの入力内容は送らない。
+function trackFim(name) {
+  try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {}
+}
+
 function saveData() {
+  trackFim('fim_save');
   const patientName = document.getElementById('patient-name').value;
   const evalDate = document.getElementById('eval-date').value;
   const admissionFim = document.getElementById('admission-fim').value;
@@ -1335,6 +1342,7 @@ function loadData(event) {
       
       updateScores();
       renderFIM();
+      trackFim('fim_load');
       showToast('データを読み込みました');
     } catch (err) {
       alert('ファイルの読み込みに失敗しました。');
@@ -1346,6 +1354,7 @@ function loadData(event) {
 
 function resetAll() {
 if (!confirm('全項目を1点にリセットしますか？')) return;
+trackFim('fim_reset');
 fimData.forEach(cat => cat.items.forEach(item => scores[item.id] = 1));
 document.getElementById('patient-name').value = '';
 document.getElementById('eval-date').value = new Date().toISOString().split('T')[0];
@@ -1357,6 +1366,7 @@ renderFIM();
 function togglePreview() {
   document.body.classList.toggle('preview-mode');
   if (document.body.classList.contains('preview-mode')) {
+    trackFim('fim_preview');
     window.scrollTo(0, 0);
   }
 }
@@ -1365,6 +1375,7 @@ document.getElementById('eval-date').value = new Date().toISOString().split('T')
 document.getElementById('admission-fim').addEventListener('input', updateScores);
 
 function copyToExcel() {
+  trackFim('fim_copy');
   const values = [];
   fimData.forEach(cat => {
     cat.items.forEach(item => {
@@ -1434,6 +1445,7 @@ const judgmentNotes = {
 };
 
 function jumpToNote(itemId) {
+  trackFim('fim_note_open');
   const target = document.getElementById(`section-${itemId}`);
   if (!target) return true;
   const details = target.closest('details');
