@@ -512,6 +512,7 @@ body.preview-mode .tool-hook, body.preview-mode .tool-intro { display: none !imp
     });
   }
 </script>
+<script src="/pwa-install.js" defer></script>
 
 <link rel="canonical" href="https://reha-tool.jp/fim-tool.html">
 <meta property="og:title" content="FIM評価ツール（機能的自立度評価法） | リハツール">
@@ -1285,6 +1286,10 @@ function showToast(message) {
 // 利用状況の計測（GA4のイベント）。患者名・点数などの入力内容は送らない。
 function trackFim(name) {
   try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {}
+  // 使ったあとに、「ホーム画面に追加」の案内を保存・読み込みボタンの下に1行だけ出す（リセット・プレビュー・メモは対象外）
+  if (name === 'fim_score_first' || name === 'fim_copy' || name === 'fim_print' || name === 'fim_save' || name === 'fim_load') {
+    try { if (window.pwaInstallOffer) window.pwaInstallOffer(document.querySelectorAll('.actions')[1]); } catch (e) {}
+  }
 }
 
 function saveData() {

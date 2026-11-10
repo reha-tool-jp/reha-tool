@@ -301,6 +301,21 @@ body.summary-preview-mode #summary-preview-overlay {
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1a5c6b">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a5c6b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="リハツール">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+</script>
+<script src="/pwa-install.js" defer></script>
 <link rel="canonical" href="https://reha-tool.jp/keikakusho-tool.html">
 <meta property="og:title" content="リハビリテーション総合実施計画書 作成ツール（令和8年度・別紙様式21）| リハツール">
 <meta property="og:description" content="書く手間を減らす無料の入力ツール。令和8年度（R8）改定後の様式、リハビリテーション総合実施計画書（別紙様式21・1枚目2枚目）を入力フォームからExcelに書き込める無料ツール。入力内容はブラウザ内で処理され外部に送信されません。FIM・BIの貼り付け、白紙の様式の出力、保存したExcelの続き入力に対応。">
@@ -985,6 +1000,10 @@ function findLatestDatedSheet(workbook, pageTag) {
 // 利用状況の計測（GA4のイベント）。患者名・点数・入力内容は送らない。
 function trackKeikaku(name) {
   try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {}
+  // 最初の入力と、Excel出力のあとに、「ホーム画面に追加」の案内を出力ボタンの下に1行だけ出す
+  if (name === 'keikakusho_first_input') {
+    try { var b = document.getElementById('btn-export'); if (window.pwaInstallOffer && b) window.pwaInstallOffer(b.parentNode); } catch (e) {}
+  }
 }
 // 最初に入力欄（チップ・入力・選択）を操作したとき、1訪問に1回だけ記録
 document.addEventListener('click', function onFirstInput(e) {
@@ -2081,6 +2100,7 @@ async function exportXlsx() {
   a.download = '実施計画書_' + (document.getElementById('f-name').value || '記入済み') + '.xlsx';
   a.click();
   try { if (typeof gtag === 'function') gtag('event', 'keikakusho_export'); } catch (e) {}
+  try { var eb = document.getElementById('btn-export'); if (window.pwaInstallOffer && eb) window.pwaInstallOffer(eb.parentNode); } catch (e) {}
   URL.revokeObjectURL(url);
 }
 
