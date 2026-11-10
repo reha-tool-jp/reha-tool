@@ -147,6 +147,14 @@
   .article-body li.lb-src { font-size: 15px; }
 }
 
+/* --- 「いまの現在地」表：サービス名の列を強調 --- */
+.now-table td:first-child { font-weight: 700; font-size: 15px; color: var(--heading, #1F5C55); background: var(--accent-light); border-left: 4px solid var(--accent); white-space: nowrap; }
+.now-table tr.now-mof td:first-child { background: #e4e8ee; color: #2f3e52; border-left-color: #9aa8ba; white-space: normal; }
+@media screen and (max-width: 767px) {
+  .now-table tr { border-left: 4px solid var(--accent); padding-left: 12px; }
+  .now-table tr.now-mof { border-left-color: #9aa8ba; }
+  .now-table td:first-child { font-size: 16px; background: none; border-left: none; white-space: normal; }
+}
 /* --- スマホ幅の表（要望の対応表はカード化、会議ログは1行目に回・日付・資料） --- */
 @media screen and (max-width: 767px) {
   .stack-table thead, .log-table thead { display: none; }
@@ -257,7 +265,7 @@
 
 <h2 id="now">いまの現在地（11/6時点）</h2>
 <p>どのサービスも、厚労省の分科会で<strong>案や論点が示されている段階</strong>で、単位数や改定率は、まだ示されていません。詳しくは、下の各項目を見てください。</p>
-<div class="table-wrap"><table class="data-table stack-table">
+<div class="table-wrap"><table class="data-table stack-table now-table">
 <thead><tr><th>サービス</th><th>いま出ている案・論点</th><th>どの会議で</th></tr></thead>
 <tbody>
 <tr><td data-label="サービス">訪問リハ</td><td data-label="いま出ている案・論点">事業所の医師が診る方向。診療未実施減算を取っている間は、リハマネ加算が取れなくなる案</td><td data-label="どの会議で">第271回（10/19）</td></tr>
@@ -266,7 +274,7 @@
 <tr><td data-label="サービス">デイサービス</td><td data-label="いま出ている案・論点">入浴介助加算の単価見直し、突発的な送迎キャンセルを減算の対象外に、延長加算ニ・ホの廃止案</td><td data-label="どの会議で">第270回（10/14）</td></tr>
 <tr><td data-label="サービス">老健</td><td data-label="いま出ている案・論点">初期加算(Ⅰ)の対象拡大、地域貢献活動の評価の明確化、短期集中リハ関連加算の算定要件をそろえる方向</td><td data-label="どの会議で">第273回（11/2）</td></tr>
 <tr><td data-label="サービス">通所系サービス・全サービス共通</td><td data-label="いま出ている案・論点">通所系で身体的拘束等の適正化措置の義務化と、未実施の場合の減算。通所系を、中山間地域等の加算の対象に加える案。業務継続計画未策定減算の廃止案</td><td data-label="どの会議で">第274回（11/6）</td></tr>
-<tr><td data-label="サービス">財務省・財政審の指摘</td><td data-label="いま出ている案・論点">訪問リハ（集中提供型）と訪問看護の報酬の適正化を求める指摘。<strong>決定ではありません</strong></td><td data-label="どの会議で">財政審（11/4）</td></tr>
+<tr class="now-mof"><td data-label="サービス">財務省・財政審の指摘</td><td data-label="いま出ている案・論点">訪問リハ（集中提供型）と訪問看護の報酬の適正化を求める指摘。<strong>決定ではありません</strong></td><td data-label="どの会議で">財政審（11/4）</td></tr>
 </tbody></table></div>
 <p class="update-note">今後の予定：12月中に基本的な考え方をとりまとめ、令和9年1月頃に諮問・答申という、スケジュール案です（厚労省の「検討の進め方」より。第256回）。</p>
 <div class="toc"><div class="toc-title">この記事の目次</div><ol><li><a href="#now">いまの現在地</a></li><li><a href="#sec1">最新の動き</a></li><li><a href="#sec2">この記事の読み方</a></li><li><a href="#sec3">まだ決まっていないこと</a></li><li><a href="#sec4">改定の5つの柱（基本的な視点・案）：9/30 第268回</a></li><li><a href="#sec5">テーマ別：いまの現在地</a></li><li><a href="#sec6">9月のリハ団体の要望と、10月の案</a></li><li><a href="#sec7">会議ログ（新しい順）</a></li><li><a href="#sec8">現場で今からできること（提案です。公式の方針ではありません）</a></li><li><a href="#sec9">参考</a></li></ol></div>
