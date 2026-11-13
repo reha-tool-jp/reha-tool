@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>可動域を声で記録（試作） | リハツール</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--primary:#1a5c6b;--accent:#e8753a;--bg:#f4f2ee;--surface:#fff;--text:#1c1c1e;--muted:#6e6e73;--border:#d8d5ce;--ok:#2e8b57;--shadow:0 2px 12px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:var(--primary);color:#fff;padding:14px 18px}
+header h1{font-size:1.05rem;font-weight:700}
+header .sub{font-size:.72rem;opacity:.8;margin-top:2px}
+.wrap{max-width:680px;margin:0 auto;padding:12px 12px 80px}
+.proto{background:#fff3e8;border:1px solid #f1c9a5;border-radius:10px;padding:9px 12px;font-size:.78rem;line-height:1.6;margin-bottom:12px}
+.card{background:var(--surface);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;margin-bottom:12px}
+.panel{position:sticky;top:0;z-index:20}
+.heard{font-size:1.5rem;font-weight:700;min-height:2.2rem;line-height:1.3;word-break:break-all}
+.heard.interim{color:var(--muted);font-weight:400}
+.interp{font-size:.95rem;margin-top:4px;min-height:1.4rem;color:var(--primary);font-weight:700}
+.interp.warn{color:#b3261e}
+.cursor{font-size:.82rem;color:var(--muted);margin-top:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;background:var(--accent);color:#fff}
+.btn.sub{background:#fff;color:var(--primary);border:1px solid var(--primary)}
+.btn.on{background:#c62828}
+.btn:disabled{opacity:.4}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#bbb;margin-right:6px;vertical-align:middle}
+.dot.live{background:#c62828;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.3}}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{border-bottom:1px solid var(--border);padding:7px 4px;text-align:center}
+th{font-size:.74rem;color:var(--muted);font-weight:500}
+td.m{text-align:left}
+td.g{background:#e9f1f2;color:var(--primary);font-weight:700;text-align:left;font-size:.8rem}
+td.c{font-family:'DM Mono',monospace;font-weight:500;cursor:pointer;min-width:58px}
+td.c.empty{background:#fdeceb;color:#c9a4a1}
+td.c.cur{outline:3px solid var(--accent);outline-offset:-3px}
+td.d{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--muted)}
+td.d.big{color:#b3261e;font-weight:700}
+.note{font-size:.76rem;color:var(--muted);line-height:1.7}
+.err{color:#b3261e;font-size:.85rem;margin-top:8px;line-height:1.6}
+.type{display:flex;gap:6px;margin-top:10px}
+.type input{flex:1;border:1px solid var(--border);border-radius:8px;padding:9px;font:inherit;font-size:.9rem}
+details summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--primary)}
+details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
+</style>
+</head>
+<body>
+<header>
+  <h1>可動域を声で記録（試作）</h1>
+  <div class="sub">測りながら話すだけ。例：「左 肩屈曲 150」</div>
+</header>
+<div class="wrap">
+
+  <div class="proto">試作版です（検索に出ない非公開ページ）。動作確認用で、診療記録の正本にはしないでください。ブラウザの音声認識は、<b>音声が外部のサービスに送られる場合があります</b>。患者さんの名前など、個人情報は話さないでください。</div>
+
+  <div class="card panel">
+    <div class="heard" id="heard">—</div>
+    <div class="interp" id="interp">&nbsp;</div>
+    <div class="cursor" id="cursor"></div>
+    <div class="row">
+      <button class="btn" id="btnMic"><span class="dot" id="dot"></span>聞き取り開始</button>
+      <button class="btn sub" id="btnUndo" disabled>元に戻す</button>
+      <button class="btn sub" id="btnRedo" disabled>やり直す</button>
+    </div>
+    <div class="err" id="err" hidden></div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead><tr><th style="text-align:left">運動</th><th>左</th><th>右</th><th>左右差</th></tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+    <div class="row">
+      <button class="btn sub" id="btnCopy">表をコピー</button>
+      <button class="btn sub" id="btnClear">全消去</button>
+      <span class="note" id="prog" style="align-self:center"></span>
+    </div>
+    <div class="note" style="margin-top:8px">セルをタップすると、そこから測定を始められます。記録は、このページを閉じると消えます（保存しません）。</div>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary>話し方の例</summary>
+      <ul>
+        <li>「左 肩屈曲 150」「右 肘 伸展 マイナス5」（関節＋運動＋数字。いちばん強い入力）</li>
+        <li>数字だけ「140」でも入ります（今の枠に入り、次へ進みます）</li>
+        <li>「右」「左」で左右を切り替え。「次」「戻る」で枠を移動</li>
+        <li>「取り消し」「間違い」「今のなし」で直前を取り消し。「訂正 120」で直前を上書き</li>
+        <li>間違って反応しても、あとで関節と数字を言い直せば上書きされます</li>
+      </ul>
+    </details>
+    <div class="type">
+      <input id="typed" placeholder="声の代わりに文字で試す（例：左肩屈曲150）">
+      <button class="btn sub" id="btnTyped">入力</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var GROUPS=[
+    {g:'上肢',rows:[['肩','屈曲'],['肩','伸展'],['肩','外転'],['肩','内転'],['肩','外旋'],['肩','内旋'],['肘','屈曲'],['肘','伸展'],['前腕','回内'],['前腕','回外'],['手','掌屈'],['手','背屈'],['手','橈屈'],['手','尺屈']]},
+    {g:'下肢',rows:[['股','屈曲'],['股','伸展'],['股','外転'],['股','内転'],['股','外旋'],['股','内旋'],['膝','屈曲'],['膝','伸展'],['足','背屈'],['足','底屈']]}
+  ];
+  var ROWS=[]; GROUPS.forEach(function(G){ G.rows.forEach(function(r){ ROWS.push({g:G.g,j:r[0],m:r[1]}); }); });
+  var KEYIDX={}; ROWS.forEach(function(r,i){ KEYIDX[r.j+r.m]=i; });
+  var JNAME={'肩':'肩','肘':'肘','前腕':'前腕','手':'手関節','股':'股関節','膝':'膝','足':'足関節'};
+
+  var S={vals:{L:[],R:[]}, cur:{side:'L',idx:0}, undo:[], redo:[], last:null, listening:false, rec:null};
+  var $=function(id){return document.getElementById(id);};
+
+  /* ---------- 解析 ---------- */
+  var JOINT_RE=[[/前腕|ぜんわん/,'前腕'],[/手関節|手首|てくび|てかんせつ|手/,'手'],[/肩|かた/,'肩'],[/肘|ひじ/,'肘'],[/股|こかんせつ|こ関節/,'股'],[/膝|ひざ/,'膝'],[/足関節|足首|あしくび|あしかんせつ|足/,'足']];
+  var MOTION_RE=[[/屈曲|くっきょく/,'屈曲'],[/伸展|進展|しんてん/,'伸展'],[/外転|がいてん/,'外転'],[/内転|ないてん/,'内転'],[/外旋|がいせん/,'外旋'],[/内旋|ないせん/,'内旋'],[/回内|かいない/,'回内'],[/回外|かいがい/,'回外'],[/掌屈|しょうくつ/,'掌屈'],[/背屈|はいくつ/,'背屈'],[/底屈|ていくつ/,'底屈'],[/橈屈|とうくつ/,'橈屈'],[/尺屈|しゃっくつ/,'尺屈']];
+  var SIDE_RE=[[/左|ひだり/,'L'],[/右|みぎ/,'R']];
+  var CMD={
+    cancel:/取り消|取消|とりけし|間違|まちが|今のなし|いまのなし|キャンセル|きゃんせる|やり直|やりなお|^なし$/,
+    correct:/訂正|ていせい|違う|ちがう|じゃなくて|ではなく|じゃない|他に違|ほかにちが/,
+    next:/次|つぎ|ネクスト/,
+    back:/戻る|もどる|1つ前|ひとつ前|ひとつまえ/,
+    flip:/反対|はんたい|逆側|ぎゃくがわ/,
+    end:/終わり|おわり|終了|しゅうりょう|以上/
+  };
+  var HIRA=[['ろっぴゃく','六百'],['さんびゃく','三百'],['はっぴゃく','八百'],['ひゃく','百'],['じゅう','十'],['じっ','十'],['ぜろ','〇'],['れい','〇'],['いち','一'],['にい','二'],['さん','三'],['よん','四'],['ろく','六'],['なな','七'],['しち','七'],['はち','八'],['きゅう','九'],['ご','五'],['に','二']];
+  var DIG={'〇':0,'零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9};
+
+  function toNum(s){
+    var neg=/マイナス|ﾏｲﾅｽ|まいなす|[-−ー]/.test(s);
+    s=s.replace(/マイナス|ﾏｲﾅｽ|まいなす|[-−ー]/g,'');
+    var m=s.match(/\d+/);
+    if(m) return (neg?-1:1)*parseInt(m[0],10);
+    HIRA.forEach(function(h){ s=s.split(h[0]).join(h[1]); });
+    if(!/[〇零一二三四五六七八九十百]/.test(s)) return null;
+    var total=0,cur=0,seen=false,onlyDigits=/^[〇零一二三四五六七八九]+$/.test(s.replace(/[^〇零一二三四五六七八九十百]/g,''));
+    if(onlyDigits){ var t=s.replace(/[^〇零一二三四五六七八九]/g,''); var n=0; for(var i=0;i<t.length;i++) n=n*10+DIG[t[i]]; return (neg?-1:1)*n; }
+    for(var k=0;k<s.length;k++){
+      var c=s[k];
+      if(DIG.hasOwnProperty(c)){ cur=DIG[c]; seen=true; }
+      else if(c==='十'){ total+=(seen?cur:1)*10; cur=0; seen=false; }
+      else if(c==='百'){ total+=(seen?cur:1)*100; cur=0; seen=false; }
+    }
+    total+=seen?cur:0;
+    return (neg?-1:1)*total;
+  }
+
+  function parse(raw){
+    var t=String(raw).normalize('NFKC').replace(/[\s、。,.，．]/g,'');
+    var r={heard:raw,side:null,joint:null,motion:null,num:null,cmd:[]};
+    var rest=t;
+    SIDE_RE.forEach(function(p){ if(r.side===null&&p[0].test(rest)){ r.side=p[1]; rest=rest.replace(p[0],''); } });
+    JOINT_RE.forEach(function(p){ if(r.joint===null&&p[0].test(rest)){ r.joint=p[1]; rest=rest.replace(p[0],''); } });
+    MOTION_RE.forEach(function(p){ if(r.motion===null&&p[0].test(rest)){ r.motion=p[1]; rest=rest.replace(p[0],''); } });
+    Object.keys(CMD).forEach(function(k){ if(CMD[k].test(t)) r.cmd.push(k); });
+    var rem=rest.replace(/関節|かんせつ|度|ど|ぐらい|くらい|ちょうど|です|ですね|は|が|を|の|にして|にします|です/g,'');
+    var n=toNum(rem);
+    if(n!==null && n>=-30 && n<=360) r.num=n;
+    return r;
+  }
+  window.__romParse=parse; window.__romToNum=toNum;
+
+  /* ---------- 状態操作 ---------- */
+  function getV(side,i){ return S.vals[side][i]; }
+  function setV(side,i,v,rec){
+    var old=S.vals[side][i];
+    if(rec!==false){ S.undo.push({side:side,i:i,old:old,nw:v}); S.redo=[]; }
+    if(v===undefined||v===null) delete S.vals[side][i]; else S.vals[side][i]=v;
+    S.last={side:side,i:i};
+  }
+  function advance(){ if(S.cur.idx<ROWS.length-1) S.cur.idx++; }
+  function say(msg,warn){ var e=$('interp'); e.textContent=msg||' '; e.className='interp'+(warn?' warn':''); }
+  function fmt(side,i){ return (side==='L'?'左':'右')+' '+JNAME[ROWS[i].j]+ROWS[i].m; }
+
+  function handle(raw){
+    var r=parse(raw);
+    $('heard').textContent=raw; $('heard').className='heard';
+    var did=false;
+
+    // 1) 関節・運動・数字（最優先）
+    var idx=null;
+    if(r.motion){
+      var j=r.joint||ROWS[S.cur.idx].j;
+      if(KEYIDX[j+r.motion]===undefined){ say('「'+JNAME[j]+' '+r.motion+'」の組み合わせはありません',true); idx=-1; }
+      else idx=KEYIDX[j+r.motion];
+    }else if(r.joint){
+      // 運動なし：その関節の最初の運動へ
+      for(var q=0;q<ROWS.length;q++){ if(ROWS[q].j===r.joint){ idx=q; break; } }
+    }
+    if(idx===-1){ render(); return; }
+    var side=r.side||S.cur.side;
+    var correcting=r.cmd.indexOf('correct')>=0;
+
+    if(idx!==null && r.num!==null){
+      setV(side,idx,r.num); S.cur={side:side,idx:idx}; say('記録：'+fmt(side,idx)+' '+r.num+'°'); advance(); did=true;
+    }else if(idx!==null){
+      S.cur={side:side,idx:idx}; say('移動：'+fmt(side,idx)+'（数字を待っています）'); did=true;
+    }else if(r.num!==null && !(r.cmd.indexOf('cancel')>=0)){
+      if(correcting && S.last){ setV(S.last.side,S.last.i,r.num); S.cur={side:S.last.side,idx:S.last.i}; say('訂正：'+fmt(S.last.side,S.last.i)+' '+r.num+'°'); advance(); did=true; }
+      else{ setV(side,S.cur.idx,r.num); say('記録：'+fmt(side,S.cur.idx)+' '+r.num+'°'); var ci=S.cur.idx; S.cur.side=side; advance(); did=true; }
+    }else if(r.side){
+      S.cur.side=r.side; say('切り替え：'+(r.side==='L'?'左':'右')); did=true;
+    }
+
+    // 2) コマンド（データがなかった場合のみ）
+    if(!did){
+      if(r.cmd.indexOf('cancel')>=0||correcting){ doUndo(); did=true; }
+      else if(r.cmd.indexOf('flip')>=0){ S.cur.side=(S.cur.side==='L'?'R':'L'); say('切り替え：'+(S.cur.side==='L'?'左':'右')); did=true; }
+      else if(r.cmd.indexOf('next')>=0){ advance(); say('次へ：'+fmt(S.cur.side,S.cur.idx)); did=true; }
+      else if(r.cmd.indexOf('back')>=0){ if(S.cur.idx>0) S.cur.idx--; say('戻る：'+fmt(S.cur.side,S.cur.idx)); did=true; }
+      else if(r.cmd.indexOf('end')>=0){ say('終了'); stopListen(); did=true; }
+    }
+    if(!did) say('聞き取れましたが、命令として使える内容がありませんでした',true);
+    render();
+  }
+
+  function doUndo(){
+    var op=S.undo.pop(); if(!op){ say('取り消せる記録がありません',true); return; }
+    S.redo.push(op); setV(op.side,op.i,op.old,false); S.cur={side:op.side,idx:op.i};
+    say('取り消し：'+fmt(op.side,op.i)+'（「やり直す」で戻せます）'); render();
+  }
+  function doRedo(){
+    var op=S.redo.pop(); if(!op) return;
+    S.undo.push(op); setV(op.side,op.i,op.nw,false); S.cur={side:op.side,idx:op.i};
+    say('やり直し：'+fmt(op.side,op.i)+' '+op.nw+'°'); render();
+  }
+
+  /* ---------- 表示 ---------- */
+  function render(){
+    var html='',g='',filled=0;
+    ROWS.forEach(function(r,i){
+      if(r.g!==g){ g=r.g; html+='<tr><td class="g" colspan="4">'+g+'</td></tr>'; }
+      var L=getV('L',i),R=getV('R',i);
+      if(L!==undefined)filled++; if(R!==undefined)filled++;
+      var diff='',big='';
+      if(L!==undefined&&R!==undefined){ var d=Math.abs(L-R); diff=d+'°'; if(d>=10) big=' big'; }
+      function cell(side,v){
+        var cls='c'+(v===undefined?' empty':'')+((S.cur.side===side&&S.cur.idx===i)?' cur':'');
+        return '<td class="'+cls+'" data-s="'+side+'" data-i="'+i+'">'+(v===undefined?'—':v+'°')+'</td>';
+      }
+      html+='<tr><td class="m">'+JNAME[r.j]+' '+r.m+'</td>'+cell('L',L)+cell('R',R)+'<td class="d'+big+'">'+diff+'</td></tr>';
+    });
+    $('tb').innerHTML=html;
+    $('prog').textContent='入力済み '+filled+' / '+(ROWS.length*2);
+    $('cursor').textContent='今の枠：'+fmt(S.cur.side,S.cur.idx);
+    $('btnUndo').disabled=!S.undo.length; $('btnRedo').disabled=!S.redo.length;
+    var cur=document.querySelector('td.cur'); if(cur&&cur.scrollIntoView){ try{cur.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){} }
+  }
+  $('tb').addEventListener('click',function(e){
+    var td=e.target.closest('td.c'); if(!td) return;
+    S.cur={side:td.dataset.s,idx:parseInt(td.dataset.i,10)}; say('移動：'+fmt(S.cur.side,S.cur.idx)); render();
+  });
+
+  /* ---------- 音声認識 ---------- */
+  function showErr(m){ var e=$('err'); e.textContent=m; e.hidden=!m; }
+  function startListen(){
+    showErr('');
+    var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){ showErr('このブラウザは音声認識に対応していません。Chrome（Android/PC）またはSafariの最新版でお試しください。下の欄に文字で入力しても試せます。'); return; }
+    var rec=new SR(); rec.lang='ja-JP'; rec.continuous=true; rec.interimResults=true; rec.maxAlternatives=1;
+    rec.onresult=function(e){
+      var interim='';
+      for(var i=e.resultIndex;i<e.results.length;i++){
+        var res=e.results[i];
+        if(res.isFinal){ handle(res[0].transcript); }
+        else interim+=res[0].transcript;
+      }
+      if(interim){ $('heard').textContent=interim; $('heard').className='heard interim'; }
+    };
+    rec.onerror=function(e){
+      if(e.error==='not-allowed'||e.error==='service-not-allowed'){ showErr('マイクの使用が許可されていません。ブラウザの設定で許可してください。'); S.listening=false; ui(); }
+      else if(e.error==='no-speech'||e.error==='aborted'){ /* 無視（自動で再開） */ }
+      else if(e.error==='network'){ showErr('音声認識のサーバーに接続できません。通信を確認してください。'); }
+    };
+    rec.onend=function(){ if(S.listening){ try{ rec.start(); }catch(x){ setTimeout(function(){ if(S.listening){ try{rec.start();}catch(y){} } },300); } } };
+    S.rec=rec; S.listening=true;
+    try{ rec.start(); }catch(e){ showErr('開始できませんでした：'+e.message); S.listening=false; }
+    ui();
+  }
+  function stopListen(){ S.listening=false; try{ if(S.rec) S.rec.stop(); }catch(e){} ui(); }
+  function ui(){ $('btnMic').classList.toggle('on',S.listening); $('btnMic').lastChild.textContent=S.listening?'聞き取り停止':'聞き取り開始'; $('dot').className='dot'+(S.listening?' live':''); }
+  document.addEventListener('visibilitychange',function(){ if(document.hidden&&S.listening) stopListen(); });
+
+  $('btnMic').addEventListener('click',function(){ if(S.listening) stopListen(); else startListen(); });
+  $('btnUndo').addEventListener('click',doUndo);
+  $('btnRedo').addEventListener('click',doRedo);
+  $('btnClear').addEventListener('click',function(){ if(!Object.keys(S.vals.L).length&&!Object.keys(S.vals.R).length) return; S.vals={L:[],R:[]}; S.undo=[];S.redo=[];S.last=null; S.cur={side:'L',idx:0}; say('全消去しました'); render(); });
+  $('btnCopy').addEventListener('click',function(){
+    var lines=['運動\t左\t右\t左右差'];
+    ROWS.forEach(function(r,i){ var L=getV('L',i),R=getV('R',i); lines.push(JNAME[r.j]+' '+r.m+'\t'+(L===undefined?'':L)+'\t'+(R===undefined?'':R)+'\t'+((L!==undefined&&R!==undefined)?Math.abs(L-R):'')); });
+    if(navigator.clipboard) navigator.clipboard.writeText(lines.join('\n')).then(function(){ $('btnCopy').textContent='コピーしました'; setTimeout(function(){ $('btnCopy').textContent='表をコピー'; },1500); });
+  });
+  function typed(){ var v=$('typed').value.trim(); if(!v) return; handle(v); $('typed').value=''; }
+  $('btnTyped').addEventListener('click',typed);
+  $('typed').addEventListener('keydown',function(e){ if(e.key==='Enter') typed(); });
+  window.__romHandle=handle; window.__romState=S;
+
+  render();
+})();
+</script>
+</body>
+</html>
