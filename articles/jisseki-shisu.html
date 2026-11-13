@@ -942,12 +942,13 @@
       <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
       <script>
       (function(){
+        // PC（900px以上）は728x90のPC用枠、それ以外はスマホ用300x250枠。どちらか一方だけを読み込む
         var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
-        if (pc) return;
         var slot = document.getElementById('adstir-slot');
         slot.style.display = 'block';
-        slot.style.minHeight = '250px';
-        document.write('<scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "MEDIA-af55c103", ad_spot: 1, center: false };</scr' + 'ipt>');
+        slot.style.minHeight = pc ? '90px' : '250px';
+        var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
+        document.write('<scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: 1, center: false };</scr' + 'ipt>');
         document.write('<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt>');
       })();
       </script>
