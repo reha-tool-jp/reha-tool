@@ -392,6 +392,9 @@
 <meta property="og:image" content="https://reha-tool.jp/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://reha-tool.jp/img/og-image.png">
+<style>
+@media print { .ad-no-print { display: none !important; } }
+</style>
 </head>
 <body>
 <nav class="global-nav rt-gnav">
@@ -641,6 +644,30 @@
     </div><!-- #jt-print-area -->
 
     <!-- ========== 加点ルール ========== -->
+    <!-- 広告：記事中。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：AdStir）、スマホはAdStirのみ1つ -->
+    <div class="ad-no-print" style="margin:24px auto;text-align:center;">
+      <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+      <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          if (!(pc || false)) return;
+          var src = pc ? 'https://adm.shinobi.jp/s/a744071ba10526f6f08808ab8d2c6db5' : 'https://adm.shinobi.jp/s/512dfa58e797dd0773a44f74567a7f2c';
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+        })();
+        </script>
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
+          var spot = pc ? 3 : 2;
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: ' + spot + ', center: false };</scr' + 'ipt>'
+            + '<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt></div>');
+        })();
+        </script>
+      </div>
+    </div>
+
     <h2>令和8年度改定：加点ルール（最大2点）</h2>
 
     <p>令和8年度改定で、FIM運動項目のうち「歩行・車椅子」と「トイレ動作」に対する加点ルールが新設されました。</p>
@@ -938,20 +965,28 @@
       </ul>
     </div>
 
-    <div id="adstir-slot" style="margin:24px auto;text-align:center;display:none;">
+    <!-- 広告：記事末尾。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：AdStir）、スマホは縦に2つ（上：忍者AdMax、下：AdStir） -->
+    <div class="ad-no-print" style="margin:24px auto;text-align:center;">
       <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
-      <script>
-      (function(){
-        // PC（900px以上）は728x90のPC用枠、それ以外はスマホ用300x250枠。どちらか一方だけを読み込む
-        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
-        var slot = document.getElementById('adstir-slot');
-        slot.style.display = 'block';
-        slot.style.minHeight = pc ? '90px' : '250px';
-        var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
-        document.write('<scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: 1, center: false };</scr' + 'ipt>');
-        document.write('<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt>');
-      })();
-      </script>
+      <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          if (!(pc || true)) return;
+          var src = pc ? 'https://adm.shinobi.jp/s/7979f3abb149cdd6510d2ff42a1c26f1' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+        })();
+        </script>
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
+          var spot = pc ? 2 : 1;
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: ' + spot + ', center: false };</scr' + 'ipt>'
+            + '<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt></div>');
+        })();
+        </script>
+      </div>
     </div>
 
     <!-- ========== 関連記事 ========== -->
