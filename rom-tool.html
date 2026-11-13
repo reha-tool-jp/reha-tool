@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>関節角度の目安ツール（試作） | リハツール</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--primary:#1a5c6b;--accent:#e8753a;--bg:#f4f2ee;--surface:#fff;--text:#1c1c1e;--muted:#6e6e73;--border:#d8d5ce;--ok:#2e8b57;--shadow:0 2px 12px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:var(--primary);color:#fff;padding:16px 20px}
+header h1{font-size:1.1rem;font-weight:700;letter-spacing:.04em}
+header .sub{font-size:.72rem;opacity:.8;margin-top:2px}
+.wrap{max-width:680px;margin:0 auto;padding:16px 14px 60px}
+.proto{background:#fff3e8;border:1px solid #f1c9a5;border-radius:10px;padding:10px 14px;font-size:.82rem;line-height:1.6;margin-bottom:14px}
+.card{background:var(--surface);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
+.card h2{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:10px 14px;font:inherit;font-size:.9rem;cursor:pointer;color:var(--text)}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button.on{background:var(--primary);color:#fff}
+.lbl{font-size:.75rem;color:var(--muted);margin:10px 0 4px}
+.lbl:first-child{margin-top:0}
+.btn{border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;background:var(--accent);color:#fff}
+.btn.sub{background:#fff;color:var(--primary);border:1px solid var(--primary)}
+.btn:disabled{opacity:.45}
+.cam{position:relative;background:#000;border-radius:12px;overflow:hidden;min-height:220px}
+.cam canvas{display:block;width:100%;height:auto}
+.cam .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.9rem;text-align:center;padding:20px}
+.hud{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:10px 12px;pointer-events:none}
+.angle{font-family:'DM Mono',monospace;font-size:2.6rem;font-weight:500;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.7);line-height:1}
+.angle small{font-size:1.2rem}
+.state{font-size:.78rem;color:#fff;background:rgba(0,0,0,.55);border-radius:8px;padding:4px 8px}
+.state.ok{background:rgba(46,139,87,.9)}
+.bar{position:absolute;left:0;bottom:0;height:6px;background:var(--ok);width:0;transition:width .1s linear}
+.flash{position:absolute;inset:0;border:6px solid var(--ok);border-radius:12px;opacity:0;pointer-events:none}
+.flash.on{animation:fl .6s ease-out}
+@keyframes fl{0%{opacity:1}100%{opacity:0}}
+.tips{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{border-bottom:1px solid var(--border);padding:8px 4px;text-align:left}
+th{font-size:.74rem;color:var(--muted);font-weight:500}
+td.v{font-family:'DM Mono',monospace;font-weight:500}
+.note{font-size:.78rem;color:var(--muted);line-height:1.7}
+.err{color:#b3261e;font-size:.85rem;margin-top:8px;line-height:1.6}
+</style>
+</head>
+<body>
+<header>
+  <h1>関節角度の目安ツール（試作）</h1>
+  <div class="sub">カメラにかざすだけ・端末内で処理</div>
+</header>
+<div class="wrap">
+
+  <div class="proto">試作版です（検索に出ない非公開ページ）。精度はゴニオメーターと同等ではありません。<b>記録や診療の根拠にはせず</b>、動作確認と使い心地の評価にだけお使いください。映像は端末内で処理され、送信・保存されません。</div>
+
+  <div class="card">
+    <h2>1. 測る関節と運動</h2>
+    <div class="lbl">関節</div>
+    <div class="seg" id="segJoint">
+      <button data-v="elbow" class="on">肘（屈曲）</button>
+      <button data-v="knee">膝（屈曲）</button>
+    </div>
+    <div class="lbl">左右（被検者の左右）</div>
+    <div class="seg" id="segSide">
+      <button data-v="L" class="on">左</button>
+      <button data-v="R">右</button>
+    </div>
+    <div class="lbl">カメラ</div>
+    <div class="seg" id="segCam">
+      <button data-v="environment" class="on">背面</button>
+      <button data-v="user">前面</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. かざして測る</h2>
+    <div class="cam" id="cam">
+      <canvas id="cv" width="640" height="480"></canvas>
+      <div class="ph" id="ph">「カメラを開始」を押してください</div>
+      <div class="hud"><div class="angle" id="ang">--<small>°</small></div><div class="state" id="st">待機中</div></div>
+      <div class="flash" id="fl"></div>
+      <div class="bar" id="bar"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="btnStart">カメラを開始</button>
+      <button class="btn sub" id="btnRec" disabled>今の値を記録</button>
+      <button class="btn sub" id="btnStop" disabled>停止</button>
+    </div>
+    <div class="err" id="err" hidden></div>
+    <div class="tips">
+      ・運動の面に対して<b>真横</b>から撮影します（屈曲なら、体の側方から）。<br>
+      ・関節の上下（肘なら肩と手首、膝なら股関節と足首）が映るように、全体を入れます。<br>
+      ・明るい場所で、体に沿った服装だと安定します。<br>
+      ・角度が約1秒落ち着くと「ピッ」と鳴り、記録されます。次を測るときは、角度を変えてください。<br>
+      ・表示は<b>屈曲角度</b>（完全伸展＝0°）です。過伸展は表示されません。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. 記録</h2>
+    <table>
+      <thead><tr><th>時刻</th><th>関節</th><th>左右</th><th>角度</th></tr></thead>
+      <tbody id="tb"><tr><td colspan="4" class="note">まだ記録がありません</td></tr></tbody>
+    </table>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sub" id="btnCopy">コピー</button>
+      <button class="btn sub" id="btnClear">全消去</button>
+    </div>
+    <div class="note" style="margin-top:10px">記録は、このページを閉じると消えます（保存しません）。患者さんの名前や個人情報は入力できません。</div>
+  </div>
+
+</div>
+
+<script src="/vendor/mediapipe-pose/pose.js"></script>
+<script>
+(function(){
+  'use strict';
+  var JOINTS = {
+    elbow:{name:'肘屈曲', L:[11,13,15], R:[12,14,16]},
+    knee: {name:'膝屈曲', L:[23,25,27], R:[24,26,28]}
+  };
+  var S = {joint:'elbow', side:'L', facing:'environment', stream:null, running:false, pose:null,
+           buf:[], armed:true, lastLock:null, cur:null, records:[], audio:null, busy:false};
+  var video = document.createElement('video');
+  video.setAttribute('playsinline',''); video.muted = true;
+  var cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  var $ = function(id){return document.getElementById(id);};
+
+  // 区間ボタン
+  function seg(id,key,cb){
+    var el=$(id);
+    el.addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b) return;
+      Array.prototype.forEach.call(el.children,function(x){x.classList.remove('on');});
+      b.classList.add('on'); S[key]=b.dataset.v; if(cb) cb();
+    });
+  }
+  seg('segJoint','joint',resetBuf); seg('segSide','side',resetBuf);
+  seg('segCam','facing',function(){ if(S.running){ stop(); start(); } });
+
+  function resetBuf(){ S.buf=[]; S.armed=true; S.lastLock=null; setBar(0); }
+  function setBar(p){ $('bar').style.width=(Math.max(0,Math.min(1,p))*100)+'%'; }
+  function showErr(m){ var e=$('err'); e.textContent=m; e.hidden=!m; }
+
+  // 角度計算：B（関節）におけるBA・BCのなす角→屈曲角度 = 180 - 内角
+  function angleAt(a,b,c,w,h){
+    var v1x=(a.x-b.x)*w, v1y=(a.y-b.y)*h, v2x=(c.x-b.x)*w, v2y=(c.y-b.y)*h;
+    var n1=Math.hypot(v1x,v1y), n2=Math.hypot(v2x,v2y);
+    if(n1<1||n2<1) return null;
+    var cos=(v1x*v2x+v1y*v2y)/(n1*n2); cos=Math.max(-1,Math.min(1,cos));
+    return 180 - Math.acos(cos)*180/Math.PI;
+  }
+  window.__romAngleAt = angleAt; // テスト用
+
+  function beep(){
+    try{
+      if(!S.audio) return;
+      var o=S.audio.createOscillator(), g=S.audio.createGain();
+      o.type='sine'; o.frequency.value=1500; g.gain.value=0.15;
+      o.connect(g); g.connect(S.audio.destination); o.start(); o.stop(S.audio.currentTime+0.12);
+    }catch(e){}
+    try{ if(navigator.vibrate) navigator.vibrate(80); }catch(e){}
+  }
+
+  function addRecord(v){
+    var d=new Date(), t=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+':'+('0'+d.getSeconds()).slice(-2);
+    S.records.unshift({t:t, joint:JOINTS[S.joint].name, side:S.side==='L'?'左':'右', v:Math.round(v)});
+    renderRecords();
+  }
+  function renderRecords(){
+    var tb=$('tb');
+    if(!S.records.length){ tb.innerHTML='<tr><td colspan="4" class="note">まだ記録がありません</td></tr>'; return; }
+    tb.innerHTML=S.records.map(function(r){
+      return '<tr><td>'+r.t+'</td><td>'+r.joint+'</td><td>'+r.side+'</td><td class="v">'+r.v+'°</td></tr>';
+    }).join('');
+  }
+
+  function lock(v){
+    addRecord(v); beep();
+    var f=$('fl'); f.classList.remove('on'); void f.offsetWidth; f.classList.add('on');
+    S.armed=false; S.lastLock=v; setBar(0);
+  }
+
+  function onResults(res){
+    S.busy=false;
+    var w=video.videoWidth, h=video.videoHeight;
+    if(!w||!h) return;
+    if(cv.width!==w||cv.height!==h){ cv.width=w; cv.height=h; }
+    var mirror = (S.facing==='user');
+    ctx.save();
+    if(mirror){ ctx.translate(w,0); ctx.scale(-1,1); }
+    ctx.drawImage(video,0,0,w,h);
+    var st=$('st'), ang=$('ang');
+    var lm=res.poseLandmarks, idx=JOINTS[S.joint][S.side], now=performance.now();
+    var ok=false;
+    if(lm){
+      var A=lm[idx[0]],B=lm[idx[1]],C=lm[idx[2]];
+      var vis=Math.min(A.visibility||0,B.visibility||0,C.visibility||0);
+      // 骨格線
+      ctx.lineWidth=Math.max(3,w/160); ctx.strokeStyle='#ffd54f'; ctx.fillStyle='#e8753a';
+      ctx.beginPath(); ctx.moveTo(A.x*w,A.y*h); ctx.lineTo(B.x*w,B.y*h); ctx.lineTo(C.x*w,C.y*h); ctx.stroke();
+      [A,B,C].forEach(function(p){ ctx.beginPath(); ctx.arc(p.x*w,p.y*h,Math.max(5,w/90),0,7); ctx.fill(); });
+      if(vis>=0.6){
+        var a=angleAt(A,B,C,w,h);
+        if(a!==null){
+          ok=true; S.cur=a;
+          ang.innerHTML=Math.round(a)+'<small>°</small>';
+          S.buf.push({t:now,a:a});
+          while(S.buf.length && now-S.buf[0].t>1000) S.buf.shift();
+          var span=now-S.buf[0].t, mn=1e9, mx=-1e9;
+          S.buf.forEach(function(p){ if(p.a<mn)mn=p.a; if(p.a>mx)mx=p.a; });
+          var steady=(mx-mn)<=3;
+          if(!S.armed && S.lastLock!==null && Math.abs(a-S.lastLock)>8){ S.armed=true; }
+          if(S.armed){
+            if(steady){
+              setBar(span/900);
+              st.className='state'; st.textContent='そのまま…';
+              if(span>=900){ lock((mn+mx)/2); }
+            }else{ setBar(0); st.className='state'; st.textContent='測定中'; }
+          }else{ st.className='state ok'; st.textContent='記録しました（角度を変えると次へ）'; }
+        }
+      }
+    }
+    ctx.restore();
+    if(!ok){ S.buf=[]; setBar(0); ang.innerHTML='--<small>°</small>'; st.className='state'; st.textContent='関節が見つかりません'; S.cur=null; }
+    $('btnRec').disabled = !ok;
+  }
+
+  function loop(){
+    if(!S.running) return;
+    var go=function(){
+      if(!S.running) return;
+      if(!S.busy && video.readyState>=2){
+        S.busy=true;
+        S.pose.send({image:video}).catch(function(e){ S.busy=false; });
+      }
+      if(video.requestVideoFrameCallback) video.requestVideoFrameCallback(go); else requestAnimationFrame(go);
+    };
+    go();
+  }
+
+  function start(){
+    showErr('');
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){ showErr('このブラウザではカメラを使えません。SafariまたはChromeの最新版でお試しください。'); return; }
+    try{ var AC=window.AudioContext||window.webkitAudioContext; if(AC&&!S.audio) S.audio=new AC(); if(S.audio&&S.audio.state==='suspended') S.audio.resume(); }catch(e){}
+    $('btnStart').disabled=true; $('ph').textContent='カメラとモデルを準備中…';
+    navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:S.facing},width:{ideal:640},height:{ideal:480}},audio:false})
+    .then(function(stream){
+      S.stream=stream; video.srcObject=stream; return video.play();
+    }).then(function(){
+      if(!S.pose){
+        S.pose=new Pose({locateFile:function(f){ return '/vendor/mediapipe-pose/'+f; }});
+        S.pose.setOptions({modelComplexity:0, smoothLandmarks:true, enableSegmentation:false, minDetectionConfidence:0.5, minTrackingConfidence:0.5});
+        S.pose.onResults(onResults);
+      }
+      return S.pose.initialize();
+    }).then(function(){
+      $('ph').style.display='none'; S.running=true; resetBuf();
+      $('btnStop').disabled=false; loop();
+    }).catch(function(e){
+      showErr('カメラを開始できませんでした：'+(e&&e.name==='NotAllowedError'?'カメラの使用が許可されていません。ブラウザの設定で許可してください。':(e&&e.message)||e));
+      $('btnStart').disabled=false; $('ph').textContent='「カメラを開始」を押してください'; stopStream();
+    });
+  }
+  function stopStream(){ if(S.stream){ S.stream.getTracks().forEach(function(t){t.stop();}); S.stream=null; } }
+  function stop(){
+    S.running=false; stopStream(); video.srcObject=null;
+    $('btnStart').disabled=false; $('btnStop').disabled=true; $('btnRec').disabled=true;
+    $('ph').style.display='flex'; $('ph').textContent='停止しました'; $('ang').innerHTML='--<small>°</small>'; $('st').className='state'; $('st').textContent='待機中'; setBar(0);
+  }
+
+  $('btnStart').addEventListener('click',start);
+  $('btnStop').addEventListener('click',stop);
+  $('btnRec').addEventListener('click',function(){ if(S.cur!==null){ addRecord(S.cur); beep(); } });
+  $('btnClear').addEventListener('click',function(){ S.records=[]; renderRecords(); });
+  $('btnCopy').addEventListener('click',function(){
+    if(!S.records.length) return;
+    var txt=S.records.slice().reverse().map(function(r){return r.t+'\t'+r.joint+'\t'+r.side+'\t'+r.v+'°';}).join('\n');
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(function(){ $('btnCopy').textContent='コピーしました'; setTimeout(function(){$('btnCopy').textContent='コピー';},1500); });
+  });
+  document.addEventListener('visibilitychange',function(){ if(document.hidden && S.running) stop(); });
+})();
+</script>
+</body>
+</html>
