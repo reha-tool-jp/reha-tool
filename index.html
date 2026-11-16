@@ -189,6 +189,11 @@
   .section-title:first-of-type { margin-top: 0; }
   .section-title .section-icon { font-size: 15px; }
   .section-note { font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 4px; }
+  /* スマホ：ツールグループの注記は見出しの下の行に置く（見出しが途中で折れないように） */
+  @media screen and (max-width: 767px) {
+    .section-title:has(.section-note-block) { flex-wrap: wrap; row-gap: 2px; }
+    .section-note-block { flex-basis: 100%; margin-left: 0; padding-left: 23px; }
+  }
 
   /* --- ツールカード --- */
   .tool-card {
@@ -430,18 +435,12 @@
 </header>
 
 <main class="container">
-<!-- 評価ツール -->
+<p style="font-size:12px;color:var(--text3);margin:0 0 16px;">🆕 2026.11　<a href="articles/houkatsu-center-riha-haichi-kabe.html" style="color:var(--text3);">地域包括支援センターにリハ職は配置できる？の記事に、協会の2027年度要望書（11/5付）の内容を追記</a></p>
+
   <div id="tools" class="section-title" style="margin-top:0;">
     <span class="section-icon">📋</span>
-    評価ツール
-    <span class="section-note">すぐ使える10種の評価・計算・書類作成ツール</span>
-  </div>
-  <p style="font-size:12px;color:var(--text3);margin:-8px 0 16px;">🆕 2026.11　<a href="articles/houkatsu-center-riha-haichi-kabe.html" style="color:var(--text3);">地域包括支援センターにリハ職は配置できる？の記事に、協会の2027年度要望書（11/5付）の内容を追記</a></p>
-
-  <div class="section-title">
-    <span class="section-icon">📋</span>
     ADL・身体機能の評価ツール
-    <span class="section-note">回復期・訪問・外来</span>
+    <span class="section-note section-note-block">すぐ使える・採点も計測も、その場で</span>
   </div>
 
   <a class="tool-card" href="fim-tool.html">
@@ -498,7 +497,7 @@
   <div class="section-title">
     <span class="section-icon">📅</span>
     加算・算定に使うツール
-    <span class="section-note">病院・クリニック</span>
+    <span class="section-note section-note-block">すぐ使える・算定の上限日数を、その場で計算</span>
   </div>
 
   <a class="tool-card" href="santei-tool.html">
@@ -515,7 +514,7 @@
   <div class="section-title">
     <span class="section-icon">📝</span>
     アセスメント・書類作成ツール
-    <span class="section-note">病院・デイサービス・総合事業</span>
+    <span class="section-note section-note-block">すぐ使える・タップで入力、様式に沿って残せる</span>
   </div>
 
   <a class="tool-card" href="seikatsu-tool.html">
