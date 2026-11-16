@@ -94,6 +94,7 @@
   .tool-desc { font-size: 15px; }
 }
 
+@media print { .ad-no-print { display: none !important; } }
 </style>
 
 <link rel="canonical" href="https://reha-tool.jp/articles/houkatsu-center-riha-haichi-kabe.html">
@@ -244,6 +245,30 @@
       </ul>
     </div>
 
+<!-- 広告：記事中。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：AdStir）、スマホはAdStirのみ1つ -->
+    <div class="ad-no-print" style="margin:24px auto;text-align:center;">
+      <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
+      <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          if (!(pc || false)) return;
+          var src = pc ? 'https://adm.shinobi.jp/s/a744071ba10526f6f08808ab8d2c6db5' : 'https://adm.shinobi.jp/s/512dfa58e797dd0773a44f74567a7f2c';
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+        })();
+        </script>
+        <script>
+        (function(){
+          var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+          var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
+          var spot = pc ? 3 : 2;
+          document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: ' + spot + ', center: false };</scr' + 'ipt>'
+            + '<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt></div>');
+        })();
+        </script>
+      </div>
+    </div>
+
     <h2>観察</h2>
 
     <p>基本指針には職種名が加わった。しかし、人員配置基準は変わらなかった。</p>
@@ -300,12 +325,27 @@
 
   </div>
 
-  <div style="margin:24px auto;text-align:center;">
+<!-- 広告：記事末尾。幅900px以上はPC用300x250を横に2つ（左：忍者AdMax、右：AdStir）、スマホは縦に2つ（上：忍者AdMax、下：AdStir） -->
+  <div class="ad-no-print" style="margin:24px auto;text-align:center;">
     <p style="font-size:12px;color:#888;margin:0 0 4px;">広告</p>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src='https://fam-8.net/ad/js/fam8-tagify.min.js'></script>
-    <div id='div_fam8_async_120763_3'>
-    <script language='javascript'>fam8_js_async('https://fam-8.net/ad', '_site=20103&_loc=120763&_mstype=3');</script>
+    <div style="display:flex;justify-content:center;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        if (!(pc || true)) return;
+        var src = pc ? 'https://adm.shinobi.jp/s/7979f3abb149cdd6510d2ff42a1c26f1' : 'https://adm.shinobi.jp/s/2b8fba0e703f3e0e28eab6a340b4324b';
+        document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt src="' + src + '"></scr' + 'ipt></div>');
+      })();
+      </script>
+      <script>
+      (function(){
+        var pc = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+        var appId = pc ? 'MEDIA-b9c2b2b4' : 'MEDIA-af55c103';
+        var spot = pc ? 2 : 1;
+        document.write('<div style="min-width:300px;min-height:250px;"><scr' + 'ipt type="text/javascript">var adstir_vars = { ver: "4.0", app_id: "' + appId + '", ad_spot: ' + spot + ', center: false };</scr' + 'ipt>'
+          + '<scr' + 'ipt type="text/javascript" src="https://js.ad-stir.com/js/adstir.js"></scr' + 'ipt></div>');
+      })();
+      </script>
     </div>
   </div>
 
