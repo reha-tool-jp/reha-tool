@@ -87,6 +87,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
       <summary>話し方の例</summary>
       <ul>
         <li>「左 肩屈曲 150」「右 肘 伸展 マイナス5」（関節＋運動＋数字。いちばん強い入力）</li>
+        <li>手指は「示指 PIP 屈曲 90」「母指 CM 橈側外転 50」（MP・PIP・DIP・CMは、英字でも「ピップ」「ディップ」「中手指節関節」などの日本語でも可）。指や関節を省くと、今の枠のものを引き継ぎます</li>
         <li>数字だけ「140」でも入ります（今の枠に入り、次へ進みます）</li>
         <li>「右」「左」で左右を切り替え。「次」「戻る」で枠を移動</li>
         <li>「取り消し」「間違い」「今のなし」で直前を取り消し。「訂正 120」で直前を上書き</li>
@@ -108,16 +109,28 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
     {g:'上肢',rows:[['肩','屈曲'],['肩','伸展'],['肩','外転'],['肩','内転'],['肩','外旋'],['肩','内旋'],['肘','屈曲'],['肘','伸展'],['前腕','回内'],['前腕','回外'],['手','掌屈'],['手','背屈'],['手','橈屈'],['手','尺屈']]},
     {g:'下肢',rows:[['股','屈曲'],['股','伸展'],['股','外転'],['股','内転'],['股','外旋'],['股','内旋'],['膝','屈曲'],['膝','伸展'],['足','背屈'],['足','底屈']]}
   ];
-  var ROWS=[]; GROUPS.forEach(function(G){ G.rows.forEach(function(r){ ROWS.push({g:G.g,j:r[0],m:r[1]}); }); });
-  var KEYIDX={}; ROWS.forEach(function(r,i){ KEYIDX[r.j+r.m]=i; });
   var JNAME={'肩':'肩','肘':'肘','前腕':'前腕','手':'手関節','股':'股関節','膝':'膝','足':'足関節'};
+  /* 手指：母指はCM・MP・IP、ほかの4指はMP・PIP・DIP（運動は屈曲・伸展。母指CMは橈側外転・掌側外転） */
+  GROUPS.push({g:'手指（母指）',f:'母指',rows:[['CM','橈側外転'],['CM','掌側外転'],['MP','屈曲'],['MP','伸展'],['IP','屈曲'],['IP','伸展']]});
+  ['示指','中指','環指','小指'].forEach(function(f){
+    GROUPS.push({g:'手指（'+f+'）',f:f,rows:[['MP','屈曲'],['MP','伸展'],['PIP','屈曲'],['PIP','伸展'],['DIP','屈曲'],['DIP','伸展']]});
+  });
+  var ROWS=[];
+  GROUPS.forEach(function(G){ G.rows.forEach(function(r){
+    if(G.f){ ROWS.push({g:G.g,j:G.f+r[0],m:r[1],f:G.f,hj:r[0]}); JNAME[G.f+r[0]]=G.f+' '+r[0]; }
+    else ROWS.push({g:G.g,j:r[0],m:r[1]});
+  }); });
+  var KEYIDX={}; ROWS.forEach(function(r,i){ KEYIDX[r.j+r.m]=i; });
 
   var S={vals:{L:[],R:[]}, cur:{side:'L',idx:0}, undo:[], redo:[], last:null, listening:false, rec:null};
   var $=function(id){return document.getElementById(id);};
 
   /* ---------- 解析 ---------- */
   var JOINT_RE=[[/前腕|ぜんわん/,'前腕'],[/手関節|主関節|首関節|手首|てくび|てかんせつ|しゅかんせつ|手/,'手'],[/肩|かた/,'肩'],[/肘|ひじ/,'肘'],[/股|こかんせつ|こ関節/,'股'],[/膝|ひざ/,'膝'],[/足関節|足首|あしくび|あしかんせつ|足/,'足']];
-  var MOTION_RE=[[/屈曲|くっきょく|曲曲/,'屈曲'],[/伸展|進展|信展|心展|しんてん/,'伸展'],[/外(転|展|点|天|店)|がいてん/,'外転'],[/内(転|展|点|天|店)|ないてん/,'内転'],[/外(旋|線|専|選|泉|戦|千)|凱旋|害専|概旋|街旋|がいせん/,'外旋'],[/内(旋|線|専|選|泉|戦|千)|ないせん/,'内旋'],[/回内|会内|開内|かいない/,'回内'],[/回外|海外|開外|かいがい/,'回外'],[/掌屈|梢屈|消屈|承屈|昇屈|賞屈|少屈|章屈|小屈|障屈|しょうくつ/,'掌屈'],[/背屈|廃屈|配屈|はいくつ/,'背屈'],[/底屈|低屈|定屈|ていくつ/,'底屈'],[/橈屈|当屈|投屈|倒屈|とうくつ/,'橈屈'],[/尺屈|斜屈|赤屈|しゃっくつ/,'尺屈']];
+  var MOTION_RE=[[/橈側(外転|外展|外点)|とうそくがいてん/,'橈側外転'],[/(掌|小|章)側(外転|外展|外点)|しょうそくがいてん/,'掌側外転'],[/屈曲|くっきょく|曲曲/,'屈曲'],[/伸展|進展|信展|心展|新店|新天|新点|新展|真店|親展|深転|しんてん/,'伸展'],[/外(転|展|点|天|店)|がいてん/,'外転'],[/内(転|展|点|天|店)|ないてん/,'内転'],[/外(旋|線|専|選|泉|戦|千)|凱旋|害専|概旋|街旋|がいせん/,'外旋'],[/内(旋|線|専|選|泉|戦|千)|ないせん/,'内旋'],[/回内|会内|開内|かいない/,'回内'],[/回外|海外|開外|かいがい/,'回外'],[/掌屈|梢屈|消屈|承屈|昇屈|賞屈|少屈|章屈|小屈|障屈|しょうくつ/,'掌屈'],[/背屈|廃屈|配屈|はいくつ/,'背屈'],[/底屈|低屈|定屈|ていくつ/,'底屈'],[/橈屈|当屈|投屈|倒屈|とうくつ/,'橈屈'],[/尺屈|斜屈|赤屈|しゃっくつ/,'尺屈']];
+  var FINGER_RE=[[/母指|拇指|親指|おやゆび|ぼし|ボシ/,'母指'],[/示指|人差し指|人さし指|ひとさしゆび|ひとさし|じし|ジシ/,'示指'],[/中指|なかゆび/,'中指'],[/環指|薬指|くすりゆび|かんし|カンシ/,'環指'],[/小指|こゆび/,'小指']];
+  /* 手指の関節：英字（MP・PIP・DIP・CM・IP）と日本語・読みの両方。PIP・DIPを先に判定（IPがその中に入るため） */
+  var HJ_RE=[['PIP',/pip|近位指節間|近位しせつかん|きんいしせつかん|ぴーあいぴー|ピーアイピー|ぴっぷ|ピップ/],['DIP',/dip|遠位指節間|遠位しせつかん|えんいしせつかん|でぃーあいぴー|ディーアイピー|でぃっぷ|ディップ|でっぷ|デップ/],['MP',/mcp|mp|中手指節|中手しせつ|ちゅうしゅしせつ|えむぴー|エムピー|エムペー|えむぺー/],['CM',/cm|手根中手|しゅこんちゅうしゅ|しーえむ|シーエム/],['IP',/ip|アイピー|あいぴー|指節間|しせつかん/]];
   var SIDE_RE=[[/左|ひだり/,'L'],[/右|みぎ/,'R']];
   var CMD={
     cancel:/取り消|取消|とりけし|間違|まちが|今のなし|いまのなし|キャンセル|きゃんせる|やり直|やりなお|^なし$/,
@@ -150,11 +163,13 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   }
 
   function parse(raw){
-    var t=String(raw).normalize('NFKC').replace(/[\s、。,.，．]/g,'');
-    var r={heard:raw,side:null,joint:null,motion:null,num:null,cmd:[]};
+    var t=String(raw).normalize('NFKC').toLowerCase().replace(/[\s、。,.，．]/g,'');
+    var r={heard:raw,side:null,joint:null,finger:null,hj:null,motion:null,num:null,cmd:[]};
     var rest=t;
     SIDE_RE.forEach(function(p){ if(r.side===null&&p[0].test(rest)){ r.side=p[1]; rest=rest.replace(p[0],''); } });
-    JOINT_RE.forEach(function(p){ if(r.joint===null&&p[0].test(rest)){ r.joint=p[1]; rest=rest.replace(p[0],''); } });
+    HJ_RE.forEach(function(p){ if(r.hj===null&&p[1].test(rest)){ r.hj=p[0]; rest=rest.replace(p[1],''); } });
+    FINGER_RE.forEach(function(p){ if(r.finger===null&&p[0].test(rest)){ r.finger=p[1]; rest=rest.replace(p[0],''); } });
+    if(r.hj===null&&r.finger===null) JOINT_RE.forEach(function(p){ if(r.joint===null&&p[0].test(rest)){ r.joint=p[1]; rest=rest.replace(p[0],''); } });
     MOTION_RE.forEach(function(p){ if(r.motion===null&&p[0].test(rest)){ r.motion=p[1]; rest=rest.replace(p[0],''); } });
     Object.keys(CMD).forEach(function(k){ if(CMD[k].test(t)) r.cmd.push(k); });
     var rem=rest.replace(/関節|かんせつ|度|ど|ぐらい|くらい|ちょうど|です|ですね|は|が|を|の|にして|にします|です/g,'');
@@ -183,12 +198,22 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
 
     // 1) 関節・運動・数字（最優先）
     var idx=null;
+    // 手指：指の名前と関節（MP・PIP・DIP・CM・IP）から、枠の関節を決める。省略したら今の枠から引き継ぐ
+    if(r.hj||r.finger){
+      var cr=ROWS[S.cur.idx];
+      var ff=r.finger||((r.hj==='CM'||r.hj==='IP')?'母指':cr.f);
+      var hh=r.hj||cr.hj;
+      if(!ff){ say('指の名前（母指・示指・中指・環指・小指）も言ってください',true); render(); return; }
+      if(!hh){ say('関節名（MP・PIP・DIP・CM・IP）も言ってください',true); render(); return; }
+      r.joint=ff+hh;
+    }
     if(r.motion){
       var j=r.joint||ROWS[S.cur.idx].j;
       // 手関節・足関節は、屈曲＝掌屈／底屈、伸展＝背屈としても受け付ける
       if(j==='手'){ if(r.motion==='屈曲') r.motion='掌屈'; else if(r.motion==='伸展') r.motion='背屈'; }
       if(j==='足'){ if(r.motion==='屈曲') r.motion='底屈'; else if(r.motion==='伸展') r.motion='背屈'; }
-      if(KEYIDX[j+r.motion]===undefined){ say('「'+JNAME[j]+' '+r.motion+'」の組み合わせはありません',true); idx=-1; }
+      if(KEYIDX[j+r.motion]===undefined&&j==='母指CM'&&(r.motion==='外転'||r.motion==='内転')){ say('母指CMは「橈側外転」か「掌側外転」で言ってください',true); idx=-1; }
+      else if(KEYIDX[j+r.motion]===undefined){ say('「'+(JNAME[j]||j)+' '+r.motion+'」の組み合わせはありません',true); idx=-1; }
       else idx=KEYIDX[j+r.motion];
     }else if(r.joint){
       // 運動が聞き取れていない：勝手に屈曲などへ入れない
