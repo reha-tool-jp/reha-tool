@@ -107,9 +107,11 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   'use strict';
   var GROUPS=[
     {g:'上肢',rows:[['肩','屈曲'],['肩','伸展'],['肩','外転'],['肩','内転'],['肩','外旋'],['肩','内旋'],['肘','屈曲'],['肘','伸展'],['前腕','回内'],['前腕','回外'],['手','掌屈'],['手','背屈'],['手','橈屈'],['手','尺屈']]},
-    {g:'下肢',rows:[['股','屈曲'],['股','伸展'],['股','外転'],['股','内転'],['股','外旋'],['股','内旋'],['膝','屈曲'],['膝','伸展'],['足','背屈'],['足','底屈']]}
+    {g:'下肢',rows:[['股','屈曲'],['股','伸展'],['股','外転'],['股','内転'],['股','外旋'],['股','内旋'],['膝','屈曲'],['膝','伸展'],['足','背屈'],['足','底屈']]},
+    /* 体幹・頸部：屈曲・伸展は左右なし（第3要素1）。回旋・側屈は左右別。参考値：頸部 屈曲60 伸展50 回旋60 側屈50／胸腰部 屈曲45 伸展30 回旋40 側屈50 */
+    {g:'体幹・頸部',rows:[['頸部','屈曲',1],['頸部','伸展',1],['頸部','回旋'],['頸部','側屈'],['胸腰部','屈曲',1],['胸腰部','伸展',1],['胸腰部','回旋'],['胸腰部','側屈']]}
   ];
-  var JNAME={'肩':'肩','肘':'肘','前腕':'前腕','手':'手関節','股':'股関節','膝':'膝','足':'足関節'};
+  var JNAME={'肩':'肩','肘':'肘','前腕':'前腕','手':'手関節','股':'股関節','膝':'膝','足':'足関節','頸部':'頸部','胸腰部':'胸腰部'};
   /* 手指：母指はCM・MP・IP、ほかの4指はMP・PIP・DIP（運動は屈曲・伸展。母指CMは橈側外転・掌側外転） */
   GROUPS.push({g:'手指（母指）',f:'母指',rows:[['CM','橈側外転'],['CM','掌側外転'],['MP','屈曲'],['MP','伸展'],['IP','屈曲'],['IP','伸展']]});
   ['示指','中指','環指','小指'].forEach(function(f){
@@ -118,7 +120,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   var ROWS=[];
   GROUPS.forEach(function(G){ G.rows.forEach(function(r){
     if(G.f){ ROWS.push({g:G.g,j:G.f+r[0],m:r[1],f:G.f,hj:r[0]}); JNAME[G.f+r[0]]=G.f+' '+r[0]; }
-    else ROWS.push({g:G.g,j:r[0],m:r[1]});
+    else ROWS.push({g:G.g,j:r[0],m:r[1],ns:r[2]===1});
   }); });
   var KEYIDX={}; ROWS.forEach(function(r,i){ KEYIDX[r.j+r.m]=i; });
 
@@ -126,8 +128,8 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   var $=function(id){return document.getElementById(id);};
 
   /* ---------- 解析 ---------- */
-  var JOINT_RE=[[/前腕|ぜんわん/,'前腕'],[/手関節|主関節|首関節|手首|てくび|てかんせつ|しゅかんせつ|手/,'手'],[/肩|かた/,'肩'],[/肘|ひじ/,'肘'],[/股|こかんせつ|こ関節/,'股'],[/膝|ひざ/,'膝'],[/足関節|足首|あしくび|あしかんせつ|足/,'足']];
-  var MOTION_RE=[[/橈側(外転|外展|外点)|とうそくがいてん/,'橈側外転'],[/(掌|小|章)側(外転|外展|外点)|しょうそくがいてん/,'掌側外転'],[/屈曲|くっきょく|曲曲/,'屈曲'],[/伸展|進展|信展|心展|新店|新天|新点|新展|真店|親展|深転|しんてん/,'伸展'],[/外(転|展|点|天|店)|がいてん/,'外転'],[/内(転|展|点|天|店)|ないてん/,'内転'],[/外(旋|線|専|選|泉|戦|千)|凱旋|害専|概旋|街旋|がいせん/,'外旋'],[/内(旋|線|専|選|泉|戦|千)|ないせん/,'内旋'],[/回内|会内|開内|かいない/,'回内'],[/回外|海外|開外|かいがい/,'回外'],[/掌屈|梢屈|消屈|承屈|昇屈|賞屈|少屈|章屈|小屈|障屈|しょうくつ/,'掌屈'],[/背屈|廃屈|配屈|はいくつ/,'背屈'],[/底屈|低屈|定屈|ていくつ/,'底屈'],[/橈屈|当屈|投屈|倒屈|とうくつ/,'橈屈'],[/尺屈|斜屈|赤屈|しゃっくつ/,'尺屈']];
+  var JOINT_RE=[[/前腕|ぜんわん/,'前腕'],[/胸腰|きょうよう|体幹|たいかん|腰/,'胸腰部'],[/頸部|頚部|けいぶ|頸|頚|くび|首/,'頸部'],[/手関節|主関節|首関節|手首|てくび|てかんせつ|しゅかんせつ|手/,'手'],[/肩|かた/,'肩'],[/肘|ひじ/,'肘'],[/股|こかんせつ|こ関節/,'股'],[/膝|ひざ/,'膝'],[/足関節|足首|あしくび|あしかんせつ|足/,'足']];
+  var MOTION_RE=[[/橈側(外転|外展|外点)|とうそくがいてん/,'橈側外転'],[/(掌|小|章)側(外転|外展|外点)|しょうそくがいてん/,'掌側外転'],[/回旋|回線|回戦|開戦|かいせん/,'回旋'],[/側屈|そくくつ/,'側屈'],[/屈曲|くっきょく|曲曲/,'屈曲'],[/伸展|進展|信展|心展|新店|新天|新点|新展|真店|親展|深転|しんてん/,'伸展'],[/外(転|展|点|天|店)|がいてん/,'外転'],[/内(転|展|点|天|店)|ないてん/,'内転'],[/外(旋|線|専|選|泉|戦|千)|凱旋|害専|概旋|街旋|がいせん/,'外旋'],[/内(旋|線|専|選|泉|戦|千)|ないせん/,'内旋'],[/回内|会内|開内|かいない/,'回内'],[/回外|海外|開外|かいがい/,'回外'],[/掌屈|梢屈|消屈|承屈|昇屈|賞屈|少屈|章屈|小屈|障屈|しょうくつ/,'掌屈'],[/背屈|廃屈|配屈|はいくつ/,'背屈'],[/底屈|低屈|定屈|ていくつ/,'底屈'],[/橈屈|当屈|投屈|倒屈|とうくつ/,'橈屈'],[/尺屈|斜屈|赤屈|しゃっくつ/,'尺屈']];
   var FINGER_RE=[[/母指|拇指|親指|母子|星|おやゆび|ぼし|ボシ|ほし|ホシ/,'母指'],[/示指|人差し指|人さし指|ひとさしゆび|ひとさし|じし|ジシ/,'示指'],[/中指|なかゆび/,'中指'],[/環指|薬指|くすりゆび|かんし|カンシ/,'環指'],[/小指|こゆび/,'小指']];
   /* 手指の関節：英字（MP・PIP・DIP・CM・IP）と日本語・読みの両方。PIP・DIPを先に判定（IPがその中に入るため） */
   var HJ_RE=[['PIP',/pip|近位指節間|近位しせつかん|きんいしせつかん|ぴーあいぴー|ピーアイピー|ぴっぷ|ピップ/],['DIP',/dip|遠位指節間|遠位しせつかん|えんいしせつかん|でぃーあいぴー|ディーアイピー|でぃっぷ|ディップ|でっぷ|デップ/],['MP',/mcp|mp|中手指節|中手しせつ|ちゅうしゅしせつ|えむぴー|エムピー|エムペー|えむぺー/],['CM',/cm|手根中手|しゅこんちゅうしゅ|しーえむ|シーエム/],['IP',/ip|アイピー|あいぴー|指節間|しせつかん/]];
@@ -165,6 +167,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   function parse(raw){
     var t=String(raw).normalize('NFKC').toLowerCase().replace(/[\s、。,.，．]/g,'');
     var r={heard:raw,side:null,joint:null,finger:null,hj:null,motion:null,num:null,cmd:[]};
+    t=t.replace(/手首|首関節/g,'手関節').replace(/足屈|測屈|速屈|即屈/g,'側屈');
     var rest=t;
     SIDE_RE.forEach(function(p){ if(r.side===null&&p[0].test(rest)){ r.side=p[1]; rest=rest.replace(p[0],''); } });
     HJ_RE.forEach(function(p){ if(r.hj===null&&p[1].test(rest)){ r.hj=p[0]; rest=rest.replace(p[1],''); } });
@@ -189,7 +192,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   }
   function advance(){ if(S.cur.idx<ROWS.length-1) S.cur.idx++; }
   function say(msg,warn){ var e=$('interp'); e.textContent=msg||' '; e.className='interp'+(warn?' warn':''); }
-  function fmt(side,i){ return (side==='L'?'左':'右')+' '+JNAME[ROWS[i].j]+ROWS[i].m; }
+  function fmt(side,i){ if(ROWS[i].ns) return JNAME[ROWS[i].j]+ROWS[i].m; return (side==='L'?'左':'右')+' '+JNAME[ROWS[i].j]+ROWS[i].m; }
 
   function handle(raw){
     var r=parse(raw);
@@ -200,7 +203,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
     var idx=null;
     // 手指：指の名前と関節（MP・PIP・DIP・CM・IP）から、枠の関節を決める。省略したら今の枠から引き継ぐ
     if(r.hj||r.finger){
-      var cr=ROWS[S.cur.idx];
+      var cr=ROWS[S.cur.idx]||{};
       var ff=r.finger||((r.hj==='CM'||r.hj==='IP')?'母指':cr.f);
       var hh=r.hj||cr.hj;
       if(!ff){ say('指の名前（母指・示指・中指・環指・小指）も言ってください',true); render(); return; }
@@ -222,15 +225,17 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
     }
     if(idx===-1){ render(); return; }
     var side=r.side||S.cur.side;
+    var vside=(idx!==null&&ROWS[idx].ns)?'L':side; /* 左右なしの項目は左の欄に保存し、左右の切り替えは変えない */
     var correcting=r.cmd.indexOf('correct')>=0;
 
     if(idx!==null && r.num!==null){
-      setV(side,idx,r.num); S.cur={side:side,idx:idx}; say('記録：'+fmt(side,idx)+' '+r.num+'°'); advance(); did=true;
+      setV(vside,idx,r.num); S.cur={side:side,idx:idx}; say('記録：'+fmt(side,idx)+' '+r.num+'°'); advance(); did=true;
     }else if(idx!==null){
       S.cur={side:side,idx:idx}; say('移動：'+fmt(side,idx)+'（数字を待っています）'); did=true;
     }else if(r.num!==null && !(r.cmd.indexOf('cancel')>=0)){
+      if(ROWS[S.cur.idx].ns) side='L';
       if(correcting && S.last){ setV(S.last.side,S.last.i,r.num); S.cur={side:S.last.side,idx:S.last.i}; say('訂正：'+fmt(S.last.side,S.last.i)+' '+r.num+'°'); advance(); did=true; }
-      else{ setV(side,S.cur.idx,r.num); say('記録：'+fmt(side,S.cur.idx)+' '+r.num+'°'); var ci=S.cur.idx; S.cur.side=side; advance(); did=true; }
+      else{ var ns0=ROWS[S.cur.idx].ns; setV(ns0?'L':side,S.cur.idx,r.num); say('記録：'+fmt(side,S.cur.idx)+' '+r.num+'°'); if(!ns0) S.cur.side=side; advance(); did=true; }
     }else if(r.side){
       S.cur.side=r.side; say('切り替え：'+(r.side==='L'?'左':'右')); did=true;
     }
@@ -266,6 +271,13 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
       var L=getV('L',i),R=getV('R',i);
       if(L!==undefined)filled++; if(R!==undefined)filled++;
       var diff='',big='';
+      if(r.ns){
+        /* 左右なしの項目：値は1つ（左の欄に保存）。左・右・左右差の3列をまとめて表示 */
+        if(L!==undefined) filled--; /* 満杯の数え方は左右ありの項目だけに合わせる */
+        var cl='c'+(L===undefined?' empty':'')+((S.cur.idx===i)?' cur':'');
+        html+='<tr><td class="m">'+JNAME[r.j]+' '+r.m+'</td><td class="'+cl+'" colspan="3" data-s="L" data-i="'+i+'">'+(L===undefined?'—':L+'°')+'</td></tr>';
+        return;
+      }
       if(L!==undefined&&R!==undefined){ var d=Math.abs(L-R); diff=d+'°'; if(d>=10) big=' big'; }
       function cell(side,v){
         var cls='c'+(v===undefined?' empty':'')+((S.cur.side===side&&S.cur.idx===i)?' cur':'');
@@ -274,14 +286,15 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
       html+='<tr><td class="m">'+JNAME[r.j]+' '+r.m+'</td>'+cell('L',L)+cell('R',R)+'<td class="d'+big+'">'+diff+'</td></tr>';
     });
     $('tb').innerHTML=html;
-    $('prog').textContent='入力済み '+filled+' / '+(ROWS.length*2);
+    var nsN=0,nsF=0; ROWS.forEach(function(r,i){ if(r.ns){ nsN++; if(getV('L',i)!==undefined) nsF++; } });
+    $('prog').textContent='入力済み '+(filled+nsF)+' / '+(ROWS.length*2-nsN);
     $('cursor').textContent='今の枠：'+fmt(S.cur.side,S.cur.idx);
     $('btnUndo').disabled=!S.undo.length; $('btnRedo').disabled=!S.redo.length;
     var cur=document.querySelector('td.cur'); if(cur&&cur.scrollIntoView){ try{cur.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){} }
   }
   $('tb').addEventListener('click',function(e){
     var td=e.target.closest('td.c'); if(!td) return;
-    S.cur={side:td.dataset.s,idx:parseInt(td.dataset.i,10)}; say('移動：'+fmt(S.cur.side,S.cur.idx)); render();
+    var ci=parseInt(td.dataset.i,10); S.cur={side:ROWS[ci].ns?S.cur.side:td.dataset.s,idx:ci}; say('移動：'+fmt(S.cur.side,S.cur.idx)); render();
   });
 
   /* ---------- 音声認識 ---------- */
@@ -320,7 +333,7 @@ details ul{margin:8px 0 0 18px;font-size:.8rem;line-height:1.8}
   $('btnClear').addEventListener('click',function(){ if(!Object.keys(S.vals.L).length&&!Object.keys(S.vals.R).length) return; S.vals={L:[],R:[]}; S.undo=[];S.redo=[];S.last=null; S.cur={side:'L',idx:0}; say('全消去しました'); render(); });
   $('btnCopy').addEventListener('click',function(){
     var lines=['運動\t左\t右\t左右差'];
-    ROWS.forEach(function(r,i){ var L=getV('L',i),R=getV('R',i); lines.push(JNAME[r.j]+' '+r.m+'\t'+(L===undefined?'':L)+'\t'+(R===undefined?'':R)+'\t'+((L!==undefined&&R!==undefined)?Math.abs(L-R):'')); });
+    ROWS.forEach(function(r,i){ var L=getV('L',i),R=getV('R',i); if(r.ns){ lines.push(JNAME[r.j]+' '+r.m+'\t'+(L===undefined?'':L)+'\t（左右なし）\t'); return; } lines.push(JNAME[r.j]+' '+r.m+'\t'+(L===undefined?'':L)+'\t'+(R===undefined?'':R)+'\t'+((L!==undefined&&R!==undefined)?Math.abs(L-R):'')); });
     if(navigator.clipboard) navigator.clipboard.writeText(lines.join('\n')).then(function(){ $('btnCopy').textContent='コピーしました'; setTimeout(function(){ $('btnCopy').textContent='表をコピー'; },1500); });
   });
   function typed(){ var v=$('typed').value.trim(); if(!v) return; handle(v); $('typed').value=''; }
