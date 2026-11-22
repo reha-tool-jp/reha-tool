@@ -8,6 +8,13 @@
  * このファイルは、広告を置くページより前で、同期的に読み込む（defer・asyncは付けない）。
  */
 (function () {
+  // 印刷時は広告を隠す（広告ブロックには class="ad-no-print" を付ける）
+  try {
+    var st = document.createElement('style');
+    st.textContent = '@media print{.ad-no-print{display:none!important}}';
+    document.head.appendChild(st);
+  } catch (e) {}
+
   var isPc = !!(window.matchMedia && window.matchMedia('(min-width: 900px)').matches);
 
   var ADMAX = {
