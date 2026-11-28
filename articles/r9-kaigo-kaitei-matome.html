@@ -218,6 +218,26 @@
 }
 </script>
 <script src="/track-links.js" defer></script>
+<style>
+/* ===== 見出しのメリハリ（2026-11-28 案B採用） ===== */
+.article-body { counter-reset: rsec; }
+.article-body h2 {
+  counter-increment: rsec;
+  font-size: 22px; line-height: 1.4; color: #fff; background: #1F5C55;
+  padding: 12px 14px; border-bottom: none; border-radius: 6px;
+  margin: 48px 0 14px;
+}
+.article-body h2::before { content: counter(rsec); display: block; font-size: 13px; font-weight: 500; opacity: .85; margin-bottom: 2px; }
+.article-body h2 a { color: #fff; }
+.article-body p.topic-head {
+  font-size: 18px; line-height: 1.5; background: #e6f1ee;
+  margin: -14px -16px 12px; padding: 10px 16px; border-bottom: none;
+}
+@media (min-width: 768px) {
+  .article-body h2 { font-size: 24px; }
+  .article-body p.topic-head { font-size: 20px; }
+}
+</style>
 </head>
 <body>
 <nav class="global-nav rt-gnav">
@@ -280,7 +300,7 @@
 <tr class="now-mof"><td data-label="サービス">財務省・財政審の指摘</td><td data-label="いま出ている案・論点">訪問リハ（集中提供型）と訪問看護の報酬の適正化を求める指摘。<strong>決定ではありません</strong></td><td data-label="どの会議で">財政審（11/4）</td></tr>
 </tbody></table></div>
 <p class="update-note">今後の予定：12月中に基本的な考え方をとりまとめ、令和9年1月頃に諮問・答申という、スケジュール案です（厚労省の「検討の進め方」より。第256回）。</p>
-<div class="toc"><div class="toc-title">この記事の目次</div><ol><li><a href="#now">いまの現在地</a></li><li><a href="#sec1">最新の動き</a></li><li><a href="#sec2">この記事の読み方</a></li><li><a href="#sec3">まだ決まっていないこと</a></li><li><a href="#sec4">改定の5つの柱（基本的な視点・案）：9/30 第268回</a></li><li><a href="#sec5">サービス別の改定案：通所リハ・訪問リハ・訪問看護</a></li><li><a href="#sec6">9月のリハ団体の要望と、10月の案</a></li><li><a href="#sec7">会議ログ（新しい順）</a></li><li><a href="#sec8">現場で今からできること（提案です。公式の方針ではありません）</a></li><li><a href="#sec9">参考</a></li></ol></div>
+<div class="toc"><div class="toc-title">この記事の目次</div><ol><li><a href="#now">いまの現在地</a></li><li><a href="#sec1">最新の動き</a></li><li><a href="#sec2">この記事の読み方</a></li><li><a href="#sec3">まだ決まっていないこと</a></li><li><a href="#sec4">改定の5つの柱（基本的な視点・案）：9/30 第268回</a></li><li><a href="#sec5">サービス別の改定案：通所リハ・訪問リハ・訪問看護など</a></li><li><a href="#sec6">9月のリハ団体の要望と、10月の案</a></li><li><a href="#sec7">会議ログ（新しい順）</a></li><li><a href="#sec8">現場で今からできること（提案です。公式の方針ではありません）</a></li><li><a href="#sec9">参考</a></li></ol></div>
 <h2 id="sec1">最新の動き</h2>
 <div class="topic">
 <p class="topic-head"><strong>11/26（<a href="https://www.mhlw.go.jp/stf/newpage_77543.html" target="_blank" rel="noopener">第277回</a>）認知症への対応力強化、LIFE、住まい（訪問介護・通所介護・その他サービス）、その他（医師の常勤要件など）</strong></p>
@@ -435,7 +455,7 @@
 <li>制度の安定性・持続可能性（評価の適正化・重点化、報酬体系の整理・簡素化）
 </li></ol>
 <p>リハは3番目の柱に「生活期のリハビリテーションを推進する」として入っています。</p>
-<h2 id="sec5">サービス別の改定案：通所リハ・訪問リハ・訪問看護</h2>
+<h2 id="sec5">サービス別の改定案：通所リハ・訪問リハ・訪問看護など</h2>
 <h3 class="svc-head"><span class="svc svc-tsusho">通所リハ</span><span class="svc-rest">（<a href="https://www.mhlw.go.jp/content/12300000/001758861.pdf" target="_blank" rel="noopener">第270回 資料3</a>）</span></h3>
 <p class="update-note">11/26（第277回）：同一建物居住者に係る報酬区分の見直し案と、医師の常勤要件を週31時間以上にする案が出ています。11/20（第276回）：リハマネ加算(ハ)を含む加算の再編案が出ています。11/16（第275回）：訪問系・通所系にも生産性向上の委員会の設置・開催を義務づける案が出ています。詳しくは、上の「最新の動き」を見てください。</p>
 <div class="topic">
